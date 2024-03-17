@@ -1,16 +1,31 @@
 import { v4 as uuidv4 } from 'uuid';
 import { ClassType } from '../types/class';
+import { Api } from './api';
 
-export class Project {
+interface ProjectModel {
   id: string;
   name: string;
   description?: string;
-  type: string;
+}
+
+export class Project extends Api<ProjectModel> {
+  protected id: string;
+  public name: string;
+  public description?: string;
 
   constructor(name: string, description?: string) {
-    this.id = uuidv4();
+    const id = uuidv4();
+    const project = {
+      id,
+      name,
+      description,
+      type: ClassType.Project,
+    };
+
+    super(project, 'id', 'name');
+
+    this.id = id;
     this.name = name;
     this.description = description;
-    this.type = ClassType.Project;
   }
 }
