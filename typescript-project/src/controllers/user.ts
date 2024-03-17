@@ -8,9 +8,9 @@ interface UserModel {
   surname: string;
 }
 export class User extends Api<UserModel> {
-  id: string;
-  name: string;
-  surname: string;
+  public id: string;
+  public name: string;
+  public surname: string;
 
   constructor(name: string, surname: string) {
     const id = uuidv4();

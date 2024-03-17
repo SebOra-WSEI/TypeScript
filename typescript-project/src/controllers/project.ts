@@ -1,15 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
 import { ClassType } from '../types/class';
 import { Api } from './api';
-
-interface ProjectModel {
-  id: string;
-  name: string;
-  description?: string;
-}
+import { ProjectModel } from '../types/project';
 
 export class Project extends Api<ProjectModel> {
-  protected id: string;
+  public id: string;
   public name: string;
   public description?: string;
 
