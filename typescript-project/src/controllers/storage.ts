@@ -56,6 +56,7 @@ export class Storage extends Api<StorageModel> {
     this.priority = priority;
     this.projectId = projectId;
     this.date = date;
-    (this.ownerId = ownerId), (this.state = state);
+    this.ownerId = ownerId;
+    this.state = state;
   }
 }
