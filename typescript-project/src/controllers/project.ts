@@ -2,8 +2,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { StatusCode } from '../types/statusCode';
 import { Response } from '../types/response';
 import { ProjectModel } from '../types/project';
-import { LOCAL_STORAGE_KEY } from '../utils/consts';
-import { getAllProjectsFromLocalStorage } from '../utils/getProjectsFromLocalStorage';
+import { PROJECT_LOCAL_STORAGE_KEY } from '../utils/consts';
+import { getFromLocalStorage } from '../utils/getFromLocalStorage';
 
 export class Project {
   name: string;
@@ -17,7 +17,7 @@ export class Project {
   getAll(): Response<Array<ProjectModel>> {
     return {
       status: StatusCode.OK,
-      response: getAllProjectsFromLocalStorage(),
+      response: getFromLocalStorage(PROJECT_LOCAL_STORAGE_KEY),
     };
   }
 
@@ -65,7 +65,10 @@ export class Project {
     }
 
     allProjects.push(newProject);
-    window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(allProjects));
+    window.localStorage.setItem(
+      PROJECT_LOCAL_STORAGE_KEY,
+      JSON.stringify(allProjects)
+    );
 
     return {
       status: StatusCode.Created,
@@ -94,7 +97,10 @@ export class Project {
       (p) => p.id !== currentProjectResponse.response?.id
     );
 
-    window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newArray));
+    window.localStorage.setItem(
+      PROJECT_LOCAL_STORAGE_KEY,
+      JSON.stringify(newArray)
+    );
 
     return {
       status: StatusCode.OK,
@@ -154,7 +160,10 @@ export class Project {
       return p;
     });
 
-    window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newArr));
+    window.localStorage.setItem(
+      PROJECT_LOCAL_STORAGE_KEY,
+      JSON.stringify(newArr)
+    );
 
     return {
       status: StatusCode.OK,
