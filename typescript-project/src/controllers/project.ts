@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { ClassType } from '../types/element';
+import { ClassType } from '../types/class';
 
 export class Project {
   id: string;
