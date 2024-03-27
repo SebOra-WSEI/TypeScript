@@ -1,8 +1,5 @@
-import React from "react";
+import React from 'react';
 
 export const CreateProjectPage: React.FC = () => {
-
-  return (
-    <>create project</>
-  )
-}
+  return <>create project</>;
+};

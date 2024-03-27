@@ -1,14 +1,22 @@
-import React from "react";
-import { Box, Divider, IconButton, List, ListItem, ListItemText, Tooltip } from "@mui/material";
-import { ProjectModel } from "../../../types/project";
-import { projectPageStyles } from "../../../styles/projectsPage";
+import React from 'react';
+import {
+  Box,
+  Divider,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  Tooltip,
+} from '@mui/material';
+import { ProjectModel } from '../../../types/project';
+import { projectPageStyles } from '../../../styles/projectsPage';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { removeProject } from "../../../utils/removeProject";
-import { Link } from "react-router-dom";
-import { routeBuilder } from "../../../routes/routes";
+import { removeProject } from '../../../utils/removeProject';
+import { Link } from 'react-router-dom';
+import { routeBuilder } from '../../../routes/routes';
 
 interface ProjectsListProps {
-  projects: ProjectModel[]
+  projects: ProjectModel[];
 }
 
 export const ProjectsList: React.FC<ProjectsListProps> = ({ projects }) => {
@@ -18,7 +26,7 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({ projects }) => {
         <p>There are no projects yet</p>
         <CreateProjectLink />
       </Box>
-    )
+    );
   }
 
   return (
@@ -30,22 +38,26 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({ projects }) => {
               <ListItemText
                 primary={p.name}
                 secondary={p.description}
-                sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                }}
               />
-              <Tooltip title="Remove" onClick={() => removeProject(p.id)}>
-                <IconButton edge="end">
+              <Tooltip title='Remove' onClick={() => removeProject(p.id)}>
+                <IconButton edge='end'>
                   <DeleteIcon />
                 </IconButton>
               </Tooltip>
             </ListItem>
-            <Divider variant="inset" />
+            <Divider variant='inset' />
           </div>
         ))}
         <Divider sx={{ marginTop: '2rem' }} />
         <CreateProjectLink />
       </List>
     </>
-  )
+  );
 };
 
 const CreateProjectLink: React.FC = () => (

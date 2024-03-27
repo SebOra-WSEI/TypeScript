@@ -20,5 +20,5 @@ export const App: React.FC = () => {
     <Box sx={{ display: 'flex' }}>
       <AppNavigator />
     </Box>
-  )
+  );
 };

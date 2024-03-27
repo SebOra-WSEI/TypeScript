@@ -1,5 +1,3 @@
-import React from "react"
+import React from 'react';
 
-export const NotFound: React.FC = () => (
-  <>404 - Page not found</>
-)
+export const NotFound: React.FC = () => <>404 - Page not found</>;

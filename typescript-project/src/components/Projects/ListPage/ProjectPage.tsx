@@ -1,19 +1,19 @@
-import React from "react";
-import { useGetAllProjects } from "../../../hooks/project/useGetAllProjects";
-import { Loader } from "../../common/Loader";
-import { Box } from "@mui/material";
-import { ProjectsList } from "./ProjectsList";
-import { projectPageStyles } from "../../../styles/projectsPage";
+import React from 'react';
+import { useGetAllProjects } from '../../../hooks/project/useGetAllProjects';
+import { Loader } from '../../common/Loader';
+import { Box } from '@mui/material';
+import { ProjectsList } from './ProjectsList';
+import { projectPageStyles } from '../../../styles/projectsPage';
 
 export const ProjectsPage: React.FC = () => {
   const { loading, error, data } = useGetAllProjects();
 
   if (loading) {
-    return <Loader />
+    return <Loader />;
   }
 
   if (error) {
-    return <>{error}</>
+    return <>{error}</>;
   }
 
   return (
@@ -21,5 +21,5 @@ export const ProjectsPage: React.FC = () => {
       <h2 style={projectPageStyles.header}>Projects</h2>
       <ProjectsList projects={data} />
     </Box>
-  )
-}
+  );
+};
