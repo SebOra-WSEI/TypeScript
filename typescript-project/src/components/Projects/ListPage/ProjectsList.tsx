@@ -11,7 +11,7 @@ import {
 import { ProjectModel } from '../../../types/project';
 import { projectPageStyles } from '../../../styles/projectsPage';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { removeProject } from '../../../utils/removeProject';
+import { removeProject } from '../../../api/project/removeProject';
 import { Link } from 'react-router-dom';
 import { routeBuilder } from '../../../routes/routes';
 
