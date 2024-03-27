@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGetAllProjects } from '../../../hooks/project/useGetAllProjects';
+import { useGetAllProjects } from '../../../hooks/useGetAllProjects';
 import { Loader } from '../../common/Loader';
 import { Box } from '@mui/material';
 import { ProjectsList } from './ProjectsList';

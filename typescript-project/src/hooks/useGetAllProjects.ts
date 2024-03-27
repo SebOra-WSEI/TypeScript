@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { FetchedData } from '../../types/fetchedData';
-import { ProjectModel } from '../../types/project';
-import { StatusCode } from '../../types/statusCode';
-import { EMPTY_PROJECT } from './emptyProject';
+import { FetchedData } from '../types/fetchedData';
+import { ProjectModel } from '../types/project';
+import { StatusCode } from '../types/statusCode';
+import { EMPTY_PROJECT } from '../utils/emptyProject';
 
 export const useGetAllProjects = (): FetchedData<ProjectModel[]> => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
