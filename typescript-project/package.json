@@ -10,6 +10,13 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.2",
+    "@types/react-dom": "^18.2.4",
+    "@types/react-router": "^5.1.20",
+    "@types/react-router-dom": "^5.3.3",
     "@types/uuid": "^9.0.8",
     "prettier": "^3.2.5",
     "react": "^18.2.0",
@@ -23,6 +30,9 @@
     "@typescript-eslint/parser": "^7.1.1",
     "@vitejs/plugin-react": "^4.2.1",
     "typescript": "^5.2.2",
-    "vite": "^5.1.6"
+    "vite": "^5.1.6",
+    "react-dom": "^18.2.0",
+    "react-router": "^5.3.3",
+    "react-router-dom": "^5.3.4"
   }
 }
