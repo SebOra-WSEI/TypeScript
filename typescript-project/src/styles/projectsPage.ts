@@ -6,7 +6,7 @@ export const projectPageStyles = {
     display: 'flex',
     justifyContent: 'center',
   },
-  list: {
+  wrapper: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

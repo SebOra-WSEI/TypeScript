@@ -1,9 +1,9 @@
 import React from "react";
-import { useGetAllProjects } from "../../hooks/useGetAllProjects";
-import { Loader } from "../common/Loader";
+import { useGetAllProjects } from "../../../hooks/project/useGetAllProjects";
+import { Loader } from "../../common/Loader";
 import { Box } from "@mui/material";
 import { ProjectsList } from "./ProjectsList";
-import { projectPageStyles } from "../../styles/projectsPage";
+import { projectPageStyles } from "../../../styles/projectsPage";
 
 export const ProjectsPage: React.FC = () => {
   const { loading, error, data } = useGetAllProjects();
