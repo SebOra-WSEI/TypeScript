@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Box,
-  Button,
-  Divider,
-  List,
-} from '@mui/material';
+import { Box, Button, Divider, List } from '@mui/material';
 import { ProjectModel } from '../../../types/project';
 import { projectPageStyles } from '../../../styles/projectsPage';
 import { FormModal } from '../Modal/FormModal';

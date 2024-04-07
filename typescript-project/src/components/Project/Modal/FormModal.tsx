@@ -58,9 +58,9 @@ export const FormModal: React.FC<FormModalProps> = ({ isOpen, onClose }) => {
   };
 
   const handleOnClose = (): void => {
-    setProject({ name: '', description: '' })
+    setProject({ name: '', description: '' });
     onClose();
-  }
+  };
 
   return (
     <>

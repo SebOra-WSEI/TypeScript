@@ -4,13 +4,16 @@ import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
 import { EMPTY_STORAGE } from './emptyStorage';
 
-export const useGetStoragesByProjectId = (id: string): FetchedData<Array<StorageModel>> => {
+export const useGetStoragesByProjectId = (
+  id: string
+): FetchedData<Array<StorageModel>> => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
   const [storages, setStorages] = useState<Array<StorageModel>>();
 
   useEffect(() => {
-    const { errorMessage, status, response } = EMPTY_STORAGE.getAllByProjectId(id);
+    const { errorMessage, status, response } =
+      EMPTY_STORAGE.getAllByProjectId(id);
 
     if (!!errorMessage) {
       setError(errorMessage);
@@ -30,4 +33,4 @@ export const useGetStoragesByProjectId = (id: string): FetchedData<Array<Storage
     error,
     data: storages,
   };
-}
+};

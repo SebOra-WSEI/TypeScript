@@ -23,21 +23,20 @@ export const ProjectDetailsPage: React.FC = () => {
 
   // console.log(EMPTY_STORAGE1.create())
 
-
   const {
     loading: projectLoading,
     error: projectError,
-    data: project
-  } = useGetProjectById(projectId)
+    data: project,
+  } = useGetProjectById(projectId);
 
   const {
     loading: storagesLoading,
     error: storagesError,
-    data: storages
+    data: storages,
   } = useGetStoragesByProjectId(projectId);
 
   if (projectLoading || storagesLoading) {
-    return <Loader />
+    return <Loader />;
   }
 
   if (projectError || storagesError) {

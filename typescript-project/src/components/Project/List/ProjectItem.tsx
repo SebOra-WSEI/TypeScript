@@ -1,4 +1,10 @@
-import { Divider, IconButton, ListItem, ListItemText, Tooltip } from '@mui/material';
+import {
+  Divider,
+  IconButton,
+  ListItem,
+  ListItemText,
+  Tooltip,
+} from '@mui/material';
 import React, { useEffect } from 'react';
 import { projectPageStyles } from '../../../styles/projectsPage';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -27,13 +33,13 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({
     if (error) {
       setSeverity(SeverityOption.Error);
       setSeverityText(error);
-    };
+    }
 
     if (message) {
       setSeverity(SeverityOption.Success);
       setSeverityText(message);
     }
-  }, [error, message])
+  }, [error, message]);
 
   return (
     <div key={project.id}>
@@ -51,10 +57,7 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({
             <WhereToVoteIcon />
           </IconButton>
         </Tooltip>
-        <Tooltip
-          title='Remove'
-          onClick={() => remove(project.id)}
-        >
+        <Tooltip title='Remove' onClick={() => remove(project.id)}>
           <IconButton>
             <DeleteIcon />
           </IconButton>
