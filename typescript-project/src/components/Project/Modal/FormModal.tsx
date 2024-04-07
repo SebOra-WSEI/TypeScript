@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { formModalStyles } from '../../../styles/formModal';
-import { CreateProjectForm } from '../Create/CreateProjectForm';
+import { CreateProjectForm } from '../CreateForm/CreateProjectForm';
 import { ProjectFormBody } from '../../../types/project';
 import { useCreateProject } from '../../../api/project/useCreateProject';
 import { SnackbarAlert } from '../../common/SnackbarAlert';

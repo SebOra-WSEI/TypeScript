@@ -2,9 +2,12 @@ import { Divider, IconButton, ListItem, ListItemText, Tooltip } from '@mui/mater
 import React, { useEffect } from 'react';
 import { projectPageStyles } from '../../../styles/projectsPage';
 import DeleteIcon from '@mui/icons-material/Delete';
+import WhereToVoteIcon from '@mui/icons-material/WhereToVote';
 import { useRemoveProject } from '../../../api/project/useRemoveProject';
 import { SeverityOption } from '../../../types/severity';
 import { ProjectModel } from '../../../types/project';
+import { useHistory } from 'react-router';
+import { routeBuilder } from '../../../routes/routes';
 
 interface ProjectItemProps {
   project: ProjectModel;
@@ -17,6 +20,7 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({
   setSeverity,
   setSeverityText,
 }) => {
+  const history = useHistory();
   const { error, message, remove } = useRemoveProject();
 
   useEffect(() => {
@@ -39,8 +43,19 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({
           secondary={project.description}
           sx={projectPageStyles.listItemText}
         />
-        <Tooltip title='Remove' onClick={() => remove(project.id)}>
-          <IconButton edge='end'>
+        <Tooltip
+          title='Select project'
+          onClick={() => history.push(routeBuilder.project(project.id))}
+        >
+          <IconButton>
+            <WhereToVoteIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip
+          title='Remove'
+          onClick={() => remove(project.id)}
+        >
+          <IconButton>
             <DeleteIcon />
           </IconButton>
         </Tooltip>
