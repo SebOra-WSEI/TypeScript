@@ -31,7 +31,7 @@ export const FormModal: React.FC<FormModalProps> = ({ isOpen, onClose }) => {
   const { error, message, create } = useCreateProject(project);
 
   useEffect(() => {
-    if (!severityText) {
+    if (!severityText && error) {
       setSeverityText(error);
     }
 
