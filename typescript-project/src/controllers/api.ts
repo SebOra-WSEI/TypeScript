@@ -1,24 +1,39 @@
+import { ContentType } from '../types/contentType';
 import { Response } from '../types/response';
 import { StatusCode } from '../types/statusCode';
-import { getFromLocalStorage, setToLocalStorage } from '../utils/localStorage';
+import {
+  SELECTED_PROJECT_ID,
+  getFromLocalStorage,
+  setToLocalStorage,
+} from '../utils/localStorage';
+
+type KeyOfType<T> = keyof T & string;
+
+interface Parameters<T> {
+  idKey: KeyOfType<T>;
+  nameKey: KeyOfType<T>;
+  projectIdKey?: KeyOfType<T>;
+}
 
 export class Api<T> {
-  object: T & { type: string };
-  key: keyof T & string;
-  idKey: keyof T & string;
+  private object: T;
+  private type: ContentType;
 
-  constructor(
-    object: T & { type: string },
-    id: keyof T & string,
-    k: keyof T & string
-  ) {
+  private nameKey: KeyOfType<T>;
+  private idKey: KeyOfType<T>;
+  private projectIdKey: KeyOfType<T>;
+
+  constructor(object: T, type: ContentType, parameters: Parameters<T>) {
     this.object = object;
-    this.idKey = id;
-    this.key = k;
+    this.type = type;
+
+    this.nameKey = parameters.nameKey;
+    this.idKey = parameters.idKey;
+    this.projectIdKey = parameters?.projectIdKey as KeyOfType<T>;
   }
 
   getAll(): Response<Array<T>> {
-    const value = getFromLocalStorage(this.object.type);
+    const value = getFromLocalStorage(this.type);
 
     return {
       status: StatusCode.OK,
@@ -30,7 +45,7 @@ export class Api<T> {
     if (!id.length) {
       return {
         status: StatusCode.BadRequest,
-        errorMessage: 'Id cannot be empty',
+        errorMessage: `${this.idKey} cannot be empty`,
         response: undefined,
       };
     }
@@ -41,7 +56,7 @@ export class Api<T> {
     if (!project) {
       return {
         status: StatusCode.NotFound,
-        errorMessage: `${this.object.type} not found`,
+        errorMessage: `${this.type} not found`,
         response: undefined,
       };
     }
@@ -53,30 +68,44 @@ export class Api<T> {
   }
 
   create(): Response<T> {
-    if (this.object[this.key] === '') {
+    if (this.object[this.nameKey] === '') {
       return {
         status: StatusCode.BadRequest,
-        errorMessage: `${this.key} cannot be empty`,
+        errorMessage: `${this.nameKey} cannot be empty`,
         response: undefined,
       };
     }
 
+    const isNameTheSame = (existed: T): boolean =>
+      existed[this.nameKey] === this.object[this.nameKey];
+
+    const isProjectTheSame = (existed: T): boolean =>
+      existed[this.projectIdKey] === getFromLocalStorage(SELECTED_PROJECT_ID);
+
     const allObjects = this.getAll().response as Array<T>;
 
-    if (allObjects.find((p) => p[this.key] === this.object[this.key])) {
+    const isAlreadyExisted = allObjects.find((p) => {
+      if (this.projectIdKey) {
+        return isProjectTheSame(p) && isNameTheSame(p);
+      }
+
+      return isNameTheSame(p);
+    });
+
+    if (Boolean(isAlreadyExisted)) {
       return {
         status: StatusCode.BadRequest,
-        errorMessage: `${this.object.type} already exist`,
+        errorMessage: `${this.type} already exist`,
         response: undefined,
       };
     }
 
     allObjects.push(this.object);
-    setToLocalStorage(this.object.type, JSON.stringify(allObjects));
+    setToLocalStorage(this.type, JSON.stringify(allObjects));
 
     return {
       status: StatusCode.Created,
-      message: `${this.object.type} has been created successfully`,
+      message: `${this.type} has been created successfully`,
       response: this.object,
     };
   }
@@ -85,7 +114,7 @@ export class Api<T> {
     if (!id.length) {
       return {
         status: StatusCode.BadRequest,
-        errorMessage: 'Id cannot be empty',
+        errorMessage: `${this.idKey} cannot be empty`,
         response: undefined,
       };
     }
@@ -100,11 +129,11 @@ export class Api<T> {
       (p) => p[this.idKey] !== currentObjectResponse.response?.[this.idKey]
     );
 
-    setToLocalStorage(this.object.type, JSON.stringify(newArray));
+    setToLocalStorage(this.type, JSON.stringify(newArray));
 
     return {
       status: StatusCode.OK,
-      message: `${this.object.type} removed successfully`,
+      message: `${this.type} removed successfully`,
       response: currentObjectResponse.response,
     };
   }
@@ -113,7 +142,7 @@ export class Api<T> {
     if (!id.length) {
       return {
         status: StatusCode.BadRequest,
-        errorMessage: 'Id cannot be empty',
+        errorMessage: `${this.idKey} cannot be empty`,
         response: undefined,
       };
     }
@@ -143,11 +172,11 @@ export class Api<T> {
       return p;
     });
 
-    setToLocalStorage(this.object.type, JSON.stringify(newArray));
+    setToLocalStorage(this.type, JSON.stringify(newArray));
 
     return {
       status: StatusCode.OK,
-      message: `${this.object.type} has been updated successfully`,
+      message: `${this.type} has been updated successfully`,
       response: updatedProject,
     };
   }
