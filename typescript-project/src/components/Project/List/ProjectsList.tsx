@@ -18,7 +18,7 @@ import { SeverityOption } from '../../../types/severity';
 import { SnackbarAlert } from '../../common/SnackbarAlert';
 
 interface ProjectsListProps {
-  projects: ProjectModel[];
+  projects: ProjectModel[] | undefined;
 }
 
 export const ProjectsList: React.FC<ProjectsListProps> = ({ projects }) => {
@@ -48,7 +48,7 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({ projects }) => {
   return (
     <>
       <Box sx={projectPageStyles.wrapper}>
-        {!projects.length ? (
+        {!projects?.length ? (
           <p>There are no projects yet</p>
         ) : (
           <List sx={projectPageStyles.wrapper}>

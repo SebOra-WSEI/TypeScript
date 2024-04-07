@@ -50,22 +50,29 @@ export const FormModal: React.FC<FormModalProps> = ({ isOpen, onClose }) => {
     }
   }, [message, severityText]);
 
-  const handleCreate = () => {
+  const handleCreate = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+
     create();
     setSeverityText('');
   };
 
+  const handleOnClose = (): void => {
+    setProject({ name: '', description: '' })
+    onClose();
+  }
+
   return (
     <>
-      <Modal open={isOpen} onClose={onClose}>
-        <Box sx={formModalStyles.box}>
+      <Modal open={isOpen} onClose={handleOnClose}>
+        <Box sx={formModalStyles.box} component='form' onSubmit={handleCreate}>
           <DialogContent>
             <CreateProjectForm project={project} setProject={setProject} />
           </DialogContent>
           <DialogActions>
             <div style={formModalStyles.action}></div>
             <Button
-              onClick={onClose}
+              onClick={handleOnClose}
               variant='contained'
               color='error'
               style={formModalStyles.button}
@@ -74,7 +81,7 @@ export const FormModal: React.FC<FormModalProps> = ({ isOpen, onClose }) => {
             </Button>
             <Button
               variant='outlined'
-              onClick={handleCreate}
+              type='submit'
               style={formModalStyles.button}
             >
               Create
