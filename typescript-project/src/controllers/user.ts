@@ -8,23 +8,17 @@ interface UserModel {
   surname: string;
 }
 export class User extends Api<UserModel> {
-  public id: string;
-  public name: string;
-  public surname: string;
-
   constructor(name: string, surname: string) {
     const id = uuidv4();
     const project = {
       id,
       name,
       surname,
-      type: ContentType.User,
     };
 
-    super(project, 'id', 'name');
-
-    this.id = id;
-    this.name = name;
-    this.surname = surname;
+    super(project, ContentType.User, {
+      idKey: 'id',
+      nameKey: 'name',
+    });
   }
 }

@@ -17,15 +17,6 @@ export interface StorageModel {
 }
 
 export class Storage extends Api<StorageModel> {
-  protected id: string;
-  public name: string;
-  public description?: string;
-  public priority: Priority;
-  protected projectId: string;
-  protected date: Date;
-  protected ownerId: string;
-  public state: State;
-
   constructor(
     name: string,
     priority: Priority,
@@ -46,19 +37,13 @@ export class Storage extends Api<StorageModel> {
       date,
       ownerId,
       state,
-      type: ContentType.Storage,
     };
 
-    super(storage, 'id', 'name');
-
-    this.id = id;
-    this.name = name;
-    this.description = description;
-    this.priority = priority;
-    this.projectId = projectId;
-    this.date = date;
-    this.ownerId = ownerId;
-    this.state = state;
+    super(storage, ContentType.Storage, {
+      idKey: 'id',
+      nameKey: 'name',
+      projectIdKey: 'projectId',
+    });
   }
 
   getAllByProjectId(id: string) {

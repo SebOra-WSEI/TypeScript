@@ -14,6 +14,10 @@ import { SeverityOption } from '../../../types/severity';
 import { ProjectModel } from '../../../types/project';
 import { useHistory } from 'react-router';
 import { routeBuilder } from '../../../routes/routes';
+import {
+  SELECTED_PROJECT_ID,
+  setToLocalStorage,
+} from '../../../utils/localStorage';
 
 interface ProjectItemProps {
   project: ProjectModel;
@@ -41,6 +45,11 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({
     }
   }, [error, message]);
 
+  const handleOnSelect = (): void => {
+    setToLocalStorage(SELECTED_PROJECT_ID, project.id);
+    history.push(routeBuilder.project(project.id));
+  };
+
   return (
     <div key={project.id}>
       <ListItem style={projectPageStyles.listItem}>
@@ -49,10 +58,7 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({
           secondary={project.description}
           sx={projectPageStyles.listItemText}
         />
-        <Tooltip
-          title='Select project'
-          onClick={() => history.push(routeBuilder.project(project.id))}
-        >
+        <Tooltip title='Select project' onClick={handleOnSelect}>
           <IconButton>
             <WhereToVoteIcon />
           </IconButton>
