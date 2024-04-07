@@ -4,24 +4,50 @@ import { useGetProjectById } from '../../../api/project/useGetProjectById';
 import { Loader } from '../../common/Loader';
 import { Navbar } from '../../common/Navbar';
 import { StorageListView } from '../../Storage/List/StorageListView';
+import { useGetStoragesByProjectId } from '../../../api/storage/useGetStoragesByProjectId';
+import { Storage } from '../../../controllers/storage';
+import { Priority } from '../../../types/priority';
+import { State } from '../../../types/state';
 
 export const ProjectDetailsPage: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
 
-  const { loading, error, data } = useGetProjectById(projectId)
+  // const EMPTY_STORAGE1 = new Storage(
+  //   'one new storage DONE 1',
+  //   Priority.Low,
+  //   projectId,
+  //   'fake',
+  //   State.Done,
+  //   'fake'
+  // );
 
-  if (loading) {
+  // console.log(EMPTY_STORAGE1.create())
+
+
+  const {
+    loading: projectLoading,
+    error: projectError,
+    data: project
+  } = useGetProjectById(projectId)
+
+  const {
+    loading: storagesLoading,
+    error: storagesError,
+    data: storages
+  } = useGetStoragesByProjectId(projectId);
+
+  if (projectLoading || storagesLoading) {
     return <Loader />
   }
 
-  if (error) {
-    return <>{error}</>;
+  if (projectError || storagesError) {
+    return <>{projectError || storagesError}</>;
   }
 
   return (
     <>
-      <Navbar project={data} />
-      <StorageListView />
+      <Navbar project={project} />
+      <StorageListView storages={storages} />
     </>
   );
 };

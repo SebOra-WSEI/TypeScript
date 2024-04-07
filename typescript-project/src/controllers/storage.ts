@@ -3,8 +3,9 @@ import { Priority } from '../types/priority';
 import { State } from '../types/state';
 import { Api } from './api';
 import { ContentType } from '../types/contentType';
+import { StatusCode } from '../types/statusCode';
 
-interface StorageModel {
+export interface StorageModel {
   id: string;
   name: string;
   description?: string;
@@ -58,5 +59,23 @@ export class Storage extends Api<StorageModel> {
     this.date = date;
     this.ownerId = ownerId;
     this.state = state;
+  }
+
+  getAllByProjectId(id: string) {
+    if (!id.length) {
+      return {
+        status: StatusCode.BadRequest,
+        errorMessage: 'Id cannot be empty',
+        response: undefined,
+      };
+    }
+
+    const storages = this.getAll().response as Array<StorageModel>;
+    const filteredStorages = storages.filter((s) => s.projectId === id);
+
+    return {
+      status: StatusCode.OK,
+      response: filteredStorages,
+    };
   }
 }
