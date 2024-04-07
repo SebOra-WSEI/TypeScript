@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { ClassType } from '../types/class';
+import { DataType } from '../types/class';
 import { Api } from './api';
 import { ProjectModel } from '../types/project';
 
@@ -14,7 +14,7 @@ export class Project extends Api<ProjectModel> {
       id,
       name,
       description,
-      type: ClassType.Project,
+      type: DataType.Project,
     };
 
     super(project, 'id', 'name');

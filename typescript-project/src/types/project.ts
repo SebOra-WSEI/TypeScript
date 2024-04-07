@@ -3,3 +3,5 @@ export interface ProjectModel {
   name: string;
   description?: string;
 }
+
+export type ProjectFormBody = Pick<ProjectModel, 'name' | 'description'>;

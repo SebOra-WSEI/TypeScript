@@ -53,6 +53,14 @@ export class Api<T> {
   }
 
   create(): Response<T> {
+    if (this.object[this.key] === '') {
+      return {
+        status: StatusCode.BadRequest,
+        errorMessage: `${this.key} cannot be empty`,
+        response: undefined,
+      };
+    }
+
     const allObjects = this.getAll().response as Array<T>;
 
     if (allObjects.find((p) => p[this.key] === this.object[this.key])) {

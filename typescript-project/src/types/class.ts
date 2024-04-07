@@ -1,4 +1,4 @@
-export enum ClassType {
+export enum DataType {
   Project = 'Project',
   User = 'User',
   Storage = 'Storage',

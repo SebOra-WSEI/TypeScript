@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Priority } from '../types/priority';
 import { State } from '../types/state';
 import { Api } from './api';
-import { ClassType } from '../types/class';
+import { DataType } from '../types/class';
 
 interface StorageModel {
   id: string;
@@ -45,7 +45,7 @@ export class Storage extends Api<StorageModel> {
       date,
       ownerId,
       state,
-      type: ClassType.Storage,
+      type: DataType.Storage,
     };
 
     super(storage, 'id', 'name');
