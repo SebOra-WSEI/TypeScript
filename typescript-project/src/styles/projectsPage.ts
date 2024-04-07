@@ -13,4 +13,15 @@ export const projectPageStyles = {
     justifyContent: 'center',
     height: '80vh',
   },
+  listItem: {
+    minWidth: '25rem',
+  },
+  listItemText: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+  },
+  divider: {
+    marginTop: '2rem',
+  },
 };
