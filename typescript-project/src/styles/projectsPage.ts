@@ -24,4 +24,7 @@ export const projectPageStyles = {
   divider: {
     marginTop: '2rem',
   },
+  errorMessage: {
+    color: 'red',
+  },
 };
