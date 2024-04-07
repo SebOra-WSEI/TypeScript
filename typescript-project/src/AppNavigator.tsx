@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { ProjectsPage } from './components/Projects/ListPage/ProjectPage';
+import { ProjectsPage } from './components/Project/List/ProjectsPage';
 import { routeBuilder } from './routes/routes';
 import { NotFound } from './components/common/NotFound';
-import { CreateProjectPage } from './components/Projects/Create/CreateProjectPage';
+import { CreateProjectPage } from './components/Project/Create/CreatePage';
 
 export const AppNavigator: React.FC = () => (
   <Switch>

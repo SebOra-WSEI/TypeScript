@@ -12,8 +12,7 @@ import { ProjectModel } from '../../../types/project';
 import { projectPageStyles } from '../../../styles/projectsPage';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { removeProject } from '../../../api/project/removeProject';
-import { Link } from 'react-router-dom';
-import { routeBuilder } from '../../../routes/routes';
+import { CreateProjectLink } from './CreateProjectLink';
 
 interface ProjectsListProps {
   projects: ProjectModel[];
@@ -34,15 +33,11 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({ projects }) => {
       <List sx={projectPageStyles.wrapper}>
         {projects.map((p) => (
           <div key={p.id}>
-            <ListItem style={{ minWidth: '25rem' }}>
+            <ListItem style={projectPageStyles.listItem}>
               <ListItemText
                 primary={p.name}
                 secondary={p.description}
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  flexDirection: 'column',
-                }}
+                sx={projectPageStyles.listItemText}
               />
               <Tooltip title='Remove' onClick={() => removeProject(p.id)}>
                 <IconButton edge='end'>
@@ -53,13 +48,9 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({ projects }) => {
             <Divider variant='inset' />
           </div>
         ))}
-        <Divider sx={{ marginTop: '2rem' }} />
+        <Divider sx={projectPageStyles.divider} />
         <CreateProjectLink />
       </List>
     </>
   );
 };
-
-const CreateProjectLink: React.FC = () => (
-  <Link to={routeBuilder.addProject}>Crete new project</Link>
-);
