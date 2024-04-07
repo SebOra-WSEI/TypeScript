@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import { ProjectFormBody } from '../../../types/project';
 
 interface CreateProjectFormProps {
@@ -14,7 +14,7 @@ export const CreateProjectForm: React.FC<CreateProjectFormProps> = ({
   const { name, description } = project;
 
   return (
-    <Box component='form' onSubmit={() => console.log('ss')}>
+    <>
       <h3>Create new project</h3>
       <TextField
         label='Name *'
@@ -45,6 +45,6 @@ export const CreateProjectForm: React.FC<CreateProjectFormProps> = ({
           })
         }
       />
-    </Box>
+    </>
   );
 };
