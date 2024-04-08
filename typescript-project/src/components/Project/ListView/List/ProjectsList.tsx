@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Button, List } from '@mui/material';
 import { ProjectModel } from '../../../../types/project';
 import { projectPageStyles } from '../../../../styles/projectPageStyles';
-import { ProjectFormModal } from '../../Create/Modal/ProjectFormModal';
+import { CreateProjectFormModal } from '../../Create/Modal/CreateProjectFormModal';
 import { SeverityOption } from '../../../../types/severity';
 import { SnackbarAlert } from '../../../common/SnackbarAlert';
 import { ProjectListItem } from './ProjectListItem';
@@ -55,7 +55,7 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({ projects }) => {
         severity={severity}
         text={severityText}
       />
-      <ProjectFormModal isOpen={isModalOpen} onClose={handleOnClose} />
+      <CreateProjectFormModal isOpen={isModalOpen} onClose={handleOnClose} />
     </Box>
   );
 };

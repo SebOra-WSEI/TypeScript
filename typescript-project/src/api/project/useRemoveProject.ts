@@ -8,7 +8,7 @@ type UseRemoveProjectResult = FetchedData<Project> & {
   remove: (id: string) => void;
 };
 
-export const useRemoveProject = (): UseRemoveProjectResult => {
+export const useRemoveProject = (isReload = true): UseRemoveProjectResult => {
   const [error, setError] = useState<string>('');
   const [message, setMessage] = useState<string | undefined>(undefined);
 
@@ -23,9 +23,10 @@ export const useRemoveProject = (): UseRemoveProjectResult => {
     if (status === StatusCode.OK && response) {
       setMessage(message);
 
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
+      isReload &&
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
     }
   };
 

@@ -6,29 +6,31 @@ import {
   Modal,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { ProjectFormBody } from '../../../../types/project';
-import { useCreateProject } from '../../../../api/project/useCreateProject';
+import { ProjectFormBody, ProjectModel } from '../../../../types/project';
 import { SnackbarAlert } from '../../../common/SnackbarAlert';
 import { SeverityOption } from '../../../../types/severity';
 import { projectFormStyles } from '../../../../styles/projectFormStyles';
-import { CreateProjectForm } from '../Form/CreateProjectForm';
+import { EditProjectForm } from '../Form/EditProjectForm';
+import { useEditProjectById } from '../../../../api/project/useEditProjectById';
 
 interface FormModalProps {
   isOpen: boolean;
   onClose: () => void;
+  project: ProjectModel
 }
 
-export const ProjectFormModal: React.FC<FormModalProps> = ({ isOpen, onClose }) => {
+export const EditProjectFormModal: React.FC<FormModalProps> = ({
+  isOpen,
+  onClose,
+  project
+}) => {
   const [severityText, setSeverityText] = useState<string>('');
-  const [project, setProject] = useState<ProjectFormBody>({
-    name: '',
-    description: '',
-  });
   const [severity, setSeverity] = useState<SeverityOption | undefined>(
     undefined
   );
+  const [updatedProject, setUpdatedProject] = useState<ProjectFormBody>(project);
 
-  const { error, message, create } = useCreateProject(project);
+  const { error, message, update } = useEditProjectById(updatedProject)
 
   useEffect(() => {
     if (!severityText && error) {
@@ -50,28 +52,23 @@ export const ProjectFormModal: React.FC<FormModalProps> = ({ isOpen, onClose }) 
     }
   }, [message, severityText]);
 
-  const handleCreate = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleUpdate = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
-    create();
+    update && update(project?.id ?? '');
     setSeverityText('');
-  };
-
-  const handleOnClose = (): void => {
-    setProject({ name: '', description: '' });
-    onClose();
   };
 
   return (
     <>
-      <Modal open={isOpen} onClose={handleOnClose}>
-        <Box sx={projectFormStyles.box} component='form' onSubmit={handleCreate}>
+      <Modal open={isOpen} onClose={onClose}>
+        <Box sx={projectFormStyles.box} component='form' onSubmit={handleUpdate}>
           <DialogContent>
-            <CreateProjectForm project={project} setProject={setProject} />
+            <EditProjectForm project={updatedProject} setUpdatedProject={setUpdatedProject} />
           </DialogContent>
           <DialogActions>
             <Button
-              onClick={handleOnClose}
+              onClick={onClose}
               variant='contained'
               color='error'
               style={projectFormStyles.button}
@@ -83,7 +80,7 @@ export const ProjectFormModal: React.FC<FormModalProps> = ({ isOpen, onClose }) 
               type='submit'
               style={projectFormStyles.button}
             >
-              Create
+              Update
             </Button>
           </DialogActions>
         </Box>
