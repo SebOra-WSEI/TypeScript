@@ -1,9 +1,7 @@
 import React from 'react';
 import { useGetAllProjects } from '../../../api/project/useGetAllProjects';
 import { Loader } from '../../common/Loader';
-import { Box } from '@mui/material';
 import { ProjectsList } from '../List/ProjectsList';
-import { projectPageStyles } from '../../../styles/projectsPage';
 
 export const ProjectsDefaultPage: React.FC = () => {
   const { loading, error, data } = useGetAllProjects();
@@ -17,9 +15,6 @@ export const ProjectsDefaultPage: React.FC = () => {
   }
 
   return (
-    <Box sx={projectPageStyles.box}>
-      <h2 style={projectPageStyles.header}>Projects</h2>
-      <ProjectsList projects={data} />
-    </Box>
+    <ProjectsList projects={data} />
   );
 };

@@ -1,12 +1,11 @@
 import {
-  Divider,
   IconButton,
   ListItem,
   ListItemText,
   Tooltip,
 } from '@mui/material';
 import React, { useEffect } from 'react';
-import { projectPageStyles } from '../../../styles/projectsPage';
+import { projectPageStyles } from '../../../styles/projectPageStyles';
 import DeleteIcon from '@mui/icons-material/Delete';
 import WhereToVoteIcon from '@mui/icons-material/WhereToVote';
 import { useRemoveProject } from '../../../api/project/useRemoveProject';
@@ -51,12 +50,11 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({
   };
 
   return (
-    <div key={project.id}>
-      <ListItem style={projectPageStyles.listItem}>
+    <>
+      <ListItem sx={projectPageStyles.listItem}>
         <ListItemText
-          primary={project.name}
-          secondary={project.description}
-          sx={projectPageStyles.listItemText}
+          primary={<Text field='Name' value={project.name} />}
+          secondary={<Text field='Description' value={project?.description ?? ''} />}
         />
         <Tooltip title='Select project' onClick={handleOnSelect}>
           <IconButton>
@@ -69,7 +67,13 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({
           </IconButton>
         </Tooltip>
       </ListItem>
-      <Divider variant='inset' />
-    </div>
+    </>
   );
 };
+
+const Text: React.FC<{
+  field: string,
+  value: string;
+}> = ({ field, value }) => (
+  <span><strong>{field}:</strong>{' '}{value}</span>
+)

@@ -1,7 +1,7 @@
 import { Box, Divider, Grid } from '@mui/material';
 import React from 'react';
 import { State } from '../../../types/state';
-import { storagePageStyle } from '../../../styles/storage';
+import { storageStyle } from '../../../styles/storageStyle';
 import { StorageModel } from '../../../controllers/storage';
 
 interface StorageListViewProps {
@@ -10,22 +10,45 @@ interface StorageListViewProps {
 
 export const StoragesView: React.FC<StorageListViewProps> = ({
   storages,
-}) => (
-  <Box display='grid' sx={storagePageStyle.box}>
-    <Grid container spacing={2} sx={storagePageStyle.gridHeader}>
-      {Object.values(State).map((state) => {
-        const filteredStorages = storages?.filter(
-          (storage) => storage.state === state
-        );
+}) => {
+  // if (!storages?.length) {
+  //   return (
+  //     <div style={{
+  //       display: 'flex',
+  //       flexDirection: 'column',
+  //       alignItems: 'center',
+  //       justifyContent: 'center',
+  //       height: '80vh',
+  //     }}>abc</div>
+  //   )
+  // }
 
-        return (
-          <Grid item xs={4} key={state}>
-            <p>{state}</p>
-            {filteredStorages?.map((s) => <div key={s.id}>{s.name}</div>)}
-            <Divider orientation='vertical' />
-          </Grid>
-        );
-      })}
-    </Grid>
-  </Box>
+  return (
+    <Box display='grid' sx={storageStyle.box}>
+      <Grid container spacing={2}>
+        {Object.values(State).map((state) => {
+          const filteredStorages = storages?.filter(
+            (storage) => storage.state === state
+          );
+
+          return (
+            <Grid item xs={4} key={state}>
+              <GridItem text={state} />
+              {filteredStorages?.map((s) => <div key={s.id}>{s.name}</div>)}
+              <Divider orientation='vertical' />
+            </Grid>
+          );
+        })}
+      </Grid>
+    </Box>
+  );
+};
+
+const GridItem: React.FC<{ text: string }> = ({ text }) => (
+  <p style={{
+    textAlign: 'center',
+    fontWeight: 'bold',
+  }}>
+    {text}
+  </p>
 );

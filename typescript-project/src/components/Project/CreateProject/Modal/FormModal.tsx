@@ -6,12 +6,12 @@ import {
   Modal,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { formModalStyles } from '../../../../styles/formModal';
-import { CreateProjectForm } from '../Form/CreateProjectForm';
 import { ProjectFormBody } from '../../../../types/project';
 import { useCreateProject } from '../../../../api/project/useCreateProject';
 import { SnackbarAlert } from '../../../common/SnackbarAlert';
 import { SeverityOption } from '../../../../types/severity';
+import { projectFormStyles } from '../../../../styles/projectFormStyles';
+import { CreateProjectForm } from '../Form/CreateProjectForm';
 
 interface FormModalProps {
   isOpen: boolean;
@@ -65,24 +65,23 @@ export const FormModal: React.FC<FormModalProps> = ({ isOpen, onClose }) => {
   return (
     <>
       <Modal open={isOpen} onClose={handleOnClose}>
-        <Box sx={formModalStyles.box} component='form' onSubmit={handleCreate}>
+        <Box sx={projectFormStyles.box} component='form' onSubmit={handleCreate}>
           <DialogContent>
             <CreateProjectForm project={project} setProject={setProject} />
           </DialogContent>
           <DialogActions>
-            <div style={formModalStyles.action}></div>
             <Button
               onClick={handleOnClose}
               variant='contained'
               color='error'
-              style={formModalStyles.button}
+              style={projectFormStyles.button}
             >
               Close
             </Button>
             <Button
               variant='outlined'
               type='submit'
-              style={formModalStyles.button}
+              style={projectFormStyles.button}
             >
               Create
             </Button>

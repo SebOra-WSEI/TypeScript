@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Box, Button, Divider, List } from '@mui/material';
+import { Box, Button, List } from '@mui/material';
 import { ProjectModel } from '../../../types/project';
-import { projectPageStyles } from '../../../styles/projectsPage';
+import { projectPageStyles } from '../../../styles/projectPageStyles';
 import { FormModal } from '../CreateProject/Modal/FormModal';
 import { SeverityOption } from '../../../types/severity';
 import { SnackbarAlert } from '../../common/SnackbarAlert';
@@ -22,31 +22,40 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({ projects }) => {
   const handleOnClose = () => setIsModalOpen(false);
 
   return (
-    <>
-      <Box sx={projectPageStyles.wrapper}>
-        {!projects?.length ? (
+    <Box sx={projectPageStyles.wrapper}>
+      {!projects?.length ? (
+        <>
           <p>There are no projects yet</p>
-        ) : (
-          <List sx={projectPageStyles.wrapper}>
+          <Button onClick={handleOnOpen}>Create new project</Button>
+        </>
+      ) : (
+        <>
+          <List>
             {projects.map((project) => (
-              <ProjectItem
-                key={project.id}
-                project={project}
-                setSeverity={setSeverity}
-                setSeverityText={setSeverityText}
-              />
+              <div key={project.id}>
+                <ProjectItem
+                  key={project.id}
+                  project={project}
+                  setSeverity={setSeverity}
+                  setSeverityText={setSeverityText}
+                />
+              </div>
             ))}
-            <Divider sx={projectPageStyles.divider} />
           </List>
-        )}
-        <Button onClick={handleOnOpen}>Create new project</Button>
-      </Box>
+          <Button
+            onClick={handleOnOpen}
+            sx={projectPageStyles.button}
+          >
+            Create new project
+          </Button>
+        </>
+      )}
       <SnackbarAlert
         setSeverity={setSeverity}
         severity={severity}
         text={severityText}
       />
       <FormModal isOpen={isModalOpen} onClose={handleOnClose} />
-    </>
+    </Box>
   );
 };

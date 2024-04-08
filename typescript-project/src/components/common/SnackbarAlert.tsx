@@ -1,7 +1,7 @@
 import { Alert, AlertColor, IconButton, Snackbar } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { SeverityOption } from '../../types/severity';
-import { snackbarStyles } from '../../styles/snackbar';
+import { snackbarStyles } from '../../styles/snackbarStyles';
 
 interface SnackbarAlertProps {
   setSeverity: (isOpen: SeverityOption | undefined) => void;

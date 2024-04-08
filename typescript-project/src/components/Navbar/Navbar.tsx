@@ -12,7 +12,7 @@ import { useHistory } from 'react-router';
 import { routes } from '../../routes/routes';
 
 interface NavbarProps {
-  project: ProjectModel | undefined;
+  project?: ProjectModel | undefined;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ project }) => {
