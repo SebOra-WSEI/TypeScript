@@ -8,7 +8,7 @@ interface StorageListViewProps {
   storages: Array<StorageModel> | undefined;
 }
 
-export const StorageListView: React.FC<StorageListViewProps> = ({
+export const StoragesView: React.FC<StorageListViewProps> = ({
   storages,
 }) => (
   <Box display='grid' sx={storagePageStyle.box}>

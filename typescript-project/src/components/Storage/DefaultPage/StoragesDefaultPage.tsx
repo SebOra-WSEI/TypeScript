@@ -3,10 +3,10 @@ import { useParams } from 'react-router';
 import { useGetProjectById } from '../../../api/project/useGetProjectById';
 import { Loader } from '../../common/Loader';
 import { Navbar } from '../../common/Navbar';
-import { StorageListView } from '../../Storage/List/StorageListView';
+import { StoragesView } from '../List/StoragesView';
 import { useGetStoragesByProjectId } from '../../../api/storage/useGetStoragesByProjectId';
 
-export const ProjectDetailsPage: React.FC = () => {
+export const StoragesDefaultPage: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
 
   const {
@@ -32,7 +32,7 @@ export const ProjectDetailsPage: React.FC = () => {
   return (
     <>
       <Navbar project={project} />
-      <StorageListView storages={storages} />
+      <StoragesView storages={storages} />
     </>
   );
 };

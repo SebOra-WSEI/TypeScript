@@ -2,10 +2,10 @@ import React from 'react';
 import { useGetAllProjects } from '../../../api/project/useGetAllProjects';
 import { Loader } from '../../common/Loader';
 import { Box } from '@mui/material';
-import { ProjectsList } from './ProjectsList';
+import { ProjectsList } from '../List/ProjectsList';
 import { projectPageStyles } from '../../../styles/projectsPage';
 
-export const ProjectsPage: React.FC = () => {
+export const ProjectsDefaultPage: React.FC = () => {
   const { loading, error, data } = useGetAllProjects();
 
   if (loading) {

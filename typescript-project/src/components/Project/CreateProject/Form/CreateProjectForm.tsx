@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextField } from '@mui/material';
-import { ProjectFormBody } from '../../../types/project';
+import { ProjectFormBody } from '../../../../types/project';
 
 interface CreateProjectFormProps {
   project: ProjectFormBody;

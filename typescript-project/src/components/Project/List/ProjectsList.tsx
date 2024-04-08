@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Button, Divider, List } from '@mui/material';
 import { ProjectModel } from '../../../types/project';
 import { projectPageStyles } from '../../../styles/projectsPage';
-import { FormModal } from '../Modal/FormModal';
+import { FormModal } from '../CreateProject/Modal/FormModal';
 import { SeverityOption } from '../../../types/severity';
 import { SnackbarAlert } from '../../common/SnackbarAlert';
 import { ProjectItem } from './ProjectItem';
