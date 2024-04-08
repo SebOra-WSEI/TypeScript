@@ -15,40 +15,42 @@ import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useRemoveProject } from '../../api/project/useRemoveProject';
+import { SELECTED_PROJECT_ID } from '../../utils/localStorage';
 
 interface NavbarMenuProps {
   projectId: string;
-  handleOnEditOpen: () => void;
+  handleEditProjectOnOpen: () => void;
 }
 
 export const NavbarMenu: React.FC<NavbarMenuProps> = ({
   projectId,
-  handleOnEditOpen
+  handleEditProjectOnOpen
 }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
   const history = useHistory();
+  const open = Boolean(anchorEl);
 
   const { remove } = useRemoveProject(false);
 
-  const open = Boolean(anchorEl);
-
   const handleChangeProject = (): void => {
     history.push(routes.projects);
+    window.localStorage.removeItem(SELECTED_PROJECT_ID);
   };
 
-  const handleRemove = () => {
+  const handleRemoveProject = () => {
     remove(projectId);
     history.push(routes.projects)
   }
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) =>
+  const handleIconClick = (event: React.MouseEvent<HTMLButtonElement>) =>
     setAnchorEl(event.currentTarget);
 
-  const handleClose = (): void => setAnchorEl(null);
+  const handleIconClose = (): void => setAnchorEl(null);
 
   return (
     <>
-      <IconButton size='small' onClick={handleClick}>
+      <IconButton size='small' onClick={handleIconClick}>
         <Avatar sx={{ background: 'inherit', marginLeft: 'auto' }}>
           <SettingsIcon />
         </Avatar>
@@ -56,15 +58,15 @@ export const NavbarMenu: React.FC<NavbarMenuProps> = ({
       <Menu
         anchorEl={anchorEl}
         open={open}
-        onClose={handleClose}
+        onClose={handleIconClose}
       >
-        <MenuItem onClick={handleOnEditOpen}>
+        <MenuItem onClick={handleEditProjectOnOpen}>
           <ListItemIcon>
             <ModeEditOutlineIcon fontSize="small" />
           </ListItemIcon>
           Edit project details
         </MenuItem>
-        <MenuItem onClick={handleRemove}>
+        <MenuItem onClick={handleRemoveProject}>
           <ListItemIcon>
             <DeleteIcon fontSize="small" />
           </ListItemIcon>

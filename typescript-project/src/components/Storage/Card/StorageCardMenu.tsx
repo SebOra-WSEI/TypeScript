@@ -39,7 +39,7 @@ export const StorageCardMenu: React.FC = () => {
           <ListItemIcon>
             <ModeEditOutlineIcon fontSize="small" />
           </ListItemIcon>
-          Edit project details
+          Edit storage details
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
