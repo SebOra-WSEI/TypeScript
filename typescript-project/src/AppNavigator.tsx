@@ -8,7 +8,7 @@ import { ProjectNavigator } from './components/Project/ProjectNavigator';
 export const AppNavigator: React.FC = () => (
   <Switch>
     <Route path={routes.home} component={ProjectsListView} exact />
-    <Route path={routes.projectsList} component={ProjectNavigator} />
+    <Route path={routes.projects} component={ProjectNavigator} />
     <Route path={routes.noPage} component={NotFound} />
   </Switch>
 );

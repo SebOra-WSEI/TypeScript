@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router';
 import { useGetProjectById } from '../../../api/project/useGetProjectById';
 import { Loader } from '../../common/Loader';
-import { StoragesList } from '../../Storage/List/StoragesList';
+import { StoragesList } from './List/StoragesList';
 import { useGetStoragesByProjectId } from '../../../api/storage/useGetStoragesByProjectId';
 import { Navbar } from '../../Navbar/Navbar';
-import { EditProjectFormModal } from '../Edit/Modal/EditProjectFormModal';
 
-export const ProjectDetails: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+export const StoragesView: React.FC = () => {
 
   const { projectId } = useParams<{ projectId: string }>();
 
@@ -36,21 +34,10 @@ export const ProjectDetails: React.FC = () => {
     return <>Project not found</>
   }
 
-  const handleOnEditModalOpen = (): void => setIsModalOpen(true);
-  const handleOnClose = () => setIsModalOpen(false);
-
   return (
     <>
-      <Navbar
-        project={project}
-        handleOnEditOpen={handleOnEditModalOpen}
-      />
+      <Navbar project={project} />
       <StoragesList storages={storages} />
-      <EditProjectFormModal
-        isOpen={isModalOpen}
-        onClose={handleOnClose}
-        project={project}
-      />
     </>
   );
 };

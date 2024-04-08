@@ -21,8 +21,6 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({ projects }) => {
   const handleOnOpen = (): void => setIsModalOpen(true);
   const handleOnClose = () => setIsModalOpen(false);
 
-
-
   return (
     <Box sx={projectPageStyles.wrapper}>
       {!projects?.length ? (
@@ -34,14 +32,12 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({ projects }) => {
         <>
           <List>
             {projects.map((project) => (
-              <div key={project.id}>
-                <ProjectListItem
-                  key={project.id}
-                  project={project}
-                  setSeverity={setSeverity}
-                  setSeverityText={setSeverityText}
-                />
-              </div>
+              <ProjectListItem
+                key={project.id}
+                project={project}
+                setSeverity={setSeverity}
+                setSeverityText={setSeverityText}
+              />
             ))}
           </List>
           <Button
@@ -52,12 +48,17 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({ projects }) => {
           </Button>
         </>
       )}
+      <CreateProjectFormModal
+        isOpen={isModalOpen}
+        onClose={handleOnClose}
+        setSeverity={setSeverity}
+        setSeverityText={setSeverityText}
+      />
       <SnackbarAlert
         setSeverity={setSeverity}
         severity={severity}
         text={severityText}
       />
-      <CreateProjectFormModal isOpen={isModalOpen} onClose={handleOnClose} />
     </Box>
   );
 };
