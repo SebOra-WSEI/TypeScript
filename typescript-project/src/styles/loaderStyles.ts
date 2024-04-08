@@ -3,5 +3,4 @@ export const loaderStyles = {
   justifyContent: 'center',
   alignItems: 'center',
   height: '80vh',
-  flex: 1,
 };

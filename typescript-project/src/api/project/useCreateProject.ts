@@ -15,7 +15,7 @@ export const useCreateProject = (
   const { name, description } = project;
   const newProject = new Project(name, description);
 
-  const create = () => {
+  const create = (): void => {
     const { status, errorMessage, response, message } = newProject.create();
 
     if (!!errorMessage) {
