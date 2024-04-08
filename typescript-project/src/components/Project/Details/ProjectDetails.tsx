@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router';
 import { useGetProjectById } from '../../../api/project/useGetProjectById';
 import { Loader } from '../../common/Loader';
-import { StoragesList } from '../../Storage/List/StoragesView';
+import { StoragesList } from '../../Storage/List/StoragesList';
 import { useGetStoragesByProjectId } from '../../../api/storage/useGetStoragesByProjectId';
 import { Navbar } from '../../Navbar/Navbar';
 
