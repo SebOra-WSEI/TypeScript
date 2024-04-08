@@ -34,12 +34,12 @@ export const Navbar: React.FC<NavbarProps> = ({ project, handleOnEditOpen }) => 
   const open = Boolean(anchorEl);
 
   const handleChangeProject = (): void => {
-    history.push(routes.projectsList);
+    history.push(routes.projects);
   };
 
   const handleRemove = () => {
     remove(id);
-    history.push(routes.projectsList)
+    history.push(routes.projects)
   }
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) =>

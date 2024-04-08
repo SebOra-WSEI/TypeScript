@@ -6,7 +6,7 @@ import { ProjectDetails } from './Details/ProjectDetails';
 
 export const ProjectNavigator: React.FC = () => (
   <Switch>
-    <Route path={routes.projectsList} component={ProjectsListView} exact />
-    <Route path={routes.projectDetails} component={ProjectDetails} exact />
+    <Route path={routes.projects} component={ProjectsListView} exact />
+    <Route path={routes.storages} component={ProjectDetails} exact />
   </Switch>
 );

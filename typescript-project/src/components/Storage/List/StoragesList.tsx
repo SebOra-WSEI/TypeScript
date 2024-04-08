@@ -1,9 +1,14 @@
-import { Box, Button, Divider, Grid } from '@mui/material';
+import {
+  Box,
+  Button,
+  Grid,
+} from '@mui/material';
 import React from 'react';
 import { State } from '../../../types/state';
 import { storageStyle } from '../../../styles/storageStyle';
 import { StorageModel } from '../../../controllers/storage';
 import { projectPageStyles } from '../../../styles/projectPageStyles';
+import { StorageCard } from '../Card/StorageCard';
 
 interface StorageListViewProps {
   storages: Array<StorageModel> | undefined;
@@ -20,19 +25,22 @@ export const StoragesList: React.FC<StorageListViewProps> = ({
       </Box>
     ) : (
       <Box display='grid' sx={storageStyle.box}>
-        <Grid container spacing={2}>
+        <Grid container>
           {Object.values(State).map((state) => {
             const filteredStorages = storages?.filter(
               (storage) => storage.state === state
             );
 
             return (
-              <Grid item xs={4} key={state}>
-                <GridItem text={state} />
-                {filteredStorages?.map((s) => <div key={s.id}>{s.name}</div>)}
-                <Divider orientation='vertical' />
-              </Grid>
-            );
+              <>
+                <Grid item xs={3.99} key={state}>
+                  <GridItem text={state} />
+                  {filteredStorages?.map((s) => (
+                    <StorageCard storage={s} key={s.id} />
+                  ))}
+                </Grid>
+              </>
+            )
           })}
         </Grid>
       </Box>
