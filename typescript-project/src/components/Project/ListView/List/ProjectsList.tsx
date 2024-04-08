@@ -21,6 +21,8 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({ projects }) => {
   const handleOnOpen = (): void => setIsModalOpen(true);
   const handleOnClose = () => setIsModalOpen(false);
 
+
+
   return (
     <Box sx={projectPageStyles.wrapper}>
       {!projects?.length ? (

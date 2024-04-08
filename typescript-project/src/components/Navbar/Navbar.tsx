@@ -50,7 +50,7 @@ export const Navbar: React.FC<NavbarProps> = ({ project, handleOnEditOpen }) => 
   return (
     <AppBar>
       <Toolbar>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+        <Typography variant="h6" sx={{ flexGrow: 2 }}>
           {name}
         </Typography>
         <Typography variant='inherit' sx={{ flexGrow: 1 }}>
