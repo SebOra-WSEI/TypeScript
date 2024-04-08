@@ -7,6 +7,8 @@ import React, { useState } from 'react';
 import { ProjectModel } from '../../types/project';
 import { NavbarMenu } from './NavbarMenu';
 import { EditProjectFormModal } from '../Project/Edit/Modal/EditProjectFormModal';
+import { SnackbarAlert } from '../common/SnackbarAlert';
+import { SeverityOption } from '../../types/severity';
 
 interface NavbarProps {
   project: ProjectModel;
@@ -14,6 +16,10 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ project }) => {
   const [isEditProjectModalOpen, setIsEditProjectModalOpen] = useState<boolean>(false);
+  const [severityText, setSeverityText] = useState<string>('');
+  const [severity, setSeverity] = useState<SeverityOption | undefined>(
+    undefined
+  );
 
   const { name, description, id } = project ?? {};
 
@@ -39,10 +45,26 @@ export const Navbar: React.FC<NavbarProps> = ({ project }) => {
           />
         </Toolbar>
       </AppBar>
+      {/* 
+      -------
+      -------
+      -------
+      CREATE STORAGE MODAL
+      -------
+      -------
+      -------
+      */}
       <EditProjectFormModal
         isOpen={isEditProjectModalOpen}
         onClose={handleEditProjectOnClose}
         project={project}
+        setSeverity={setSeverity}
+        setSeverityText={setSeverityText}
+      />
+      <SnackbarAlert
+        setSeverity={setSeverity}
+        severity={severity}
+        text={severityText}
       />
     </>
   );

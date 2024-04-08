@@ -7,7 +7,6 @@ import {
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { ProjectFormBody, ProjectModel } from '../../../../types/project';
-import { SnackbarAlert } from '../../../common/SnackbarAlert';
 import { SeverityOption } from '../../../../types/severity';
 import { projectFormStyles } from '../../../../styles/projectFormStyles';
 import { EditProjectForm } from '../Form/EditProjectForm';
@@ -16,41 +15,33 @@ import { useEditProjectById } from '../../../../api/project/useEditProjectById';
 interface FormModalProps {
   isOpen: boolean;
   onClose: () => void;
-  project: ProjectModel
+  project: ProjectModel;
+  setSeverity: (value: SeverityOption) => void;
+  setSeverityText: (value: string) => void;
 }
 
 export const EditProjectFormModal: React.FC<FormModalProps> = ({
   isOpen,
   onClose,
-  project
+  project,
+  setSeverity,
+  setSeverityText
 }) => {
-  const [severityText, setSeverityText] = useState<string>('');
-  const [severity, setSeverity] = useState<SeverityOption | undefined>(
-    undefined
-  );
   const [updatedProject, setUpdatedProject] = useState<ProjectFormBody>(project);
 
   const { error, message, update } = useEditProjectById(updatedProject)
 
   useEffect(() => {
-    if (!severityText && error) {
+    if (error) {
+      setSeverity(SeverityOption.Error);
       setSeverityText(error);
     }
 
-    if (!!error && !!severityText) {
-      setSeverity(SeverityOption.Error);
-    }
-  }, [error, severityText]);
-
-  useEffect(() => {
-    if (!severityText && message) {
+    if (message) {
+      setSeverity(SeverityOption.Success);
       setSeverityText(message);
     }
-
-    if (!!message && !!message) {
-      setSeverity(SeverityOption.Success);
-    }
-  }, [message, severityText]);
+  }, [error, message]);
 
   const handleUpdate = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
@@ -60,36 +51,29 @@ export const EditProjectFormModal: React.FC<FormModalProps> = ({
   };
 
   return (
-    <>
-      <Modal open={isOpen} onClose={onClose}>
-        <Box sx={projectFormStyles.box} component='form' onSubmit={handleUpdate}>
-          <DialogContent>
-            <EditProjectForm project={updatedProject} setUpdatedProject={setUpdatedProject} />
-          </DialogContent>
-          <DialogActions>
-            <Button
-              onClick={onClose}
-              variant='contained'
-              color='error'
-              style={projectFormStyles.button}
-            >
-              Close
-            </Button>
-            <Button
-              variant='outlined'
-              type='submit'
-              style={projectFormStyles.button}
-            >
-              Update
-            </Button>
-          </DialogActions>
-        </Box>
-      </Modal>
-      <SnackbarAlert
-        setSeverity={setSeverity}
-        severity={severity}
-        text={severityText}
-      />
-    </>
+    <Modal open={isOpen} onClose={onClose}>
+      <Box sx={projectFormStyles.box} component='form' onSubmit={handleUpdate}>
+        <DialogContent>
+          <EditProjectForm project={updatedProject} setUpdatedProject={setUpdatedProject} />
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={onClose}
+            variant='contained'
+            color='error'
+            style={projectFormStyles.button}
+          >
+            Close
+          </Button>
+          <Button
+            variant='outlined'
+            type='submit'
+            style={projectFormStyles.button}
+          >
+            Update
+          </Button>
+        </DialogActions>
+      </Box>
+    </Modal>
   );
 };

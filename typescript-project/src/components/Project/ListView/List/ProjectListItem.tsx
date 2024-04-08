@@ -50,24 +50,22 @@ export const ProjectListItem: React.FC<ProjectItemProps> = ({
   };
 
   return (
-    <>
-      <ListItem sx={projectPageStyles.listItem}>
-        <ListItemText
-          primary={<Text field='Name' value={project.name} />}
-          secondary={<Text field='Description' value={project?.description ?? ''} />}
-        />
-        <Tooltip title='Select project' onClick={handleOnSelect}>
-          <IconButton>
-            <WhereToVoteIcon />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title='Remove' onClick={() => remove(project.id)}>
-          <IconButton>
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-      </ListItem>
-    </>
+    <ListItem sx={projectPageStyles.listItem}>
+      <ListItemText
+        primary={<Text field='Name' value={project.name} />}
+        secondary={<Text field='Description' value={project?.description ?? ''} />}
+      />
+      <Tooltip title='Select project' onClick={handleOnSelect}>
+        <IconButton>
+          <WhereToVoteIcon />
+        </IconButton>
+      </Tooltip>
+      <Tooltip title='Remove' onClick={() => remove(project.id)}>
+        <IconButton>
+          <DeleteIcon />
+        </IconButton>
+      </Tooltip>
+    </ListItem>
   );
 };
 
