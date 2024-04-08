@@ -2,15 +2,27 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import { useGetProjectById } from '../../../api/project/useGetProjectById';
 import { Loader } from '../../common/Loader';
-import { StoragesList } from '../../Storage/List/StoragesList';
+import { StoragesList } from './List/StoragesList';
 import { useGetStoragesByProjectId } from '../../../api/storage/useGetStoragesByProjectId';
 import { Navbar } from '../../Navbar/Navbar';
-import { EditProjectFormModal } from '../Edit/Modal/EditProjectFormModal';
+import { EditProjectFormModal } from '../../Project/Edit/Modal/EditProjectFormModal';
+import { Storage } from '../../../controllers/storage';
+import { State } from '../../../types/state';
+import { Priority } from '../../../types/priority';
 
-export const ProjectDetails: React.FC = () => {
+export const StoragesView: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const { projectId } = useParams<{ projectId: string }>();
+
+  // const EMPTY_STORAGE = new Storage(
+  //   'Some task name 8',
+  //   Priority.Minor,
+  //   projectId,
+  //   'fake',
+  //   State.Doing,
+  //   'Its a task description'
+  // ).create();
 
   const {
     loading: projectLoading,
