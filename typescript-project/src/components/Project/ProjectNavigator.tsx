@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 import { routes } from '../../routes/routes';
-import { ProjectsDefaultPage } from './DefaultPage/ProjectsDefaultPage';
-import { StoragesDefaultPage } from '../Storage/DefaultPage/StoragesDefaultPage';
+import { ProjectsListView } from './ListView/ProjectsListView';
+import { ProjectDetails } from './Details/ProjectDetails';
 
 export const ProjectNavigator: React.FC = () => (
   <Switch>
-    <Route path={routes.projectsList} component={ProjectsDefaultPage} exact />
-    <Route path={routes.project} component={StoragesDefaultPage} exact />
+    <Route path={routes.projectsList} component={ProjectsListView} exact />
+    <Route path={routes.projectDetails} component={ProjectDetails} exact />
   </Switch>
 );

@@ -18,7 +18,7 @@ interface FormModalProps {
   onClose: () => void;
 }
 
-export const FormModal: React.FC<FormModalProps> = ({ isOpen, onClose }) => {
+export const ProjectFormModal: React.FC<FormModalProps> = ({ isOpen, onClose }) => {
   const [severityText, setSeverityText] = useState<string>('');
   const [project, setProject] = useState<ProjectFormBody>({
     name: '',

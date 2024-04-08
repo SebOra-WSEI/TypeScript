@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Box, Button, List } from '@mui/material';
-import { ProjectModel } from '../../../types/project';
-import { projectPageStyles } from '../../../styles/projectPageStyles';
-import { FormModal } from '../CreateProject/Modal/FormModal';
-import { SeverityOption } from '../../../types/severity';
-import { SnackbarAlert } from '../../common/SnackbarAlert';
-import { ProjectItem } from './ProjectItem';
+import { ProjectModel } from '../../../../types/project';
+import { projectPageStyles } from '../../../../styles/projectPageStyles';
+import { ProjectFormModal } from '../../Create/Modal/ProjectFormModal';
+import { SeverityOption } from '../../../../types/severity';
+import { SnackbarAlert } from '../../../common/SnackbarAlert';
+import { ProjectListItem } from './ProjectListItem';
 
 interface ProjectsListProps {
   projects: ProjectModel[] | undefined;
@@ -33,7 +33,7 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({ projects }) => {
           <List>
             {projects.map((project) => (
               <div key={project.id}>
-                <ProjectItem
+                <ProjectListItem
                   key={project.id}
                   project={project}
                   setSeverity={setSeverity}
@@ -55,7 +55,7 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({ projects }) => {
         severity={severity}
         text={severityText}
       />
-      <FormModal isOpen={isModalOpen} onClose={handleOnClose} />
+      <ProjectFormModal isOpen={isModalOpen} onClose={handleOnClose} />
     </Box>
   );
 };

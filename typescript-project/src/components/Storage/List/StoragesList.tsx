@@ -8,7 +8,7 @@ interface StorageListViewProps {
   storages: Array<StorageModel> | undefined;
 }
 
-export const StoragesView: React.FC<StorageListViewProps> = ({
+export const StoragesList: React.FC<StorageListViewProps> = ({
   storages,
 }) => {
   // if (!storages?.length) {

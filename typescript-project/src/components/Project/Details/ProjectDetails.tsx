@@ -2,11 +2,11 @@ import React from 'react';
 import { useParams } from 'react-router';
 import { useGetProjectById } from '../../../api/project/useGetProjectById';
 import { Loader } from '../../common/Loader';
-import { StoragesView } from '../List/StoragesView';
+import { StoragesList } from '../../Storage/List/StoragesView';
 import { useGetStoragesByProjectId } from '../../../api/storage/useGetStoragesByProjectId';
 import { Navbar } from '../../Navbar/Navbar';
 
-export const StoragesDefaultPage: React.FC = () => {
+export const ProjectDetails: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
 
   const {
@@ -32,7 +32,7 @@ export const StoragesDefaultPage: React.FC = () => {
   return (
     <>
       <Navbar project={project} />
-      <StoragesView storages={storages} />
+      <StoragesList storages={storages} />
     </>
   );
 };
