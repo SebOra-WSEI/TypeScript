@@ -3,39 +3,22 @@ import {
   Toolbar,
   Typography,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 import { ProjectModel } from '../../types/project';
 import { NavbarMenu } from './NavbarMenu';
-import { EditProjectFormModal } from '../Project/Edit/Modal/EditProjectFormModal';
-import { SnackbarAlert } from '../common/SnackbarAlert';
-import { SeverityOption } from '../../types/severity';
-import { CreateStorageFormModal } from '../Storage/Create/CreateStorageFormModal';
 
 interface NavbarProps {
   project: ProjectModel;
+  handleEditProjectOnOpen: () => void;
+  handleCreateStorageOnOpen: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ project }) => {
-  const [isEditProjectModalOpen, setIsEditProjectModalOpen] = useState<boolean>(false);
-  const [isCreateStorageModalOpen, setIsCreateStorageModalOpen] = useState<boolean>(false);
-  const [severityText, setSeverityText] = useState<string>('');
-  const [severity, setSeverity] = useState<SeverityOption | undefined>(
-    undefined
-  );
-
+export const Navbar: React.FC<NavbarProps> = ({
+  project,
+  handleCreateStorageOnOpen,
+  handleEditProjectOnOpen
+}) => {
   const { name, description, id } = project ?? {};
-
-  const handleEditProjectOnOpen = (): void =>
-    setIsEditProjectModalOpen(true);
-
-  const handleEditProjectOnClose = (): void =>
-    setIsEditProjectModalOpen(false);
-
-  const handleCreateStorageOnOpen = (): void =>
-    setIsCreateStorageModalOpen(true);
-
-  const handleCreateStorageOnClose = (): void =>
-    setIsCreateStorageModalOpen(false);
 
   return (
     <>
@@ -54,24 +37,6 @@ export const Navbar: React.FC<NavbarProps> = ({ project }) => {
           />
         </Toolbar>
       </AppBar>
-      <EditProjectFormModal
-        isOpen={isEditProjectModalOpen}
-        onClose={handleEditProjectOnClose}
-        project={project}
-        setSeverity={setSeverity}
-        setSeverityText={setSeverityText}
-      />
-      <CreateStorageFormModal
-        isOpen={isCreateStorageModalOpen}
-        onClose={handleCreateStorageOnClose}
-        setSeverity={setSeverity}
-        setSeverityText={setSeverityText}
-      />
-      <SnackbarAlert
-        setSeverity={setSeverity}
-        severity={severity}
-        text={severityText}
-      />
     </>
   );
 };
