@@ -23,4 +23,49 @@ export const formStyles = {
     marginTop: '1.5rem',
     width: '9rem',
   },
+  dialogAction: {
+    marginTop: '1.5rem',
+  },
+  grid: {
+    width: '60rem',
+  },
+  title: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  titleText: {
+    width: '20rem',
+  },
+  reporter: {
+    display: 'flex',
+    justifyContent: 'end',
+    alignItems: 'center',
+  },
+  description: {
+    marginTop: '4rem',
+  },
+  status: {
+    display: 'flex',
+    justifyContent: 'end',
+    alignItems: 'center',
+    marginTop: '1.3rem',
+    paddingRight: '0.6rem',
+  },
+  selector: {
+    display: 'flex',
+    justifyContent: 'end',
+  },
+  assignedTo: {
+    display: 'flex',
+    justifyContent: 'end',
+    alignItems: 'center',
+    marginTop: '1.3rem',
+    paddingRight: '0.2rem',
+  },
+  priority: {
+    display: 'flex',
+    justifyContent: 'end',
+    alignItems: 'center',
+    marginTop: '1.3rem',
+  },
 };

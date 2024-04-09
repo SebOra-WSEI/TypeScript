@@ -26,10 +26,10 @@ export const EditStorageForm: React.FC<EditStorageFormProps> = ({
   const { data: allUsers } = useGetAllUsers();
 
   return (
-    <Grid container sx={{ width: '60rem' }}>
-      <Grid item xs={7} sx={{ display: 'flex', justifyContent: 'center' }}>
+    <Grid container sx={formStyles.grid}>
+      <Grid item xs={7} sx={formStyles.title}>
         <TextField
-          sx={{ width: '20rem' }}
+          sx={formStyles.titleText}
           variant='standard'
           type='text'
           value={name}
@@ -41,7 +41,7 @@ export const EditStorageForm: React.FC<EditStorageFormProps> = ({
           }
         />
       </Grid>
-      <Grid item xs={5} sx={{ display: 'flex', justifyContent: 'end', alignItems: 'center' }}>
+      <Grid item xs={5} sx={formStyles.reporter}>
         <Grid item xs={5}>
           <strong>Reporter</strong>
         </Grid>
@@ -49,7 +49,7 @@ export const EditStorageForm: React.FC<EditStorageFormProps> = ({
           {owner?.name}{' '}{owner?.surname}
         </Grid>
       </Grid>
-      <Grid item xs={8} sx={{ marginTop: '4rem' }}>
+      <Grid item xs={8} sx={formStyles.description}>
         <TextField
           type='text'
           autoComplete='description'
@@ -66,10 +66,10 @@ export const EditStorageForm: React.FC<EditStorageFormProps> = ({
       </Grid>
       <Grid item xs={4}>
         <Grid container>
-          <Grid item xs={4} sx={{ display: 'flex', justifyContent: 'end', alignItems: 'center', marginTop: '1.3rem' }}>
+          <Grid item xs={4} sx={formStyles.status}>
             <strong>Status</strong>
           </Grid>
-          <Grid item xs={8} sx={{ display: 'flex', justifyContent: 'end' }}>
+          <Grid item xs={8} sx={formStyles.selector}>
             <FormControl sx={formStyles.editFormControl} size='small'>
               <Select
                 value={state}
@@ -86,10 +86,10 @@ export const EditStorageForm: React.FC<EditStorageFormProps> = ({
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={5} sx={{ display: 'flex', justifyContent: 'end', alignItems: 'center', marginTop: '1.3rem' }}>
+          <Grid item xs={5} sx={formStyles.assignedTo}>
             <strong>Assigned to</strong>
           </Grid>
-          <Grid item xs={7} sx={{ display: 'flex', justifyContent: 'end' }}>
+          <Grid item xs={7} sx={formStyles.selector}>
             <FormControl sx={formStyles.editFormControl} size='small'>
               <Select
                 displayEmpty
@@ -97,7 +97,8 @@ export const EditStorageForm: React.FC<EditStorageFormProps> = ({
                 onChange={(evt) =>
                   setUpdatedStorage({
                     ...storage,
-                    assignedToId: evt.target.value
+                    state: State.Doing,
+                    assignedToId: evt.target.value,
                   })
                 }
               >
@@ -110,10 +111,10 @@ export const EditStorageForm: React.FC<EditStorageFormProps> = ({
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={4} sx={{ display: 'flex', justifyContent: 'end', alignItems: 'center', marginTop: '1.3rem' }}>
+          <Grid item xs={4} sx={formStyles.priority}>
             <strong>Priority</strong>
           </Grid>
-          <Grid item xs={8} sx={{ display: 'flex', justifyContent: 'end' }}>
+          <Grid item xs={8} sx={formStyles.selector}>
             <FormControl sx={formStyles.editFormControl} size='small'>
               <Select
                 value={priority}

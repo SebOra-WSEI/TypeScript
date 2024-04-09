@@ -42,7 +42,7 @@ export const EditStorageModal: React.FC<EditStorageModalProps> = ({
             setUpdatedStorage={setUpdatedStorage}
           />
         </DialogContent>
-        <DialogActions>
+        <DialogActions sx={formStyles.dialogAction}>
           <Button
             onClick={onClose}
             variant='contained'
