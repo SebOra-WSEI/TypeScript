@@ -4,17 +4,7 @@ import { State } from '../types/state';
 import { Api } from './api';
 import { ContentType } from '../types/contentType';
 import { StatusCode } from '../types/statusCode';
-
-export interface StorageModel {
-  id: string;
-  name: string;
-  description?: string;
-  priority: Priority;
-  projectId: string;
-  date: Date;
-  ownerId: string;
-  state: State;
-}
+import { StorageModel } from '../types/storage';
 
 export class Storage extends Api<StorageModel> {
   constructor(

@@ -20,11 +20,13 @@ import { SELECTED_PROJECT_ID } from '../../utils/localStorage';
 interface NavbarMenuProps {
   projectId: string;
   handleEditProjectOnOpen: () => void;
+  handleCreateStorageOnOpen: () => void;
 }
 
 export const NavbarMenu: React.FC<NavbarMenuProps> = ({
   projectId,
-  handleEditProjectOnOpen
+  handleEditProjectOnOpen,
+  handleCreateStorageOnOpen
 }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -73,7 +75,7 @@ export const NavbarMenu: React.FC<NavbarMenuProps> = ({
           Delete project
         </MenuItem>
         <Divider />
-        <MenuItem>
+        <MenuItem onClick={handleCreateStorageOnOpen}>
           <ListItemIcon>
             <AddIcon fontSize="small" />
           </ListItemIcon>

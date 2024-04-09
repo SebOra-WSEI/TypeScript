@@ -7,7 +7,6 @@ import { useGetStoragesByProjectId } from '../../../api/storage/useGetStoragesBy
 import { Navbar } from '../../Navbar/Navbar';
 
 export const StoragesView: React.FC = () => {
-
   const { projectId } = useParams<{ projectId: string }>();
 
   const {

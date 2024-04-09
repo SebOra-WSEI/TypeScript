@@ -9,6 +9,7 @@ import { NavbarMenu } from './NavbarMenu';
 import { EditProjectFormModal } from '../Project/Edit/Modal/EditProjectFormModal';
 import { SnackbarAlert } from '../common/SnackbarAlert';
 import { SeverityOption } from '../../types/severity';
+import { CreateStorageFormModal } from '../Storage/Create/CreateStorageFormModal';
 
 interface NavbarProps {
   project: ProjectModel;
@@ -16,6 +17,7 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ project }) => {
   const [isEditProjectModalOpen, setIsEditProjectModalOpen] = useState<boolean>(false);
+  const [isCreateStorageModalOpen, setIsCreateStorageModalOpen] = useState<boolean>(false);
   const [severityText, setSeverityText] = useState<string>('');
   const [severity, setSeverity] = useState<SeverityOption | undefined>(
     undefined
@@ -28,6 +30,12 @@ export const Navbar: React.FC<NavbarProps> = ({ project }) => {
 
   const handleEditProjectOnClose = (): void =>
     setIsEditProjectModalOpen(false);
+
+  const handleCreateStorageOnOpen = (): void =>
+    setIsCreateStorageModalOpen(true);
+
+  const handleCreateStorageOnClose = (): void =>
+    setIsCreateStorageModalOpen(false);
 
   return (
     <>
@@ -42,22 +50,20 @@ export const Navbar: React.FC<NavbarProps> = ({ project }) => {
           <NavbarMenu
             projectId={id}
             handleEditProjectOnOpen={handleEditProjectOnOpen}
+            handleCreateStorageOnOpen={handleCreateStorageOnOpen}
           />
         </Toolbar>
       </AppBar>
-      {/* 
-      -------
-      -------
-      -------
-      CREATE STORAGE MODAL
-      -------
-      -------
-      -------
-      */}
       <EditProjectFormModal
         isOpen={isEditProjectModalOpen}
         onClose={handleEditProjectOnClose}
         project={project}
+        setSeverity={setSeverity}
+        setSeverityText={setSeverityText}
+      />
+      <CreateStorageFormModal
+        isOpen={isCreateStorageModalOpen}
+        onClose={handleCreateStorageOnClose}
         setSeverity={setSeverity}
         setSeverityText={setSeverityText}
       />

@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react';
 import { ProjectFormBody } from '../../../../types/project';
 import { useCreateProject } from '../../../../api/project/useCreateProject';
 import { SeverityOption } from '../../../../types/severity';
-import { projectFormStyles } from '../../../../styles/projectFormStyles';
+import { formStyles } from '../../../../styles/formStyles';
 import { CreateProjectForm } from '../Form/CreateProjectForm';
 
 interface FormModalProps {
@@ -57,7 +57,7 @@ export const CreateProjectFormModal: React.FC<FormModalProps> = ({
 
   return (
     <Modal open={isOpen} onClose={handleOnClose}>
-      <Box sx={projectFormStyles.box} component='form' onSubmit={handleCreate}>
+      <Box sx={formStyles.box} component='form' onSubmit={handleCreate}>
         <DialogContent>
           <CreateProjectForm project={project} setProject={setProject} />
         </DialogContent>
@@ -66,14 +66,14 @@ export const CreateProjectFormModal: React.FC<FormModalProps> = ({
             onClick={handleOnClose}
             variant='contained'
             color='error'
-            style={projectFormStyles.button}
+            style={formStyles.button}
           >
             Close
           </Button>
           <Button
             variant='outlined'
             type='submit'
-            style={projectFormStyles.button}
+            style={formStyles.button}
           >
             Create
           </Button>
