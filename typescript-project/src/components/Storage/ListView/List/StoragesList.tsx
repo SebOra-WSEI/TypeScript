@@ -38,20 +38,19 @@ export const StoragesList: React.FC<StorageListViewProps> = ({
               const filteredStorages = storages?.filter(
                 (storage) => storage.state === state
               );
+
               return (
-                <>
-                  <Grid item xs={4} key={state}>
-                    <GridItem text={state} />
-                    {filteredStorages?.map((s) => (
-                      <StorageCard
-                        key={s.id}
-                        storage={s}
-                        setSeverity={setSeverity}
-                        setSeverityText={setSeverityText}
-                      />
-                    ))}
-                  </Grid>
-                </>
+                <Grid item xs={4} key={state}>
+                  <GridItem text={state} />
+                  {filteredStorages?.map((storage) => (
+                    <StorageCard
+                      key={storage.id}
+                      storage={storage}
+                      setSeverity={setSeverity}
+                      setSeverityText={setSeverityText}
+                    />
+                  ))}
+                </Grid>
               )
             })}
           </Grid>

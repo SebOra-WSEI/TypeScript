@@ -7,3 +7,4 @@ export function setToLocalStorage(key: string, element: string): void {
 }
 
 export const SELECTED_PROJECT_ID = 'selectedProjectId';
+export const CURRENT_USER_ID = 'currentUserId';

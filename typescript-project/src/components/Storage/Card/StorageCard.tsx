@@ -28,7 +28,7 @@ export const StorageCard: React.FC<StorageCardProps> = ({
 }) => {
   const { error, message, remove } = useRemoveStorage();
 
-  const { id, name, description, priority, date, ownerId } = storage;
+  const { id, name, description, priority, date, owner } = storage;
 
   useEffect(() => {
     if (error) {
@@ -80,7 +80,9 @@ export const StorageCard: React.FC<StorageCardProps> = ({
           </Grid>
           <Grid item xs={6} sx={storageStyle.icon}>
             <Avatar sx={storageStyle.avatar}>
-              {ownerId[0]}
+              <Typography fontSize='small'>
+                {owner?.name[0]}{owner?.surname[0]}
+              </Typography>
             </Avatar>
           </Grid>
         </Grid>

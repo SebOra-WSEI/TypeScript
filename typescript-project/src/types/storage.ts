@@ -1,5 +1,6 @@
 import { Priority } from './priority';
 import { State } from './state';
+import { UserModel } from './user';
 
 export interface StorageModel {
   id: string;
@@ -10,6 +11,7 @@ export interface StorageModel {
   date: Date;
   ownerId: string;
   state: State;
+  owner?: UserModel;
 }
 
 export type StorageFormBody = Pick<

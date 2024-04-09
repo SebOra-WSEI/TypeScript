@@ -16,7 +16,7 @@ export const formStyles = {
     justifyContent: 'center',
   },
   formControl: {
-    marginTop: '1rem',
+    marginTop: '1.5rem',
     width: '8rem',
   },
 };

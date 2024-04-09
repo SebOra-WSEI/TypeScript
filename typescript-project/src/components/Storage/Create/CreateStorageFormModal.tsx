@@ -13,6 +13,7 @@ import { formStyles } from '../../../styles/formStyles';
 import { CreateStorageForm } from './Form/CreateStorageForm';
 import { useParams } from 'react-router';
 import { useCreateStorage } from '../../../api/storage/useCreateStorage';
+import { CURRENT_USER_ID, getFromLocalStorage } from '../../../utils/localStorage';
 
 interface FormModalProps {
   isOpen: boolean;
@@ -34,9 +35,8 @@ export const CreateStorageFormModal: React.FC<FormModalProps> = ({
     description: '',
     priority: Priority.High,
     projectId,
-    ownerId: '',
+    ownerId: getFromLocalStorage(CURRENT_USER_ID),
   }
-
   const [storage, setStorage] = useState<StorageFormBody>(defaultStorage);
 
   const { error, message, create } = useCreateStorage(storage);
