@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { StorageModel } from '../../controllers/storage';
 import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
 import { EMPTY_STORAGE } from './emptyStorage';
+import { StorageModel } from '../../types/storage';
 
 export const useGetStoragesByProjectId = (
   id: string

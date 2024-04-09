@@ -14,11 +14,5 @@ export interface StorageModel {
 
 export type StorageFormBody = Pick<
   StorageModel,
-  | 'name'
-  | 'description'
-  | 'priority'
-  | 'projectId'
-  | 'date'
-  | 'ownerId'
-  | 'state'
+  'name' | 'description' | 'priority' | 'projectId' | 'ownerId'
 >;

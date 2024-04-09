@@ -9,10 +9,10 @@ import React, { useEffect, useState } from 'react';
 import { SeverityOption } from '../../../types/severity';
 import { StorageFormBody } from '../../../types/storage';
 import { Priority } from '../../../types/priority';
-import { State } from '../../../types/state';
 import { formStyles } from '../../../styles/formStyles';
 import { CreateStorageForm } from './Form/CreateStorageForm';
 import { useParams } from 'react-router';
+import { useCreateStorage } from '../../../api/storage/useCreateStorage';
 
 interface FormModalProps {
   isOpen: boolean;
@@ -29,47 +29,45 @@ export const CreateStorageFormModal: React.FC<FormModalProps> = ({
 }) => {
   const { projectId } = useParams<{ projectId: string }>();
 
-  const [storage, setStorage] = useState<StorageFormBody>({
+  const defaultStorage = {
     name: '',
     description: '',
     priority: Priority.High,
     projectId,
-    date: new Date(),
     ownerId: '',
-    state: State.Todo
-  });
+  }
 
-  console.log(storage)
+  const [storage, setStorage] = useState<StorageFormBody>(defaultStorage);
 
-  // const { error, message, create } = useCreateProject(project);
+  const { error, message, create } = useCreateStorage(storage);
 
-  // useEffect(() => {
-  //   if (error) {
-  //     setSeverity(SeverityOption.Error);
-  //     setSeverityText(error);
-  //   }
+  useEffect(() => {
+    if (error) {
+      setSeverity(SeverityOption.Error);
+      setSeverityText(error);
+    }
 
-  //   if (message) {
-  //     setSeverity(SeverityOption.Success);
-  //     setSeverityText(message);
-  //   }
-  // }, [error, message]);
+    if (message) {
+      setSeverity(SeverityOption.Success);
+      setSeverityText(message);
+    }
+  }, [error, message]);
 
-  // const handleCreate = (event: React.FormEvent<HTMLFormElement>): void => {
-  //   event.preventDefault();
+  const handleCreate = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
 
-  //   create();
-  //   setSeverityText('');
-  // };
+    create();
+    setSeverityText('');
+  };
 
   const handleOnClose = (): void => {
-    // setProject({ name: '', description: '' });
+    setStorage(defaultStorage);
     onClose();
   };
 
   return (
     <Modal open={isOpen} onClose={handleOnClose}>
-      <Box sx={formStyles.box} component='form'>
+      <Box sx={formStyles.box} component='form' onSubmit={handleCreate}>
         <DialogContent>
           <CreateStorageForm
             storage={storage}
