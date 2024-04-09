@@ -11,8 +11,10 @@ import { SeverityOption } from '../../../types/severity';
 import { SnackbarAlert } from '../../common/SnackbarAlert';
 
 export const StoragesView: React.FC = () => {
-  const [isEditProjectModalOpen, setIsEditProjectModalOpen] = useState<boolean>(false);
-  const [isCreateStorageModalOpen, setIsCreateStorageModalOpen] = useState<boolean>(false);
+  const [isEditProjectModalOpen, setIsEditProjectModalOpen] =
+    useState<boolean>(false);
+  const [isCreateStorageModalOpen, setIsCreateStorageModalOpen] =
+    useState<boolean>(false);
   const [severityText, setSeverityText] = useState<string>('');
   const [severity, setSeverity] = useState<SeverityOption | undefined>(
     undefined
@@ -41,14 +43,12 @@ export const StoragesView: React.FC = () => {
   }
 
   if (!project) {
-    return <>Project not found</>
+    return <>Project not found</>;
   }
 
-  const handleEditProjectOnOpen = (): void =>
-    setIsEditProjectModalOpen(true);
+  const handleEditProjectOnOpen = (): void => setIsEditProjectModalOpen(true);
 
-  const handleEditProjectOnClose = (): void =>
-    setIsEditProjectModalOpen(false);
+  const handleEditProjectOnClose = (): void => setIsEditProjectModalOpen(false);
 
   const handleCreateStorageOnOpen = (): void =>
     setIsCreateStorageModalOpen(true);
@@ -68,7 +68,6 @@ export const StoragesView: React.FC = () => {
         handleCreateStorageOnOpen={handleCreateStorageOnOpen}
         setSeverity={setSeverity}
         setSeverityText={setSeverityText}
-
       />
       <EditProjectFormModal
         isOpen={isEditProjectModalOpen}

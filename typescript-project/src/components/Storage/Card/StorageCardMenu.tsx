@@ -1,21 +1,15 @@
-import {
-  IconButton,
-  ListItemIcon,
-  Menu,
-  MenuItem,
-} from '@mui/material';
+import { IconButton, ListItemIcon, Menu, MenuItem } from '@mui/material';
 import React from 'react';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 interface StorageCardMenuProps {
-  handleRemove: () => void
-
+  handleRemove: () => void;
 }
 
 export const StorageCardMenu: React.FC<StorageCardMenuProps> = ({
-  handleRemove
+  handleRemove,
 }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -30,20 +24,16 @@ export const StorageCardMenu: React.FC<StorageCardMenuProps> = ({
       <IconButton onClick={handleMenuClick}>
         <MoreVertIcon />
       </IconButton>
-      <Menu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleMenuClose}
-      >
+      <Menu anchorEl={anchorEl} open={open} onClose={handleMenuClose}>
         <MenuItem>
           <ListItemIcon>
-            <ModeEditOutlineIcon fontSize="small" />
+            <ModeEditOutlineIcon fontSize='small' />
           </ListItemIcon>
           Edit storage details
         </MenuItem>
         <MenuItem onClick={handleRemove}>
           <ListItemIcon>
-            <DeleteIcon fontSize="small" />
+            <DeleteIcon fontSize='small' />
           </ListItemIcon>
           Delete storage
         </MenuItem>

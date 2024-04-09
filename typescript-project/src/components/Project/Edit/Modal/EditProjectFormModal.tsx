@@ -25,11 +25,12 @@ export const EditProjectFormModal: React.FC<FormModalProps> = ({
   onClose,
   project,
   setSeverity,
-  setSeverityText
+  setSeverityText,
 }) => {
-  const [updatedProject, setUpdatedProject] = useState<ProjectFormBody>(project);
+  const [updatedProject, setUpdatedProject] =
+    useState<ProjectFormBody>(project);
 
-  const { error, message, update } = useEditProjectById(updatedProject)
+  const { error, message, update } = useEditProjectById(updatedProject);
 
   useEffect(() => {
     if (error) {
@@ -54,7 +55,10 @@ export const EditProjectFormModal: React.FC<FormModalProps> = ({
     <Modal open={isOpen} onClose={onClose}>
       <Box sx={formStyles.box} component='form' onSubmit={handleUpdate}>
         <DialogContent>
-          <EditProjectForm project={updatedProject} setUpdatedProject={setUpdatedProject} />
+          <EditProjectForm
+            project={updatedProject}
+            setUpdatedProject={setUpdatedProject}
+          />
         </DialogContent>
         <DialogActions>
           <Button
@@ -65,11 +69,7 @@ export const EditProjectFormModal: React.FC<FormModalProps> = ({
           >
             Close
           </Button>
-          <Button
-            variant='outlined'
-            type='submit'
-            style={formStyles.button}
-          >
+          <Button variant='outlined' type='submit' style={formStyles.button}>
             Update
           </Button>
         </DialogActions>

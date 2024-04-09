@@ -4,7 +4,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  TextField
+  TextField,
 } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
 import { Priority } from '../../../../types/priority';
@@ -19,11 +19,7 @@ export const CreateStorageForm: React.FC<CreateStorageFormProps> = ({
   storage,
   setStorage,
 }) => {
-  const {
-    name,
-    description,
-    priority
-  } = storage;
+  const { name, description, priority } = storage;
 
   return (
     <>
@@ -57,11 +53,11 @@ export const CreateStorageForm: React.FC<CreateStorageFormProps> = ({
           })
         }
       />
-      <FormControl sx={formStyles.formControl} size="small">
+      <FormControl sx={formStyles.formControl} size='small'>
         <InputLabel>Priority</InputLabel>
         <Select
           value={priority}
-          label="Priority"
+          label='Priority'
           onChange={(evt) =>
             setStorage({
               ...storage,
@@ -70,7 +66,9 @@ export const CreateStorageForm: React.FC<CreateStorageFormProps> = ({
           }
         >
           {Object.values(Priority).map((p) => (
-            <MenuItem key={p} value={p}>{p}</MenuItem>
+            <MenuItem key={p} value={p}>
+              {p}
+            </MenuItem>
           ))}
         </Select>
       </FormControl>

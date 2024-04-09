@@ -13,7 +13,10 @@ import { formStyles } from '../../../styles/formStyles';
 import { CreateStorageForm } from './Form/CreateStorageForm';
 import { useParams } from 'react-router';
 import { useCreateStorage } from '../../../api/storage/useCreateStorage';
-import { CURRENT_USER_ID, getFromLocalStorage } from '../../../utils/localStorage';
+import {
+  CURRENT_USER_ID,
+  getFromLocalStorage,
+} from '../../../utils/localStorage';
 
 interface FormModalProps {
   isOpen: boolean;
@@ -26,7 +29,7 @@ export const CreateStorageFormModal: React.FC<FormModalProps> = ({
   isOpen,
   onClose,
   setSeverity,
-  setSeverityText
+  setSeverityText,
 }) => {
   const { projectId } = useParams<{ projectId: string }>();
 
@@ -36,7 +39,7 @@ export const CreateStorageFormModal: React.FC<FormModalProps> = ({
     priority: Priority.High,
     projectId,
     ownerId: getFromLocalStorage(CURRENT_USER_ID),
-  }
+  };
   const [storage, setStorage] = useState<StorageFormBody>(defaultStorage);
 
   const { error, message, create } = useCreateStorage(storage);
@@ -69,10 +72,7 @@ export const CreateStorageFormModal: React.FC<FormModalProps> = ({
     <Modal open={isOpen} onClose={handleOnClose}>
       <Box sx={formStyles.box} component='form' onSubmit={handleCreate}>
         <DialogContent>
-          <CreateStorageForm
-            storage={storage}
-            setStorage={setStorage}
-          />
+          <CreateStorageForm storage={storage} setStorage={setStorage} />
         </DialogContent>
         <DialogActions>
           <Button
@@ -83,11 +83,7 @@ export const CreateStorageFormModal: React.FC<FormModalProps> = ({
           >
             Close
           </Button>
-          <Button
-            variant='outlined'
-            type='submit'
-            style={formStyles.button}
-          >
+          <Button variant='outlined' type='submit' style={formStyles.button}>
             Create
           </Button>
         </DialogActions>

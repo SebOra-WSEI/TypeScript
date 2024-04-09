@@ -23,7 +23,7 @@ export const CreateProjectFormModal: React.FC<FormModalProps> = ({
   isOpen,
   onClose,
   setSeverity,
-  setSeverityText
+  setSeverityText,
 }) => {
   const [project, setProject] = useState<ProjectFormBody>({
     name: '',
@@ -70,11 +70,7 @@ export const CreateProjectFormModal: React.FC<FormModalProps> = ({
           >
             Close
           </Button>
-          <Button
-            variant='outlined'
-            type='submit'
-            style={formStyles.button}
-          >
+          <Button variant='outlined' type='submit' style={formStyles.button}>
             Create
           </Button>
         </DialogActions>

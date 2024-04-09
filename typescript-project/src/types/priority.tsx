@@ -9,7 +9,13 @@ export enum Priority {
 }
 
 export const priorityIcons = {
-  [Priority.Low]: <KeyboardDoubleArrowDownIcon sx={{ color: 'orange' }} fontSize='small' />,
-  [Priority.Minor]: <KeyboardArrowUpIcon sx={{ color: 'blue' }} fontSize='small' />,
-  [Priority.High]: <KeyboardDoubleArrowUpIcon sx={{ color: 'red' }} fontSize='small' />,
-}
+  [Priority.Low]: (
+    <KeyboardDoubleArrowDownIcon sx={{ color: 'orange' }} fontSize='small' />
+  ),
+  [Priority.Minor]: (
+    <KeyboardArrowUpIcon sx={{ color: 'blue' }} fontSize='small' />
+  ),
+  [Priority.High]: (
+    <KeyboardDoubleArrowUpIcon sx={{ color: 'red' }} fontSize='small' />
+  ),
+};

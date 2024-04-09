@@ -1,8 +1,4 @@
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-} from '@mui/material';
+import { AppBar, Toolbar, Typography } from '@mui/material';
 import React from 'react';
 import { ProjectModel } from '../../types/project';
 import { NavbarMenu } from './NavbarMenu';
@@ -16,7 +12,7 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({
   project,
   handleCreateStorageOnOpen,
-  handleEditProjectOnOpen
+  handleEditProjectOnOpen,
 }) => {
   const { name, description, id } = project ?? {};
 
@@ -24,7 +20,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     <>
       <AppBar>
         <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 2 }}>
+          <Typography variant='h6' sx={{ flexGrow: 2 }}>
             {name}
           </Typography>
           <Typography variant='inherit' sx={{ flexGrow: 1 }}>
