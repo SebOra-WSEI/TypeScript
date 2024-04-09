@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  FormControl,
-  Grid,
-  MenuItem,
-  Select,
-  TextField,
-} from '@mui/material';
+import { FormControl, Grid, MenuItem, Select, TextField } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
 import { Priority, priorityIcons } from '../../../../types/priority';
 import { StorageModel } from '../../../../types/storage';
@@ -13,15 +7,16 @@ import { State } from '../../../../types/state';
 import { useGetAllUsers } from '../../../../api/user/useGetAllUsers';
 
 interface EditStorageFormProps {
-  storage: StorageModel;
+  updatedStorage: StorageModel;
   setUpdatedStorage: (value: StorageModel) => void;
 }
 
 export const EditStorageForm: React.FC<EditStorageFormProps> = ({
-  storage,
+  updatedStorage,
   setUpdatedStorage,
 }) => {
-  const { name, state, owner, priority, description, assignedToId } = storage;
+  const { name, state, owner, priority, description, assignedToId } =
+    updatedStorage;
 
   const { data: allUsers } = useGetAllUsers();
 
@@ -35,7 +30,7 @@ export const EditStorageForm: React.FC<EditStorageFormProps> = ({
           value={name}
           onChange={(evt) =>
             setUpdatedStorage({
-              ...storage,
+              ...updatedStorage,
               name: evt.target.value,
             })
           }
@@ -46,7 +41,7 @@ export const EditStorageForm: React.FC<EditStorageFormProps> = ({
           <strong>Reporter</strong>
         </Grid>
         <Grid item xs={3}>
-          {owner?.name}{' '}{owner?.surname}
+          {owner?.name} {owner?.surname}
         </Grid>
       </Grid>
       <Grid item xs={8} sx={formStyles.description}>
@@ -58,7 +53,7 @@ export const EditStorageForm: React.FC<EditStorageFormProps> = ({
           multiline
           onChange={(evt) =>
             setUpdatedStorage({
-              ...storage,
+              ...updatedStorage,
               description: evt.target.value,
             })
           }
@@ -75,13 +70,15 @@ export const EditStorageForm: React.FC<EditStorageFormProps> = ({
                 value={state}
                 onChange={(evt) =>
                   setUpdatedStorage({
-                    ...storage,
+                    ...updatedStorage,
                     state: evt.target.value as State,
                   })
                 }
               >
                 {Object.values(State).map((s) => (
-                  <MenuItem key={s} value={s}>{s}</MenuItem>
+                  <MenuItem key={s} value={s}>
+                    {s}
+                  </MenuItem>
                 ))}
               </Select>
             </FormControl>
@@ -93,19 +90,22 @@ export const EditStorageForm: React.FC<EditStorageFormProps> = ({
             <FormControl sx={formStyles.editFormControl} size='small'>
               <Select
                 displayEmpty
-                value={assignedToId ?? ''}
+                value={assignedToId || 'Unassigned'}
                 onChange={(evt) =>
                   setUpdatedStorage({
-                    ...storage,
-                    state: State.Doing,
+                    ...updatedStorage,
+                    state:
+                      evt.target.value === 'Unassigned'
+                        ? State.Todo
+                        : State.Doing,
                     assignedToId: evt.target.value,
                   })
                 }
               >
-                <MenuItem value=''>Unassigned</MenuItem>
+                <MenuItem value='Unassigned'>Unassigned</MenuItem>
                 {allUsers?.map((user) => (
                   <MenuItem key={user.id} value={user.id}>
-                    {user.name}{' '}{user.surname}
+                    {user.name} {user.surname}
                   </MenuItem>
                 ))}
               </Select>
@@ -120,7 +120,7 @@ export const EditStorageForm: React.FC<EditStorageFormProps> = ({
                 value={priority}
                 onChange={(evt) =>
                   setUpdatedStorage({
-                    ...storage,
+                    ...updatedStorage,
                     priority: evt.target.value as Priority,
                   })
                 }
@@ -136,6 +136,6 @@ export const EditStorageForm: React.FC<EditStorageFormProps> = ({
           </Grid>
         </Grid>
       </Grid>
-    </Grid >
+    </Grid>
   );
 };

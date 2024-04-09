@@ -7,22 +7,14 @@ import { StatusCode } from '../../types/statusCode';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
 
 type UseEditProjectResult = FetchedData<Project> & {
-  update?: (projectId: string) => void;
+  update: (projectId: string) => void;
 };
 
 export const useEditProjectById = (
-  newProjectDetails: ProjectFormBody | undefined
+  newProjectDetails: ProjectFormBody
 ): UseEditProjectResult => {
   const [error, setError] = useState<string>('');
   const [message, setMessage] = useState<string | undefined>(undefined);
-
-  if (!newProjectDetails) {
-    setError('New project is not provided');
-
-    return {
-      error,
-    };
-  }
 
   const update = (projectId: string) => {
     const { status, errorMessage, response, message } = EMPTY_PROJECT.update(

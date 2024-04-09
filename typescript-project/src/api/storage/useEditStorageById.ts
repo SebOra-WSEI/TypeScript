@@ -7,7 +7,7 @@ import { StatusCode } from '../../types/statusCode';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
 
 type UseEditStorageByIdResult = FetchedData<Storage> & {
-  update?: (storageId: string) => void;
+  update: (storageId: string) => void;
 };
 
 export const useEditStorageById = (
@@ -21,6 +21,7 @@ export const useEditStorageById = (
       storageId,
       newStorage
     );
+
     if (!!errorMessage) {
       setError(errorMessage);
     }

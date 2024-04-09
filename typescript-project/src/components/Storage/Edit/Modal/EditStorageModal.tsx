@@ -22,15 +22,14 @@ export const EditStorageModal: React.FC<EditStorageModalProps> = ({
   onClose,
   storage,
 }) => {
-  const [updatedStorage, setUpdatedStorage] =
-    useState<StorageModel>(storage);
+  const [updatedStorage, setUpdatedStorage] = useState<StorageModel>(storage);
 
   const { update } = useEditStorageById(updatedStorage);
 
   const handleUpdate = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
-    update && update(storage?.id ?? '');
+    update(storage?.id ?? '');
   };
 
   return (
@@ -38,7 +37,7 @@ export const EditStorageModal: React.FC<EditStorageModalProps> = ({
       <Box sx={formStyles.box} component='form' onSubmit={handleUpdate}>
         <DialogContent>
           <EditStorageForm
-            storage={updatedStorage}
+            updatedStorage={updatedStorage}
             setUpdatedStorage={setUpdatedStorage}
           />
         </DialogContent>

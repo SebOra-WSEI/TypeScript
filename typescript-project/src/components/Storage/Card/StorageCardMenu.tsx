@@ -13,7 +13,7 @@ interface StorageCardMenuProps {
 
 export const StorageCardMenu: React.FC<StorageCardMenuProps> = ({
   storage,
-  handleEditStorageOnOpen
+  handleEditStorageOnOpen,
 }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);

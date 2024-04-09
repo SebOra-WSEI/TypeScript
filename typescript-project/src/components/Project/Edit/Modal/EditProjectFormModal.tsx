@@ -30,7 +30,7 @@ export const EditProjectFormModal: React.FC<FormModalProps> = ({
   const handleUpdate = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
-    update && update(project?.id ?? '');
+    update(project?.id ?? '');
   };
 
   return (
