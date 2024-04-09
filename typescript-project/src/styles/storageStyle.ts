@@ -6,7 +6,7 @@ export const storageStyle = {
   card: {
     borderRadius: '10px',
     margin: '0.5rem 2rem 1rem 2rem',
-    height: '10rem',
+    height: '11rem',
   },
   cardContent: {
     padding: 0,

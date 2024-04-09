@@ -42,14 +42,10 @@ export const StoragesView: React.FC = () => {
   }
 
   const handleEditProjectOnOpen = (): void => setIsEditProjectModalOpen(true);
-
   const handleEditProjectOnClose = (): void => setIsEditProjectModalOpen(false);
 
-  const handleCreateStorageOnOpen = (): void =>
-    setIsCreateStorageModalOpen(true);
-
-  const handleCreateStorageOnClose = (): void =>
-    setIsCreateStorageModalOpen(false);
+  const handleCreateStorageOnOpen = (): void => setIsCreateStorageModalOpen(true);
+  const handleCreateStorageOnClose = (): void => setIsCreateStorageModalOpen(false);
 
   return (
     <>

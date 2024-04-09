@@ -8,10 +8,12 @@ import { useRemoveStorage } from '../../../api/storage/useRemoveStorage';
 
 interface StorageCardMenuProps {
   storage: StorageModel;
+  handleEditStorageOnOpen: () => void;
 }
 
 export const StorageCardMenu: React.FC<StorageCardMenuProps> = ({
   storage,
+  handleEditStorageOnOpen
 }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -31,7 +33,7 @@ export const StorageCardMenu: React.FC<StorageCardMenuProps> = ({
         <MoreVertIcon />
       </IconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={handleMenuClose}>
-        <MenuItem>
+        <MenuItem onClick={handleEditStorageOnOpen}>
           <ListItemIcon>
             <ModeEditOutlineIcon fontSize='small' />
           </ListItemIcon>

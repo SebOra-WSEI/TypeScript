@@ -18,3 +18,8 @@ export type StorageFormBody = Pick<
   StorageModel,
   'name' | 'description' | 'priority' | 'projectId' | 'ownerId'
 >;
+
+export type UpdatedStorageFormBody = Pick<
+  StorageModel,
+  'name' | 'description' | 'priority' | 'state'
+>;

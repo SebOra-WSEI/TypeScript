@@ -35,6 +35,7 @@ export const CreateStorageFormModal: React.FC<FormModalProps> = ({
     projectId,
     ownerId: getFromLocalStorage(CURRENT_USER_ID),
   };
+
   const [storage, setStorage] = useState<StorageFormBody>(defaultStorage);
 
   const { create } = useCreateStorage(storage);
