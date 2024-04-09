@@ -7,34 +7,64 @@ import {
   ListItemIcon,
   Typography
 } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { priorityIcons } from '../../../types/priority';
-import { StorageModel } from '../../../controllers/storage';
 import { storageStyle } from '../../../styles/storageStyle';
 import { StorageCardMenu } from './StorageCardMenu';
+import { StorageModel } from '../../../types/storage';
+import { useRemoveStorage } from '../../../api/storage/useRemoveStorage';
+import { SeverityOption } from '../../../types/severity';
 
-export const StorageCard: React.FC<{
+interface StorageCardProps {
   storage: StorageModel
-}> = ({ storage }) => {
+  setSeverity: (value: SeverityOption) => void;
+  setSeverityText: (value: string) => void;
+}
+
+export const StorageCard: React.FC<StorageCardProps> = ({
+  storage,
+  setSeverity,
+  setSeverityText
+}) => {
+  const { error, message, remove } = useRemoveStorage();
+
+  const { id, name, description, priority, date, ownerId } = storage;
+
+  useEffect(() => {
+    if (error) {
+      setSeverity(SeverityOption.Error);
+      setSeverityText(error);
+    }
+
+    if (message) {
+      setSeverity(SeverityOption.Success);
+      setSeverityText(message);
+    }
+  }, [error, message]);
+
+  const handleRemove = (): void => {
+    console.log(remove(id))
+    remove(id)
+  };
 
   return (
     <Card sx={storageStyle.card}>
       <CardHeader
-        title={<Header text={storage.name} isTitle />}
-        subheader={<Header text={storage?.description ?? ''} />}
-        action={<StorageCardMenu />}
+        title={<Header text={name} isTitle />}
+        subheader={<Header text={description ?? ''} />}
+        action={<StorageCardMenu handleRemove={handleRemove} />}
       />
       <CardContent sx={storageStyle.cardContent}>
         <Grid container>
           <Grid item sx={storageStyle.priority}>
             <ListItemIcon>
-              {priorityIcons[storage.priority]}
+              {priorityIcons[priority]}
               <Typography
                 variant="inherit"
                 color="text.secondary"
                 fontSize='small'
               >
-                {storage.priority}
+                {priority}
               </Typography>
             </ListItemIcon>
           </Grid>
@@ -45,12 +75,12 @@ export const StorageCard: React.FC<{
               variant="inherit"
               color="text.secondary"
             >
-              Created at: {new Date(storage.date).toLocaleString()}
+              Created at: {new Date(date).toLocaleString()}
             </Typography>
           </Grid>
           <Grid item xs={6} sx={storageStyle.icon}>
             <Avatar sx={storageStyle.avatar}>
-              {storage.ownerId[0]}
+              {ownerId[0]}
             </Avatar>
           </Grid>
         </Grid>
