@@ -19,4 +19,8 @@ export const formStyles = {
     marginTop: '1.5rem',
     width: '8rem',
   },
+  editFormControl: {
+    marginTop: '1.5rem',
+    width: '9rem',
+  },
 };
