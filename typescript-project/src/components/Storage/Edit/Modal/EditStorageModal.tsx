@@ -6,43 +6,42 @@ import {
   Modal,
 } from '@mui/material';
 import React, { useState } from 'react';
-import { ProjectFormBody, ProjectModel } from '../../../../types/project';
 import { formStyles } from '../../../../styles/formStyles';
-import { EditProjectForm } from '../Form/EditProjectForm';
-import { useEditProjectById } from '../../../../api/project/useEditProjectById';
+import { StorageModel } from '../../../../types/storage';
+import { EditStorageForm } from '../Form/EditStorageForm';
+import { useEditStorageById } from '../../../../api/storage/useEditStorageById';
 
-interface FormModalProps {
+interface EditStorageModalProps {
+  storage: StorageModel;
   isOpen: boolean;
   onClose: () => void;
-  project: ProjectModel;
 }
 
-export const EditProjectFormModal: React.FC<FormModalProps> = ({
+export const EditStorageModal: React.FC<EditStorageModalProps> = ({
   isOpen,
   onClose,
-  project,
+  storage,
 }) => {
-  const [updatedProject, setUpdatedProject] =
-    useState<ProjectFormBody>(project);
+  const [updatedStorage, setUpdatedStorage] = useState<StorageModel>(storage);
 
-  const { update } = useEditProjectById(updatedProject);
+  const { update } = useEditStorageById(updatedStorage);
 
   const handleUpdate = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
-    update(project?.id ?? '');
+    update(storage?.id ?? '');
   };
 
   return (
     <Modal open={isOpen} onClose={onClose}>
       <Box sx={formStyles.box} component='form' onSubmit={handleUpdate}>
         <DialogContent>
-          <EditProjectForm
-            project={updatedProject}
-            setUpdatedProject={setUpdatedProject}
+          <EditStorageForm
+            updatedStorage={updatedStorage}
+            setUpdatedStorage={setUpdatedStorage}
           />
         </DialogContent>
-        <DialogActions>
+        <DialogActions sx={formStyles.dialogAction}>
           <Button
             onClick={onClose}
             variant='contained'

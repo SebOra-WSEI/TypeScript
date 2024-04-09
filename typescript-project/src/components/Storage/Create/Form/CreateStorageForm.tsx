@@ -7,7 +7,7 @@ import {
   TextField,
 } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
-import { Priority } from '../../../../types/priority';
+import { Priority, priorityIcons } from '../../../../types/priority';
 import { StorageFormBody } from '../../../../types/storage';
 
 interface CreateStorageFormProps {
@@ -67,7 +67,8 @@ export const CreateStorageForm: React.FC<CreateStorageFormProps> = ({
         >
           {Object.values(Priority).map((p) => (
             <MenuItem key={p} value={p}>
-              {p}
+              <span>{priorityIcons[p]}</span>
+              <span style={{ marginLeft: '0.5rem' }}>{p}</span>
             </MenuItem>
           ))}
         </Select>

@@ -1,25 +1,25 @@
 import { useState } from 'react';
-import { EMPTY_PROJECT } from './emptyProject';
-import { ProjectFormBody } from '../../types/project';
+import { Storage } from '../../controllers/storage';
 import { FetchedData } from '../../types/fetchedData';
-import { Project } from '../../controllers/project';
+import { UpdatedStorageFormBody } from '../../types/storage';
+import { EMPTY_STORAGE } from './emptyStorage';
 import { StatusCode } from '../../types/statusCode';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
 
-type UseEditProjectResult = FetchedData<Project> & {
-  update: (projectId: string) => void;
+type UseEditStorageByIdResult = FetchedData<Storage> & {
+  update: (storageId: string) => void;
 };
 
-export const useEditProjectById = (
-  newProjectDetails: ProjectFormBody
-): UseEditProjectResult => {
+export const useEditStorageById = (
+  newStorage: UpdatedStorageFormBody
+): UseEditStorageByIdResult => {
   const [error, setError] = useState<string>('');
   const [message, setMessage] = useState<string | undefined>(undefined);
 
-  const update = (projectId: string) => {
-    const { status, errorMessage, response, message } = EMPTY_PROJECT.update(
-      projectId,
-      newProjectDetails
+  const update = (storageId: string) => {
+    const { status, errorMessage, response, message } = EMPTY_STORAGE.update(
+      storageId,
+      newStorage
     );
 
     if (!!errorMessage) {
