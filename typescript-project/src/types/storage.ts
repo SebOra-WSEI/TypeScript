@@ -12,6 +12,11 @@ export interface StorageModel {
   ownerId: string;
   state: State;
   owner?: UserModel;
+  assignedToId?: string;
+}
+
+export interface StorageModel1 extends StorageModel {
+  owner?: UserModel;
 }
 
 export type StorageFormBody = Pick<

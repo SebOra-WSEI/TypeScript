@@ -64,8 +64,8 @@ export const StorageCard: React.FC<StorageCardProps> = ({ storage }) => {
             <Grid item xs={6} sx={storageStyle.icon}>
               <Avatar sx={storageStyle.avatar}>
                 <Typography fontSize='small'>
-                  {owner?.name[0]}
-                  {owner?.surname[0]}
+                  {owner?.name?.[0]}
+                  {owner?.surname?.[0]}
                 </Typography>
               </Avatar>
             </Grid>

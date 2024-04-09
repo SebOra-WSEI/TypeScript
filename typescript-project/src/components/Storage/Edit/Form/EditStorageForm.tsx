@@ -21,7 +21,7 @@ export const EditStorageForm: React.FC<EditStorageFormProps> = ({
   storage,
   setUpdatedStorage,
 }) => {
-  const { name, state, owner, priority, description } = storage;
+  const { name, state, owner, priority, description, assignedToId } = storage;
 
   const { data: allUsers } = useGetAllUsers();
 
@@ -86,28 +86,28 @@ export const EditStorageForm: React.FC<EditStorageFormProps> = ({
               </Select>
             </FormControl>
           </Grid>
-          {/* <Grid item xs={5} sx={{ display: 'flex', justifyContent: 'end', alignItems: 'center', marginTop: '1.3rem' }}>
+          <Grid item xs={5} sx={{ display: 'flex', justifyContent: 'end', alignItems: 'center', marginTop: '1.3rem' }}>
             <strong>Assigned to</strong>
           </Grid>
           <Grid item xs={7} sx={{ display: 'flex', justifyContent: 'end' }}>
             <FormControl sx={formStyles.formControl} size='small'>
               <Select
-                value={owner?.id}
+                value={assignedToId ?? ''}
                 onChange={(evt) =>
                   setUpdatedStorage({
                     ...storage,
-                    ownerId: evt.target.value
+                    assignedToId: evt.target.value
                   })
                 }
               >
-                {allUsers?.map((p) => (
-                  <MenuItem key={p?.id} value={p?.id}>
-                    {p?.name}{' '}{p?.surname}
+                {allUsers?.map((user) => (
+                  <MenuItem key={user.id} value={user.id}>
+                    {user.name}{' '}{user.surname}
                   </MenuItem>
                 ))}
               </Select>
             </FormControl>
-          </Grid> */}
+          </Grid>
           <Grid item xs={4} sx={{ display: 'flex', justifyContent: 'end', alignItems: 'center', marginTop: '1.3rem' }}>
             <strong>Priority</strong>
           </Grid>

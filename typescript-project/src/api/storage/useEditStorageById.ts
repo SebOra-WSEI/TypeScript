@@ -21,7 +21,6 @@ export const useEditStorageById = (
       storageId,
       newStorage
     );
-
     if (!!errorMessage) {
       setError(errorMessage);
     }

@@ -52,6 +52,7 @@ export class Storage extends Api<StorageModel> {
     const extendedStorages = filteredStorages.map((storage) => ({
       ...storage,
       owner: EMPTY_USER.getById(storage.ownerId).response,
+      assignedToId: undefined,
     }));
 
     return {
