@@ -1,4 +1,4 @@
-export const projectFormStyles = {
+export const formStyles = {
   box: {
     position: 'absolute',
     top: '50%',
@@ -14,5 +14,9 @@ export const projectFormStyles = {
   header: {
     display: 'flex',
     justifyContent: 'center',
+  },
+  formControl: {
+    marginTop: '1.5rem',
+    width: '8rem',
   },
 };

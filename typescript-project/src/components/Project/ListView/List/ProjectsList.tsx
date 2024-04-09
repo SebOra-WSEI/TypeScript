@@ -1,33 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Box, Button, List } from '@mui/material';
 import { ProjectModel } from '../../../../types/project';
 import { projectPageStyles } from '../../../../styles/projectPageStyles';
-import { CreateProjectFormModal } from '../../Create/Modal/CreateProjectFormModal';
 import { SeverityOption } from '../../../../types/severity';
-import { SnackbarAlert } from '../../../common/SnackbarAlert';
 import { ProjectListItem } from './ProjectListItem';
+import { useRemoveProject } from '../../../../api/project/useRemoveProject';
 
 interface ProjectsListProps {
   projects: ProjectModel[] | undefined;
+  setSeverity: (value: SeverityOption) => void;
+  setSeverityText: (value: string) => void;
+  handleOnOpen: () => void;
 }
 
-export const ProjectsList: React.FC<ProjectsListProps> = ({ projects }) => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [severityText, setSeverityText] = useState<string>('');
-  const [severity, setSeverity] = useState<SeverityOption | undefined>(
-    undefined
-  );
+export const ProjectsList: React.FC<ProjectsListProps> = ({
+  projects,
+  setSeverity,
+  setSeverityText,
+  handleOnOpen,
+}) => {
+  const { error, message, remove } = useRemoveProject();
 
-  const handleOnOpen = (): void => setIsModalOpen(true);
-  const handleOnClose = () => setIsModalOpen(false);
+  useEffect(() => {
+    if (error) {
+      setSeverity(SeverityOption.Error);
+      setSeverityText(error);
+    }
+
+    if (message) {
+      setSeverity(SeverityOption.Success);
+      setSeverityText(message);
+    }
+  }, [error, message]);
 
   return (
     <Box sx={projectPageStyles.wrapper}>
       {!projects?.length ? (
-        <>
-          <p>There are no projects yet</p>
-          <Button onClick={handleOnOpen}>Create new project</Button>
-        </>
+        <NoProjectsMessage handleOnOpen={handleOnOpen} />
       ) : (
         <>
           <List>
@@ -35,30 +44,24 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({ projects }) => {
               <ProjectListItem
                 key={project.id}
                 project={project}
-                setSeverity={setSeverity}
-                setSeverityText={setSeverityText}
+                handleRemove={() => remove(project.id)}
               />
             ))}
           </List>
-          <Button
-            onClick={handleOnOpen}
-            sx={projectPageStyles.button}
-          >
+          <Button onClick={handleOnOpen} sx={projectPageStyles.button}>
             Create new project
           </Button>
         </>
       )}
-      <CreateProjectFormModal
-        isOpen={isModalOpen}
-        onClose={handleOnClose}
-        setSeverity={setSeverity}
-        setSeverityText={setSeverityText}
-      />
-      <SnackbarAlert
-        setSeverity={setSeverity}
-        severity={severity}
-        text={severityText}
-      />
     </Box>
   );
 };
+
+const NoProjectsMessage: React.FC<{
+  handleOnOpen: () => void;
+}> = ({ handleOnOpen }) => (
+  <>
+    <p>There are no projects yet</p>
+    <Button onClick={handleOnOpen}>Create new project</Button>
+  </>
+);

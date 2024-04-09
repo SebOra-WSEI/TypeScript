@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField } from '@mui/material';
 import { ProjectFormBody } from '../../../../types/project';
-import { projectFormStyles } from '../../../../styles/projectFormStyles';
+import { formStyles } from '../../../../styles/formStyles';
 
 interface CreateProjectFormProps {
   project: ProjectFormBody;
@@ -13,7 +13,7 @@ export const EditProjectForm: React.FC<CreateProjectFormProps> = ({
   setUpdatedProject,
 }) => (
   <>
-    <h3 style={projectFormStyles.header}>Edit project details</h3>
+    <h3 style={formStyles.header}>Edit project details</h3>
     <TextField
       label='Name *'
       variant='standard'

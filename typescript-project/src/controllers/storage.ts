@@ -4,17 +4,9 @@ import { State } from '../types/state';
 import { Api } from './api';
 import { ContentType } from '../types/contentType';
 import { StatusCode } from '../types/statusCode';
-
-export interface StorageModel {
-  id: string;
-  name: string;
-  description?: string;
-  priority: Priority;
-  projectId: string;
-  date: Date;
-  ownerId: string;
-  state: State;
-}
+import { StorageModel } from '../types/storage';
+import { EMPTY_USER } from '../api/user/emptyUser';
+import { Response } from '../types/response';
 
 export class Storage extends Api<StorageModel> {
   constructor(
@@ -46,7 +38,7 @@ export class Storage extends Api<StorageModel> {
     });
   }
 
-  getAllByProjectId(id: string) {
+  getAllByProjectId(id: string): Response<Array<StorageModel>> {
     if (!id.length) {
       return {
         status: StatusCode.BadRequest,
@@ -57,10 +49,14 @@ export class Storage extends Api<StorageModel> {
 
     const storages = this.getAll().response as Array<StorageModel>;
     const filteredStorages = storages.filter((s) => s.projectId === id);
+    const extendedStorages = filteredStorages.map((storage) => ({
+      ...storage,
+      owner: EMPTY_USER.getById(storage.ownerId).response,
+    }));
 
     return {
       status: StatusCode.OK,
-      response: filteredStorages,
+      response: extendedStorages,
     };
   }
 }

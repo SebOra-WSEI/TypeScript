@@ -20,11 +20,13 @@ import { SELECTED_PROJECT_ID } from '../../utils/localStorage';
 interface NavbarMenuProps {
   projectId: string;
   handleEditProjectOnOpen: () => void;
+  handleCreateStorageOnOpen: () => void;
 }
 
 export const NavbarMenu: React.FC<NavbarMenuProps> = ({
   projectId,
-  handleEditProjectOnOpen
+  handleEditProjectOnOpen,
+  handleCreateStorageOnOpen,
 }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -40,8 +42,8 @@ export const NavbarMenu: React.FC<NavbarMenuProps> = ({
 
   const handleRemoveProject = () => {
     remove(projectId);
-    history.push(routes.projects)
-  }
+    history.push(routes.projects);
+  };
 
   const handleIconClick = (event: React.MouseEvent<HTMLButtonElement>) =>
     setAnchorEl(event.currentTarget);
@@ -55,34 +57,30 @@ export const NavbarMenu: React.FC<NavbarMenuProps> = ({
           <SettingsIcon />
         </Avatar>
       </IconButton>
-      <Menu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleIconClose}
-      >
+      <Menu anchorEl={anchorEl} open={open} onClose={handleIconClose}>
         <MenuItem onClick={handleEditProjectOnOpen}>
           <ListItemIcon>
-            <ModeEditOutlineIcon fontSize="small" />
+            <ModeEditOutlineIcon fontSize='small' />
           </ListItemIcon>
           Edit project details
         </MenuItem>
         <MenuItem onClick={handleRemoveProject}>
           <ListItemIcon>
-            <DeleteIcon fontSize="small" />
+            <DeleteIcon fontSize='small' />
           </ListItemIcon>
           Delete project
         </MenuItem>
         <Divider />
-        <MenuItem>
+        <MenuItem onClick={handleCreateStorageOnOpen}>
           <ListItemIcon>
-            <AddIcon fontSize="small" />
+            <AddIcon fontSize='small' />
           </ListItemIcon>
           Create new storage
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleChangeProject}>
           <ListItemIcon>
-            <ReplyAllIcon fontSize="small" />
+            <ReplyAllIcon fontSize='small' />
           </ListItemIcon>
           Change project
         </MenuItem>

@@ -1,49 +1,39 @@
-import {
-  IconButton,
-  ListItemIcon,
-  Menu,
-  MenuItem,
-} from '@mui/material';
+import { IconButton, ListItemIcon, Menu, MenuItem } from '@mui/material';
 import React from 'react';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
-import ExploreIcon from '@mui/icons-material/Explore';
 
-export const StorageCardMenu: React.FC = () => {
+interface StorageCardMenuProps {
+  handleRemove: () => void;
+}
+
+export const StorageCardMenu: React.FC<StorageCardMenuProps> = ({
+  handleRemove,
+}) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) =>
+  const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) =>
     setAnchorEl(event.currentTarget);
 
-  const handleClose = (): void => setAnchorEl(null);
+  const handleMenuClose = (): void => setAnchorEl(null);
 
   return (
     <>
-      <IconButton onClick={handleClick}>
+      <IconButton onClick={handleMenuClick}>
         <MoreVertIcon />
       </IconButton>
-      <Menu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-      >
+      <Menu anchorEl={anchorEl} open={open} onClose={handleMenuClose}>
         <MenuItem>
           <ListItemIcon>
-            <ExploreIcon fontSize="small" />
-          </ListItemIcon>
-          View details
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <ModeEditOutlineIcon fontSize="small" />
+            <ModeEditOutlineIcon fontSize='small' />
           </ListItemIcon>
           Edit storage details
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={handleRemove}>
           <ListItemIcon>
-            <DeleteIcon fontSize="small" />
+            <DeleteIcon fontSize='small' />
           </ListItemIcon>
           Delete storage
         </MenuItem>

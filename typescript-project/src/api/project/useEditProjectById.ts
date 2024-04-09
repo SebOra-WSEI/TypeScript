@@ -1,14 +1,16 @@
-import { useState } from "react";
-import { EMPTY_PROJECT } from "./emptyProject";
-import { ProjectFormBody } from "../../types/project";
-import { FetchedData } from "../../types/fetchedData";
-import { Project } from "../../controllers/project";
-import { StatusCode } from "../../types/statusCode";
+import { useState } from 'react';
+import { EMPTY_PROJECT } from './emptyProject';
+import { ProjectFormBody } from '../../types/project';
+import { FetchedData } from '../../types/fetchedData';
+import { Project } from '../../controllers/project';
+import { StatusCode } from '../../types/statusCode';
 
-type UseEditProjectResult = FetchedData<Project> & { update?: (projectId: string) => void };
+type UseEditProjectResult = FetchedData<Project> & {
+  update?: (projectId: string) => void;
+};
 
 export const useEditProjectById = (
-  newProjectDetails: ProjectFormBody | undefined,
+  newProjectDetails: ProjectFormBody | undefined
 ): UseEditProjectResult => {
   const [error, setError] = useState<string>('');
   const [message, setMessage] = useState<string | undefined>(undefined);
@@ -18,11 +20,14 @@ export const useEditProjectById = (
 
     return {
       error,
-    }
+    };
   }
 
   const update = (projectId: string) => {
-    const { status, errorMessage, response, message } = EMPTY_PROJECT.update(projectId, newProjectDetails);
+    const { status, errorMessage, response, message } = EMPTY_PROJECT.update(
+      projectId,
+      newProjectDetails
+    );
 
     if (!!errorMessage) {
       setError(errorMessage);
@@ -35,11 +40,11 @@ export const useEditProjectById = (
         window.location.reload();
       }, 1000);
     }
-  }
+  };
 
   return {
     error,
     message,
     update,
-  }
-}
+  };
+};

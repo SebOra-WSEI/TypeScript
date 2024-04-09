@@ -8,7 +8,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import { ProjectFormBody, ProjectModel } from '../../../../types/project';
 import { SeverityOption } from '../../../../types/severity';
-import { projectFormStyles } from '../../../../styles/projectFormStyles';
+import { formStyles } from '../../../../styles/formStyles';
 import { EditProjectForm } from '../Form/EditProjectForm';
 import { useEditProjectById } from '../../../../api/project/useEditProjectById';
 
@@ -25,11 +25,12 @@ export const EditProjectFormModal: React.FC<FormModalProps> = ({
   onClose,
   project,
   setSeverity,
-  setSeverityText
+  setSeverityText,
 }) => {
-  const [updatedProject, setUpdatedProject] = useState<ProjectFormBody>(project);
+  const [updatedProject, setUpdatedProject] =
+    useState<ProjectFormBody>(project);
 
-  const { error, message, update } = useEditProjectById(updatedProject)
+  const { error, message, update } = useEditProjectById(updatedProject);
 
   useEffect(() => {
     if (error) {
@@ -52,24 +53,23 @@ export const EditProjectFormModal: React.FC<FormModalProps> = ({
 
   return (
     <Modal open={isOpen} onClose={onClose}>
-      <Box sx={projectFormStyles.box} component='form' onSubmit={handleUpdate}>
+      <Box sx={formStyles.box} component='form' onSubmit={handleUpdate}>
         <DialogContent>
-          <EditProjectForm project={updatedProject} setUpdatedProject={setUpdatedProject} />
+          <EditProjectForm
+            project={updatedProject}
+            setUpdatedProject={setUpdatedProject}
+          />
         </DialogContent>
         <DialogActions>
           <Button
             onClick={onClose}
             variant='contained'
             color='error'
-            style={projectFormStyles.button}
+            style={formStyles.button}
           >
             Close
           </Button>
-          <Button
-            variant='outlined'
-            type='submit'
-            style={projectFormStyles.button}
-          >
+          <Button variant='outlined' type='submit' style={formStyles.button}>
             Update
           </Button>
         </DialogActions>

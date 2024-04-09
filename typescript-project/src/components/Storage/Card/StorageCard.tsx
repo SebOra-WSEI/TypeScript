@@ -5,63 +5,70 @@ import {
   CardHeader,
   Grid,
   ListItemIcon,
-  Typography
+  Typography,
 } from '@mui/material';
 import React from 'react';
 import { priorityIcons } from '../../../types/priority';
-import { StorageModel } from '../../../controllers/storage';
 import { storageStyle } from '../../../styles/storageStyle';
 import { StorageCardMenu } from './StorageCardMenu';
+import { StorageModel } from '../../../types/storage';
 
-export const StorageCard: React.FC<{
-  storage: StorageModel
-}> = ({ storage }) => {
+interface StorageCardProps {
+  storage: StorageModel;
+  handleRemove: () => void;
+}
+
+export const StorageCard: React.FC<StorageCardProps> = ({
+  storage,
+  handleRemove,
+}) => {
+  const { name, description, priority, date, owner } = storage;
 
   return (
     <Card sx={storageStyle.card}>
       <CardHeader
-        title={<Header text={storage.name} isTitle />}
-        subheader={<Header text={storage?.description ?? ''} />}
-        action={<StorageCardMenu />}
+        title={<Header text={name} isTitle />}
+        subheader={<Header text={description ?? ''} />}
+        action={<StorageCardMenu handleRemove={handleRemove} />}
       />
       <CardContent sx={storageStyle.cardContent}>
         <Grid container>
           <Grid item sx={storageStyle.priority}>
             <ListItemIcon>
-              {priorityIcons[storage.priority]}
+              {priorityIcons[priority]}
               <Typography
-                variant="inherit"
-                color="text.secondary"
+                variant='inherit'
+                color='text.secondary'
                 fontSize='small'
               >
-                {storage.priority}
+                {priority}
               </Typography>
             </ListItemIcon>
           </Grid>
         </Grid>
         <Grid container>
           <Grid item xs={5} sx={storageStyle.date}>
-            <Typography
-              variant="inherit"
-              color="text.secondary"
-            >
-              Created at: {new Date(storage.date).toLocaleString()}
+            <Typography variant='inherit' color='text.secondary'>
+              Created at: {new Date(date).toLocaleString()}
             </Typography>
           </Grid>
           <Grid item xs={6} sx={storageStyle.icon}>
             <Avatar sx={storageStyle.avatar}>
-              {storage.ownerId[0]}
+              <Typography fontSize='small'>
+                {owner?.name[0]}
+                {owner?.surname[0]}
+              </Typography>
             </Avatar>
           </Grid>
         </Grid>
       </CardContent>
     </Card>
   );
-}
+};
 
-const Header: React.FC<{ text: string, isTitle?: boolean }> = ({
+const Header: React.FC<{ text: string; isTitle?: boolean }> = ({
   text,
-  isTitle = false
+  isTitle = false,
 }) => (
   <span style={{ fontSize: 'small' }}>
     {isTitle ? <strong>{text}</strong> : <>{text}</>}
