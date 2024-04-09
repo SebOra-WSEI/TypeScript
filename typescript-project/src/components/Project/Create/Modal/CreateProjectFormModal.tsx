@@ -5,49 +5,32 @@ import {
   DialogContent,
   Modal,
 } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ProjectFormBody } from '../../../../types/project';
 import { useCreateProject } from '../../../../api/project/useCreateProject';
-import { SeverityOption } from '../../../../types/severity';
 import { formStyles } from '../../../../styles/formStyles';
 import { CreateProjectForm } from '../Form/CreateProjectForm';
 
-interface FormModalProps {
+interface CreateProjectFormModalProps {
   isOpen: boolean;
   onClose: () => void;
-  setSeverity: (value: SeverityOption) => void;
-  setSeverityText: (value: string) => void;
 }
 
-export const CreateProjectFormModal: React.FC<FormModalProps> = ({
+export const CreateProjectFormModal: React.FC<CreateProjectFormModalProps> = ({
   isOpen,
   onClose,
-  setSeverity,
-  setSeverityText,
 }) => {
   const [project, setProject] = useState<ProjectFormBody>({
     name: '',
     description: '',
   });
-  const { error, message, create } = useCreateProject(project);
 
-  useEffect(() => {
-    if (error) {
-      setSeverity(SeverityOption.Error);
-      setSeverityText(error);
-    }
-
-    if (message) {
-      setSeverity(SeverityOption.Success);
-      setSeverityText(message);
-    }
-  }, [error, message]);
+  const { create } = useCreateProject(project);
 
   const handleCreate = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
     create();
-    setSeverityText('');
   };
 
   const handleOnClose = (): void => {

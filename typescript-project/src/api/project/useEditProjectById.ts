@@ -4,6 +4,7 @@ import { ProjectFormBody } from '../../types/project';
 import { FetchedData } from '../../types/fetchedData';
 import { Project } from '../../controllers/project';
 import { StatusCode } from '../../types/statusCode';
+import { useSetSeverity } from '../../hooks/useSetSeverity';
 
 type UseEditProjectResult = FetchedData<Project> & {
   update?: (projectId: string) => void;
@@ -41,6 +42,8 @@ export const useEditProjectById = (
       }, 1000);
     }
   };
+
+  useSetSeverity(error, message);
 
   return {
     error,

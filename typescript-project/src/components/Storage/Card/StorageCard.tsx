@@ -15,13 +15,9 @@ import { StorageModel } from '../../../types/storage';
 
 interface StorageCardProps {
   storage: StorageModel;
-  handleRemove: () => void;
 }
 
-export const StorageCard: React.FC<StorageCardProps> = ({
-  storage,
-  handleRemove,
-}) => {
+export const StorageCard: React.FC<StorageCardProps> = ({ storage }) => {
   const { name, description, priority, date, owner } = storage;
 
   return (
@@ -29,7 +25,7 @@ export const StorageCard: React.FC<StorageCardProps> = ({
       <CardHeader
         title={<Header text={name} isTitle />}
         subheader={<Header text={description ?? ''} />}
-        action={<StorageCardMenu handleRemove={handleRemove} />}
+        action={<StorageCardMenu storage={storage} />}
       />
       <CardContent sx={storageStyle.cardContent}>
         <Grid container>

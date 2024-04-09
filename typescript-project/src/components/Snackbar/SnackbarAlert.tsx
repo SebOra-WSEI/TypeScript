@@ -1,24 +1,17 @@
-import { Alert, AlertColor, IconButton, Snackbar } from '@mui/material';
+import { Alert, IconButton, Snackbar } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { SeverityOption } from '../../types/severity';
 import { snackbarStyles } from '../../styles/snackbarStyles';
+import { useSnackbarContextProvider } from './SnackbarContext';
 
-interface SnackbarAlertProps {
-  setSeverity: (isOpen: SeverityOption | undefined) => void;
-  text: string;
-  severity?: AlertColor;
-}
+export const SnackbarAlert: React.FC = () => {
+  const { severity, severityText, setSeverityText } =
+    useSnackbarContextProvider();
 
-export const SnackbarAlert: React.FC<SnackbarAlertProps> = ({
-  setSeverity,
-  text,
-  severity,
-}) => {
   return (
     <Snackbar
-      open={!!severity}
+      open={!!severityText}
       autoHideDuration={2500}
-      onClose={() => setSeverity(undefined)}
+      onClose={() => setSeverityText('')}
     >
       <Alert
         severity={severity}
@@ -28,14 +21,14 @@ export const SnackbarAlert: React.FC<SnackbarAlertProps> = ({
             color='inherit'
             size='small'
             onClick={() => {
-              setSeverity(undefined);
+              setSeverityText('');
             }}
           >
             <CloseIcon fontSize='inherit' />
           </IconButton>
         }
       >
-        {text}
+        {severityText}
       </Alert>
     </Snackbar>
   );

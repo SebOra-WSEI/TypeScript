@@ -3,6 +3,7 @@ import { Project } from '../../controllers/project';
 import { ProjectFormBody } from '../../types/project';
 import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
+import { useSetSeverity } from '../../hooks/useSetSeverity';
 
 type UseCreateProjectResult = FetchedData<Project> & { create: () => void };
 
@@ -30,6 +31,8 @@ export const useCreateProject = (
       }, 1000);
     }
   };
+
+  useSetSeverity(error, message);
 
   return {
     error,

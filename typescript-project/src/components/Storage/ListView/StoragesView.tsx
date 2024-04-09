@@ -7,18 +7,13 @@ import { useGetStoragesByProjectId } from '../../../api/storage/useGetStoragesBy
 import { Navbar } from '../../Navbar/Navbar';
 import { EditProjectFormModal } from '../../Project/Edit/Modal/EditProjectFormModal';
 import { CreateStorageFormModal } from '../Create/CreateStorageFormModal';
-import { SeverityOption } from '../../../types/severity';
-import { SnackbarAlert } from '../../common/SnackbarAlert';
+import { SnackbarAlert } from '../../Snackbar/SnackbarAlert';
 
 export const StoragesView: React.FC = () => {
   const [isEditProjectModalOpen, setIsEditProjectModalOpen] =
     useState<boolean>(false);
   const [isCreateStorageModalOpen, setIsCreateStorageModalOpen] =
     useState<boolean>(false);
-  const [severityText, setSeverityText] = useState<string>('');
-  const [severity, setSeverity] = useState<SeverityOption | undefined>(
-    undefined
-  );
 
   const { projectId } = useParams<{ projectId: string }>();
 
@@ -66,27 +61,17 @@ export const StoragesView: React.FC = () => {
       <StoragesList
         storages={storages}
         handleCreateStorageOnOpen={handleCreateStorageOnOpen}
-        setSeverity={setSeverity}
-        setSeverityText={setSeverityText}
       />
       <EditProjectFormModal
         isOpen={isEditProjectModalOpen}
         onClose={handleEditProjectOnClose}
         project={project}
-        setSeverity={setSeverity}
-        setSeverityText={setSeverityText}
       />
       <CreateStorageFormModal
         isOpen={isCreateStorageModalOpen}
         onClose={handleCreateStorageOnClose}
-        setSeverity={setSeverity}
-        setSeverityText={setSeverityText}
       />
-      <SnackbarAlert
-        setSeverity={setSeverity}
-        severity={severity}
-        text={severityText}
-      />
+      <SnackbarAlert />
     </>
   );
 };
