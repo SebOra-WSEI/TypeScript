@@ -10,22 +10,22 @@ import {
   SELECTED_PROJECT_ID,
   setToLocalStorage,
 } from '../../../../utils/localStorage';
+import { useRemoveProject } from '../../../../api/project/useRemoveProject';
 
 interface ProjectItemProps {
   project: ProjectModel;
-  handleRemove: () => void;
 }
 
-export const ProjectListItem: React.FC<ProjectItemProps> = ({
-  project,
-  handleRemove,
-}) => {
+export const ProjectListItem: React.FC<ProjectItemProps> = ({ project }) => {
   const history = useHistory();
+  const { remove } = useRemoveProject();
 
   const handleOnSelect = (): void => {
     setToLocalStorage(SELECTED_PROJECT_ID, project.id);
     history.push(routeBuilder.storages(project.id));
   };
+
+  const handleRemove = (): void => remove(project.id);
 
   return (
     <ListItem sx={projectPageStyles.listItem}>

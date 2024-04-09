@@ -4,6 +4,7 @@ import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
 import { StorageFormBody } from '../../types/storage';
 import { State } from '../../types/state';
+import { useSetSeverity } from '../../hooks/useSetSeverity';
 
 type UseCreateStorageResult = FetchedData<Storage> & { create: () => void };
 
@@ -38,6 +39,8 @@ export const useCreateStorage = (
       }, 1000);
     }
   };
+
+  useSetSeverity(error, message);
 
   return {
     error,

@@ -3,6 +3,7 @@ import { StatusCode } from '../../types/statusCode';
 import { FetchedData } from '../../types/fetchedData';
 import { EMPTY_STORAGE } from './emptyStorage';
 import { Storage } from '../../controllers/storage';
+import { useSetSeverity } from '../../hooks/useSetSeverity';
 
 type UseRemoveStorageResult = FetchedData<Storage> & {
   remove: (id: string) => void;
@@ -28,6 +29,7 @@ export const useRemoveStorage = (): UseRemoveStorageResult => {
       }, 1000);
     }
   };
+  useSetSeverity(error, message);
 
   return {
     error,

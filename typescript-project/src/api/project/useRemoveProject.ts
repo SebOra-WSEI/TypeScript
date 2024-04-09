@@ -3,6 +3,7 @@ import { EMPTY_PROJECT } from './emptyProject';
 import { StatusCode } from '../../types/statusCode';
 import { FetchedData } from '../../types/fetchedData';
 import { Project } from '../../controllers/project';
+import { useSetSeverity } from '../../hooks/useSetSeverity';
 
 type UseRemoveProjectResult = FetchedData<Project> & {
   remove: (id: string) => void;
@@ -29,6 +30,8 @@ export const useRemoveProject = (isReload = true): UseRemoveProjectResult => {
         }, 1000);
     }
   };
+
+  useSetSeverity(error, message);
 
   return {
     error,
