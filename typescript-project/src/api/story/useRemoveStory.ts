@@ -9,7 +9,7 @@ type UseRemoveStoryResult = FetchedData<Story> & {
   remove: (id: string) => void;
 };
 
-export const useRemoveStory = (): UseRemoveStoryResult => {
+export const useRemoveStory = (isReload = true): UseRemoveStoryResult => {
   const [error, setError] = useState<string>('');
   const [message, setMessage] = useState<string | undefined>(undefined);
 
@@ -23,9 +23,10 @@ export const useRemoveStory = (): UseRemoveStoryResult => {
     if (status === StatusCode.OK && response) {
       setMessage(message);
 
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
+      isReload &&
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
     }
   };
   useSetSeverity(error, message);

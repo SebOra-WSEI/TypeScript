@@ -18,7 +18,6 @@ interface Parameters<T> {
 
 export class Api<T> {
   private object: Object<T>;
-  // private type: ContentType;
 
   private nameKey: KeyOfType<T>;
   private idKey: KeyOfType<T>;
@@ -26,7 +25,6 @@ export class Api<T> {
 
   constructor(object: Object<T>, parameters: Parameters<T>) {
     this.object = object;
-    // this.object.type = type;
 
     this.nameKey = parameters.nameKey;
     this.idKey = parameters.idKey;

@@ -5,12 +5,12 @@ import { Loader } from "../../common/Loader";
 import { SnackbarAlert } from "../../Snackbar/SnackbarAlert";
 import { useGetStoryById } from "../../../api/story/useGetStoryById";
 
-export const TaskListView: React.FC = () => {
+export const TasksView: React.FC = () => {
   const { storyId } = useParams<{ storyId: string }>();
 
   const [isEditProjectModalOpen, setIsEditProjectModalOpen] =
     useState<boolean>(false);
-  const [isCreateStorageModalOpen, setIsCreateStorageModalOpen] =
+  const [isCreateStorageModalOpen, setIsCreateStoryModalOpen] =
     useState<boolean>(false);
 
   const { loading, error, data, } = useGetStoryById(storyId);
@@ -30,16 +30,16 @@ export const TaskListView: React.FC = () => {
   const handleEditProjectOnOpen = (): void => setIsEditProjectModalOpen(true);
   const handleEditProjectOnClose = (): void => setIsEditProjectModalOpen(false);
 
-  const handleCreateStorageOnOpen = (): void =>
-    setIsCreateStorageModalOpen(true);
-  const handleCreateStorageOnClose = (): void =>
-    setIsCreateStorageModalOpen(false);
+  const handleCreateStoryOnOpen = (): void =>
+    setIsCreateStoryModalOpen(true);
+  const handleCreateStorysOnClose = (): void =>
+    setIsCreateStoryModalOpen(false);
 
   return (
     <>
       <Navbar
-        context={data}
-        handleCreateStoryOnOpen={handleCreateStorageOnOpen}
+        data={data}
+        handleCreateStoryOnOpen={handleCreateStoryOnOpen}
         handleEditProjectOnOpen={handleEditProjectOnOpen}
       />
       <SnackbarAlert />
