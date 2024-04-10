@@ -4,7 +4,7 @@ import { Navbar } from '../../Navbar/Navbar';
 import { Loader } from '../../common/Loader';
 import { SnackbarAlert } from '../../Snackbar/SnackbarAlert';
 import { useGetStoryById } from '../../../api/story/useGetStoryById';
-import { TaskNavbarMenuItems } from '../../Navbar/TaskNavbarMenuItems';
+import { TasksNavbarMenuItems } from '../../Navbar/TasksNavbarMenuItems';
 import { TasksList } from './List/TasksList';
 import { CreateTaskFormModal } from '../Create/Modal/CreateTaskFormModal';
 import { useGetTasksByStoryId } from '../../../api/task/useGetTasksByStoryId';
@@ -45,7 +45,7 @@ export const TasksView: React.FC = () => {
   return (
     <>
       <Navbar data={story}>
-        <TaskNavbarMenuItems handleCreateTaskOnOpen={handleCreateTaskOnOpen} />
+        <TasksNavbarMenuItems handleCreateTaskOnOpen={handleCreateTaskOnOpen} />
       </Navbar>
       <TasksList
         tasks={tasks}

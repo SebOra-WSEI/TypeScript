@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { Navbar } from "../../Navbar/Navbar";
 import { useGetTaskById } from "../../../api/task/useGetTaskById";
 import { Loader } from "../../common/Loader";
+import { TaskDetailsNavbarMenuItems } from "../../Navbar/TaskDetailsNavbarMenuItems";
 
 export const TaskDetailsPage: React.FC = () => {
   const { taskId } = useParams<{ taskId: string }>();
@@ -22,6 +23,8 @@ export const TaskDetailsPage: React.FC = () => {
   }
 
   return (
-    <Navbar data={data} />
+    <Navbar data={data}>
+      <TaskDetailsNavbarMenuItems />
+    </Navbar>
   );
 };

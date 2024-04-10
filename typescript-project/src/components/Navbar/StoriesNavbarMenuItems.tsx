@@ -9,12 +9,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useRemoveProject } from '../../api/project/useRemoveProject';
 import { SELECTED_PROJECT_ID } from '../../utils/localStorage';
 
-interface StoryNavbarMenuItemsProps {
+interface StoriesNavbarMenuItemsProps {
   handleEditProjectOnOpen: () => void;
   handleCreateStoryOnOpen: () => void;
 }
 
-export const StoryNavbarMenuItems: React.FC<StoryNavbarMenuItemsProps> = ({
+export const StoriesNavbarMenuItems: React.FC<StoriesNavbarMenuItemsProps> = ({
   handleEditProjectOnOpen,
   handleCreateStoryOnOpen,
 }) => {
