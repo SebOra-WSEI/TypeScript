@@ -7,22 +7,22 @@ import {
 } from '@mui/material';
 import React, { useState } from 'react';
 import { formStyles } from '../../../../styles/formStyles';
-import { StorageModel } from '../../../../types/storage';
-import { EditStorageForm } from '../Form/EditStorageForm';
-import { useEditStorageById } from '../../../../api/storage/useEditStorageById';
+import { StoryModel } from '../../../../types/story';
+import { EditStoryForm } from '../Form/EditStoryForm';
+import { useEditStorageById } from '../../../../api/story/useEditStoryById';
 
-interface EditStorageModalProps {
-  storage: StorageModel;
+interface EditStoryModalProps {
+  story: StoryModel;
   isOpen: boolean;
   onClose: () => void;
 }
 
-export const EditStorageModal: React.FC<EditStorageModalProps> = ({
+export const EditStoryModal: React.FC<EditStoryModalProps> = ({
   isOpen,
   onClose,
-  storage,
+  story: storage,
 }) => {
-  const [updatedStorage, setUpdatedStorage] = useState<StorageModel>(storage);
+  const [updatedStorage, setUpdatedStorage] = useState<StoryModel>(storage);
 
   const { update } = useEditStorageById(updatedStorage);
 
@@ -36,9 +36,9 @@ export const EditStorageModal: React.FC<EditStorageModalProps> = ({
     <Modal open={isOpen} onClose={onClose}>
       <Box sx={formStyles.box} component='form' onSubmit={handleUpdate}>
         <DialogContent>
-          <EditStorageForm
-            updatedStorage={updatedStorage}
-            setUpdatedStorage={setUpdatedStorage}
+          <EditStoryForm
+            updatedStory={updatedStorage}
+            setUpdatedStory={setUpdatedStorage}
           />
         </DialogContent>
         <DialogActions sx={formStyles.dialogAction}>

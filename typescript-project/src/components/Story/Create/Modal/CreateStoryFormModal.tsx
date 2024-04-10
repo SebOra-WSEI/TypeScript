@@ -6,29 +6,29 @@ import {
   Modal,
 } from '@mui/material';
 import React, { useState } from 'react';
-import { StorageFormBody } from '../../../types/storage';
-import { Priority } from '../../../types/priority';
-import { formStyles } from '../../../styles/formStyles';
-import { CreateStorageForm } from './Form/CreateStorageForm';
+import { StoryFormBody } from '../../../../types/story';
+import { Priority } from '../../../../types/priority';
+import { formStyles } from '../../../../styles/formStyles';
+import { CreateStoryForm } from '../Form/CreateStoryForm';
 import { useParams } from 'react-router';
-import { useCreateStorage } from '../../../api/storage/useCreateStorage';
+import { useCreateStory } from '../../../../api/story/useCreateStory';
 import {
   CURRENT_USER_ID,
   getFromLocalStorage,
-} from '../../../utils/localStorage';
+} from '../../../../utils/localStorage';
 
 interface FormModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export const CreateStorageFormModal: React.FC<FormModalProps> = ({
+export const CreateStoryFormModal: React.FC<FormModalProps> = ({
   isOpen,
   onClose,
 }) => {
   const { projectId } = useParams<{ projectId: string }>();
 
-  const defaultStorage = {
+  const defaultStory = {
     name: '',
     description: '',
     priority: Priority.High,
@@ -36,9 +36,9 @@ export const CreateStorageFormModal: React.FC<FormModalProps> = ({
     ownerId: getFromLocalStorage(CURRENT_USER_ID),
   };
 
-  const [storage, setStorage] = useState<StorageFormBody>(defaultStorage);
+  const [story, setStory] = useState<StoryFormBody>(defaultStory);
 
-  const { create } = useCreateStorage(storage);
+  const { create } = useCreateStory(story);
 
   const handleCreate = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
@@ -47,7 +47,7 @@ export const CreateStorageFormModal: React.FC<FormModalProps> = ({
   };
 
   const handleOnClose = (): void => {
-    setStorage(defaultStorage);
+    setStory(defaultStory);
     onClose();
   };
 
@@ -55,7 +55,7 @@ export const CreateStorageFormModal: React.FC<FormModalProps> = ({
     <Modal open={isOpen} onClose={handleOnClose}>
       <Box sx={formStyles.box} component='form' onSubmit={handleCreate}>
         <DialogContent>
-          <CreateStorageForm storage={storage} setStorage={setStorage} />
+          <CreateStoryForm story={story} setStory={setStory} />
         </DialogContent>
         <DialogActions>
           <Button

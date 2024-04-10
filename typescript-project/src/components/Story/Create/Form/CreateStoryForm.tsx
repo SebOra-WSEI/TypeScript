@@ -7,23 +7,24 @@ import {
   TextField,
 } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
-import { Priority, priorityIcons } from '../../../../types/priority';
-import { StorageFormBody } from '../../../../types/storage';
+import { Priority } from '../../../../types/priority';
+import { StoryFormBody } from '../../../../types/story';
+import { priorityIcons } from '../../../../utils/priorityIcons';
 
-interface CreateStorageFormProps {
-  storage: StorageFormBody;
-  setStorage: (value: StorageFormBody) => void;
+interface CreateStoryFormProps {
+  story: StoryFormBody;
+  setStory: (value: StoryFormBody) => void;
 }
 
-export const CreateStorageForm: React.FC<CreateStorageFormProps> = ({
-  storage,
-  setStorage,
+export const CreateStoryForm: React.FC<CreateStoryFormProps> = ({
+  story,
+  setStory,
 }) => {
-  const { name, description, priority } = storage;
+  const { name, description, priority } = story;
 
   return (
     <>
-      <h3 style={formStyles.header}>Create new storage</h3>
+      <h3 style={formStyles.header}>Create new story</h3>
       <TextField
         label='Name *'
         variant='standard'
@@ -33,8 +34,8 @@ export const CreateStorageForm: React.FC<CreateStorageFormProps> = ({
         value={name}
         fullWidth
         onChange={(evt) =>
-          setStorage({
-            ...storage,
+          setStory({
+            ...story,
             name: evt.target.value,
           })
         }
@@ -47,8 +48,8 @@ export const CreateStorageForm: React.FC<CreateStorageFormProps> = ({
         value={description}
         fullWidth
         onChange={(evt) =>
-          setStorage({
-            ...storage,
+          setStory({
+            ...story,
             description: evt.target.value,
           })
         }
@@ -59,8 +60,8 @@ export const CreateStorageForm: React.FC<CreateStorageFormProps> = ({
           value={priority}
           label='Priority'
           onChange={(evt) =>
-            setStorage({
-              ...storage,
+            setStory({
+              ...story,
               priority: evt.target.value as Priority,
             })
           }

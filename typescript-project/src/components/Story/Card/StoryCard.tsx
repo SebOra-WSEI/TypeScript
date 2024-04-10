@@ -8,41 +8,41 @@ import {
   Typography,
 } from '@mui/material';
 import React, { useState } from 'react';
-import { priorityIcons } from '../../../types/priority';
-import { storageStyle } from '../../../styles/storageStyle';
-import { StorageCardMenu } from './StorageCardMenu';
-import { StorageModel } from '../../../types/storage';
-import { EditStorageModal } from '../Edit/Modal/EditStorageModal';
+import { storyStyle } from '../../../styles/storyStyle';
+import { StoryCardMenu } from './StoryCardMenu';
+import { StoryModel } from '../../../types/story';
+import { EditStoryModal } from '../Edit/Modal/EditStoryModal';
+import { priorityIcons } from '../../../utils/priorityIcons';
 
-interface StorageCardProps {
-  storage: StorageModel;
+interface StoryCardProps {
+  story: StoryModel;
 }
 
-export const StorageCard: React.FC<StorageCardProps> = ({ storage }) => {
-  const [isEditStorageModalOpen, setIsEditStorageModalOpen] =
+export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
+  const [isEditStoryModalOpen, setIsEditStoryModalOpen] =
     useState<boolean>(false);
 
-  const { name, description, priority, date, owner } = storage;
+  const { name, description, priority, date, owner } = story;
 
-  const handleEditStorageOnOpen = (): void => setIsEditStorageModalOpen(true);
-  const handleEditStorageOnClose = (): void => setIsEditStorageModalOpen(false);
+  const handleEditStoryOnOpen = (): void => setIsEditStoryModalOpen(true);
+  const handleEditStoryOnClose = (): void => setIsEditStoryModalOpen(false);
 
   return (
     <>
-      <Card sx={storageStyle.card}>
+      <Card sx={storyStyle.card}>
         <CardHeader
           title={<Header text={name} isTitle />}
           subheader={<Header text={description ?? ''} />}
           action={
-            <StorageCardMenu
-              storage={storage}
-              handleEditStorageOnOpen={handleEditStorageOnOpen}
+            <StoryCardMenu
+              story={story}
+              handleEditStoryOnOpen={handleEditStoryOnOpen}
             />
           }
         />
-        <CardContent sx={storageStyle.cardContent}>
+        <CardContent sx={storyStyle.cardContent}>
           <Grid container>
-            <Grid item sx={storageStyle.priority}>
+            <Grid item sx={storyStyle.priority}>
               <ListItemIcon>
                 {priorityIcons[priority]}
                 <Typography
@@ -56,13 +56,13 @@ export const StorageCard: React.FC<StorageCardProps> = ({ storage }) => {
             </Grid>
           </Grid>
           <Grid container>
-            <Grid item xs={5} sx={storageStyle.date}>
+            <Grid item xs={5} sx={storyStyle.date}>
               <Typography variant='inherit' color='text.secondary'>
                 Created at: {new Date(date).toLocaleString()}
               </Typography>
             </Grid>
-            <Grid item xs={6} sx={storageStyle.icon}>
-              <Avatar sx={storageStyle.avatar}>
+            <Grid item xs={6} sx={storyStyle.icon}>
+              <Avatar sx={storyStyle.avatar}>
                 <Typography fontSize='small'>
                   {owner?.name?.[0]}
                   {owner?.surname?.[0]}
@@ -72,10 +72,10 @@ export const StorageCard: React.FC<StorageCardProps> = ({ storage }) => {
           </Grid>
         </CardContent>
       </Card>
-      <EditStorageModal
-        isOpen={isEditStorageModalOpen}
-        onClose={handleEditStorageOnClose}
-        storage={storage}
+      <EditStoryModal
+        isOpen={isEditStoryModalOpen}
+        onClose={handleEditStoryOnClose}
+        story={story}
       />
     </>
   );

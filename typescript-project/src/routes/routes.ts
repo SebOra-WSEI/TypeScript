@@ -1,11 +1,11 @@
 export const routes = {
   home: '/',
   noPage: '*',
-  storages: '/projects/:projectId/storages',
+  stories: '/projects/:projectId/stories',
   projects: '/projects',
 } as const;
 
 export const routeBuilder = {
-  storages: (id: string): string =>
-    `${routes.storages.replace(':projectId', id)}`,
+  stories: (id: string): string =>
+    `${routes.stories.replace(':projectId', id)}`,
 } as const;

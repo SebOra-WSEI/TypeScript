@@ -6,12 +6,12 @@ import { NavbarMenu } from './NavbarMenu';
 interface NavbarProps {
   project: ProjectModel;
   handleEditProjectOnOpen: () => void;
-  handleCreateStorageOnOpen: () => void;
+  handleCreateStoryOnOpen: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   project,
-  handleCreateStorageOnOpen,
+  handleCreateStoryOnOpen,
   handleEditProjectOnOpen,
 }) => {
   const { name, description, id } = project ?? {};
@@ -29,7 +29,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <NavbarMenu
             projectId={id}
             handleEditProjectOnOpen={handleEditProjectOnOpen}
-            handleCreateStorageOnOpen={handleCreateStorageOnOpen}
+            handleCreateStoryOnOpen={handleCreateStoryOnOpen}
           />
         </Toolbar>
       </AppBar>
