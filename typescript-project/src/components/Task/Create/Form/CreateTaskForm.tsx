@@ -10,8 +10,6 @@ import { formStyles } from '../../../../styles/formStyles';
 import { Priority } from '../../../../types/priority';
 import { priorityIcons } from '../../../../utils/priorityIcons';
 import { TaskFormBody } from '../../../../types/task';
-import { State } from '../../../../types/state';
-import { useGetAllUsers } from '../../../../api/user/useGetAllUsers';
 import { storyPoints } from '../../../../utils/consts';
 import { expectedWorkingDays } from '../../../../utils/expectedWorkingDays';
 
@@ -25,9 +23,8 @@ export const CreateTaskForm: React.FC<CreateTaskFormProps> = ({
   setTask,
 }) => {
   const [expectedDays, setExpectedDays] = useState<number>(0);
-  const { name, description, priority, storyPoint, assignedToId } = task;
+  const { name, description, priority, storyPoint } = task;
 
-  const { data: allUsers } = useGetAllUsers();
 
   return (
     <>
@@ -61,7 +58,7 @@ export const CreateTaskForm: React.FC<CreateTaskFormProps> = ({
           })
         }
       />
-      <div>
+      <div style={formStyles.controlWrapper}>
         <FormControl sx={formStyles.prioritySelect} size='small'>
           <InputLabel>Priority</InputLabel>
           <Select
@@ -102,29 +99,6 @@ export const CreateTaskForm: React.FC<CreateTaskFormProps> = ({
           </Select>
         </FormControl>
       </div>
-      <FormControl sx={formStyles.editFormControl} size='small'>
-        <InputLabel>Assigned to</InputLabel>
-        <Select
-          displayEmpty
-          label='Assigned to'
-          value={assignedToId || 'Unassigned'}
-          onChange={(evt) =>
-            setTask({
-              ...task,
-              state:
-                evt.target.value === 'Unassigned' ? State.Todo : State.Doing,
-              assignedToId: evt.target.value,
-            })
-          }
-        >
-          <MenuItem value='Unassigned'>Unassigned</MenuItem>
-          {allUsers?.map((user) => (
-            <MenuItem key={user.id} value={user.id}>
-              {user.name} {user.surname}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
       <TextField
         label='Expected days'
         type='number'
