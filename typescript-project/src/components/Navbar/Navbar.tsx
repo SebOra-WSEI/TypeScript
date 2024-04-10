@@ -35,7 +35,7 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
     <>
       <AppBar>
         <Toolbar>
-          <Breadcrumbs sx={{ flexGrow: 1 }}>
+          <Breadcrumbs sx={{ flexGrow: 1, color: '#fff' }}>
             <Breadcrumb link={routeBuilder.projects} text='Projects' />
             {type !== ContentType.Project && (
               <Breadcrumb
