@@ -5,7 +5,7 @@ import {
   Menu,
   MenuItem,
 } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -15,19 +15,19 @@ import ExploreIcon from '@mui/icons-material/Explore';
 import { useHistory, useParams } from 'react-router';
 import { routeBuilder } from '../../../routes/routes';
 
-interface StoryCardMenuMenuProps {
+interface StoryCardMenuProps {
   story: StoryModel;
   handleEditStoryOnOpen: () => void;
 }
 
-export const StoryCardMenu: React.FC<StoryCardMenuMenuProps> = ({
+export const StoryCardMenu: React.FC<StoryCardMenuProps> = ({
   story,
   handleEditStoryOnOpen,
 }) => {
   const history = useHistory();
   const { projectId } = useParams<{ projectId: string }>();
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
   const { remove } = useRemoveStory();

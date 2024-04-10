@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Card,
   CardContent,
   CardHeader,
@@ -7,31 +6,30 @@ import {
   ListItemIcon,
   Typography,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 import { storyStyle } from '../../../styles/storyStyle';
-import { StoryModel } from '../../../types/story';
 import { priorityIcons } from '../../../utils/priorityIcons';
 import { TaskModel } from '../../../types/task';
+import { TaskCardMenu } from './TaskCardMenu';
 
 interface TaskCardProps {
   task: TaskModel;
 }
 
 export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
-  const [isEditStoryModalOpen, setIsEditStoryModalOpen] =
-    useState<boolean>(false);
-
   const { name, description, priority, createdDate, endDate, storyPoint } = task;
-
-  const handleEditStoryOnOpen = (): void => setIsEditStoryModalOpen(true);
-  const handleEditStoryOnClose = (): void => setIsEditStoryModalOpen(false);
 
   return (
     <>
       <Card sx={{ ...storyStyle.card, height: '10rem' }}>
         <CardHeader
           title={<Header text={name} isTitle />}
-          subheader={<Header text={description ?? ''} />}
+          subheader={<Header text={description} />}
+          action={
+            <TaskCardMenu
+              task={task}
+            />
+          }
         />
         <CardContent sx={storyStyle.cardContent}>
           <Grid container>
@@ -56,12 +54,12 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
           <Grid container>
             <Grid item xs={5} sx={storyStyle.gridText}>
               <Typography variant='inherit' color='text.secondary'>
-                Created at: {new Date(createdDate).toLocaleDateString()}
+                Created at: {new Date(createdDate).toLocaleString()}
               </Typography>
             </Grid>
             <Grid item xs={5} sx={storyStyle.gridText}>
               <Typography variant='inherit' color='text.secondary'>
-                Expected end data: {new Date(endDate).toLocaleDateString()}
+                Expected end time: {new Date(endDate).toLocaleDateString()}
               </Typography>
             </Grid>
           </Grid>

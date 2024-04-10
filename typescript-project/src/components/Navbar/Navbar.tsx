@@ -15,13 +15,17 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import { ContentType } from '../../types/contentType';
 import { routeBuilder } from '../../routes/routes';
 import { useParams } from 'react-router';
+import { TaskModel } from '../../types/task';
 
 interface NavbarProps extends PropsWithChildren {
-  data: ProjectModel | StoryModel;
+  data: ProjectModel | StoryModel | TaskModel;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
-  const { projectId } = useParams<{ projectId: string }>();
+  const { projectId, storyId } = useParams<{
+    projectId: string;
+    storyId: string
+  }>();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -30,7 +34,7 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
   const handleIconClick = (event: React.MouseEvent<HTMLButtonElement>) =>
     setAnchorEl(event.currentTarget);
   const handleIconClose = (): void => setAnchorEl(null);
-
+  console.log(type)
   return (
     <>
       <AppBar>
@@ -41,6 +45,12 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
               <Breadcrumb
                 link={routeBuilder.stories(projectId)}
                 text='Stories'
+              />
+            )}
+            {type === ContentType.Task && (
+              <Breadcrumb
+                link={routeBuilder.tasks(projectId, storyId)}
+                text='Tasks'
               />
             )}
           </Breadcrumbs>
