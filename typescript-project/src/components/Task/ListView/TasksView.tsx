@@ -4,14 +4,14 @@ import { Navbar } from "../../Navbar/Navbar";
 import { Loader } from "../../common/Loader";
 import { SnackbarAlert } from "../../Snackbar/SnackbarAlert";
 import { useGetStoryById } from "../../../api/story/useGetStoryById";
+import { StoryNavbarMenuItems } from "../../Navbar/StoryNavbarMenuItems";
+import { TasksList } from "./List/TasksList";
 
 export const TasksView: React.FC = () => {
-  const { storyId } = useParams<{ storyId: string }>();
+  const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] =
+    useState<boolean>(false);
 
-  const [isEditProjectModalOpen, setIsEditProjectModalOpen] =
-    useState<boolean>(false);
-  const [isCreateStorageModalOpen, setIsCreateStoryModalOpen] =
-    useState<boolean>(false);
+  const { storyId } = useParams<{ storyId: string }>();
 
   const { loading, error, data, } = useGetStoryById(storyId);
 
@@ -27,20 +27,17 @@ export const TasksView: React.FC = () => {
     return <>Story not found</>;
   }
 
-  const handleEditProjectOnOpen = (): void => setIsEditProjectModalOpen(true);
-  const handleEditProjectOnClose = (): void => setIsEditProjectModalOpen(false);
-
-  const handleCreateStoryOnOpen = (): void =>
-    setIsCreateStoryModalOpen(true);
-  const handleCreateStorysOnClose = (): void =>
-    setIsCreateStoryModalOpen(false);
+  const handleCreateTaskOnOpen = (): void =>
+    setIsCreateTaskModalOpen(true);
 
   return (
     <>
-      <Navbar
-        data={data}
-        handleCreateStoryOnOpen={handleCreateStoryOnOpen}
-        handleEditProjectOnOpen={handleEditProjectOnOpen}
+      <Navbar data={data}>
+        <StoryNavbarMenuItems />
+      </Navbar>
+      <TasksList
+        tasks={[]}
+        handleCreateTaskOnOpen={handleCreateTaskOnOpen}
       />
       <SnackbarAlert />
     </>

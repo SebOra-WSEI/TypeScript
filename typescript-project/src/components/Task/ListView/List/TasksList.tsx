@@ -3,23 +3,22 @@ import React from 'react';
 import { State } from '../../../../types/state';
 import { storyStyle } from '../../../../styles/storyStyle';
 import { projectPageStyles } from '../../../../styles/projectPageStyles';
-import { StoryCard } from '../../Card/StoryCard';
 import { StoryModel } from '../../../../types/story';
 
-interface StoryListViewProps {
-  stories: Array<StoryModel> | undefined;
-  handleCreateStoryOnOpen: () => void;
+interface TasksListProps {
+  tasks: Array<StoryModel> | undefined;
+  handleCreateTaskOnOpen: () => void;
 }
 
-export const StoriesList: React.FC<StoryListViewProps> = ({
-  stories,
-  handleCreateStoryOnOpen
+export const TasksList: React.FC<TasksListProps> = ({
+  tasks: stories,
+  handleCreateTaskOnOpen
 }) => (
   <>
     {!stories?.length ? (
       <Box sx={projectPageStyles.wrapper}>
-        <p>There are no stories yet</p>
-        <Button onClick={handleCreateStoryOnOpen}>Create new story</Button>
+        <p>There are no tasks yet</p>
+        <Button onClick={handleCreateTaskOnOpen}>Create new task</Button>
       </Box>
     ) : (
       <Box display='grid' sx={storyStyle.box}>
@@ -33,7 +32,8 @@ export const StoriesList: React.FC<StoryListViewProps> = ({
               <Grid item xs={4} key={state}>
                 <GridItem text={state} />
                 {filteredStorages?.map((storage) => (
-                  <StoryCard key={storage.id} story={storage} />
+                  // <StoryCard key={storage.id} story={storage} />
+                  <div>abc</div>
                 ))}
               </Grid>
             );

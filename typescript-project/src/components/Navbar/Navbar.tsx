@@ -1,24 +1,28 @@
-import { AppBar, Avatar, Breadcrumbs, IconButton, Link, Menu, Toolbar, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import {
+  AppBar,
+  Avatar,
+  Breadcrumbs,
+  IconButton,
+  Link,
+  Menu,
+  Toolbar,
+  Typography
+} from '@mui/material';
+import React, { PropsWithChildren, useState } from 'react';
 import { ProjectModel } from '../../types/project';
-import { ProjectNavbarMenuItems } from './ProjectNavbarMenuItems';
 import { StoryModel } from '../../types/story';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { ContentType } from '../../types/contentType';
-import { StoryNavbarMenuItems } from './StoryNavbarMenuItems';
 import { routeBuilder } from '../../routes/routes';
 import { useParams } from 'react-router';
 
-interface NavbarProps {
+interface NavbarProps extends PropsWithChildren {
   data: ProjectModel | StoryModel;
-  handleEditProjectOnOpen: () => void;
-  handleCreateStoryOnOpen: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   data,
-  handleCreateStoryOnOpen,
-  handleEditProjectOnOpen,
+  children
 }) => {
   const { projectId } = useParams<{ projectId: string }>();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -35,13 +39,9 @@ export const Navbar: React.FC<NavbarProps> = ({
       <AppBar>
         <Toolbar>
           <Breadcrumbs sx={{ flexGrow: 1 }}>
-            <Link href={routeBuilder.projects} fontSize='small' sx={{ color: '#fff' }}>
-              Projects
-            </Link>
+            <Breadcrumb link={routeBuilder.projects} text='Projects' />
             {type !== ContentType.Project && (
-              <Link href={routeBuilder.stories(projectId)} fontSize='small' sx={{ color: '#fff' }}>
-                Stories
-              </Link>
+              <Breadcrumb link={routeBuilder.stories(projectId)} text='Stories' />
             )}
           </Breadcrumbs>
           <Typography variant='h6' sx={{ flexGrow: 1 }}>
@@ -56,17 +56,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             </Avatar>
           </IconButton>
           <Menu anchorEl={anchorEl} open={open} onClose={handleIconClose}>
-            {type === ContentType.Project ? (
-              <ProjectNavbarMenuItems
-                handleEditProjectOnOpen={handleEditProjectOnOpen}
-                handleCreateStoryOnOpen={handleCreateStoryOnOpen}
-              />
-            ) : (
-              <StoryNavbarMenuItems />
-            )}
+            {children}
           </Menu>
         </Toolbar>
       </AppBar>
     </>
   );
 };
+
+const Breadcrumb: React.FC<{
+  link: string,
+  text: string
+}> = ({ link, text }) => (
+  <Link href={link} fontSize='small' sx={{ color: '#fff' }}>
+    {text}
+  </Link>
+);

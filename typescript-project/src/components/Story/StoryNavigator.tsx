@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Switch } from "react-router";
-import { routes } from "../routes/routes";
-import { StoriesView } from "./Story/ListView/StoriesView";
-import { TasksView } from "./Task/ListView/TasksView";
+import { routes } from "../../routes/routes";
+import { StoriesView } from "./ListView/StoriesView";
+import { TasksView } from "../Task/ListView/TasksView";
 
 export const StoryNavigator: React.FC = () => (
   <Switch>

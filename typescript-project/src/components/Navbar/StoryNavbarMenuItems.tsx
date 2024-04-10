@@ -7,7 +7,6 @@ import React from 'react';
 import { useHistory, useParams } from 'react-router';
 import { routeBuilder, routes } from '../../routes/routes';
 import ReplyAllIcon from '@mui/icons-material/ReplyAll';
-import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { SELECTED_PROJECT_ID } from '../../utils/localStorage';
 import { useRemoveStory } from '../../api/story/useRemoveStory';
