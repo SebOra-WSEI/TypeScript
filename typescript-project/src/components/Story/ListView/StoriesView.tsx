@@ -8,11 +8,12 @@ import { Navbar } from '../../Navbar/Navbar';
 import { EditProjectFormModal } from '../../Project/Edit/Modal/EditProjectFormModal';
 import { CreateStoryFormModal } from '../Create/Modal/CreateStoryFormModal';
 import { SnackbarAlert } from '../../Snackbar/SnackbarAlert';
+import { ProjectNavbarMenuItems } from '../../Navbar/ProjectNavbarMenuItems';
 
 export const StoriesView: React.FC = () => {
   const [isEditProjectModalOpen, setIsEditProjectModalOpen] =
     useState<boolean>(false);
-  const [isCreateStorageModalOpen, setIsCreateStorageModalOpen] =
+  const [isCreateStoryModalOpen, setIsCreateStoryModalOpen] =
     useState<boolean>(false);
 
   const { projectId } = useParams<{ projectId: string }>();
@@ -44,21 +45,21 @@ export const StoriesView: React.FC = () => {
   const handleEditProjectOnOpen = (): void => setIsEditProjectModalOpen(true);
   const handleEditProjectOnClose = (): void => setIsEditProjectModalOpen(false);
 
-  const handleCreateStorageOnOpen = (): void =>
-    setIsCreateStorageModalOpen(true);
+  const handleCreateStoryOnOpen = (): void => setIsCreateStoryModalOpen(true);
   const handleCreateStorageOnClose = (): void =>
-    setIsCreateStorageModalOpen(false);
+    setIsCreateStoryModalOpen(false);
 
   return (
     <>
-      <Navbar
-        context={project}
-        handleCreateStoryOnOpen={handleCreateStorageOnOpen}
-        handleEditProjectOnOpen={handleEditProjectOnOpen}
-      />
+      <Navbar data={project}>
+        <ProjectNavbarMenuItems
+          handleEditProjectOnOpen={handleEditProjectOnOpen}
+          handleCreateStoryOnOpen={handleCreateStoryOnOpen}
+        />
+      </Navbar>
       <StoriesList
         stories={storages}
-        handleCreateStoryOnOpen={handleCreateStorageOnOpen}
+        handleCreateStoryOnOpen={handleCreateStoryOnOpen}
       />
       <EditProjectFormModal
         isOpen={isEditProjectModalOpen}
@@ -66,7 +67,7 @@ export const StoriesView: React.FC = () => {
         project={project}
       />
       <CreateStoryFormModal
-        isOpen={isCreateStorageModalOpen}
+        isOpen={isCreateStoryModalOpen}
         onClose={handleCreateStorageOnClose}
       />
       <SnackbarAlert />

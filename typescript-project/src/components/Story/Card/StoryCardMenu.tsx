@@ -1,4 +1,10 @@
-import { Divider, IconButton, ListItemIcon, Menu, MenuItem } from '@mui/material';
+import {
+  Divider,
+  IconButton,
+  ListItemIcon,
+  Menu,
+  MenuItem,
+} from '@mui/material';
 import React from 'react';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
@@ -16,7 +22,7 @@ interface StoryCardMenuMenuProps {
 
 export const StoryCardMenu: React.FC<StoryCardMenuMenuProps> = ({
   story,
-  handleEditStoryOnOpen
+  handleEditStoryOnOpen,
 }) => {
   const history = useHistory();
   const { projectId } = useParams<{ projectId: string }>();
@@ -31,7 +37,8 @@ export const StoryCardMenu: React.FC<StoryCardMenuMenuProps> = ({
 
   const handleMenuClose = (): void => setAnchorEl(null);
   const handleRemove = (): void => remove(story.id);
-  const handleExplore = (): void => history.push(routeBuilder.tasks(projectId, story.id))
+  const handleExplore = (): void =>
+    history.push(routeBuilder.tasks(projectId, story.id));
 
   return (
     <>

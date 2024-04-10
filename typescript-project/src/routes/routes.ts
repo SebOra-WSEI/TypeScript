@@ -7,6 +7,7 @@ export const routes = {
 } as const;
 
 export const routeBuilder = {
+  projects: routes.projects,
   stories: (projectId: string): string =>
     `${routes.stories.replace(':projectId', projectId)}`,
   tasks: (projectId: string, storyId: string): string =>

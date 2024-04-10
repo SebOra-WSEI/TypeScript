@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { ProjectsListView } from './components/Project/ListView/ProjectsListView';
 import { routes } from './routes/routes';
 import { NotFound } from './components/common/NotFound';
-import { StoryNavigator } from './components/StoryNavigator';
+import { StoryNavigator } from './components/Story/StoryNavigator';
 
 export const AppNavigator: React.FC = () => (
   <Switch>
