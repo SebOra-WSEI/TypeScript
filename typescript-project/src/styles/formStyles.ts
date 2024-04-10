@@ -15,13 +15,23 @@ export const formStyles = {
     display: 'flex',
     justifyContent: 'center',
   },
-  formControl: {
+  prioritySelect: {
     marginTop: '1.5rem',
     width: '8rem',
+  },
+  storyPointSelect: {
+    marginTop: '1.5rem',
+    width: '8rem',
+    marginLeft: '15rem',
   },
   editFormControl: {
     marginTop: '1.5rem',
     width: '9rem',
+  },
+  expectedDays: {
+    marginTop: '1.4rem',
+    width: '8rem',
+    marginLeft: '14rem',
   },
   dialogAction: {
     marginTop: '1.5rem',

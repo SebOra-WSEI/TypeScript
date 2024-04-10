@@ -3,12 +3,12 @@ import { useParams } from 'react-router';
 import { useGetProjectById } from '../../../api/project/useGetProjectById';
 import { Loader } from '../../common/Loader';
 import { StoriesList } from './List/StoriesList';
-import { useGetStoragesByProjectId } from '../../../api/story/useGetStoriesByProjectId';
+import { useGetStoriesByProjectId } from '../../../api/story/useGetStoriesByProjectId';
 import { Navbar } from '../../Navbar/Navbar';
 import { EditProjectFormModal } from '../../Project/Edit/Modal/EditProjectFormModal';
 import { CreateStoryFormModal } from '../Create/Modal/CreateStoryFormModal';
 import { SnackbarAlert } from '../../Snackbar/SnackbarAlert';
-import { ProjectNavbarMenuItems } from '../../Navbar/ProjectNavbarMenuItems';
+import { StoryNavbarMenuItems } from '../../Navbar/StoryNavbarMenuItems';
 
 export const StoriesView: React.FC = () => {
   const [isEditProjectModalOpen, setIsEditProjectModalOpen] =
@@ -28,7 +28,7 @@ export const StoriesView: React.FC = () => {
     loading: storagesLoading,
     error: storagesError,
     data: storages,
-  } = useGetStoragesByProjectId(projectId);
+  } = useGetStoriesByProjectId(projectId);
 
   if (projectLoading || storagesLoading) {
     return <Loader />;
@@ -52,7 +52,7 @@ export const StoriesView: React.FC = () => {
   return (
     <>
       <Navbar data={project}>
-        <ProjectNavbarMenuItems
+        <StoryNavbarMenuItems
           handleEditProjectOnOpen={handleEditProjectOnOpen}
           handleCreateStoryOnOpen={handleCreateStoryOnOpen}
         />

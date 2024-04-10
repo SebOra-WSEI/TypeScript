@@ -4,8 +4,10 @@ import { Navbar } from '../../Navbar/Navbar';
 import { Loader } from '../../common/Loader';
 import { SnackbarAlert } from '../../Snackbar/SnackbarAlert';
 import { useGetStoryById } from '../../../api/story/useGetStoryById';
-import { StoryNavbarMenuItems } from '../../Navbar/StoryNavbarMenuItems';
+import { TaskNavbarMenuItems } from '../../Navbar/TaskNavbarMenuItems';
 import { TasksList } from './List/TasksList';
+import { CreateTaskFormModal } from '../Create/Modal/CreateTaskFormModal';
+import { useGetTasksByStoryId } from '../../../api/task/useGetTasksByStoryId';
 
 export const TasksView: React.FC = () => {
   const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] =
@@ -13,28 +15,46 @@ export const TasksView: React.FC = () => {
 
   const { storyId } = useParams<{ storyId: string }>();
 
-  const { loading, error, data } = useGetStoryById(storyId);
+  const {
+    loading: storyLoading,
+    error: storyError,
+    data: story,
+  } = useGetStoryById(storyId);
 
-  if (loading) {
+  const {
+    loading: tasksLoading,
+    error: tasksError,
+    data: tasks,
+  } = useGetTasksByStoryId(storyId);
+
+  if (storyLoading || tasksLoading) {
     return <Loader />;
   }
 
-  if (error) {
-    return <>{error}</>;
+  if (storyError || tasksError) {
+    return <>{storyError || tasksError}</>;
   }
 
-  if (!data) {
+  if (!story) {
     return <>Story not found</>;
   }
 
   const handleCreateTaskOnOpen = (): void => setIsCreateTaskModalOpen(true);
+  const handleCreateTaskOnClose = (): void => setIsCreateTaskModalOpen(false);
 
   return (
     <>
-      <Navbar data={data}>
-        <StoryNavbarMenuItems />
+      <Navbar data={story}>
+        <TaskNavbarMenuItems handleCreateTaskOnOpen={handleCreateTaskOnOpen} />
       </Navbar>
-      <TasksList tasks={[]} handleCreateTaskOnOpen={handleCreateTaskOnOpen} />
+      <TasksList
+        tasks={tasks}
+        handleCreateTaskOnOpen={handleCreateTaskOnOpen}
+      />
+      <CreateTaskFormModal
+        isOpen={isCreateTaskModalOpen}
+        onClose={handleCreateTaskOnClose}
+      />
       <SnackbarAlert />
     </>
   );

@@ -54,7 +54,7 @@ export const CreateStoryForm: React.FC<CreateStoryFormProps> = ({
           })
         }
       />
-      <FormControl sx={formStyles.formControl} size='small'>
+      <FormControl sx={formStyles.prioritySelect} size='small'>
         <InputLabel>Priority</InputLabel>
         <Select
           value={priority}

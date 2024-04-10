@@ -1,19 +1,18 @@
 import { useEffect, useState } from 'react';
 import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
-import { EMPTY_STORY } from './emptyStory';
-import { StoryModel } from '../../types/story';
+import { EMPTY_TASK } from './emptyTask';
+import { TaskModel } from '../../types/task';
 
-export const useGetStoriesByProjectId = (
+export const useGetTasksByStoryId = (
   id: string
-): FetchedData<Array<StoryModel>> => {
+): FetchedData<Array<TaskModel>> => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
-  const [storages, setStorages] = useState<Array<StoryModel>>();
+  const [tasks, setTasks] = useState<Array<TaskModel>>();
 
   useEffect(() => {
-    const { errorMessage, status, response } =
-      EMPTY_STORY.getAllByProjectId(id);
+    const { errorMessage, status, response } = EMPTY_TASK.getAllByStoryId(id);
 
     if (!!errorMessage) {
       setError(errorMessage);
@@ -24,13 +23,13 @@ export const useGetStoriesByProjectId = (
       setTimeout(() => {
         setIsLoading(false);
       }, 700);
-      setStorages(response);
+      setTasks(response);
     }
   }, []);
 
   return {
     loading: isLoading,
     error,
-    data: storages,
+    data: tasks,
   };
 };

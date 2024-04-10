@@ -3,19 +3,19 @@ import React from 'react';
 import { State } from '../../../../types/state';
 import { storyStyle } from '../../../../styles/storyStyle';
 import { projectPageStyles } from '../../../../styles/projectPageStyles';
-import { StoryModel } from '../../../../types/story';
+import { TaskModel } from '../../../../types/task';
 
 interface TasksListProps {
-  tasks: Array<StoryModel> | undefined;
+  tasks: Array<TaskModel> | undefined;
   handleCreateTaskOnOpen: () => void;
 }
 
 export const TasksList: React.FC<TasksListProps> = ({
-  tasks: stories,
+  tasks,
   handleCreateTaskOnOpen,
 }) => (
   <>
-    {!stories?.length ? (
+    {!tasks?.length ? (
       <Box sx={projectPageStyles.wrapper}>
         <p>There are no tasks yet</p>
         <Button onClick={handleCreateTaskOnOpen}>Create new task</Button>
@@ -24,16 +24,14 @@ export const TasksList: React.FC<TasksListProps> = ({
       <Box display='grid' sx={storyStyle.box}>
         <Grid container>
           {Object.values(State).map((state) => {
-            const filteredStorages = stories?.filter(
-              (story) => story.state === state
-            );
+            const filteredTasks = tasks?.filter((task) => task.state === state);
 
             return (
               <Grid item xs={4} key={state}>
                 <GridItem text={state} />
-                {filteredStorages?.map((storage) => (
+                {filteredTasks?.map((task) => (
                   // <StoryCard key={storage.id} story={storage} />
-                  <div>abc</div>
+                  <>{task.name}</>
                 ))}
               </Grid>
             );
