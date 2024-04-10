@@ -1,9 +1,4 @@
-import {
-  IconButton,
-  ListItemIcon,
-  Menu,
-  MenuItem,
-} from '@mui/material';
+import { IconButton, ListItemIcon, Menu, MenuItem } from '@mui/material';
 import React, { useState } from 'react';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -17,9 +12,7 @@ interface TaskCardMenuProps {
   task: TaskModel;
 }
 
-export const TaskCardMenu: React.FC<TaskCardMenuProps> = ({
-  task,
-}) => {
+export const TaskCardMenu: React.FC<TaskCardMenuProps> = ({ task }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const history = useHistory();

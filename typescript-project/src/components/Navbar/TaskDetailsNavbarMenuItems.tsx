@@ -7,7 +7,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { SELECTED_PROJECT_ID } from '../../utils/localStorage';
 import { useRemoveTask } from '../../api/task/useRemoveTask';
 
-
 export const TaskDetailsNavbarMenuItems: React.FC = () => {
   const { projectId, storyId, taskId } = useParams<{
     projectId: string;

@@ -25,7 +25,6 @@ export const CreateTaskForm: React.FC<CreateTaskFormProps> = ({
   const [expectedDays, setExpectedDays] = useState<number>(0);
   const { name, description, priority, storyPoint } = task;
 
-
   return (
     <>
       <h3 style={formStyles.header}>Create new task</h3>

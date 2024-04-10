@@ -17,7 +17,8 @@ interface TaskCardProps {
 }
 
 export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
-  const { name, description, priority, createdDate, endDate, storyPoint } = task;
+  const { name, description, priority, createdDate, endDate, storyPoint } =
+    task;
 
   return (
     <>
@@ -25,11 +26,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
         <CardHeader
           title={<Header text={name} isTitle />}
           subheader={<Header text={description} />}
-          action={
-            <TaskCardMenu
-              task={task}
-            />
-          }
+          action={<TaskCardMenu task={task} />}
         />
         <CardContent sx={storyStyle.cardContent}>
           <Grid container>

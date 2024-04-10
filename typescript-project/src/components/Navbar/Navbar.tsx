@@ -24,7 +24,7 @@ interface NavbarProps extends PropsWithChildren {
 export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
   const { projectId, storyId } = useParams<{
     projectId: string;
-    storyId: string
+    storyId: string;
   }>();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -34,7 +34,7 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
   const handleIconClick = (event: React.MouseEvent<HTMLButtonElement>) =>
     setAnchorEl(event.currentTarget);
   const handleIconClose = (): void => setAnchorEl(null);
-  console.log(type)
+  console.log(type);
   return (
     <>
       <AppBar>
