@@ -6,7 +6,8 @@ import { UserModel, UserRole } from '../types/user';
 export class User extends Api<UserModel> {
   constructor(name: string, surname: string, role: UserRole) {
     const id = uuidv4();
-    const user = {
+
+    const user: UserModel = {
       id,
       name,
       surname,

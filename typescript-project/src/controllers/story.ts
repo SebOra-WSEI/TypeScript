@@ -20,7 +20,7 @@ export class Story extends Api<StoryModel> {
     const id = uuidv4();
     const date = new Date();
 
-    const story = {
+    const story: StoryModel = {
       id,
       name,
       description,
