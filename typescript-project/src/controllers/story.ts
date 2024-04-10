@@ -29,9 +29,10 @@ export class Story extends Api<StoryModel> {
       date,
       ownerId,
       state,
+      type: ContentType.Story,
     };
 
-    super(story, ContentType.Story, {
+    super(story, {
       idKey: 'id',
       nameKey: 'name',
       projectIdKey: 'projectId',

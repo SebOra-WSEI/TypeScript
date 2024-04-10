@@ -12,11 +12,9 @@ export class User extends Api<UserModel> {
       name,
       surname,
       role,
+      type: ContentType.User,
     };
 
-    super(user, ContentType.User, {
-      idKey: 'id',
-      nameKey: 'name',
-    });
+    super(user, { idKey: 'id', nameKey: 'name' });
   }
 }

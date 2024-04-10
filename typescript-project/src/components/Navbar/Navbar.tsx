@@ -2,20 +2,21 @@ import { AppBar, Toolbar, Typography } from '@mui/material';
 import React from 'react';
 import { ProjectModel } from '../../types/project';
 import { NavbarMenu } from './NavbarMenu';
+import { StoryModel } from '../../types/story';
 
 interface NavbarProps {
-  project: ProjectModel;
+  context: ProjectModel | StoryModel;
   handleEditProjectOnOpen: () => void;
   handleCreateStoryOnOpen: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
-  project,
+  context,
   handleCreateStoryOnOpen,
   handleEditProjectOnOpen,
 }) => {
-  const { name, description, id } = project ?? {};
-
+  const { name, description, id } = context ?? {};
+  console.log(context)
   return (
     <>
       <AppBar>

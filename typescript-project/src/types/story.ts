@@ -1,3 +1,4 @@
+import { ContentType } from './contentType';
 import { Priority } from './priority';
 import { State } from './state';
 import { UserModel } from './user';
@@ -13,6 +14,7 @@ export interface StoryModel {
   state: State;
   owner?: UserModel;
   assignedToId?: string;
+  type: ContentType;
 }
 
 export type StoryFormBody = Pick<

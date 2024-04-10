@@ -52,7 +52,7 @@ export const StoriesView: React.FC = () => {
   return (
     <>
       <Navbar
-        project={project}
+        context={project}
         handleCreateStoryOnOpen={handleCreateStorageOnOpen}
         handleEditProjectOnOpen={handleEditProjectOnOpen}
       />
