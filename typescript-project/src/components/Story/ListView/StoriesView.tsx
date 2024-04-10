@@ -45,16 +45,13 @@ export const StoriesView: React.FC = () => {
   const handleEditProjectOnOpen = (): void => setIsEditProjectModalOpen(true);
   const handleEditProjectOnClose = (): void => setIsEditProjectModalOpen(false);
 
-  const handleCreateStoryOnOpen = (): void =>
-    setIsCreateStoryModalOpen(true);
+  const handleCreateStoryOnOpen = (): void => setIsCreateStoryModalOpen(true);
   const handleCreateStorageOnClose = (): void =>
     setIsCreateStoryModalOpen(false);
 
   return (
     <>
-      <Navbar
-        data={project}
-      >
+      <Navbar data={project}>
         <ProjectNavbarMenuItems
           handleEditProjectOnOpen={handleEditProjectOnOpen}
           handleCreateStoryOnOpen={handleCreateStoryOnOpen}

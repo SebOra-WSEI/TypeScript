@@ -6,7 +6,7 @@ import {
   Link,
   Menu,
   Toolbar,
-  Typography
+  Typography,
 } from '@mui/material';
 import React, { PropsWithChildren, useState } from 'react';
 import { ProjectModel } from '../../types/project';
@@ -20,10 +20,7 @@ interface NavbarProps extends PropsWithChildren {
   data: ProjectModel | StoryModel;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({
-  data,
-  children
-}) => {
+export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
   const { projectId } = useParams<{ projectId: string }>();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -41,7 +38,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           <Breadcrumbs sx={{ flexGrow: 1 }}>
             <Breadcrumb link={routeBuilder.projects} text='Projects' />
             {type !== ContentType.Project && (
-              <Breadcrumb link={routeBuilder.stories(projectId)} text='Stories' />
+              <Breadcrumb
+                link={routeBuilder.stories(projectId)}
+                text='Stories'
+              />
             )}
           </Breadcrumbs>
           <Typography variant='h6' sx={{ flexGrow: 1 }}>
@@ -65,8 +65,8 @@ export const Navbar: React.FC<NavbarProps> = ({
 };
 
 const Breadcrumb: React.FC<{
-  link: string,
-  text: string
+  link: string;
+  text: string;
 }> = ({ link, text }) => (
   <Link href={link} fontSize='small' sx={{ color: '#fff' }}>
     {text}

@@ -12,7 +12,7 @@ interface TasksListProps {
 
 export const TasksList: React.FC<TasksListProps> = ({
   tasks: stories,
-  handleCreateTaskOnOpen
+  handleCreateTaskOnOpen,
 }) => (
   <>
     {!stories?.length ? (

@@ -1,8 +1,4 @@
-import {
-  Divider,
-  ListItemIcon,
-  MenuItem,
-} from '@mui/material';
+import { Divider, ListItemIcon, MenuItem } from '@mui/material';
 import React from 'react';
 import { useHistory, useParams } from 'react-router';
 import { routeBuilder, routes } from '../../routes/routes';
@@ -14,7 +10,7 @@ import { useRemoveStory } from '../../api/story/useRemoveStory';
 export const StoryNavbarMenuItems: React.FC = () => {
   const { projectId, storyId } = useParams<{
     projectId: string;
-    storyId: string
+    storyId: string;
   }>();
   const history = useHistory();
 

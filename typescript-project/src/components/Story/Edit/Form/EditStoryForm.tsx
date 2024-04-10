@@ -14,7 +14,7 @@ interface EditStoryFormProps {
 
 export const EditStoryForm: React.FC<EditStoryFormProps> = ({
   updatedStory,
-  setUpdatedStory
+  setUpdatedStory,
 }) => {
   const { name, state, owner, priority, description, assignedToId } =
     updatedStory;

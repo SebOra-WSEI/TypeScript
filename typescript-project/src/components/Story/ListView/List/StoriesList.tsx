@@ -13,7 +13,7 @@ interface StoryListViewProps {
 
 export const StoriesList: React.FC<StoryListViewProps> = ({
   stories,
-  handleCreateStoryOnOpen
+  handleCreateStoryOnOpen,
 }) => (
   <>
     {!stories?.length ? (
