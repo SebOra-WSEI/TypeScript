@@ -8,7 +8,7 @@ import { Navbar } from '../../Navbar/Navbar';
 import { EditProjectFormModal } from '../../Project/Edit/Modal/EditProjectFormModal';
 import { CreateStoryFormModal } from '../Create/Modal/CreateStoryFormModal';
 import { SnackbarAlert } from '../../Snackbar/SnackbarAlert';
-import { StoryNavbarMenuItems } from '../../Navbar/StoryNavbarMenuItems';
+import { StoriesNavbarMenuItems } from '../../Navbar/StoriesNavbarMenuItems';
 
 export const StoriesView: React.FC = () => {
   const [isEditProjectModalOpen, setIsEditProjectModalOpen] =
@@ -52,7 +52,7 @@ export const StoriesView: React.FC = () => {
   return (
     <>
       <Navbar data={project}>
-        <StoryNavbarMenuItems
+        <StoriesNavbarMenuItems
           handleEditProjectOnOpen={handleEditProjectOnOpen}
           handleCreateStoryOnOpen={handleCreateStoryOnOpen}
         />

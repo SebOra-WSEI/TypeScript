@@ -5,23 +5,17 @@ import { routeBuilder, routes } from '../../routes/routes';
 import ReplyAllIcon from '@mui/icons-material/ReplyAll';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { SELECTED_PROJECT_ID } from '../../utils/localStorage';
-import { useRemoveStory } from '../../api/story/useRemoveStory';
-import AddIcon from '@mui/icons-material/Add';
+import { useRemoveTask } from '../../api/task/useRemoveTask';
 
-interface TaskNavbarMenuItemsProps {
-  handleCreateTaskOnOpen: () => void;
-}
-
-export const TaskNavbarMenuItems: React.FC<TaskNavbarMenuItemsProps> = ({
-  handleCreateTaskOnOpen,
-}) => {
-  const { projectId, storyId } = useParams<{
+export const TaskDetailsNavbarMenuItems: React.FC = () => {
+  const { projectId, storyId, taskId } = useParams<{
     projectId: string;
     storyId: string;
+    taskId: string;
   }>();
   const history = useHistory();
 
-  const { remove } = useRemoveStory(false);
+  const { remove } = useRemoveTask(false);
 
   const handleChangeProject = (): void => {
     history.push(routes.projects);
@@ -29,24 +23,17 @@ export const TaskNavbarMenuItems: React.FC<TaskNavbarMenuItemsProps> = ({
   };
 
   const handleRemoveStory = () => {
-    remove(storyId);
-    history.push(routeBuilder.stories(projectId));
+    remove(taskId);
+    history.push(routeBuilder.tasks(projectId, storyId));
   };
 
   return (
     <>
-      <MenuItem onClick={handleCreateTaskOnOpen}>
-        <ListItemIcon>
-          <AddIcon fontSize='small' />
-        </ListItemIcon>
-        Create new task
-      </MenuItem>
-      <Divider />
       <MenuItem onClick={handleRemoveStory}>
         <ListItemIcon>
           <DeleteIcon fontSize='small' />
         </ListItemIcon>
-        Delete storage
+        Delete task
       </MenuItem>
       <Divider />
       <MenuItem onClick={handleChangeProject}>

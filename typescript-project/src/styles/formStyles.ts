@@ -19,10 +19,13 @@ export const formStyles = {
     marginTop: '1.5rem',
     width: '8rem',
   },
+  controlWrapper: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
   storyPointSelect: {
     marginTop: '1.5rem',
     width: '8rem',
-    marginLeft: '15rem',
   },
   editFormControl: {
     marginTop: '1.5rem',
@@ -31,7 +34,6 @@ export const formStyles = {
   expectedDays: {
     marginTop: '1.4rem',
     width: '8rem',
-    marginLeft: '14rem',
   },
   dialogAction: {
     marginTop: '1.5rem',

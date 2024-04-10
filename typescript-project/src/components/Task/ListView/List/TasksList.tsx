@@ -4,6 +4,7 @@ import { State } from '../../../../types/state';
 import { storyStyle } from '../../../../styles/storyStyle';
 import { projectPageStyles } from '../../../../styles/projectPageStyles';
 import { TaskModel } from '../../../../types/task';
+import { TaskCard } from '../../Card/TaskCard';
 
 interface TasksListProps {
   tasks: Array<TaskModel> | undefined;
@@ -30,8 +31,7 @@ export const TasksList: React.FC<TasksListProps> = ({
               <Grid item xs={4} key={state}>
                 <GridItem text={state} />
                 {filteredTasks?.map((task) => (
-                  // <StoryCard key={storage.id} story={storage} />
-                  <>{task.name}</>
+                  <TaskCard key={task.id} task={task} />
                 ))}
               </Grid>
             );

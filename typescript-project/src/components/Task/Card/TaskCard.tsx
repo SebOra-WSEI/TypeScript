@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Card,
   CardContent,
   CardHeader,
@@ -7,42 +6,31 @@ import {
   ListItemIcon,
   Typography,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 import { storyStyle } from '../../../styles/storyStyle';
-import { StoryCardMenu } from './StoryCardMenu';
-import { StoryModel } from '../../../types/story';
-import { EditStoryModal } from '../Edit/Modal/EditStoryModal';
 import { priorityIcons } from '../../../utils/priorityIcons';
+import { TaskModel } from '../../../types/task';
+import { TaskCardMenu } from './TaskCardMenu';
 
-interface StoryCardProps {
-  story: StoryModel;
+interface TaskCardProps {
+  task: TaskModel;
 }
 
-export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
-  const [isEditStoryModalOpen, setIsEditStoryModalOpen] =
-    useState<boolean>(false);
-
-  const { name, description, priority, date, owner } = story;
-
-  const handleEditStoryOnOpen = (): void => setIsEditStoryModalOpen(true);
-  const handleEditStoryOnClose = (): void => setIsEditStoryModalOpen(false);
+export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
+  const { name, description, priority, createdDate, endDate, storyPoint } =
+    task;
 
   return (
     <>
-      <Card sx={storyStyle.card}>
+      <Card sx={{ ...storyStyle.card, height: '10rem' }}>
         <CardHeader
           title={<Header text={name} isTitle />}
-          subheader={<Header text={description ?? ''} />}
-          action={
-            <StoryCardMenu
-              story={story}
-              handleEditStoryOnOpen={handleEditStoryOnOpen}
-            />
-          }
+          subheader={<Header text={description} />}
+          action={<TaskCardMenu task={task} />}
         />
         <CardContent sx={storyStyle.cardContent}>
           <Grid container>
-            <Grid item sx={storyStyle.priority}>
+            <Grid item sx={storyStyle.priority} xs={5}>
               <ListItemIcon>
                 {priorityIcons[priority]}
                 <Typography
@@ -54,29 +42,31 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
                 </Typography>
               </ListItemIcon>
             </Grid>
+            <Grid item xs={5} sx={storyStyle.gridText}>
+              <Typography variant='inherit' color='text.secondary'>
+                Story Points: {storyPoint}
+              </Typography>
+            </Grid>
           </Grid>
           <Grid container>
             <Grid item xs={5} sx={storyStyle.gridText}>
               <Typography variant='inherit' color='text.secondary'>
-                Created at: {new Date(date).toLocaleString()}
+                Created at: {new Date(createdDate).toLocaleString()}
               </Typography>
             </Grid>
-            <Grid item xs={6} sx={storyStyle.icon}>
-              <Avatar sx={storyStyle.avatar}>
-                <Typography fontSize='small'>
-                  {owner?.name?.[0]}
-                  {owner?.surname?.[0]}
-                </Typography>
-              </Avatar>
+            <Grid item xs={5} sx={storyStyle.gridText}>
+              <Typography variant='inherit' color='text.secondary'>
+                Expected end time: {new Date(endDate).toLocaleDateString()}
+              </Typography>
             </Grid>
           </Grid>
         </CardContent>
       </Card>
-      <EditStoryModal
+      {/* <EditStoryModal
         isOpen={isEditStoryModalOpen}
         onClose={handleEditStoryOnClose}
         story={story}
-      />
+      /> */}
     </>
   );
 };
