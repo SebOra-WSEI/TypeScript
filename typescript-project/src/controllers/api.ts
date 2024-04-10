@@ -8,6 +8,7 @@ import {
 } from '../utils/localStorage';
 
 type KeyOfType<T> = keyof T & string;
+type Object<T> = T & { type: ContentType };
 
 interface Parameters<T> {
   idKey: KeyOfType<T>;
@@ -16,16 +17,16 @@ interface Parameters<T> {
 }
 
 export class Api<T> {
-  private object: T;
-  private type: ContentType;
+  private object: Object<T>;
+  // private type: ContentType;
 
   private nameKey: KeyOfType<T>;
   private idKey: KeyOfType<T>;
   private projectIdKey: KeyOfType<T>;
 
-  constructor(object: T, type: ContentType, parameters: Parameters<T>) {
+  constructor(object: Object<T>, parameters: Parameters<T>) {
     this.object = object;
-    this.type = type;
+    // this.object.type = type;
 
     this.nameKey = parameters.nameKey;
     this.idKey = parameters.idKey;
@@ -33,7 +34,7 @@ export class Api<T> {
   }
 
   getAll(): Response<Array<T>> {
-    const value = getFromLocalStorage(this.type);
+    const value = getFromLocalStorage(this.object.type);
 
     return {
       status: StatusCode.OK,
@@ -56,7 +57,7 @@ export class Api<T> {
     if (!project) {
       return {
         status: StatusCode.NotFound,
-        errorMessage: `${this.type} not found`,
+        errorMessage: `${this.object.type} not found`,
         response: undefined,
       };
     }
@@ -95,17 +96,17 @@ export class Api<T> {
     if (Boolean(isAlreadyExisted)) {
       return {
         status: StatusCode.BadRequest,
-        errorMessage: `${this.type} already exist`,
+        errorMessage: `${this.object.type} already exist`,
         response: undefined,
       };
     }
 
     allObjects.push(this.object);
-    setToLocalStorage(this.type, JSON.stringify(allObjects));
+    setToLocalStorage(this.object.type, JSON.stringify(allObjects));
 
     return {
       status: StatusCode.Created,
-      message: `${this.type} has been created successfully`,
+      message: `${this.object.type} has been created successfully`,
       response: this.object,
     };
   }
@@ -129,11 +130,11 @@ export class Api<T> {
       (p) => p[this.idKey] !== currentObjectResponse.response?.[this.idKey]
     );
 
-    setToLocalStorage(this.type, JSON.stringify(newArray));
+    setToLocalStorage(this.object.type, JSON.stringify(newArray));
 
     return {
       status: StatusCode.OK,
-      message: `${this.type} removed successfully`,
+      message: `${this.object.type} removed successfully`,
       response: currentObjectResponse.response,
     };
   }
@@ -172,11 +173,11 @@ export class Api<T> {
       return p;
     });
 
-    setToLocalStorage(this.type, JSON.stringify(newArray));
+    setToLocalStorage(this.object.type, JSON.stringify(newArray));
 
     return {
       status: StatusCode.OK,
-      message: `${this.type} has been updated successfully`,
+      message: `${this.object.type} has been updated successfully`,
       response: updatedProject,
     };
   }

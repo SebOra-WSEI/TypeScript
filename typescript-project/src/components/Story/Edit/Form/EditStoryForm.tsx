@@ -1,22 +1,23 @@
 import React from 'react';
 import { FormControl, Grid, MenuItem, Select, TextField } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
-import { Priority, priorityIcons } from '../../../../types/priority';
-import { StorageModel } from '../../../../types/storage';
+import { Priority } from '../../../../types/priority';
+import { StoryModel } from '../../../../types/story';
 import { State } from '../../../../types/state';
 import { useGetAllUsers } from '../../../../api/user/useGetAllUsers';
+import { priorityIcons } from '../../../../utils/priorityIcons';
 
-interface EditStorageFormProps {
-  updatedStorage: StorageModel;
-  setUpdatedStorage: (value: StorageModel) => void;
+interface EditStoryFormProps {
+  updatedStory: StoryModel;
+  setUpdatedStory: (value: StoryModel) => void;
 }
 
-export const EditStorageForm: React.FC<EditStorageFormProps> = ({
-  updatedStorage,
-  setUpdatedStorage,
+export const EditStoryForm: React.FC<EditStoryFormProps> = ({
+  updatedStory,
+  setUpdatedStory
 }) => {
   const { name, state, owner, priority, description, assignedToId } =
-    updatedStorage;
+    updatedStory;
 
   const { data: allUsers } = useGetAllUsers();
 
@@ -29,8 +30,8 @@ export const EditStorageForm: React.FC<EditStorageFormProps> = ({
           type='text'
           value={name}
           onChange={(evt) =>
-            setUpdatedStorage({
-              ...updatedStorage,
+            setUpdatedStory({
+              ...updatedStory,
               name: evt.target.value,
             })
           }
@@ -52,8 +53,8 @@ export const EditStorageForm: React.FC<EditStorageFormProps> = ({
           fullWidth
           multiline
           onChange={(evt) =>
-            setUpdatedStorage({
-              ...updatedStorage,
+            setUpdatedStory({
+              ...updatedStory,
               description: evt.target.value,
             })
           }
@@ -69,8 +70,8 @@ export const EditStorageForm: React.FC<EditStorageFormProps> = ({
               <Select
                 value={state}
                 onChange={(evt) =>
-                  setUpdatedStorage({
-                    ...updatedStorage,
+                  setUpdatedStory({
+                    ...updatedStory,
                     state: evt.target.value as State,
                   })
                 }
@@ -92,8 +93,8 @@ export const EditStorageForm: React.FC<EditStorageFormProps> = ({
                 displayEmpty
                 value={assignedToId || 'Unassigned'}
                 onChange={(evt) =>
-                  setUpdatedStorage({
-                    ...updatedStorage,
+                  setUpdatedStory({
+                    ...updatedStory,
                     state:
                       evt.target.value === 'Unassigned'
                         ? State.Todo
@@ -119,8 +120,8 @@ export const EditStorageForm: React.FC<EditStorageFormProps> = ({
               <Select
                 value={priority}
                 onChange={(evt) =>
-                  setUpdatedStorage({
-                    ...updatedStorage,
+                  setUpdatedStory({
+                    ...updatedStory,
                     priority: evt.target.value as Priority,
                   })
                 }

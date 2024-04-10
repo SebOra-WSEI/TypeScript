@@ -1,8 +1,9 @@
+import { ContentType } from './contentType';
 import { Priority } from './priority';
 import { State } from './state';
 import { UserModel } from './user';
 
-export interface StorageModel {
+export interface StoryModel {
   id: string;
   name: string;
   description?: string;
@@ -13,18 +14,15 @@ export interface StorageModel {
   state: State;
   owner?: UserModel;
   assignedToId?: string;
+  type: ContentType;
 }
 
-export interface StorageModel1 extends StorageModel {
-  owner?: UserModel;
-}
-
-export type StorageFormBody = Pick<
-  StorageModel,
+export type StoryFormBody = Pick<
+  StoryModel,
   'name' | 'description' | 'priority' | 'projectId' | 'ownerId'
 >;
 
-export type UpdatedStorageFormBody = Pick<
-  StorageModel,
+export type UpdatedStoryFormBody = Pick<
+  StoryModel,
   'name' | 'description' | 'priority' | 'state'
 >;

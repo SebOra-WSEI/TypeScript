@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import { useGetProjectById } from '../../../api/project/useGetProjectById';
 import { Loader } from '../../common/Loader';
-import { StoragesList } from './List/StoragesList';
-import { useGetStoragesByProjectId } from '../../../api/storage/useGetStoragesByProjectId';
+import { StoriesList } from './List/StoriesList';
+import { useGetStoragesByProjectId } from '../../../api/story/useGetStoriesByProjectId';
 import { Navbar } from '../../Navbar/Navbar';
 import { EditProjectFormModal } from '../../Project/Edit/Modal/EditProjectFormModal';
-import { CreateStorageFormModal } from '../Create/CreateStorageFormModal';
+import { CreateStoryFormModal } from '../Create/Modal/CreateStoryFormModal';
 import { SnackbarAlert } from '../../Snackbar/SnackbarAlert';
 
-export const StoragesView: React.FC = () => {
+export const StoriesView: React.FC = () => {
   const [isEditProjectModalOpen, setIsEditProjectModalOpen] =
     useState<boolean>(false);
   const [isCreateStorageModalOpen, setIsCreateStorageModalOpen] =
@@ -52,20 +52,20 @@ export const StoragesView: React.FC = () => {
   return (
     <>
       <Navbar
-        project={project}
-        handleCreateStorageOnOpen={handleCreateStorageOnOpen}
+        context={project}
+        handleCreateStoryOnOpen={handleCreateStorageOnOpen}
         handleEditProjectOnOpen={handleEditProjectOnOpen}
       />
-      <StoragesList
-        storages={storages}
-        handleCreateStorageOnOpen={handleCreateStorageOnOpen}
+      <StoriesList
+        stories={storages}
+        handleCreateStoryOnOpen={handleCreateStorageOnOpen}
       />
       <EditProjectFormModal
         isOpen={isEditProjectModalOpen}
         onClose={handleEditProjectOnClose}
         project={project}
       />
-      <CreateStorageFormModal
+      <CreateStoryFormModal
         isOpen={isCreateStorageModalOpen}
         onClose={handleCreateStorageOnClose}
       />

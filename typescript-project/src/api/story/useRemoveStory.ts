@@ -1,21 +1,20 @@
 import { useState } from 'react';
 import { StatusCode } from '../../types/statusCode';
 import { FetchedData } from '../../types/fetchedData';
-import { EMPTY_STORAGE } from './emptyStorage';
-import { Storage } from '../../controllers/storage';
+import { EMPTY_STORY } from './emptyStory';
+import { Story } from '../../controllers/story';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
 
-type UseRemoveStorageResult = FetchedData<Storage> & {
+type UseRemoveStoryResult = FetchedData<Story> & {
   remove: (id: string) => void;
 };
 
-export const useRemoveStorage = (): UseRemoveStorageResult => {
+export const useRemoveStory = (): UseRemoveStoryResult => {
   const [error, setError] = useState<string>('');
   const [message, setMessage] = useState<string | undefined>(undefined);
 
   const remove = (id: string) => {
-    const { status, errorMessage, response, message } =
-      EMPTY_STORAGE.delete(id);
+    const { status, errorMessage, response, message } = EMPTY_STORY.delete(id);
 
     if (!!errorMessage) {
       setError(errorMessage);

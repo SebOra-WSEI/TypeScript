@@ -22,7 +22,7 @@ export const ProjectListItem: React.FC<ProjectItemProps> = ({ project }) => {
 
   const handleOnSelect = (): void => {
     setToLocalStorage(SELECTED_PROJECT_ID, project.id);
-    history.push(routeBuilder.storages(project.id));
+    history.push(routeBuilder.stories(project.id));
   };
 
   const handleRemove = (): void => remove(project.id);

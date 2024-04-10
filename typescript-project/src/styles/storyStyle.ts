@@ -1,4 +1,4 @@
-export const storageStyle = {
+export const storyStyle = {
   box: {
     height: '90vh',
     marginTop: '3.5rem',

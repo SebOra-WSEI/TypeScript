@@ -1,5 +1,6 @@
 export enum ContentType {
   Project = 'Project',
   User = 'User',
-  Storage = 'Storage',
+  Story = 'Story',
+  Task = 'Task',
 }

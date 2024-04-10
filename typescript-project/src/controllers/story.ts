@@ -4,11 +4,11 @@ import { State } from '../types/state';
 import { Api } from './api';
 import { ContentType } from '../types/contentType';
 import { StatusCode } from '../types/statusCode';
-import { StorageModel } from '../types/storage';
+import { StoryModel } from '../types/story';
 import { EMPTY_USER } from '../api/user/emptyUser';
 import { Response } from '../types/response';
 
-export class Storage extends Api<StorageModel> {
+export class Story extends Api<StoryModel> {
   constructor(
     name: string,
     priority: Priority,
@@ -20,7 +20,7 @@ export class Storage extends Api<StorageModel> {
     const id = uuidv4();
     const date = new Date();
 
-    const storage = {
+    const story: StoryModel = {
       id,
       name,
       description,
@@ -29,16 +29,17 @@ export class Storage extends Api<StorageModel> {
       date,
       ownerId,
       state,
+      type: ContentType.Story,
     };
 
-    super(storage, ContentType.Storage, {
+    super(story, {
       idKey: 'id',
       nameKey: 'name',
       projectIdKey: 'projectId',
     });
   }
 
-  getAllByProjectId(id: string): Response<Array<StorageModel>> {
+  getAllByProjectId(id: string): Response<Array<StoryModel>> {
     if (!id.length) {
       return {
         status: StatusCode.BadRequest,
@@ -47,16 +48,16 @@ export class Storage extends Api<StorageModel> {
       };
     }
 
-    const storages = this.getAll().response as Array<StorageModel>;
-    const filteredStorages = storages.filter((s) => s.projectId === id);
-    const extendedStorages = filteredStorages.map((storage) => ({
-      ...storage,
-      owner: EMPTY_USER.getById(storage.ownerId).response,
+    const stories = this.getAll().response as Array<StoryModel>;
+    const filteredStories = stories.filter((s) => s.projectId === id);
+    const extendedStories = filteredStories.map((story) => ({
+      ...story,
+      owner: EMPTY_USER.getById(story.ownerId).response,
     }));
 
     return {
       status: StatusCode.OK,
-      response: extendedStorages,
+      response: extendedStories,
     };
   }
 }
