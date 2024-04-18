@@ -7,7 +7,6 @@ import { useGetStoriesByProjectId } from '../../../queries/story/useGetStoriesBy
 import { Navbar } from '../../Navbar/Navbar';
 import { EditProjectModal } from '../../Project/Edit/EditProjectModal';
 import { CreateStoryModal } from '../Create/CreateStoryModal';
-import { SnackbarAlert } from '../../Snackbar/SnackbarAlert';
 import { StoriesNavbarMenuItems } from '../../Navbar/StoriesNavbarMenuItems';
 
 export const StoriesView: React.FC = () => {
@@ -69,7 +68,6 @@ export const StoriesView: React.FC = () => {
         isOpen={isCreateStoryModalOpen}
         onClose={handleCreateStoryOnClose}
       />
-      <SnackbarAlert />
     </>
   );
 };

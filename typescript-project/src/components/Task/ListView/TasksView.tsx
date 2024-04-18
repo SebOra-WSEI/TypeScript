@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import { Navbar } from '../../Navbar/Navbar';
 import { Loader } from '../../common/Loader';
-import { SnackbarAlert } from '../../Snackbar/SnackbarAlert';
 import { useGetStoryById } from '../../../queries/story/useGetStoryById';
 import { TasksNavbarMenuItems } from '../../Navbar/TasksNavbarMenuItems';
 import { TasksList } from './List/TasksList';
@@ -69,7 +68,6 @@ export const TasksView: React.FC = () => {
         isOpen={isCreateTaskModalOpen}
         onClose={handleCreateTaskOnClose}
       />
-      <SnackbarAlert />
     </>
   );
 };

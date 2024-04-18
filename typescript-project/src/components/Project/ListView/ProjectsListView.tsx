@@ -3,7 +3,6 @@ import { useGetAllProjects } from '../../../queries/project/useGetAllProjects';
 import { Loader } from '../../common/Loader';
 import { ProjectsList } from './List/ProjectsList';
 import { CreateProjectModal } from '../Create/CreateProjectModal';
-import { SnackbarAlert } from '../../Snackbar/SnackbarAlert';
 import { Box } from '@mui/material';
 import { listStyles } from '../../../styles/listStyles';
 
@@ -29,7 +28,6 @@ export const ProjectsListView: React.FC = () => {
         <ProjectsList projects={data} handleOnOpen={handleOnOpen} />
       </Box>
       <CreateProjectModal isOpen={isModalOpen} onClose={handleOnClose} />
-      <SnackbarAlert />
     </>
   );
 };

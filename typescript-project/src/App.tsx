@@ -1,9 +1,10 @@
 import React from 'react';
 import { AppNavigator } from './AppNavigator';
-import { SnackbarContextProvider } from './components/Snackbar/SnackbarContext';
+import { SnackbarAlert } from './components/Snackbar/SnackbarAlert';
 
 export const App: React.FC = () => (
-  <SnackbarContextProvider>
+  <>
     <AppNavigator />
-  </SnackbarContextProvider>
+    <SnackbarAlert />
+  </>
 );
