@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StoryModel } from '../../../types/story';
 import { EditStoryForm } from './EditStoryForm';
-import { useEditStoryById } from '../../../api/story/useEditStoryById';
+import { useEditStoryById } from '../../../queries/story/useEditStoryById';
 import { ModalContent } from '../../common/Modal/ModalContext';
 
 interface EditStoryModalProps {

@@ -5,7 +5,7 @@ import { routeBuilder, routes } from '../../routes/routes';
 import ReplyAllIcon from '@mui/icons-material/ReplyAll';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { SELECTED_PROJECT_ID } from '../../utils/localStorage';
-import { useRemoveStory } from '../../api/story/useRemoveStory';
+import { useRemoveStory } from '../../queries/story/useRemoveStory';
 import AddIcon from '@mui/icons-material/Add';
 
 interface TasksNavbarMenuItemsProps {

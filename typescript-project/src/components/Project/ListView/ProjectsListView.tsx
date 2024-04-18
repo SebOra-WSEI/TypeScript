@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useGetAllProjects } from '../../../api/project/useGetAllProjects';
+import { useGetAllProjects } from '../../../queries/project/useGetAllProjects';
 import { Loader } from '../../common/Loader';
 import { ProjectsList } from './List/ProjectsList';
 import { CreateProjectModal } from '../Create/CreateProjectModal';

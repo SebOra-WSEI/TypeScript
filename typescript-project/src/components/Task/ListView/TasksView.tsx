@@ -3,11 +3,11 @@ import { useParams } from 'react-router';
 import { Navbar } from '../../Navbar/Navbar';
 import { Loader } from '../../common/Loader';
 import { SnackbarAlert } from '../../Snackbar/SnackbarAlert';
-import { useGetStoryById } from '../../../api/story/useGetStoryById';
+import { useGetStoryById } from '../../../queries/story/useGetStoryById';
 import { TasksNavbarMenuItems } from '../../Navbar/TasksNavbarMenuItems';
 import { TasksList } from './List/TasksList';
 import { CreateTaskFormModal } from '../Create/Modal/CreateTaskFormModal';
-import { useGetTasksByStoryId } from '../../../api/task/useGetTasksByStoryId';
+import { useGetTasksByStoryId } from '../../../queries/task/useGetTasksByStoryId';
 
 export const TasksView: React.FC = () => {
   const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] =

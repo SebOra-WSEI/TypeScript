@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react';
 import { formStyles } from '../../../../styles/formStyles';
 import { TaskModel } from '../../../../types/task';
 import { EditTaskForm } from '../Form/EditTaskForm';
-import { useEditTaskById } from '../../../../api/task/useEditTaskById';
+import { useEditTaskById } from '../../../../queries/task/useEditTaskById';
 import { State } from '../../../../types/state';
 
 interface EditTaskModalProps {

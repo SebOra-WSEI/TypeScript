@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ProjectFormBody, ProjectModel } from '../../../types/project';
 import { EditProjectForm } from './EditProjectForm';
-import { useEditProjectById } from '../../../api/project/useEditProjectById';
+import { useEditProjectById } from '../../../queries/project/useEditProjectById';
 import { ModalContent } from '../../common/Modal/ModalContext';
 
 interface EditProjectModalProps {

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { TaskModel } from '../../../types/task';
-import { useRemoveTask } from '../../../api/task/useRemoveTask';
+import { useRemoveTask } from '../../../queries/task/useRemoveTask';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 
 interface TaskCardMenuProps {

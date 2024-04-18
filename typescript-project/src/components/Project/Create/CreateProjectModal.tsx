@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { ProjectFormBody } from '../../../types/project';
-import { useCreateProject } from '../../../api/project/useCreateProject';
+import { useCreateProject } from '../../../queries/project/useCreateProject';
 import { CreateProjectForm } from './CreateProjectForm';
-import { defaultProject } from '../../../api/project/project';
+import { defaultProject } from '../../../queries/project/project';
 import { ModalContent } from '../../common/Modal/ModalContext';
 
 interface CreateProjectModalProps {

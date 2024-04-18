@@ -3,7 +3,7 @@ import { FormControl, MenuItem, Select } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
 import { StoryModel } from '../../../../types/story';
 import { State } from '../../../../types/state';
-import { useGetAllUsers } from '../../../../api/user/useGetAllUsers';
+import { useGetAllUsers } from '../../../../queries/user/useGetAllUsers';
 
 interface AssignedToInputProps {
   updatedStory: StoryModel;

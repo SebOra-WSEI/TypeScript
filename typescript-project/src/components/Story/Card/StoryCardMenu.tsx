@@ -10,7 +10,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { StoryModel } from '../../../types/story';
-import { useRemoveStory } from '../../../api/story/useRemoveStory';
+import { useRemoveStory } from '../../../queries/story/useRemoveStory';
 import ExploreIcon from '@mui/icons-material/Explore';
 import { useHistory, useParams } from 'react-router';
 import { routeBuilder } from '../../../routes/routes';

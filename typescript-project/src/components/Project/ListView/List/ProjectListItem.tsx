@@ -10,7 +10,7 @@ import {
   SELECTED_PROJECT_ID,
   setToLocalStorage,
 } from '../../../../utils/localStorage';
-import { useRemoveProject } from '../../../../api/project/useRemoveProject';
+import { useRemoveProject } from '../../../../queries/project/useRemoveProject';
 import { ListItemHeader } from './ListItemHeader';
 
 interface ProjectItemProps {

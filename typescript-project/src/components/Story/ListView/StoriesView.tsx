@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
-import { useGetProjectById } from '../../../api/project/useGetProjectById';
+import { useGetProjectById } from '../../../queries/project/useGetProjectById';
 import { Loader } from '../../common/Loader';
 import { StoriesList } from './List/StoriesList';
-import { useGetStoriesByProjectId } from '../../../api/story/useGetStoriesByProjectId';
+import { useGetStoriesByProjectId } from '../../../queries/story/useGetStoriesByProjectId';
 import { Navbar } from '../../Navbar/Navbar';
 import { EditProjectModal } from '../../Project/Edit/EditProjectModal';
 import { CreateStoryModal } from '../Create/CreateStoryModal';
