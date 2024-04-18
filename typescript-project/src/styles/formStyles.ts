@@ -1,16 +1,4 @@
 export const formStyles = {
-  box: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    bgcolor: 'background.paper',
-    padding: '2rem',
-    borderRadius: '1.5rem',
-  },
-  button: {
-    borderRadius: '0.5rem',
-  },
   header: {
     display: 'flex',
     justifyContent: 'center',
@@ -19,24 +7,9 @@ export const formStyles = {
     marginTop: '1.5rem',
     width: '8rem',
   },
-  controlWrapper: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  storyPointSelect: {
-    marginTop: '1.5rem',
-    width: '8rem',
-  },
   editFormControl: {
     marginTop: '1.5rem',
     width: '9rem',
-  },
-  expectedDays: {
-    marginTop: '1.4rem',
-    width: '8rem',
-  },
-  dialogAction: {
-    marginTop: '1.5rem',
   },
   grid: {
     width: '60rem',

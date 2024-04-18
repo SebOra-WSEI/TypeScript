@@ -24,7 +24,6 @@ export const TaskCardMenu: React.FC<TaskCardMenuProps> = ({
     setAnchorEl(event.currentTarget);
 
   const handleMenuClose = (): void => setAnchorEl(null);
-
   const handleRemove = (): void => remove(task.id);
 
   return (

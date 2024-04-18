@@ -6,7 +6,7 @@ import { SnackbarAlert } from '../../Snackbar/SnackbarAlert';
 import { useGetStoryById } from '../../../queries/story/useGetStoryById';
 import { TasksNavbarMenuItems } from '../../Navbar/TasksNavbarMenuItems';
 import { TasksList } from './List/TasksList';
-import { CreateTaskFormModal } from '../Create/Modal/CreateTaskFormModal';
+import { CreateTaskFormModal } from '../Create/CreateTaskFormModal';
 import { useGetTasksByStoryId } from '../../../queries/task/useGetTasksByStoryId';
 import { EditStoryModal } from '../../Story/Edit/EditStoryModal';
 

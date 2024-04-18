@@ -5,13 +5,13 @@ import { StoryModel } from '../../../../types/story';
 import { State } from '../../../../types/state';
 import { useGetAllUsers } from '../../../../queries/user/useGetAllUsers';
 
-interface AssignedToInputProps {
+interface EditStoryAssignToInputProps {
   updatedStory: StoryModel;
   setUpdatedStory: (value: StoryModel) => void;
   assignedToId: string;
 }
 
-export const AssignedToInput: React.FC<AssignedToInputProps> = ({
+export const EditStoryAssignToInput: React.FC<EditStoryAssignToInputProps> = ({
   updatedStory,
   setUpdatedStory,
   assignedToId,

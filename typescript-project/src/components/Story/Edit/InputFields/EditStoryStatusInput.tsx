@@ -4,13 +4,13 @@ import { formStyles } from '../../../../styles/formStyles';
 import { State } from '../../../../types/state';
 import { StoryModel } from '../../../../types/story';
 
-interface StatusInputProps {
+interface EditStoryStatusInputProps {
   updatedStory: StoryModel;
   setUpdatedStory: (value: StoryModel) => void;
   state: State;
 }
 
-export const StatusInput: React.FC<StatusInputProps> = ({
+export const EditStoryStatusInput: React.FC<EditStoryStatusInputProps> = ({
   updatedStory,
   setUpdatedStory,
   state,

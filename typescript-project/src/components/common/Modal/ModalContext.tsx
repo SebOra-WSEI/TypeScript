@@ -6,7 +6,7 @@ import {
   Modal,
 } from '@mui/material';
 import React, { PropsWithChildren } from 'react';
-import { formStyles } from '../../../styles/formStyles';
+import { modalStyles } from '../../../styles/modalStyles';
 
 type ModalType = 'create' | 'update';
 
@@ -23,25 +23,35 @@ export const ModalContent: React.FC<ModalContentProps> = ({
   handleOnClose,
   onSubmit,
   type,
-}) => {
-  return (
-    <Modal open={isOpen} onClose={handleOnClose}>
-      <Box sx={formStyles.box} component='form' onSubmit={onSubmit}>
-        <DialogContent>{children}</DialogContent>
-        <DialogActions>
-          <Button
-            onClick={handleOnClose}
-            variant='contained'
-            color='error'
-            style={formStyles.button}
-          >
-            Close
-          </Button>
-          <Button variant='outlined' type='submit' style={formStyles.button}>
-            {type[0].toUpperCase() + type.slice(1)}
-          </Button>
-        </DialogActions>
-      </Box>
-    </Modal>
-  );
-};
+}) => (
+  <Modal open={isOpen} onClose={handleOnClose}>
+    <Box sx={styles.box} component='form' onSubmit={onSubmit}>
+      <DialogContent>{children}</DialogContent>
+      <DialogActions>
+        <Button
+          onClick={handleOnClose}
+          variant='contained'
+          color='error'
+          style={modalStyles.button}
+        >
+          Close
+        </Button>
+        <Button variant='outlined' type='submit' style={modalStyles.button}>
+          {type[0].toUpperCase() + type.slice(1)}
+        </Button>
+      </DialogActions>
+    </Box>
+  </Modal>
+);
+
+const styles = {
+  box: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    bgcolor: 'background.paper',
+    padding: '2rem',
+    borderRadius: '1.5rem',
+  },
+}
