@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { StatusCode } from '../../types/statusCode';
 import { FetchedData } from '../../types/fetchedData';
-import { EMPTY_STORY } from './emptyStory';
+import { EMPTY_STORY } from './story';
 import { Story } from '../../controllers/story';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
 

@@ -5,8 +5,8 @@ import { Loader } from '../../common/Loader';
 import { StoriesList } from './List/StoriesList';
 import { useGetStoriesByProjectId } from '../../../api/story/useGetStoriesByProjectId';
 import { Navbar } from '../../Navbar/Navbar';
-import { EditProjectFormModal } from '../../Project/Edit/Modal/EditProjectFormModal';
-import { CreateStoryFormModal } from '../Create/Modal/CreateStoryFormModal';
+import { EditProjectModal } from '../../Project/Edit/EditProjectModal';
+import { CreateStoryModal } from '../Create/CreateStoryModal';
 import { SnackbarAlert } from '../../Snackbar/SnackbarAlert';
 import { StoriesNavbarMenuItems } from '../../Navbar/StoriesNavbarMenuItems';
 
@@ -61,12 +61,12 @@ export const StoriesView: React.FC = () => {
         stories={stories}
         handleCreateStoryOnOpen={handleCreateStoryOnOpen}
       />
-      <EditProjectFormModal
+      <EditProjectModal
         isOpen={isEditProjectModalOpen}
         onClose={handleEditProjectOnClose}
         project={project}
       />
-      <CreateStoryFormModal
+      <CreateStoryModal
         isOpen={isCreateStoryModalOpen}
         onClose={handleCreateStoryOnClose}
       />

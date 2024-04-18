@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Story } from '../../controllers/story';
 import { FetchedData } from '../../types/fetchedData';
 import { UpdatedStoryFormBody } from '../../types/story';
-import { EMPTY_STORY } from './emptyStory';
+import { EMPTY_STORY } from './story';
 import { StatusCode } from '../../types/statusCode';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
 

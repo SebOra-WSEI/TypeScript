@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
-import { EMPTY_STORY } from './emptyStory';
+import { EMPTY_STORY } from './story';
 import { StoryModel } from '../../types/story';
 import { EMPTY_USER } from '../user/emptyUser';
 
