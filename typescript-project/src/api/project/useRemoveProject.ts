@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { EMPTY_PROJECT } from './emptyProject';
+import { EMPTY_PROJECT } from './project';
 import { StatusCode } from '../../types/statusCode';
 import { FetchedData } from '../../types/fetchedData';
 import { Project } from '../../controllers/project';

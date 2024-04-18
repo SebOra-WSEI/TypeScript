@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { useGetAllProjects } from '../../../api/project/useGetAllProjects';
 import { Loader } from '../../common/Loader';
 import { ProjectsList } from './List/ProjectsList';
-import { CreateProjectFormModal } from '../Create/Modal/CreateProjectFormModal';
+import { CreateProjectModal } from '../Create/CreateProjectModal';
 import { SnackbarAlert } from '../../Snackbar/SnackbarAlert';
+import { Box } from '@mui/material';
+import { projectPageStyles } from '../../../styles/projectPageStyles';
 
 export const ProjectsListView: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -23,8 +25,10 @@ export const ProjectsListView: React.FC = () => {
 
   return (
     <>
-      <ProjectsList projects={data} handleOnOpen={handleOnOpen} />
-      <CreateProjectFormModal isOpen={isModalOpen} onClose={handleOnClose} />
+      <Box sx={projectPageStyles.wrapper}>
+        <ProjectsList projects={data} handleOnOpen={handleOnOpen} />
+      </Box>
+      <CreateProjectModal isOpen={isModalOpen} onClose={handleOnClose} />
       <SnackbarAlert />
     </>
   );

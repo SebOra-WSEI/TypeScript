@@ -1,10 +1,11 @@
 import {
   AppBar,
   Avatar,
-  Breadcrumbs,
+  Divider,
   IconButton,
-  Link,
+  ListItemIcon,
   Menu,
+  MenuItem,
   Toolbar,
   Typography,
 } from '@mui/material';
@@ -12,48 +13,41 @@ import React, { PropsWithChildren, useState } from 'react';
 import { ProjectModel } from '../../types/project';
 import { StoryModel } from '../../types/story';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { ContentType } from '../../types/contentType';
-import { routeBuilder } from '../../routes/routes';
-import { useParams } from 'react-router';
 import { TaskModel } from '../../types/task';
+import { NavbarBreadcrumbs } from './Breadcrumbs/NavbarBreadcrumbs';
+import { useHistory } from 'react-router';
+import { routes } from '../../routes/routes';
+import { SELECTED_PROJECT_ID } from '../../utils/localStorage';
+import ReplyAllIcon from '@mui/icons-material/ReplyAll';
 
 interface NavbarProps extends PropsWithChildren {
   data: ProjectModel | StoryModel | TaskModel;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
-  const { projectId, storyId } = useParams<{
-    projectId: string;
-    storyId: string;
-  }>();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const history = useHistory();
+
   const open = Boolean(anchorEl);
 
   const { name, description, type } = data ?? {};
 
   const handleIconClick = (event: React.MouseEvent<HTMLButtonElement>) =>
     setAnchorEl(event.currentTarget);
+
   const handleIconClose = (): void => setAnchorEl(null);
-  console.log(type);
+
+  const handleChangeProject = (): void => {
+    history.push(routes.projects);
+    window.localStorage.removeItem(SELECTED_PROJECT_ID);
+  };
+
   return (
     <>
       <AppBar>
         <Toolbar>
-          <Breadcrumbs sx={{ flexGrow: 1, color: '#fff' }}>
-            <Breadcrumb link={routeBuilder.projects} text='Projects' />
-            {type !== ContentType.Project && (
-              <Breadcrumb
-                link={routeBuilder.stories(projectId)}
-                text='Stories'
-              />
-            )}
-            {type === ContentType.Task && (
-              <Breadcrumb
-                link={routeBuilder.tasks(projectId, storyId)}
-                text='Tasks'
-              />
-            )}
-          </Breadcrumbs>
+          <NavbarBreadcrumbs type={type} />
           <Typography variant='h6' sx={{ flexGrow: 1 }}>
             {name}
           </Typography>
@@ -67,18 +61,16 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
           </IconButton>
           <Menu anchorEl={anchorEl} open={open} onClose={handleIconClose}>
             {children}
+            <Divider />
+            <MenuItem onClick={handleChangeProject}>
+              <ListItemIcon>
+                <ReplyAllIcon fontSize='small' />
+              </ListItemIcon>
+              Change project
+            </MenuItem>
           </Menu>
         </Toolbar>
       </AppBar>
     </>
   );
 };
-
-const Breadcrumb: React.FC<{
-  link: string;
-  text: string;
-}> = ({ link, text }) => (
-  <Link href={link} fontSize='small' sx={{ color: '#fff' }}>
-    {text}
-  </Link>
-);

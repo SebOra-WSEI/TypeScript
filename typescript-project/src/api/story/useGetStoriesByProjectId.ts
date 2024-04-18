@@ -1,19 +1,25 @@
 import { useEffect, useState } from 'react';
 import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
-import { EMPTY_STORY } from './emptyStory';
+import { EMPTY_STORY } from './story';
 import { StoryModel } from '../../types/story';
+import { EMPTY_USER } from '../user/emptyUser';
 
 export const useGetStoriesByProjectId = (
-  id: string
+  projectId: string
 ): FetchedData<Array<StoryModel>> => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
-  const [storages, setStorages] = useState<Array<StoryModel>>();
+  const [stories, setStories] = useState<Array<StoryModel>>();
 
   useEffect(() => {
-    const { errorMessage, status, response } =
-      EMPTY_STORY.getAllByProjectId(id);
+    const { status, errorMessage, response } = EMPTY_STORY.getAll();
+
+    const filteredStories = response?.filter((s) => s.projectId === projectId);
+    const extendedStories = filteredStories?.map((story) => ({
+      ...story,
+      owner: EMPTY_USER.getById(story.ownerId).response,
+    }));
 
     if (!!errorMessage) {
       setError(errorMessage);
@@ -24,13 +30,13 @@ export const useGetStoriesByProjectId = (
       setTimeout(() => {
         setIsLoading(false);
       }, 700);
-      setStorages(response);
+      setStories(extendedStories);
     }
   }, []);
 
   return {
     loading: isLoading,
     error,
-    data: storages,
+    data: stories,
   };
 };

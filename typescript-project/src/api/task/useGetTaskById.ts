@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
 import { TaskModel } from '../../types/task';
-import { EMPTY_TASK } from './emptyTask';
+import { EMPTY_TASK } from './task';
 
 export const useGetTaskById = (id: string): FetchedData<TaskModel> => {
   const [isLoading, setIsLoading] = useState<boolean>(true);

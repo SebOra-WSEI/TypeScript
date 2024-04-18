@@ -6,10 +6,10 @@ import {
   Select,
   TextField,
 } from '@mui/material';
-import { formStyles } from '../../../../styles/formStyles';
-import { Priority } from '../../../../types/priority';
-import { StoryFormBody } from '../../../../types/story';
-import { priorityIcons } from '../../../../utils/priorityIcons';
+import { formStyles } from '../../../styles/formStyles';
+import { Priority } from '../../../types/priority';
+import { StoryFormBody } from '../../../types/story';
+import { priorityIcons } from '../../../utils/priorityIcons';
 
 interface CreateStoryFormProps {
   story: StoryFormBody;

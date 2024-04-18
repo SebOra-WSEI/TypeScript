@@ -3,7 +3,7 @@ import { StatusCode } from '../../types/statusCode';
 import { FetchedData } from '../../types/fetchedData';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
 import { Task } from '../../controllers/task';
-import { EMPTY_TASK } from './emptyTask';
+import { EMPTY_TASK } from './task';
 
 type UseRemoveTaskResult = FetchedData<Task> & {
   remove: (id: string) => void;

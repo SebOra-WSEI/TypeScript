@@ -10,8 +10,9 @@ export interface TaskModel {
   storyId: string;
   state: State;
   createdDate: Date;
-  startDate: Date;
-  endDate: Date;
+  expectedEndTime: Date;
+  startDate?: Date;
+  endDate?: Date;
   storyPoint: number;
   assignedToId: string;
   type: ContentType;
@@ -24,7 +25,9 @@ export type TaskFormBody = Pick<
   | 'priority'
   | 'state'
   | 'createdDate'
-  | 'endDate'
   | 'storyPoint'
   | 'assignedToId'
+  | 'expectedEndTime'
+  | 'endDate'
+  | 'startDate'
 >;

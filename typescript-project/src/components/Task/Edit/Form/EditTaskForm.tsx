@@ -1,25 +1,46 @@
 import React from 'react';
-import { FormControl, Grid, MenuItem, Select, TextField } from '@mui/material';
+import {
+  FormControl,
+  Grid,
+  MenuItem,
+  Select,
+  TextField,
+  Typography
+} from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
 import { Priority } from '../../../../types/priority';
-import { StoryModel } from '../../../../types/story';
 import { State } from '../../../../types/state';
 import { useGetAllUsers } from '../../../../api/user/useGetAllUsers';
 import { priorityIcons } from '../../../../utils/priorityIcons';
+import { TaskModel } from '../../../../types/task';
+import { UserRole } from '../../../../types/user';
+import { storyPoints } from '../../../../utils/consts';
+import { cardStyles } from '../../../../styles/card';
 
-interface EditStoryFormProps {
-  updatedStory: StoryModel;
-  setUpdatedStory: (value: StoryModel) => void;
+interface EditTaskFormProps {
+  updatedTask: TaskModel;
+  setUpdatedTask: (value: TaskModel) => void;
 }
 
-export const EditStoryForm: React.FC<EditStoryFormProps> = ({
-  updatedStory,
-  setUpdatedStory,
+export const EditTaskForm: React.FC<EditTaskFormProps> = ({
+  updatedTask,
+  setUpdatedTask,
 }) => {
-  const { name, state, owner, priority, description, assignedToId } =
-    updatedStory;
+  const {
+    name,
+    state,
+    priority,
+    description,
+    assignedToId,
+    storyPoint,
+    createdDate,
+    expectedEndTime,
+    startDate,
+    endDate
+  } = updatedTask;
 
   const { data: allUsers } = useGetAllUsers();
+  const enabledUsers = allUsers?.filter((u) => u.role !== UserRole.Admin);
 
   return (
     <Grid container sx={formStyles.grid}>
@@ -30,19 +51,21 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
           type='text'
           value={name}
           onChange={(evt) =>
-            setUpdatedStory({
-              ...updatedStory,
+            setUpdatedTask({
+              ...updatedTask,
               name: evt.target.value,
             })
           }
         />
       </Grid>
       <Grid item xs={5} sx={formStyles.reporter}>
-        <Grid item xs={5}>
-          <strong>Reporter</strong>
+        <Grid item xs={4}>
+          <strong>Created at:</strong>
         </Grid>
-        <Grid item xs={3}>
-          {owner?.name} {owner?.surname}
+        <Grid item xs={4}>
+          <Typography variant='inherit' fontSize={15}>
+            {new Date(createdDate).toLocaleString()}
+          </Typography>
         </Grid>
       </Grid>
       <Grid item xs={8} sx={formStyles.description}>
@@ -53,8 +76,8 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
           fullWidth
           multiline
           onChange={(evt) =>
-            setUpdatedStory({
-              ...updatedStory,
+            setUpdatedTask({
+              ...updatedTask,
               description: evt.target.value,
             })
           }
@@ -70,9 +93,12 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
               <Select
                 value={state}
                 onChange={(evt) =>
-                  setUpdatedStory({
-                    ...updatedStory,
+                  setUpdatedTask({
+                    ...updatedTask,
                     state: evt.target.value as State,
+                    ...(evt.target.value === State.Todo && {
+                      assignedToId: 'Unassigned'
+                    })
                   })
                 }
               >
@@ -93,8 +119,8 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
                 displayEmpty
                 value={assignedToId || 'Unassigned'}
                 onChange={(evt) =>
-                  setUpdatedStory({
-                    ...updatedStory,
+                  setUpdatedTask({
+                    ...updatedTask,
                     state:
                       evt.target.value === 'Unassigned'
                         ? State.Todo
@@ -104,7 +130,7 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
                 }
               >
                 <MenuItem value='Unassigned'>Unassigned</MenuItem>
-                {allUsers?.map((user) => (
+                {enabledUsers?.map((user) => (
                   <MenuItem key={user.id} value={user.id}>
                     {user.name} {user.surname}
                   </MenuItem>
@@ -120,8 +146,8 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
               <Select
                 value={priority}
                 onChange={(evt) =>
-                  setUpdatedStory({
-                    ...updatedStory,
+                  setUpdatedTask({
+                    ...updatedTask,
                     priority: evt.target.value as Priority,
                   })
                 }
@@ -135,8 +161,60 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
               </Select>
             </FormControl>
           </Grid>
+          <Grid item xs={5} sx={formStyles.priority}>
+            <strong>Story Points</strong>
+          </Grid>
+          <Grid item xs={7} sx={formStyles.selector}>
+            <FormControl sx={formStyles.editFormControl} size='small'>
+              <Select
+                value={storyPoint}
+                onChange={(evt) =>
+                  setUpdatedTask({
+                    ...updatedTask,
+                    storyPoint: Number(evt.target.value),
+                  })
+                }
+              >
+                {storyPoints.map((point) => (
+                  <MenuItem key={point} value={point}>
+                    <span style={{ marginLeft: '0.5rem' }}>{point}</span>
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
         </Grid>
       </Grid>
-    </Grid>
+      <Grid item xs={8} sx={cardStyles.gridText}>
+        <Grid container>
+          <Grid item xs={3}>
+            <Typography variant='inherit' fontSize={15}>Start at:</Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography variant='inherit' fontSize={15}>{startDate ? new Date(startDate).toLocaleString() : '-'}</Typography>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item xs={8} sx={cardStyles.gridText}>
+        <Grid container>
+          <Grid item xs={3}>
+            <Typography variant='inherit' fontSize={15}>Expected end at:</Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography variant='inherit' fontSize={15}>{new Date(expectedEndTime).toLocaleDateString()}</Typography>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item xs={8} sx={cardStyles.gridText}>
+        <Grid container>
+          <Grid item xs={3}>
+            <Typography variant='inherit' fontSize={15}> End at:</Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography variant='inherit' fontSize={15}>{endDate ? new Date(endDate).toLocaleString() : '-'}</Typography>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid >
   );
 };

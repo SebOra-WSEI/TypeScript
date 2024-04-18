@@ -1,6 +1,7 @@
 import { Story } from '../../controllers/story';
 import { Priority } from '../../types/priority';
 import { State } from '../../types/state';
+import { CURRENT_USER_ID, getFromLocalStorage } from '../../utils/localStorage';
 
 export const EMPTY_STORY = new Story(
   'fake',
@@ -10,3 +11,11 @@ export const EMPTY_STORY = new Story(
   State.Todo,
   'fake'
 );
+
+export const defaultStory = {
+  name: '',
+  description: '',
+  priority: Priority.High,
+  projectId: '',
+  ownerId: getFromLocalStorage(CURRENT_USER_ID),
+};

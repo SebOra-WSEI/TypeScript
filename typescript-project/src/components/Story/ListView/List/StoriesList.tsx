@@ -5,6 +5,7 @@ import { storyStyle } from '../../../../styles/storyStyle';
 import { projectPageStyles } from '../../../../styles/projectPageStyles';
 import { StoryCard } from '../../Card/StoryCard';
 import { StoryModel } from '../../../../types/story';
+import { StoryGridItem } from './StoryGridItem';
 
 interface StoryListViewProps {
   stories: Array<StoryModel> | undefined;
@@ -14,43 +15,34 @@ interface StoryListViewProps {
 export const StoriesList: React.FC<StoryListViewProps> = ({
   stories,
   handleCreateStoryOnOpen,
-}) => (
-  <>
-    {!stories?.length ? (
+}) => {
+  if (!stories?.length) {
+    return (
       <Box sx={projectPageStyles.wrapper}>
         <p>There are no stories yet</p>
         <Button onClick={handleCreateStoryOnOpen}>Create new story</Button>
       </Box>
-    ) : (
-      <Box display='grid' sx={storyStyle.box}>
-        <Grid container>
-          {Object.values(State).map((state) => {
-            const filteredStorages = stories?.filter(
-              (story) => story.state === state
-            );
+    );
+  };
 
-            return (
-              <Grid item xs={4} key={state}>
-                <GridItem text={state} />
-                {filteredStorages?.map((storage) => (
-                  <StoryCard key={storage.id} story={storage} />
-                ))}
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Box>
-    )}
-  </>
-);
+  return (
+    <Box display='grid' sx={storyStyle.box}>
+      <Grid container>
+        {Object.values(State).map((state) => {
+          const filteredStories = stories?.filter(
+            (story) => story.state === state
+          );
 
-const GridItem: React.FC<{ text: string }> = ({ text }) => (
-  <p
-    style={{
-      textAlign: 'center',
-      fontWeight: 'bold',
-    }}
-  >
-    {text}
-  </p>
-);
+          return (
+            <Grid item xs={4} key={state}>
+              <StoryGridItem text={state} />
+              {filteredStories?.map((story) => (
+                <StoryCard key={story.id} story={story} />
+              ))}
+            </Grid>
+          );
+        })}
+      </Grid>
+    </Box>
+  );
+}

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { FetchedData } from '../../types/fetchedData';
 import { ProjectModel } from '../../types/project';
 import { StatusCode } from '../../types/statusCode';
-import { EMPTY_PROJECT } from './emptyProject';
+import { EMPTY_PROJECT } from './project';
 
 export const useGetProjectById = (id: string): FetchedData<ProjectModel> => {
   const [isLoading, setIsLoading] = useState<boolean>(true);

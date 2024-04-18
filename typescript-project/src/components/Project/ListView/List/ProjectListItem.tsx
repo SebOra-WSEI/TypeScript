@@ -11,6 +11,7 @@ import {
   setToLocalStorage,
 } from '../../../../utils/localStorage';
 import { useRemoveProject } from '../../../../api/project/useRemoveProject';
+import { ListItemHeader } from './ListItemHeader';
 
 interface ProjectItemProps {
   project: ProjectModel;
@@ -30,9 +31,9 @@ export const ProjectListItem: React.FC<ProjectItemProps> = ({ project }) => {
   return (
     <ListItem sx={projectPageStyles.listItem}>
       <ListItemText
-        primary={<Text field='Name' value={project.name} />}
+        primary={<ListItemHeader field='Name' value={project.name} />}
         secondary={
-          <Text field='Description' value={project?.description ?? ''} />
+          <ListItemHeader field='Description' value={project?.description ?? ''} />
         }
       />
       <Tooltip title='Select project' onClick={handleOnSelect}>
@@ -48,12 +49,3 @@ export const ProjectListItem: React.FC<ProjectItemProps> = ({ project }) => {
     </ListItem>
   );
 };
-
-const Text: React.FC<{
-  field: string;
-  value: string;
-}> = ({ field, value }) => (
-  <span>
-    <strong>{field}:</strong> {value}
-  </span>
-);

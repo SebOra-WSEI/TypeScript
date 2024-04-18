@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
 import { StoryModel } from '../../types/story';
-import { EMPTY_STORY } from './emptyStory';
+import { EMPTY_STORY } from './story';
 
 export const useGetStoryById = (id: string): FetchedData<StoryModel> => {
   const [isLoading, setIsLoading] = useState<boolean>(true);

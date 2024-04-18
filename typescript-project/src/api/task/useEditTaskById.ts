@@ -1,25 +1,25 @@
 import { useState } from 'react';
 import { Story } from '../../controllers/story';
 import { FetchedData } from '../../types/fetchedData';
-import { UpdatedStoryFormBody } from '../../types/story';
-import { EMPTY_STORY } from './story';
 import { StatusCode } from '../../types/statusCode';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
+import { EMPTY_TASK } from './task';
+import { TaskFormBody } from '../../types/task';
 
-type UseEditStoryByIdResult = FetchedData<Story> & {
-  update: (storyId: string) => void;
+type UseEditTaskByIdResult = FetchedData<Story> & {
+  update: (taskId: string) => void;
 };
 
-export const useEditStoryById = (
-  newStory: UpdatedStoryFormBody
-): UseEditStoryByIdResult => {
+export const useEditTaskById = (
+  newTask: TaskFormBody
+): UseEditTaskByIdResult => {
   const [error, setError] = useState<string>('');
   const [message, setMessage] = useState<string | undefined>(undefined);
 
-  const update = (storyId: string) => {
-    const { status, errorMessage, response, message } = EMPTY_STORY.update(
-      storyId,
-      newStory
+  const update = (taskId: string) => {
+    const { status, errorMessage, response, message } = EMPTY_TASK.update(
+      taskId,
+      newTask
     );
 
     if (!!errorMessage) {

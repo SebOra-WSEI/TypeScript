@@ -4,23 +4,19 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { TaskModel } from '../../../types/task';
 import { useRemoveTask } from '../../../api/task/useRemoveTask';
-import InfoIcon from '@mui/icons-material/Info';
-import { useHistory, useParams } from 'react-router';
-import { routeBuilder } from '../../../routes/routes';
+import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 
 interface TaskCardMenuProps {
   task: TaskModel;
+  handleEditTaskOnOpen: () => void;
 }
 
-export const TaskCardMenu: React.FC<TaskCardMenuProps> = ({ task }) => {
+export const TaskCardMenu: React.FC<TaskCardMenuProps> = ({
+  task,
+  handleEditTaskOnOpen
+}) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const history = useHistory();
-
-  const { projectId, storyId } = useParams<{
-    projectId: string;
-    storyId: string;
-  }>();
 
   const { remove } = useRemoveTask();
 
@@ -31,20 +27,17 @@ export const TaskCardMenu: React.FC<TaskCardMenuProps> = ({ task }) => {
 
   const handleRemove = (): void => remove(task.id);
 
-  const handleViewDetails = () =>
-    history.push(routeBuilder.taskDetails(projectId, storyId, task.id));
-
   return (
     <>
       <IconButton onClick={handleMenuClick}>
         <MoreVertIcon />
       </IconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={handleMenuClose}>
-        <MenuItem onClick={handleViewDetails}>
+        <MenuItem onClick={handleEditTaskOnOpen}>
           <ListItemIcon>
-            <InfoIcon fontSize='small' />
+            <ModeEditOutlineIcon fontSize='small' />
           </ListItemIcon>
-          View task details
+          Edit task details
         </MenuItem>
         <MenuItem onClick={handleRemove}>
           <ListItemIcon>
