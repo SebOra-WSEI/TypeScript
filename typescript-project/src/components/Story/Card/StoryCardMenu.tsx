@@ -10,7 +10,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { StoryModel } from '../../../types/story';
-import { useRemoveStory } from '../../../api/story/useRemoveStory';
+import { useRemoveStory } from '../../../queries/story/useRemoveStory';
 import ExploreIcon from '@mui/icons-material/Explore';
 import { useHistory, useParams } from 'react-router';
 import { routeBuilder } from '../../../routes/routes';
@@ -46,12 +46,6 @@ export const StoryCardMenu: React.FC<StoryCardMenuProps> = ({
         <MoreVertIcon />
       </IconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={handleMenuClose}>
-        <MenuItem onClick={handleExplore}>
-          <ListItemIcon>
-            <ExploreIcon fontSize='small' />
-          </ListItemIcon>
-          Explore story
-        </MenuItem>
         <MenuItem onClick={handleEditStoryOnOpen}>
           <ListItemIcon>
             <ModeEditOutlineIcon fontSize='small' />
@@ -59,11 +53,18 @@ export const StoryCardMenu: React.FC<StoryCardMenuProps> = ({
           Edit story details
         </MenuItem>
         <Divider />
+        <MenuItem onClick={handleExplore}>
+          <ListItemIcon>
+            <ExploreIcon fontSize='small' />
+          </ListItemIcon>
+          Explore story
+        </MenuItem>
+        <Divider />
         <MenuItem onClick={handleRemove}>
           <ListItemIcon>
             <DeleteIcon fontSize='small' />
           </ListItemIcon>
-          Delete story
+          Remove story
         </MenuItem>
       </Menu>
     </>

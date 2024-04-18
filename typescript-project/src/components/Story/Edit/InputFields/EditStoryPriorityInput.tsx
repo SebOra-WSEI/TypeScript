@@ -1,35 +1,37 @@
 import React from 'react';
 import { FormControl, MenuItem, Select } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
-import { State } from '../../../../types/state';
+import { Priority } from '../../../../types/priority';
 import { StoryModel } from '../../../../types/story';
+import { PRIORITY_ICONS } from '../../../../utils/priorityIcons';
 
-interface StatusInputProps {
+interface EditStoryPriorityInputProps {
   updatedStory: StoryModel;
   setUpdatedStory: (value: StoryModel) => void;
-  state: State
+  priority: Priority;
 }
 
-export const StatusInput: React.FC<StatusInputProps> = ({
+export const EditStoryPriorityInput: React.FC<EditStoryPriorityInputProps> = ({
   updatedStory,
   setUpdatedStory,
-  state
+  priority,
 }) => (
   <FormControl sx={formStyles.editFormControl} size='small'>
     <Select
-      value={state}
+      value={priority}
       onChange={(evt) =>
         setUpdatedStory({
           ...updatedStory,
-          state: evt.target.value as State,
+          priority: evt.target.value as Priority,
         })
       }
     >
-      {Object.values(State).map((s) => (
-        <MenuItem key={s} value={s}>
-          {s}
+      {Object.values(Priority).map((p) => (
+        <MenuItem key={p} value={p}>
+          <span>{PRIORITY_ICONS[p]}</span>
+          <span style={formStyles.menuItem}>{p}</span>
         </MenuItem>
       ))}
     </Select>
   </FormControl>
-)
+);

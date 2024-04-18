@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
-import { useGetProjectById } from '../../../api/project/useGetProjectById';
+import { useGetProjectById } from '../../../queries/project/useGetProjectById';
 import { Loader } from '../../common/Loader';
 import { StoriesList } from './List/StoriesList';
-import { useGetStoriesByProjectId } from '../../../api/story/useGetStoriesByProjectId';
+import { useGetStoriesByProjectId } from '../../../queries/story/useGetStoriesByProjectId';
 import { Navbar } from '../../Navbar/Navbar';
 import { EditProjectModal } from '../../Project/Edit/EditProjectModal';
 import { CreateStoryModal } from '../Create/CreateStoryModal';
-import { SnackbarAlert } from '../../Snackbar/SnackbarAlert';
 import { StoriesNavbarMenuItems } from '../../Navbar/StoriesNavbarMenuItems';
 
 export const StoriesView: React.FC = () => {
@@ -46,8 +45,7 @@ export const StoriesView: React.FC = () => {
   const handleEditProjectOnClose = (): void => setIsEditProjectModalOpen(false);
 
   const handleCreateStoryOnOpen = (): void => setIsCreateStoryModalOpen(true);
-  const handleCreateStoryOnClose = (): void =>
-    setIsCreateStoryModalOpen(false);
+  const handleCreateStoryOnClose = (): void => setIsCreateStoryModalOpen(false);
 
   return (
     <>
@@ -70,7 +68,6 @@ export const StoriesView: React.FC = () => {
         isOpen={isCreateStoryModalOpen}
         onClose={handleCreateStoryOnClose}
       />
-      <SnackbarAlert />
     </>
   );
 };

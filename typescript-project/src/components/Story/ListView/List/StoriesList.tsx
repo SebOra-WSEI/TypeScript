@@ -1,11 +1,10 @@
 import { Box, Button, Grid } from '@mui/material';
 import React from 'react';
 import { State } from '../../../../types/state';
-import { storyStyle } from '../../../../styles/storyStyle';
-import { projectPageStyles } from '../../../../styles/projectPageStyles';
 import { StoryCard } from '../../Card/StoryCard';
 import { StoryModel } from '../../../../types/story';
-import { StoryGridItem } from './StoryGridItem';
+import { StatesListItem } from '../../../common/StatesList/StatesListItem';
+import { listStyles } from '../../../../styles/listStyles';
 
 interface StoryListViewProps {
   stories: Array<StoryModel> | undefined;
@@ -18,15 +17,15 @@ export const StoriesList: React.FC<StoryListViewProps> = ({
 }) => {
   if (!stories?.length) {
     return (
-      <Box sx={projectPageStyles.wrapper}>
+      <Box sx={listStyles.noItemsWrapper}>
         <p>There are no stories yet</p>
         <Button onClick={handleCreateStoryOnOpen}>Create new story</Button>
       </Box>
     );
-  };
+  }
 
   return (
-    <Box display='grid' sx={storyStyle.box}>
+    <Box display='grid' sx={listStyles.listItemsWrapper}>
       <Grid container>
         {Object.values(State).map((state) => {
           const filteredStories = stories?.filter(
@@ -35,7 +34,7 @@ export const StoriesList: React.FC<StoryListViewProps> = ({
 
           return (
             <Grid item xs={4} key={state}>
-              <StoryGridItem text={state} />
+              <StatesListItem text={state} />
               {filteredStories?.map((story) => (
                 <StoryCard key={story.id} story={story} />
               ))}
@@ -45,4 +44,4 @@ export const StoriesList: React.FC<StoryListViewProps> = ({
       </Grid>
     </Box>
   );
-}
+};

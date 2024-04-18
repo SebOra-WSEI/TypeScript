@@ -1,6 +1,5 @@
 import { Alert, IconButton, Snackbar } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { snackbarStyles } from '../../styles/snackbarStyles';
 import { useSnackbarContextProvider } from './SnackbarContext';
 
 export const SnackbarAlert: React.FC = () => {
@@ -15,7 +14,7 @@ export const SnackbarAlert: React.FC = () => {
     >
       <Alert
         severity={severity}
-        style={snackbarStyles}
+        style={styles}
         action={
           <IconButton
             color='inherit'
@@ -32,4 +31,8 @@ export const SnackbarAlert: React.FC = () => {
       </Alert>
     </Snackbar>
   );
+};
+
+const styles = {
+  borderRadius: '1.3rem',
 };

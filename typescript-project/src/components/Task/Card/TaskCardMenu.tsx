@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { TaskModel } from '../../../types/task';
-import { useRemoveTask } from '../../../api/task/useRemoveTask';
+import { useRemoveTask } from '../../../queries/task/useRemoveTask';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 
 interface TaskCardMenuProps {
@@ -13,7 +13,7 @@ interface TaskCardMenuProps {
 
 export const TaskCardMenu: React.FC<TaskCardMenuProps> = ({
   task,
-  handleEditTaskOnOpen
+  handleEditTaskOnOpen,
 }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -24,7 +24,6 @@ export const TaskCardMenu: React.FC<TaskCardMenuProps> = ({
     setAnchorEl(event.currentTarget);
 
   const handleMenuClose = (): void => setAnchorEl(null);
-
   const handleRemove = (): void => remove(task.id);
 
   return (
@@ -43,7 +42,7 @@ export const TaskCardMenu: React.FC<TaskCardMenuProps> = ({
           <ListItemIcon>
             <DeleteIcon fontSize='small' />
           </ListItemIcon>
-          Delete task
+          Remove task
         </MenuItem>
       </Menu>
     </>

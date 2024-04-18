@@ -1,22 +1,12 @@
-import {
-  Avatar,
-  Card,
-  CardContent,
-  CardHeader,
-  Grid,
-  ListItemIcon,
-  Typography,
-} from '@mui/material';
+import { Card, CardContent, CardHeader, Grid, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { storyStyle } from '../../../styles/storyStyle';
 import { StoryCardMenu } from './StoryCardMenu';
 import { StoryModel } from '../../../types/story';
 import { EditStoryModal } from '../Edit/EditStoryModal';
-import { priorityIcons } from '../../../utils/priorityIcons';
 import { cardStyles } from '../../../styles/card';
-import { StoryCardHeader } from './StoryCardHeader';
-import { Priority } from '../../../types/priority';
-import { UserModel } from '../../../types/user';
+import { PriorityItem } from './CardItems/PriorityItem';
+import { CreatedByItem } from './CardItems/CreatedByItem';
+import { ItemTaskHeader } from '../../common/ItemCardHeader/ItemCardHeader';
 
 interface StoryCardProps {
   story: StoryModel;
@@ -35,8 +25,8 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
     <>
       <Card sx={cardStyles.wrapper}>
         <CardHeader
-          title={<StoryCardHeader text={name} isTitle />}
-          subheader={<StoryCardHeader text={description ?? ''} />}
+          title={<ItemTaskHeader text={name} isTitle />}
+          subheader={<ItemTaskHeader text={description ?? ''} />}
           action={
             <StoryCardMenu
               story={story}
@@ -56,8 +46,8 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
                 Created at: {new Date(date).toLocaleString()}
               </Typography>
             </Grid>
-            <Grid item xs={6} sx={storyStyle.icon}>
-              <CreatedBy owner={owner} />
+            <Grid item xs={6} sx={styles}>
+              <CreatedByItem owner={owner} />
             </Grid>
           </Grid>
         </CardContent>
@@ -71,24 +61,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
   );
 };
 
-const PriorityItem: React.FC<{ priority: Priority }> = ({ priority }) => (
-  <ListItemIcon>
-    {priorityIcons[priority]}
-    <Typography
-      variant='inherit'
-      color='text.secondary'
-      fontSize='small'
-    >
-      {priority}
-    </Typography>
-  </ListItemIcon>
-);
-
-const CreatedBy: React.FC<{ owner?: UserModel }> = ({ owner }) => (
-  <Avatar sx={storyStyle.avatar}>
-    <Typography fontSize='small'>
-      {owner?.name?.[0]}
-      {owner?.surname?.[0]}
-    </Typography>
-  </Avatar>
-);
+const styles = {
+  display: 'flex',
+  justifyContent: 'end',
+};

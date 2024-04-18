@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { ContentType } from '../types/contentType';
+import { DataType } from '../types/dataType';
 import { Api } from './api';
 import { UserModel, UserRole } from '../types/user';
 
@@ -12,7 +12,7 @@ export class User extends Api<UserModel> {
       name,
       surname,
       role,
-      type: ContentType.User,
+      type: DataType.User,
     };
 
     super(user, { idKey: 'id', nameKey: 'name' });

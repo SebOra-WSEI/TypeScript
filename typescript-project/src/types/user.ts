@@ -1,11 +1,11 @@
-import { ContentType } from './contentType';
+import { DataType } from './dataType';
 
 export interface UserModel {
   id: string;
   name: string;
   surname: string;
   role: UserRole;
-  type: ContentType;
+  type: DataType;
 }
 
 export enum UserRole {

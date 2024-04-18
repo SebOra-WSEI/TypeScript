@@ -5,7 +5,7 @@ import { routes } from '../../routes/routes';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useRemoveProject } from '../../api/project/useRemoveProject';
+import { useRemoveProject } from '../../queries/project/useRemoveProject';
 
 interface StoriesNavbarMenuItemsProps {
   handleEditProjectOnOpen: () => void;
@@ -38,7 +38,7 @@ export const StoriesNavbarMenuItems: React.FC<StoriesNavbarMenuItemsProps> = ({
         <ListItemIcon>
           <DeleteIcon fontSize='small' />
         </ListItemIcon>
-        Delete project
+        Remove project
       </MenuItem>
       <Divider />
       <MenuItem onClick={handleCreateStoryOnOpen}>

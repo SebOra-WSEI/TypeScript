@@ -16,6 +16,5 @@ export const defaultStory = {
   name: '',
   description: '',
   priority: Priority.High,
-  projectId: '',
   ownerId: getFromLocalStorage(CURRENT_USER_ID),
 };

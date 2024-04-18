@@ -1,4 +1,4 @@
-import { ContentType } from './contentType';
+import { DataType } from './dataType';
 import { Priority } from './priority';
 import { State } from './state';
 
@@ -15,19 +15,7 @@ export interface TaskModel {
   endDate?: Date;
   storyPoint: number;
   assignedToId: string;
-  type: ContentType;
+  type: DataType;
 }
 
-export type TaskFormBody = Pick<
-  TaskModel,
-  | 'name'
-  | 'description'
-  | 'priority'
-  | 'state'
-  | 'createdDate'
-  | 'storyPoint'
-  | 'assignedToId'
-  | 'expectedEndTime'
-  | 'endDate'
-  | 'startDate'
->;
+export type TaskFormBody = Omit<TaskModel, 'id' | 'type'>;

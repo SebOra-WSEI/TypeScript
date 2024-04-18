@@ -3,18 +3,18 @@ import { FormControl, MenuItem, Select } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
 import { StoryModel } from '../../../../types/story';
 import { State } from '../../../../types/state';
-import { useGetAllUsers } from '../../../../api/user/useGetAllUsers';
+import { useGetAllUsers } from '../../../../queries/user/useGetAllUsers';
 
-interface AssignedToInputProps {
+interface EditStoryAssignToInputProps {
   updatedStory: StoryModel;
   setUpdatedStory: (value: StoryModel) => void;
-  assignedToId: string
+  assignedToId: string;
 }
 
-export const AssignedToInput: React.FC<AssignedToInputProps> = ({
+export const EditStoryAssignToInput: React.FC<EditStoryAssignToInputProps> = ({
   updatedStory,
   setUpdatedStory,
-  assignedToId
+  assignedToId,
 }) => {
   const { data: allUsers } = useGetAllUsers();
 
@@ -26,10 +26,7 @@ export const AssignedToInput: React.FC<AssignedToInputProps> = ({
         onChange={(evt) =>
           setUpdatedStory({
             ...updatedStory,
-            state:
-              evt.target.value === 'Unassigned'
-                ? State.Todo
-                : State.Doing,
+            state: evt.target.value === 'Unassigned' ? State.Todo : State.Doing,
             assignedToId: evt.target.value,
           })
         }
@@ -42,5 +39,5 @@ export const AssignedToInput: React.FC<AssignedToInputProps> = ({
         ))}
       </Select>
     </FormControl>
-  )
-}
+  );
+};

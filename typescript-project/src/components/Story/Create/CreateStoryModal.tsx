@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { StoryFormBody } from '../../../types/story';
 import { CreateStoryForm } from './CreateStoryForm';
 import { useParams } from 'react-router';
-import { useCreateStory } from '../../../api/story/useCreateStory';
+import { useCreateStory } from '../../../queries/story/useCreateStory';
 import { ModalContent } from '../../common/Modal/ModalContext';
-import { defaultStory } from '../../../api/story/story';
+import { defaultStory } from '../../../queries/story/story';
 
 interface CreateStoryModalProps {
   isOpen: boolean;
@@ -18,7 +18,7 @@ export const CreateStoryModal: React.FC<CreateStoryModalProps> = ({
   const { projectId } = useParams<{ projectId: string }>();
   const [story, setStory] = useState<StoryFormBody>({
     ...defaultStory,
-    projectId
+    projectId,
   });
 
   const { create } = useCreateStory(story);
@@ -31,7 +31,7 @@ export const CreateStoryModal: React.FC<CreateStoryModalProps> = ({
   const handleOnClose = (): void => {
     setStory({
       ...defaultStory,
-      projectId
+      projectId,
     });
     onClose();
   };

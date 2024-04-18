@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Priority } from '../types/priority';
 import { State } from '../types/state';
 import { Api } from './api';
-import { ContentType } from '../types/contentType';
+import { DataType } from '../types/dataType';
 import { TaskModel } from '../types/task';
 
 export class Task extends Api<TaskModel> {
@@ -34,7 +34,7 @@ export class Task extends Api<TaskModel> {
       expectedEndTime,
       storyPoint,
       assignedToId,
-      type: ContentType.Task,
+      type: DataType.Task,
     };
 
     super(task, {
