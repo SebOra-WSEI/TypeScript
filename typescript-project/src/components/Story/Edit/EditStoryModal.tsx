@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StoryModel } from '../../../types/story';
 import { EditStoryForm } from './EditStoryForm';
 import { useEditStoryById } from '../../../queries/story/useEditStoryById';
-import { ModalContent } from '../../common/Modal/ModalContext';
+import { ModalContent } from '../../common/Modal/ModalContent';
 
 interface EditStoryModalProps {
   story: StoryModel;

@@ -3,7 +3,7 @@ import { CreateTaskForm } from './CreateTaskForm';
 import { TaskFormBody } from '../../../types/task';
 import { useCreateTask } from '../../../queries/task/useCreateTask';
 import { defaultTask } from '../../../queries/task/task';
-import { ModalContent } from '../../common/Modal/ModalContext';
+import { ModalContent } from '../../common/Modal/ModalContent';
 
 interface CreateTaskFormModalProps {
   isOpen: boolean;

@@ -4,11 +4,11 @@ import { ProjectModel } from '../../types/project';
 import { StatusCode } from '../../types/statusCode';
 import { EMPTY_PROJECT } from './project';
 
-export const useGetAllProjects = (): FetchedData<ProjectModel[]> => {
+export const useGetAllProjects = (): FetchedData<Array<ProjectModel>> => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
   const [message, setMessage] = useState<string | undefined>(undefined);
-  const [projects, setProjects] = useState<ProjectModel[]>([]);
+  const [projects, setProjects] = useState<Array<ProjectModel>>([]);
 
   useEffect(() => {
     const { errorMessage, status, response, message } = EMPTY_PROJECT.getAll();

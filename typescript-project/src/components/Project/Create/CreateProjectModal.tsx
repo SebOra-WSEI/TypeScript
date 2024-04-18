@@ -3,7 +3,7 @@ import { ProjectFormBody } from '../../../types/project';
 import { useCreateProject } from '../../../queries/project/useCreateProject';
 import { CreateProjectForm } from './CreateProjectForm';
 import { defaultProject } from '../../../queries/project/project';
-import { ModalContent } from '../../common/Modal/ModalContext';
+import { ModalContent } from '../../common/Modal/ModalContent';
 
 interface CreateProjectModalProps {
   isOpen: boolean;
