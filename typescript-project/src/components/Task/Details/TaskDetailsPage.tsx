@@ -9,6 +9,7 @@ export const TaskDetailsPage: React.FC = () => {
   const { taskId } = useParams<{ taskId: string }>();
 
   const { loading, error, data } = useGetTaskById(taskId);
+  console.log(data)
 
   if (loading) {
     return <Loader />;
@@ -23,10 +24,8 @@ export const TaskDetailsPage: React.FC = () => {
   }
 
   return (
-    <>
-      <Navbar data={data}>
-        <TaskDetailsNavbarMenuItems />
-      </Navbar>
-    </>
+    <Navbar data={data}>
+      <TaskDetailsNavbarMenuItems />
+    </Navbar>
   );
 };

@@ -13,6 +13,7 @@ import { StoryCardMenu } from './StoryCardMenu';
 import { StoryModel } from '../../../types/story';
 import { EditStoryModal } from '../Edit/Modal/EditStoryModal';
 import { priorityIcons } from '../../../utils/priorityIcons';
+import { cardStyles } from '../../../styles/card';
 
 interface StoryCardProps {
   story: StoryModel;
@@ -29,7 +30,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
 
   return (
     <>
-      <Card sx={storyStyle.card}>
+      <Card sx={cardStyles.wrapper}>
         <CardHeader
           title={<Header text={name} isTitle />}
           subheader={<Header text={description ?? ''} />}
@@ -40,9 +41,9 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
             />
           }
         />
-        <CardContent sx={storyStyle.cardContent}>
+        <CardContent sx={cardStyles.cardContent}>
           <Grid container>
-            <Grid item sx={storyStyle.priority}>
+            <Grid item sx={cardStyles.priority}>
               <ListItemIcon>
                 {priorityIcons[priority]}
                 <Typography
@@ -56,7 +57,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
             </Grid>
           </Grid>
           <Grid container>
-            <Grid item xs={5} sx={storyStyle.gridText}>
+            <Grid item xs={5} sx={cardStyles.gridText}>
               <Typography variant='inherit' color='text.secondary'>
                 Created at: {new Date(date).toLocaleString()}
               </Typography>

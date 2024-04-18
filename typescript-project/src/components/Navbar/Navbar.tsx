@@ -34,7 +34,7 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
   const handleIconClick = (event: React.MouseEvent<HTMLButtonElement>) =>
     setAnchorEl(event.currentTarget);
   const handleIconClose = (): void => setAnchorEl(null);
-  console.log(type);
+
   return (
     <>
       <AppBar>
