@@ -1,6 +1,7 @@
 import { DataType } from './dataType';
 import { Priority } from './priority';
 import { State } from './state';
+import { UserModel } from './user';
 
 export interface StoryModel {
   id: string;
@@ -11,6 +12,7 @@ export interface StoryModel {
   date: Date;
   ownerId: string;
   state: State;
+  owner?: UserModel;
   assignedToId?: string;
   type: DataType;
 }

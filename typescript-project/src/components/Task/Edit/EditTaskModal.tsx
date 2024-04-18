@@ -16,7 +16,12 @@ export const EditTaskModal: React.FC<EditTaskModalProps> = ({
   onClose,
   task,
 }) => {
-  const [updatedTask, setUpdatedTask] = useState<TaskModel>(task);
+  const [updatedTask, setUpdatedTask] = useState<TaskModel>({
+    ...task,
+    ...(!task.assignedToId && {
+      assignedToId: 'Unassigned'
+    })
+  });
 
   useEffect(() => {
     setUpdatedTask(updateTaskDates(updatedTask));

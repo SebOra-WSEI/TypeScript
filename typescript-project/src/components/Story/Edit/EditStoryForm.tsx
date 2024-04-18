@@ -25,6 +25,7 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
           sx={formStyles.titleText}
           variant='standard'
           type='text'
+          autoFocus
           value={name}
           onChange={(evt) =>
             setUpdatedStory({

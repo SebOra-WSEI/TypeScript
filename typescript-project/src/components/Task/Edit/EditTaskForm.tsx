@@ -37,6 +37,7 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
           sx={formStyles.titleText}
           variant='standard'
           type='text'
+          autoFocus
           value={name}
           onChange={(evt) =>
             setUpdatedTask({
