@@ -25,15 +25,15 @@ export const StoriesList: React.FC<StoryListViewProps> = ({
       <Box display='grid' sx={storyStyle.box}>
         <Grid container>
           {Object.values(State).map((state) => {
-            const filteredStorages = stories?.filter(
+            const filteredStories = stories?.filter(
               (story) => story.state === state
             );
 
             return (
               <Grid item xs={4} key={state}>
                 <GridItem text={state} />
-                {filteredStorages?.map((storage) => (
-                  <StoryCard key={storage.id} story={storage} />
+                {filteredStories?.map((story) => (
+                  <StoryCard key={story.id} story={story} />
                 ))}
               </Grid>
             );
