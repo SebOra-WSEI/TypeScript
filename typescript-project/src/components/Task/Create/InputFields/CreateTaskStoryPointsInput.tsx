@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-} from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { STORY_POINTS } from '../../../../utils/consts';
 import { TaskFormBody } from '../../../../types/task';
 
@@ -13,10 +8,9 @@ interface CreateTaskStoryPointsInputProps {
   setTask: (value: TaskFormBody) => void;
 }
 
-export const CreateTaskStoryPointsInput: React.FC<CreateTaskStoryPointsInputProps> = ({
-  task,
-  setTask
-}) => (
+export const CreateTaskStoryPointsInput: React.FC<
+  CreateTaskStoryPointsInputProps
+> = ({ task, setTask }) => (
   <FormControl sx={styles.storyPointSelect} size='small'>
     <InputLabel>Story point</InputLabel>
     <Select
@@ -43,4 +37,4 @@ const styles = {
     marginTop: '1.5rem',
     width: '8rem',
   },
-}
+};

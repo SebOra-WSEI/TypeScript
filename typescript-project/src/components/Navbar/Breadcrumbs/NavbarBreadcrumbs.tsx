@@ -4,9 +4,7 @@ import { routeBuilder } from '../../../routes/routes';
 import { DataType } from '../../../types/dataType';
 import { useParams } from 'react-router';
 
-export const NavbarBreadcrumbs: React.FC<{ type: DataType }> = ({
-  type,
-}) => {
+export const NavbarBreadcrumbs: React.FC<{ type: DataType }> = ({ type }) => {
   const { projectId, storyId } = useParams<{
     projectId: string;
     storyId: string;
@@ -40,9 +38,9 @@ const Breadcrumb: React.FC<{
 const styles = {
   breadcrumbs: {
     flexGrow: 1,
-    color: '#fff'
+    color: '#fff',
   },
   color: {
-    color: '#fff'
-  }
-}
+    color: '#fff',
+  },
+};

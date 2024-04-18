@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-} from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
 import { Priority } from '../../../../types/priority';
 import { PRIORITY_ICONS } from '../../../../utils/priorityIcons';
@@ -15,10 +10,9 @@ interface CreateStoryPriorityInputProps {
   setStory: (value: StoryFormBody) => void;
 }
 
-export const CreateStoryPriorityInput: React.FC<CreateStoryPriorityInputProps> = ({
-  story,
-  setStory,
-}) => (
+export const CreateStoryPriorityInput: React.FC<
+  CreateStoryPriorityInputProps
+> = ({ story, setStory }) => (
   <FormControl sx={formStyles.prioritySelect} size='small'>
     <InputLabel>Priority</InputLabel>
     <Select
@@ -39,4 +33,4 @@ export const CreateStoryPriorityInput: React.FC<CreateStoryPriorityInputProps> =
       ))}
     </Select>
   </FormControl>
-)
+);

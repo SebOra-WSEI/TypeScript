@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  Grid,
-  Typography,
-} from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { cardStyles } from '../../../../styles/card';
 
 interface EditTaskDateFieldsProps {
@@ -14,7 +11,7 @@ interface EditTaskDateFieldsProps {
 export const EditTaskDateFields: React.FC<EditTaskDateFieldsProps> = ({
   expectedEndTime,
   endDate,
-  startDate
+  startDate,
 }) => (
   <>
     <Grid item xs={8} sx={cardStyles.gridText}>
@@ -61,4 +58,4 @@ export const EditTaskDateFields: React.FC<EditTaskDateFieldsProps> = ({
       </Grid>
     </Grid>
   </>
-)
+);

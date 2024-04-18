@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  FormControl,
-  MenuItem,
-  Select,
-} from '@mui/material';
+import { FormControl, MenuItem, Select } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
 import { TaskModel } from '../../../../types/task';
 import { STORY_POINTS } from '../../../../utils/consts';
@@ -13,10 +9,9 @@ interface EditTaskStoryPointInputProps {
   setUpdatedTask: (value: TaskModel) => void;
 }
 
-export const EditTaskStoryPointInput: React.FC<EditTaskStoryPointInputProps> = ({
-  updatedTask,
-  setUpdatedTask,
-}) => (
+export const EditTaskStoryPointInput: React.FC<
+  EditTaskStoryPointInputProps
+> = ({ updatedTask, setUpdatedTask }) => (
   <FormControl sx={formStyles.editFormControl} size='small'>
     <Select
       value={updatedTask.storyPoint}

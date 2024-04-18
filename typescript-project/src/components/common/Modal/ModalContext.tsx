@@ -55,5 +55,5 @@ const styles = {
   },
   button: {
     borderRadius: '0.5rem',
-  }
-}
+  },
+};

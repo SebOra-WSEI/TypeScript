@@ -17,11 +17,11 @@ export const StoryPointsItem: React.FC<{ storyPoint: number }> = ({
 
 const styles = {
   color: {
-    color: '#757575'
+    color: '#757575',
   },
   div: {
     display: 'inline-block',
-    marginLeft: '0.3rem'
+    marginLeft: '0.3rem',
   },
   avatar: {
     width: 15,
@@ -29,6 +29,6 @@ const styles = {
     bgcolor: deepPurple[500],
   },
   span: {
-    fontSize: 10
-  }
-}
+    fontSize: 10,
+  },
+};

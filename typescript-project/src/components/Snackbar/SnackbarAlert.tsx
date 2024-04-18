@@ -35,4 +35,4 @@ export const SnackbarAlert: React.FC = () => {
 
 const styles = {
   borderRadius: '1.3rem',
-}
+};

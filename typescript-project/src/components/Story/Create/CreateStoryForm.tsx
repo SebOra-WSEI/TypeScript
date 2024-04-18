@@ -47,10 +47,7 @@ export const CreateStoryForm: React.FC<CreateStoryFormProps> = ({
           })
         }
       />
-      <CreateStoryPriorityInput
-        story={story}
-        setStory={setStory}
-      />
+      <CreateStoryPriorityInput story={story} setStory={setStory} />
     </>
   );
 };

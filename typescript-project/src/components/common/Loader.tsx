@@ -12,4 +12,4 @@ const styles = {
   justifyContent: 'center',
   alignItems: 'center',
   height: '80vh',
-}
+};

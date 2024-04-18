@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  Grid,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Grid, TextField, Typography } from '@mui/material';
 import { formStyles } from '../../../styles/formStyles';
 import { TaskModel } from '../../../types/task';
 import { EditTaskStateInput } from './InputFields/EditTaskStateInput';

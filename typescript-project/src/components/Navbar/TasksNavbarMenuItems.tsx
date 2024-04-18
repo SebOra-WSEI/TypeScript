@@ -14,7 +14,7 @@ interface TasksNavbarMenuItemsProps {
 
 export const TasksNavbarMenuItems: React.FC<TasksNavbarMenuItemsProps> = ({
   handleCreateTaskOnOpen,
-  handleEditStoryOnOpen
+  handleEditStoryOnOpen,
 }) => {
   const { projectId, storyId } = useParams<{
     projectId: string;

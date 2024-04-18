@@ -64,4 +64,4 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
 const styles = {
   display: 'flex',
   justifyContent: 'end',
-}
+};

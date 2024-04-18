@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  FormControl,
-  MenuItem,
-  Select,
-} from '@mui/material';
+import { FormControl, MenuItem, Select } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
 import { State } from '../../../../types/state';
 import { TaskModel } from '../../../../types/task';
@@ -15,7 +11,7 @@ interface EditTaskStateInputProps {
 
 export const EditTaskStateInput: React.FC<EditTaskStateInputProps> = ({
   updatedTask,
-  setUpdatedTask
+  setUpdatedTask,
 }) => (
   <FormControl sx={formStyles.editFormControl} size='small'>
     <Select
@@ -37,4 +33,4 @@ export const EditTaskStateInput: React.FC<EditTaskStateInputProps> = ({
       ))}
     </Select>
   </FormControl>
-)
+);

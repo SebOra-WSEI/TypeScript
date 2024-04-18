@@ -52,14 +52,8 @@ export const CreateTaskForm: React.FC<CreateTaskFormProps> = ({
         }
       />
       <div style={styles.controlWrapper}>
-        <CreateTaskPriorityInput
-          task={task}
-          setTask={setTask}
-        />
-        <CreateTaskStoryPointsInput
-          task={task}
-          setTask={setTask}
-        />
+        <CreateTaskPriorityInput task={task} setTask={setTask} />
+        <CreateTaskStoryPointsInput task={task} setTask={setTask} />
       </div>
       <TextField
         label='Expected days'

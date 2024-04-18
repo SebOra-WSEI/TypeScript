@@ -81,6 +81,6 @@ const styles = {
   },
   settings: {
     background: 'inherit',
-    marginLeft: 'auto'
-  }
-}
+    marginLeft: 'auto',
+  },
+};

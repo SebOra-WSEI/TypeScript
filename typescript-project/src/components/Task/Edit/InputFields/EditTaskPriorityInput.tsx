@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  FormControl,
-  MenuItem,
-  Select,
-} from '@mui/material';
+import { FormControl, MenuItem, Select } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
 import { Priority } from '../../../../types/priority';
 import { PRIORITY_ICONS } from '../../../../utils/priorityIcons';
@@ -16,7 +12,7 @@ interface EditTaskPriorityInputProps {
 
 export const EditTaskPriorityInput: React.FC<EditTaskPriorityInputProps> = ({
   updatedTask,
-  setUpdatedTask
+  setUpdatedTask,
 }) => (
   <FormControl sx={formStyles.editFormControl} size='small'>
     <Select
@@ -35,5 +31,5 @@ export const EditTaskPriorityInput: React.FC<EditTaskPriorityInputProps> = ({
         </MenuItem>
       ))}
     </Select>
-  </FormControl >
+  </FormControl>
 );
