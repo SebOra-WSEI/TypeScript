@@ -1,7 +1,6 @@
-import { ContentType } from './contentType';
+import { DataType } from './dataType';
 import { Priority } from './priority';
 import { State } from './state';
-import { UserModel } from './user';
 
 export interface StoryModel {
   id: string;
@@ -12,17 +11,8 @@ export interface StoryModel {
   date: Date;
   ownerId: string;
   state: State;
-  owner?: UserModel;
   assignedToId?: string;
-  type: ContentType;
+  type: DataType;
 }
 
-export type StoryFormBody = Pick<
-  StoryModel,
-  'name' | 'description' | 'priority' | 'projectId' | 'ownerId'
->;
-
-export type UpdatedStoryFormBody = Pick<
-  StoryModel,
-  'name' | 'description' | 'priority' | 'state'
->;
+export type StoryFormBody = Omit<StoryModel, 'id' | 'date' | 'state' | 'type'>;

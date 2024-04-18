@@ -5,7 +5,7 @@ import {
   MenuItem,
   Select,
 } from '@mui/material';
-import { storyPoints } from '../../../../utils/consts';
+import { STORY_POINTS } from '../../../../utils/consts';
 import { TaskFormBody } from '../../../../types/task';
 
 interface CreateTaskStoryPointsInputProps {
@@ -29,7 +29,7 @@ export const CreateTaskStoryPointsInput: React.FC<CreateTaskStoryPointsInputProp
         })
       }
     >
-      {storyPoints.map((s) => (
+      {STORY_POINTS.map((s) => (
         <MenuItem key={s} value={s.toString()}>
           {s}
         </MenuItem>

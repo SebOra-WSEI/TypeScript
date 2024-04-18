@@ -1,10 +1,10 @@
 import { Breadcrumbs, Link } from '@mui/material';
 import React from 'react';
 import { routeBuilder } from '../../../routes/routes';
-import { ContentType } from '../../../types/contentType';
+import { DataType } from '../../../types/dataType';
 import { useParams } from 'react-router';
 
-export const NavbarBreadcrumbs: React.FC<{ type: ContentType }> = ({
+export const NavbarBreadcrumbs: React.FC<{ type: DataType }> = ({
   type,
 }) => {
   const { projectId, storyId } = useParams<{
@@ -15,10 +15,10 @@ export const NavbarBreadcrumbs: React.FC<{ type: ContentType }> = ({
   return (
     <Breadcrumbs sx={styles.breadcrumbs}>
       <Breadcrumb link={routeBuilder.projects} text='Projects' />
-      {type !== ContentType.Project && (
+      {type !== DataType.Project && (
         <Breadcrumb link={routeBuilder.stories(projectId)} text='Stories' />
       )}
-      {type === ContentType.Task && (
+      {type === DataType.Task && (
         <Breadcrumb
           link={routeBuilder.tasks(projectId, storyId)}
           text='Tasks'

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const StoryCardHeader: React.FC<{ text: string; isTitle?: boolean }> = ({
+export const ItemTaskHeader: React.FC<{ text: string; isTitle?: boolean }> = ({
   text,
   isTitle = false,
 }) => (

@@ -12,8 +12,8 @@ import { TaskModel } from '../../../types/task';
 import { TaskCardMenu } from './TaskCardMenu';
 import { cardStyles } from '../../../styles/card';
 import { EditTaskModal } from '../Edit/EditTaskModal';
-import { TaskCardHeader } from './CardItems/TaskCardHeader';
 import { StoryPointsItem } from './CardItems/StoryPointsItem';
+import { ItemTaskHeader } from '../../common/ItemCardHeader/ItemCardHeader';
 
 interface TaskCardProps {
   task: TaskModel;
@@ -39,8 +39,8 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
     <>
       <Card sx={cardStyles.wrapper}>
         <CardHeader
-          title={<TaskCardHeader text={name} isTitle />}
-          subheader={<TaskCardHeader text={description} />}
+          title={<ItemTaskHeader text={name} isTitle />}
+          subheader={<ItemTaskHeader text={description} />}
           action={
             <TaskCardMenu
               task={task}

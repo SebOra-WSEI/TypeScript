@@ -1,4 +1,4 @@
-import { ContentType } from '../types/contentType';
+import { DataType } from '../types/dataType';
 import { Response } from '../types/response';
 import { StatusCode } from '../types/statusCode';
 import {
@@ -8,7 +8,7 @@ import {
 } from '../utils/localStorage';
 
 type KeyOfType<T> = keyof T & string;
-type Object<T> = T & { type: ContentType };
+type Object<T> = T & { type: DataType };
 
 interface Parameters<T> {
   idKey: KeyOfType<T>;

@@ -4,9 +4,9 @@ import { StoryCardMenu } from './StoryCardMenu';
 import { StoryModel } from '../../../types/story';
 import { EditStoryModal } from '../Edit/EditStoryModal';
 import { cardStyles } from '../../../styles/card';
-import { StoryCardHeader } from './CardItems/StoryCardHeader';
 import { PriorityItem } from './CardItems/PriorityItem';
 import { CreatedByItem } from './CardItems/CreatedByItem';
+import { ItemTaskHeader } from '../../common/ItemCardHeader/ItemCardHeader';
 
 interface StoryCardProps {
   story: StoryModel;
@@ -25,8 +25,8 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
     <>
       <Card sx={cardStyles.wrapper}>
         <CardHeader
-          title={<StoryCardHeader text={name} isTitle />}
-          subheader={<StoryCardHeader text={description ?? ''} />}
+          title={<ItemTaskHeader text={name} isTitle />}
+          subheader={<ItemTaskHeader text={description ?? ''} />}
           action={
             <StoryCardMenu
               story={story}

@@ -6,7 +6,7 @@ import {
 } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
 import { TaskModel } from '../../../../types/task';
-import { storyPoints } from '../../../../utils/consts';
+import { STORY_POINTS } from '../../../../utils/consts';
 
 interface EditTaskStoryPointInputProps {
   updatedTask: TaskModel;
@@ -27,7 +27,7 @@ export const EditTaskStoryPointInput: React.FC<EditTaskStoryPointInputProps> = (
         })
       }
     >
-      {storyPoints.map((point) => (
+      {STORY_POINTS.map((point) => (
         <MenuItem key={point} value={point}>
           <span style={formStyles.menuItem}>{point}</span>
         </MenuItem>

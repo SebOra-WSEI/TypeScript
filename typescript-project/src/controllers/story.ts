@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Priority } from '../types/priority';
 import { State } from '../types/state';
 import { Api } from './api';
-import { ContentType } from '../types/contentType';
+import { DataType } from '../types/dataType';
 import { StoryModel } from '../types/story';
 
 export class Story extends Api<StoryModel> {
@@ -26,7 +26,7 @@ export class Story extends Api<StoryModel> {
       date,
       ownerId,
       state,
-      type: ContentType.Story,
+      type: DataType.Story,
     };
 
     super(story, {
