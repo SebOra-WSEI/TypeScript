@@ -6,43 +6,42 @@ import {
   Modal,
 } from '@mui/material';
 import React, { useState } from 'react';
-import { ProjectFormBody, ProjectModel } from '../../../../types/project';
 import { formStyles } from '../../../../styles/formStyles';
-import { EditProjectForm } from '../Form/EditProjectForm';
-import { useEditProjectById } from '../../../../api/project/useEditProjectById';
+import { TaskModel } from '../../../../types/task';
+import { EditTaskForm } from '../Form/EditTaskForm';
+import { useEditTaskById } from '../../../../api/task/useEditTaskById';
 
-interface FormModalProps {
+interface EditTaskModalProps {
+  task: TaskModel;
   isOpen: boolean;
   onClose: () => void;
-  project: ProjectModel;
 }
 
-export const EditProjectFormModal: React.FC<FormModalProps> = ({
+export const EditTaskModal: React.FC<EditTaskModalProps> = ({
   isOpen,
   onClose,
-  project,
+  task,
 }) => {
-  const [updatedProject, setUpdatedProject] =
-    useState<ProjectFormBody>(project);
+  const [updatedTask, setUpdatedTask] = useState<TaskModel>(task);
 
-  const { update } = useEditProjectById(updatedProject);
+  const { update } = useEditTaskById(updatedTask);
 
   const handleUpdate = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
-    update(project.id);
+    update(task.id);
   };
 
   return (
     <Modal open={isOpen} onClose={onClose}>
       <Box sx={formStyles.box} component='form' onSubmit={handleUpdate}>
         <DialogContent>
-          <EditProjectForm
-            project={updatedProject}
-            setUpdatedProject={setUpdatedProject}
+          <EditTaskForm
+            updatedTask={updatedTask}
+            setUpdatedTask={setUpdatedTask}
           />
         </DialogContent>
-        <DialogActions>
+        <DialogActions sx={formStyles.dialogAction}>
           <Button
             onClick={onClose}
             variant='contained'

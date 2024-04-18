@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 import { formStyles } from '../../../../styles/formStyles';
 import { StoryModel } from '../../../../types/story';
 import { EditStoryForm } from '../Form/EditStoryForm';
-import { useEditStorageById } from '../../../../api/story/useEditStoryById';
+import { useEditStoryById } from '../../../../api/story/useEditStoryById';
 
 interface EditStoryModalProps {
   story: StoryModel;
@@ -20,16 +20,16 @@ interface EditStoryModalProps {
 export const EditStoryModal: React.FC<EditStoryModalProps> = ({
   isOpen,
   onClose,
-  story: storage,
+  story,
 }) => {
-  const [updatedStorage, setUpdatedStorage] = useState<StoryModel>(storage);
+  const [updatedStory, setUpdatedStory] = useState<StoryModel>(story);
 
-  const { update } = useEditStorageById(updatedStorage);
+  const { update } = useEditStoryById(updatedStory);
 
   const handleUpdate = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
-    update(storage?.id ?? '');
+    update(story.id);
   };
 
   return (
@@ -37,8 +37,8 @@ export const EditStoryModal: React.FC<EditStoryModalProps> = ({
       <Box sx={formStyles.box} component='form' onSubmit={handleUpdate}>
         <DialogContent>
           <EditStoryForm
-            updatedStory={updatedStorage}
-            setUpdatedStory={setUpdatedStorage}
+            updatedStory={updatedStory}
+            setUpdatedStory={setUpdatedStory}
           />
         </DialogContent>
         <DialogActions sx={formStyles.dialogAction}>

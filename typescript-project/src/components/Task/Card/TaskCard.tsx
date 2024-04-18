@@ -7,20 +7,27 @@ import {
   ListItemIcon,
   Typography,
 } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import { priorityIcons } from '../../../utils/priorityIcons';
 import { TaskModel } from '../../../types/task';
 import { TaskCardMenu } from './TaskCardMenu';
 import { deepPurple } from '@mui/material/colors';
 import { cardStyles } from '../../../styles/card';
+import { EditTaskModal } from '../Edit/Modal/EditTaskModal';
 
 interface TaskCardProps {
   task: TaskModel;
 }
 
 export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
+  const [isEditTaskModalOpen, setIsEditTaskModalOpen] =
+    useState<boolean>(false);
+
   const { name, description, priority, createdDate, endDate, storyPoint } =
     task;
+
+  const handleEditTaskOnOpen = (): void => setIsEditTaskModalOpen(true);
+  const handleEditTaskOnClose = (): void => setIsEditTaskModalOpen(false);
 
   return (
     <>
@@ -28,7 +35,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
         <CardHeader
           title={<Header text={name} isTitle />}
           subheader={<Header text={description} />}
-          action={<TaskCardMenu task={task} />}
+          action={<TaskCardMenu task={task} handleEditTaskOnOpen={handleEditTaskOnOpen} />}
         />
         <CardContent sx={cardStyles.cardContent}>
           <Grid container>
@@ -62,11 +69,11 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
           </Grid>
         </CardContent>
       </Card>
-      {/* <EditStoryModal
-        isOpen={isEditStoryModalOpen}
-        onClose={handleEditStoryOnClose}
-        story={story}
-      /> */}
+      <EditTaskModal
+        isOpen={isEditTaskModalOpen}
+        onClose={handleEditTaskOnClose}
+        task={task}
+      />
     </>
   );
 };
@@ -89,4 +96,4 @@ const StoryPoints: React.FC<{ storyPoint: number }> = ({ storyPoint }) => (
       </Avatar>
     </div>
   </>
-)
+);
