@@ -1,11 +1,10 @@
 import { Box, Button, Grid } from '@mui/material';
 import React from 'react';
 import { State } from '../../../../types/state';
-import { storyStyle } from '../../../../styles/storyStyle';
-import { projectPageStyles } from '../../../../styles/projectPageStyles';
 import { TaskModel } from '../../../../types/task';
 import { TaskCard } from '../../Card/TaskCard';
 import { StatesListItem } from '../../../common/StatesList/StatesListItem';
+import { listStyles } from '../../../../styles/listStyles';
 
 interface TasksListProps {
   tasks: Array<TaskModel> | undefined;
@@ -18,7 +17,7 @@ export const TasksList: React.FC<TasksListProps> = ({
 }) => {
   if (!tasks?.length) {
     return (
-      <Box sx={projectPageStyles.wrapper}>
+      <Box sx={listStyles.noItemsWrapper}>
         <p>There are no tasks yet</p>
         <Button onClick={handleCreateTaskOnOpen}>Create new task</Button>
       </Box>
@@ -26,7 +25,7 @@ export const TasksList: React.FC<TasksListProps> = ({
   }
 
   return (
-    <Box display='grid' sx={storyStyle.box}>
+    <Box display='grid' sx={listStyles.listItemsWrapper}>
       <Grid container>
         {Object.values(State).map((state) => {
           const filteredTasks = tasks?.filter((task) => task.state === state);

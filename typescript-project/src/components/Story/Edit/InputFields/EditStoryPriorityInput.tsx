@@ -3,7 +3,7 @@ import { FormControl, MenuItem, Select } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
 import { Priority } from '../../../../types/priority';
 import { StoryModel } from '../../../../types/story';
-import { priorityIcons } from '../../../../utils/priorityIcons';
+import { PRIORITY_ICONS } from '../../../../utils/priorityIcons';
 
 interface EditStoryPriorityInputProps {
   updatedStory: StoryModel;
@@ -28,8 +28,8 @@ export const EditStoryPriorityInput: React.FC<EditStoryPriorityInputProps> = ({
     >
       {Object.values(Priority).map((p) => (
         <MenuItem key={p} value={p}>
-          <span>{priorityIcons[p]}</span>
-          <span style={{ marginLeft: '0.5rem' }}>{p}</span>
+          <span>{PRIORITY_ICONS[p]}</span>
+          <span style={formStyles.menuItem}>{p}</span>
         </MenuItem>
       ))}
     </Select>

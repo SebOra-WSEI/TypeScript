@@ -13,7 +13,7 @@ export const NavbarBreadcrumbs: React.FC<{ type: ContentType }> = ({
   }>();
 
   return (
-    <Breadcrumbs sx={{ flexGrow: 1, color: '#fff' }}>
+    <Breadcrumbs sx={styles.breadcrumbs}>
       <Breadcrumb link={routeBuilder.projects} text='Projects' />
       {type !== ContentType.Project && (
         <Breadcrumb link={routeBuilder.stories(projectId)} text='Stories' />
@@ -32,7 +32,17 @@ const Breadcrumb: React.FC<{
   link: string;
   text: string;
 }> = ({ link, text }) => (
-  <Link href={link} fontSize='small' sx={{ color: '#fff' }}>
+  <Link href={link} fontSize='small' sx={styles.color}>
     {text}
   </Link>
 );
+
+const styles = {
+  breadcrumbs: {
+    flexGrow: 1,
+    color: '#fff'
+  },
+  color: {
+    color: '#fff'
+  }
+}

@@ -48,14 +48,14 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
       <AppBar>
         <Toolbar>
           <NavbarBreadcrumbs type={type} />
-          <Typography variant='h6' sx={{ flexGrow: 1 }}>
+          <Typography variant='h6' sx={styles.grow}>
             {name}
           </Typography>
-          <Typography variant='inherit' sx={{ flexGrow: 1 }}>
+          <Typography variant='inherit' sx={styles.grow}>
             {description}
           </Typography>
           <IconButton size='small' onClick={handleIconClick}>
-            <Avatar sx={{ background: 'inherit', marginLeft: 'auto' }}>
+            <Avatar sx={styles.settings}>
               <SettingsIcon />
             </Avatar>
           </IconButton>
@@ -74,3 +74,13 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
     </>
   );
 };
+
+const styles = {
+  grow: {
+    flexGrow: 1,
+  },
+  settings: {
+    background: 'inherit',
+    marginLeft: 'auto'
+  }
+}

@@ -1,32 +1,29 @@
 import React from 'react';
 import {
   FormControl,
-  InputLabel,
   MenuItem,
   Select,
 } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
 import { Priority } from '../../../../types/priority';
 import { PRIORITY_ICONS } from '../../../../utils/priorityIcons';
-import { StoryFormBody } from '../../../../types/story';
+import { TaskModel } from '../../../../types/task';
 
-interface CreateStoryPriorityInputProps {
-  story: StoryFormBody;
-  setStory: (value: StoryFormBody) => void;
+interface EditTaskPriorityInputProps {
+  updatedTask: TaskModel;
+  setUpdatedTask: (value: TaskModel) => void;
 }
 
-export const CreateStoryPriorityInput: React.FC<CreateStoryPriorityInputProps> = ({
-  story,
-  setStory,
+export const EditTaskPriorityInput: React.FC<EditTaskPriorityInputProps> = ({
+  updatedTask,
+  setUpdatedTask
 }) => (
-  <FormControl sx={formStyles.prioritySelect} size='small'>
-    <InputLabel>Priority</InputLabel>
+  <FormControl sx={formStyles.editFormControl} size='small'>
     <Select
-      value={story.priority}
-      label='Priority'
+      value={updatedTask.priority}
       onChange={(evt) =>
-        setStory({
-          ...story,
+        setUpdatedTask({
+          ...updatedTask,
           priority: evt.target.value as Priority,
         })
       }
@@ -38,5 +35,5 @@ export const CreateStoryPriorityInput: React.FC<CreateStoryPriorityInputProps> =
         </MenuItem>
       ))}
     </Select>
-  </FormControl>
-)
+  </FormControl >
+);

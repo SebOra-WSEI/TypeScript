@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button, List } from '@mui/material';
 import { ProjectModel } from '../../../../types/project';
-import { projectPageStyles } from '../../../../styles/projectPageStyles';
 import { ProjectListItem } from './ProjectListItem';
 import { NoProjectsMessage } from '../NoProjectsMessage';
+import { listStyles } from '../../../../styles/listStyles';
 
 interface ProjectsListProps {
   projects: Array<ProjectModel> | undefined;
@@ -25,7 +25,7 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({
           <ProjectListItem key={project.id} project={project} />
         ))}
       </List>
-      <Button onClick={handleOnOpen} sx={projectPageStyles.button}>
+      <Button onClick={handleOnOpen} sx={listStyles.button}>
         Create new project
       </Button>
     </>

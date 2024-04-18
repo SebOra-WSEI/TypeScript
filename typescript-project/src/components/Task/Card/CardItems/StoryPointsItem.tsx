@@ -6,11 +6,29 @@ export const StoryPointsItem: React.FC<{ storyPoint: number }> = ({
   storyPoint,
 }) => (
   <>
-    <span style={{ color: '#757575' }}>Story Points:</span>
-    <div style={{ display: 'inline-block', marginLeft: '0.3rem' }}>
-      <Avatar sx={{ width: 15, height: 15, bgcolor: deepPurple[500] }}>
-        <span style={{ fontSize: 10 }}>{storyPoint}</span>
+    <span style={styles.color}>Story Points:</span>
+    <div style={styles.div}>
+      <Avatar sx={styles.avatar}>
+        <span style={styles.span}>{storyPoint}</span>
       </Avatar>
     </div>
   </>
 );
+
+const styles = {
+  color: {
+    color: '#757575'
+  },
+  div: {
+    display: 'inline-block',
+    marginLeft: '0.3rem'
+  },
+  avatar: {
+    width: 15,
+    height: 15,
+    bgcolor: deepPurple[500],
+  },
+  span: {
+    fontSize: 10
+  }
+}

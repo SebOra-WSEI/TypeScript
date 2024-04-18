@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
 import { Priority } from '../../../../types/priority';
-import { priorityIcons } from '../../../../utils/priorityIcons';
+import { PRIORITY_ICONS } from '../../../../utils/priorityIcons';
 import { TaskFormBody } from '../../../../types/task';
 
 interface CreateTaskPriorityInputProps {
@@ -33,8 +33,8 @@ export const CreateTaskPriorityInput: React.FC<CreateTaskPriorityInputProps> = (
     >
       {Object.values(Priority).map((p) => (
         <MenuItem key={p} value={p}>
-          <span>{priorityIcons[p]}</span>
-          <span style={{ marginLeft: '0.5rem' }}>{p}</span>
+          <span>{PRIORITY_ICONS[p]}</span>
+          <span style={formStyles.menuItem}>{p}</span>
         </MenuItem>
       ))}
     </Select>

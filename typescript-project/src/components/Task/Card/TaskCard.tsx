@@ -7,7 +7,7 @@ import {
   Typography,
 } from '@mui/material';
 import React, { useState } from 'react';
-import { priorityIcons } from '../../../utils/priorityIcons';
+import { PRIORITY_ICONS } from '../../../utils/priorityIcons';
 import { TaskModel } from '../../../types/task';
 import { TaskCardMenu } from './TaskCardMenu';
 import { cardStyles } from '../../../styles/card';
@@ -52,7 +52,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
           <Grid container>
             <Grid item sx={cardStyles.priority} xs={5}>
               <ListItemIcon>
-                {priorityIcons[priority]}
+                {PRIORITY_ICONS[priority]}
                 <Typography
                   variant='inherit'
                   color='text.secondary'

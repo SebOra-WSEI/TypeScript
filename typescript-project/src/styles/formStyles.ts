@@ -53,4 +53,7 @@ export const formStyles = {
     alignItems: 'center',
     marginTop: '1.3rem',
   },
+  menuItem: {
+    marginLeft: '0.5rem',
+  },
 };

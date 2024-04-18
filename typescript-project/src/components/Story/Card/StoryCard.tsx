@@ -1,6 +1,5 @@
 import { Card, CardContent, CardHeader, Grid, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { storyStyle } from '../../../styles/storyStyle';
 import { StoryCardMenu } from './StoryCardMenu';
 import { StoryModel } from '../../../types/story';
 import { EditStoryModal } from '../Edit/EditStoryModal';
@@ -47,7 +46,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
                 Created at: {new Date(date).toLocaleString()}
               </Typography>
             </Grid>
-            <Grid item xs={6} sx={storyStyle.icon}>
+            <Grid item xs={6} sx={styles}>
               <CreatedByItem owner={owner} />
             </Grid>
           </Grid>
@@ -61,3 +60,8 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
     </>
   );
 };
+
+const styles = {
+  display: 'flex',
+  justifyContent: 'end',
+}
