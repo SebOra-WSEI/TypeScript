@@ -42,7 +42,6 @@ export const CreateStoryFormModal: React.FC<FormModalProps> = ({
 
   const handleCreate = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-
     create();
   };
 

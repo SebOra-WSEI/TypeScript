@@ -6,12 +6,11 @@ import {
   Modal,
 } from '@mui/material';
 import React, { useState } from 'react';
-import { Priority } from '../../../../types/priority';
 import { formStyles } from '../../../../styles/formStyles';
 import { CreateTaskForm } from '../Form/CreateTaskForm';
 import { TaskFormBody } from '../../../../types/task';
-import { State } from '../../../../types/state';
 import { useCreateTask } from '../../../../api/task/useCreateTask';
+import { defaultTask } from '../../../../api/task/task';
 
 interface CreateTaskFormModalProps {
   isOpen: boolean;
@@ -22,26 +21,12 @@ export const CreateTaskFormModal: React.FC<CreateTaskFormModalProps> = ({
   isOpen,
   onClose,
 }) => {
-  const defaultTask: TaskFormBody = {
-    name: '',
-    description: '',
-    priority: Priority.High,
-    state: State.Todo,
-    createdDate: new Date(),
-    expectedEndTime: new Date(),
-    endDate: undefined,
-    startDate: undefined,
-    storyPoint: 1,
-    assignedToId: '',
-  };
-
   const [task, setTask] = useState<TaskFormBody>(defaultTask);
 
   const { create } = useCreateTask(task);
 
   const handleCreate = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-
     create();
   };
 

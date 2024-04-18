@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
-import { EMPTY_TASK } from './emptyTask';
+import { EMPTY_TASK } from './task';
 import { TaskModel } from '../../types/task';
 
 export const useGetTasksByStoryId = (

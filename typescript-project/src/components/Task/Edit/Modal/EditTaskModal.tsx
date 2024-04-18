@@ -18,6 +18,27 @@ interface EditTaskModalProps {
   onClose: () => void;
 }
 
+const switch1 = (task: TaskModel): TaskModel => {
+  switch (task.state) {
+    case State.Doing:
+      if (!!task.endDate) {
+        task.endDate = undefined;
+        break;
+      }
+      task.startDate = new Date();
+      break;
+    case State.Done:
+      task.endDate = new Date();
+      break;
+    default:
+      task.startDate = undefined;
+      task.endDate = undefined;
+      break;
+  }
+
+  return task
+}
+
 export const EditTaskModal: React.FC<EditTaskModalProps> = ({
   isOpen,
   onClose,
@@ -26,23 +47,8 @@ export const EditTaskModal: React.FC<EditTaskModalProps> = ({
   const [updatedTask, setUpdatedTask] = useState<TaskModel>(task);
 
   useEffect(() => {
-    switch (updatedTask.state) {
-      case State.Doing:
-        if (!!updatedTask.endDate) {
-          updatedTask.endDate = undefined;
-          break;
-        }
-        updatedTask.startDate = new Date();
-        break;
-      case State.Done:
-        updatedTask.endDate = new Date();
-        break;
-      default:
-        updatedTask.startDate = undefined;
-        updatedTask.endDate = undefined;
-        break;
-    }
-  }, [updatedTask.state])
+    setUpdatedTask(switch1(updatedTask))
+  }, [updatedTask.state, setUpdatedTask])
 
   const { update } = useEditTaskById(updatedTask);
 

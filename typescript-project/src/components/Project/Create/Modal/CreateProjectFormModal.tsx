@@ -29,7 +29,6 @@ export const CreateProjectFormModal: React.FC<CreateProjectFormModalProps> = ({
 
   const handleCreate = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-
     create();
   };
 

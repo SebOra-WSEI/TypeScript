@@ -3,7 +3,7 @@ import { Story } from '../../controllers/story';
 import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
-import { EMPTY_TASK } from './emptyTask';
+import { EMPTY_TASK } from './task';
 import { TaskFormBody } from '../../types/task';
 
 type UseEditTaskByIdResult = FetchedData<Story> & {

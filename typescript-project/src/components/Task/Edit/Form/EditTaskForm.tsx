@@ -96,6 +96,9 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
                   setUpdatedTask({
                     ...updatedTask,
                     state: evt.target.value as State,
+                    ...(evt.target.value === State.Todo && {
+                      assignedToId: 'Unassigned'
+                    })
                   })
                 }
               >
