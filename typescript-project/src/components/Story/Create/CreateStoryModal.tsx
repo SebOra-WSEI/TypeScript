@@ -3,7 +3,7 @@ import { StoryFormBody } from '../../../types/story';
 import { CreateStoryForm } from './CreateStoryForm';
 import { useParams } from 'react-router';
 import { useCreateStory } from '../../../queries/story/useCreateStory';
-import { ModalContent } from '../../common/Modal/ModalContext';
+import { ModalContent } from '../../common/Modal/ModalContent';
 import { defaultStory } from '../../../queries/story/story';
 
 interface CreateStoryModalProps {

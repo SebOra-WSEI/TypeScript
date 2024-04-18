@@ -44,34 +44,32 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
   };
 
   return (
-    <>
-      <AppBar>
-        <Toolbar>
-          <NavbarBreadcrumbs type={type} />
-          <Typography variant='h6' sx={styles.grow}>
-            {name}
-          </Typography>
-          <Typography variant='inherit' sx={styles.grow}>
-            {description}
-          </Typography>
-          <IconButton size='small' onClick={handleIconClick}>
-            <Avatar sx={styles.settings}>
-              <SettingsIcon />
-            </Avatar>
-          </IconButton>
-          <Menu anchorEl={anchorEl} open={open} onClose={handleIconClose}>
-            {children}
-            <Divider />
-            <MenuItem onClick={handleChangeProject}>
-              <ListItemIcon>
-                <ReplyAllIcon fontSize='small' />
-              </ListItemIcon>
-              Change project
-            </MenuItem>
-          </Menu>
-        </Toolbar>
-      </AppBar>
-    </>
+    <AppBar>
+      <Toolbar>
+        <NavbarBreadcrumbs type={type} />
+        <Typography variant='h6' sx={styles.grow}>
+          {name}
+        </Typography>
+        <Typography variant='inherit' sx={styles.grow}>
+          {description}
+        </Typography>
+        <IconButton size='small' onClick={handleIconClick}>
+          <Avatar sx={styles.settings}>
+            <SettingsIcon />
+          </Avatar>
+        </IconButton>
+        <Menu anchorEl={anchorEl} open={open} onClose={handleIconClose}>
+          {children}
+          <Divider />
+          <MenuItem onClick={handleChangeProject}>
+            <ListItemIcon>
+              <ReplyAllIcon fontSize='small' />
+            </ListItemIcon>
+            Change project
+          </MenuItem>
+        </Menu>
+      </Toolbar>
+    </AppBar>
   );
 };
 
