@@ -5,14 +5,16 @@ import { EMPTY_TASK } from './emptyTask';
 import { TaskModel } from '../../types/task';
 
 export const useGetTasksByStoryId = (
-  id: string
+  storyId: string
 ): FetchedData<Array<TaskModel>> => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
   const [tasks, setTasks] = useState<Array<TaskModel>>();
 
   useEffect(() => {
-    const { errorMessage, status, response } = EMPTY_TASK.getAllByStoryId(id);
+    const { errorMessage, status, response } = EMPTY_TASK.getAll();
+
+    const filteredTasks = response?.filter((s) => s.storyId === storyId);
 
     if (!!errorMessage) {
       setError(errorMessage);
@@ -23,7 +25,7 @@ export const useGetTasksByStoryId = (
       setTimeout(() => {
         setIsLoading(false);
       }, 700);
-      setTasks(response);
+      setTasks(filteredTasks);
     }
   }, []);
 

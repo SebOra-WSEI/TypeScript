@@ -4,8 +4,6 @@ import { State } from '../types/state';
 import { Api } from './api';
 import { ContentType } from '../types/contentType';
 import { TaskModel } from '../types/task';
-import { Response } from '../types/response';
-import { StatusCode } from '../types/statusCode';
 
 export class Task extends Api<TaskModel> {
   constructor(
@@ -42,23 +40,5 @@ export class Task extends Api<TaskModel> {
       nameKey: 'name',
       projectIdKey: 'storyId',
     });
-  }
-
-  getAllByStoryId(id: string): Response<Array<TaskModel>> {
-    if (!id.length) {
-      return {
-        status: StatusCode.BadRequest,
-        errorMessage: 'Id cannot be empty',
-        response: undefined,
-      };
-    }
-
-    const tasks = this.getAll().response as Array<TaskModel>;
-    const filteredTasks = tasks.filter((s) => s.storyId === id);
-
-    return {
-      status: StatusCode.OK,
-      response: filteredTasks,
-    };
   }
 }
