@@ -1,6 +1,6 @@
 import React from "react";
 
-export const StoryGridItem: React.FC<{ text: string }> = ({ text }) => (
+export const StatesListItem: React.FC<{ text: string }> = ({ text }) => (
   <p
     style={{
       textAlign: 'center',

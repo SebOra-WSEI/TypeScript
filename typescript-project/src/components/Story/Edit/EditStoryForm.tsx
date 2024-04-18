@@ -2,9 +2,9 @@ import React from 'react';
 import { Grid, TextField } from '@mui/material';
 import { formStyles } from '../../../styles/formStyles';
 import { StoryModel } from '../../../types/story';
-import { PriorityInput } from './InputsFields/PriorityInput';
-import { AssignedToInput } from './InputsFields/AssignToInput';
-import { StatusInput } from './InputsFields/StatusInput';
+import { PriorityInput } from './InputFields/PriorityInput';
+import { AssignedToInput } from './InputFields/AssignToInput';
+import { StatusInput } from './InputFields/StatusInput';
 
 interface EditStoryFormProps {
   updatedStory: StoryModel;

@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Card,
   CardContent,
   CardHeader,
@@ -11,9 +10,10 @@ import React, { useState } from 'react';
 import { priorityIcons } from '../../../utils/priorityIcons';
 import { TaskModel } from '../../../types/task';
 import { TaskCardMenu } from './TaskCardMenu';
-import { deepPurple } from '@mui/material/colors';
 import { cardStyles } from '../../../styles/card';
-import { EditTaskModal } from '../Edit/Modal/EditTaskModal';
+import { EditTaskModal } from '../Edit/EditTaskModal';
+import { TaskCardHeader } from './CardItems/TaskCardHeader';
+import { StoryPointsItem } from './CardItems/StoryPointsItem';
 
 interface TaskCardProps {
   task: TaskModel;
@@ -33,8 +33,8 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
     <>
       <Card sx={cardStyles.wrapper}>
         <CardHeader
-          title={<Header text={name} isTitle />}
-          subheader={<Header text={description} />}
+          title={<TaskCardHeader text={name} isTitle />}
+          subheader={<TaskCardHeader text={description} />}
           action={<TaskCardMenu task={task} handleEditTaskOnOpen={handleEditTaskOnOpen} />}
         />
         <CardContent sx={cardStyles.cardContent}>
@@ -52,7 +52,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
               </ListItemIcon>
             </Grid>
             <Grid item xs={5}>
-              <StoryPoints storyPoint={storyPoint} />
+              <StoryPointsItem storyPoint={storyPoint} />
             </Grid>
           </Grid>
           <Grid container>
@@ -77,23 +77,3 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
     </>
   );
 };
-
-const Header: React.FC<{ text: string; isTitle?: boolean }> = ({
-  text,
-  isTitle = false,
-}) => (
-  <span style={{ fontSize: 'small' }}>
-    {isTitle ? <strong>{text}</strong> : <>{text}</>}
-  </span>
-);
-
-const StoryPoints: React.FC<{ storyPoint: number }> = ({ storyPoint }) => (
-  <>
-    <span style={{ color: '#757575' }}>Story Points:</span>
-    <div style={{ display: 'inline-block', marginLeft: '0.3rem' }}>
-      <Avatar sx={{ width: 15, height: 15, bgcolor: deepPurple[500], }}>
-        <span style={{ fontSize: 10 }}>{storyPoint}</span>
-      </Avatar>
-    </div>
-  </>
-);

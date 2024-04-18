@@ -7,15 +7,15 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-import { formStyles } from '../../../../styles/formStyles';
-import { Priority } from '../../../../types/priority';
-import { State } from '../../../../types/state';
-import { useGetAllUsers } from '../../../../queries/user/useGetAllUsers';
-import { priorityIcons } from '../../../../utils/priorityIcons';
-import { TaskModel } from '../../../../types/task';
-import { UserRole } from '../../../../types/user';
-import { storyPoints } from '../../../../utils/consts';
-import { cardStyles } from '../../../../styles/card';
+import { formStyles } from '../../../styles/formStyles';
+import { Priority } from '../../../types/priority';
+import { State } from '../../../types/state';
+import { useGetAllUsers } from '../../../queries/user/useGetAllUsers';
+import { priorityIcons } from '../../../utils/priorityIcons';
+import { TaskModel } from '../../../types/task';
+import { UserRole } from '../../../types/user';
+import { storyPoints } from '../../../utils/consts';
+import { cardStyles } from '../../../styles/card';
 
 interface EditTaskFormProps {
   updatedTask: TaskModel;

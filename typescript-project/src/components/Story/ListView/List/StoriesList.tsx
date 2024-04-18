@@ -5,7 +5,7 @@ import { storyStyle } from '../../../../styles/storyStyle';
 import { projectPageStyles } from '../../../../styles/projectPageStyles';
 import { StoryCard } from '../../Card/StoryCard';
 import { StoryModel } from '../../../../types/story';
-import { StoryGridItem } from './StoryGridItem';
+import { StatesListItem } from '../../../common/StatesList/StatesListItem';
 
 interface StoryListViewProps {
   stories: Array<StoryModel> | undefined;
@@ -35,7 +35,7 @@ export const StoriesList: React.FC<StoryListViewProps> = ({
 
           return (
             <Grid item xs={4} key={state}>
-              <StoryGridItem text={state} />
+              <StatesListItem text={state} />
               {filteredStories?.map((story) => (
                 <StoryCard key={story.id} story={story} />
               ))}
