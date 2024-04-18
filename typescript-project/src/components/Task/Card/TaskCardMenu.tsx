@@ -43,7 +43,7 @@ export const TaskCardMenu: React.FC<TaskCardMenuProps> = ({
           <ListItemIcon>
             <DeleteIcon fontSize='small' />
           </ListItemIcon>
-          Delete task
+          Remove task
         </MenuItem>
       </Menu>
     </>

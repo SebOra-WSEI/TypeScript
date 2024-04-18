@@ -33,7 +33,7 @@ export const TaskDetailsNavbarMenuItems: React.FC = () => {
         <ListItemIcon>
           <DeleteIcon fontSize='small' />
         </ListItemIcon>
-        Delete task
+        Remove task
       </MenuItem>
       <Divider />
       <MenuItem onClick={handleChangeProject}>

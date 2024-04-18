@@ -38,7 +38,7 @@ export const StoriesNavbarMenuItems: React.FC<StoriesNavbarMenuItemsProps> = ({
         <ListItemIcon>
           <DeleteIcon fontSize='small' />
         </ListItemIcon>
-        Delete project
+        Remove project
       </MenuItem>
       <Divider />
       <MenuItem onClick={handleCreateStoryOnOpen}>

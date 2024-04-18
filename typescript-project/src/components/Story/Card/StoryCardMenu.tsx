@@ -46,12 +46,6 @@ export const StoryCardMenu: React.FC<StoryCardMenuProps> = ({
         <MoreVertIcon />
       </IconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={handleMenuClose}>
-        <MenuItem onClick={handleExplore}>
-          <ListItemIcon>
-            <ExploreIcon fontSize='small' />
-          </ListItemIcon>
-          Explore story
-        </MenuItem>
         <MenuItem onClick={handleEditStoryOnOpen}>
           <ListItemIcon>
             <ModeEditOutlineIcon fontSize='small' />
@@ -59,11 +53,18 @@ export const StoryCardMenu: React.FC<StoryCardMenuProps> = ({
           Edit story details
         </MenuItem>
         <Divider />
+        <MenuItem onClick={handleExplore}>
+          <ListItemIcon>
+            <ExploreIcon fontSize='small' />
+          </ListItemIcon>
+          Explore story
+        </MenuItem>
+        <Divider />
         <MenuItem onClick={handleRemove}>
           <ListItemIcon>
             <DeleteIcon fontSize='small' />
           </ListItemIcon>
-          Delete story
+          Remove story
         </MenuItem>
       </Menu>
     </>
