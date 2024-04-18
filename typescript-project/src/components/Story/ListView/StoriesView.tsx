@@ -25,17 +25,17 @@ export const StoriesView: React.FC = () => {
   } = useGetProjectById(projectId);
 
   const {
-    loading: storagesLoading,
-    error: storagesError,
-    data: storages,
+    loading: storiesLoading,
+    error: storiesError,
+    data: stories,
   } = useGetStoriesByProjectId(projectId);
 
-  if (projectLoading || storagesLoading) {
+  if (projectLoading || storiesLoading) {
     return <Loader />;
   }
 
-  if (projectError || storagesError) {
-    return <>{projectError || storagesError}</>;
+  if (projectError || storiesError) {
+    return <>{projectError || storiesError}</>;
   }
 
   if (!project) {
@@ -46,7 +46,7 @@ export const StoriesView: React.FC = () => {
   const handleEditProjectOnClose = (): void => setIsEditProjectModalOpen(false);
 
   const handleCreateStoryOnOpen = (): void => setIsCreateStoryModalOpen(true);
-  const handleCreateStorageOnClose = (): void =>
+  const handleCreateStoryOnClose = (): void =>
     setIsCreateStoryModalOpen(false);
 
   return (
@@ -58,7 +58,7 @@ export const StoriesView: React.FC = () => {
         />
       </Navbar>
       <StoriesList
-        stories={storages}
+        stories={stories}
         handleCreateStoryOnOpen={handleCreateStoryOnOpen}
       />
       <EditProjectFormModal
@@ -68,7 +68,7 @@ export const StoriesView: React.FC = () => {
       />
       <CreateStoryFormModal
         isOpen={isCreateStoryModalOpen}
-        onClose={handleCreateStorageOnClose}
+        onClose={handleCreateStoryOnClose}
       />
       <SnackbarAlert />
     </>

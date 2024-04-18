@@ -46,7 +46,7 @@ export const TasksNavbarMenuItems: React.FC<TasksNavbarMenuItemsProps> = ({
         <ListItemIcon>
           <DeleteIcon fontSize='small' />
         </ListItemIcon>
-        Delete storage
+        Delete Story
       </MenuItem>
       <Divider />
       <MenuItem onClick={handleChangeProject}>
