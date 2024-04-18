@@ -33,9 +33,9 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
     description,
     assignedToId,
     storyPoint,
-    startDate,
     createdDate,
     expectedEndTime,
+    startDate,
     endDate
   } = updatedTask;
 
@@ -188,7 +188,7 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
             <Typography variant='inherit' fontSize={15}>Start at:</Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography variant='inherit' fontSize={15}>{startDate === createdDate ? '-' : new Date(startDate).toLocaleString()}</Typography>
+            <Typography variant='inherit' fontSize={15}>{startDate ? new Date(startDate).toLocaleString() : '-'}</Typography>
           </Grid>
         </Grid>
       </Grid>
@@ -208,7 +208,7 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
             <Typography variant='inherit' fontSize={15}> End at:</Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography variant='inherit' fontSize={15}>{endDate ? endDate.toLocaleString() : '-'}</Typography>
+            <Typography variant='inherit' fontSize={15}>{endDate ? new Date(endDate).toLocaleString() : '-'}</Typography>
           </Grid>
         </Grid>
       </Grid>

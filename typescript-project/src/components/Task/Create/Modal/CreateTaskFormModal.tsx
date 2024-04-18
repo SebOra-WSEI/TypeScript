@@ -30,6 +30,7 @@ export const CreateTaskFormModal: React.FC<CreateTaskFormModalProps> = ({
     createdDate: new Date(),
     expectedEndTime: new Date(),
     endDate: undefined,
+    startDate: undefined,
     storyPoint: 1,
     assignedToId: '',
   };

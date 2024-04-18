@@ -26,12 +26,21 @@ export const EditTaskModal: React.FC<EditTaskModalProps> = ({
   const [updatedTask, setUpdatedTask] = useState<TaskModel>(task);
 
   useEffect(() => {
-    if (updatedTask.state === State.Doing) {
-      updatedTask.startDate = new Date();
-    }
-
-    if (updatedTask.state === State.Done) {
-      updatedTask.endDate = new Date();
+    switch (updatedTask.state) {
+      case State.Doing:
+        if (!!updatedTask.endDate) {
+          updatedTask.endDate = undefined;
+          break;
+        }
+        updatedTask.startDate = new Date();
+        break;
+      case State.Done:
+        updatedTask.endDate = new Date();
+        break;
+      default:
+        updatedTask.startDate = undefined;
+        updatedTask.endDate = undefined;
+        break;
     }
   }, [updatedTask.state])
 

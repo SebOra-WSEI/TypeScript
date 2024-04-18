@@ -12,10 +12,10 @@ export class Task extends Api<TaskModel> {
     storyId: string,
     priority: Priority,
     state: State,
-    startDate: Date,
     expectedEndTime: Date,
     storyPoint: number,
     assignedToId: string,
+    startDate?: Date,
     endDate?: Date
   ) {
     const id = uuidv4();
