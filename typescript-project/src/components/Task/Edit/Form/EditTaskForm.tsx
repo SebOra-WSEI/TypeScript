@@ -34,8 +34,9 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
     assignedToId,
     storyPoint,
     startDate,
-    endDate,
-    createdDate
+    createdDate,
+    expectedEndTime,
+    endDate
   } = updatedTask;
 
   const { data: allUsers } = useGetAllUsers();
@@ -182,15 +183,35 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
         </Grid>
       </Grid>
       <Grid item xs={8} sx={cardStyles.gridText}>
-        <Typography variant='inherit' fontSize={15}>
-          Start at: {new Date(startDate).toLocaleString()}
-        </Typography>
+        <Grid container>
+          <Grid item xs={3}>
+            <Typography variant='inherit' fontSize={15}>Start at:</Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography variant='inherit' fontSize={15}>{startDate === createdDate ? '-' : new Date(startDate).toLocaleString()}</Typography>
+          </Grid>
+        </Grid>
       </Grid>
       <Grid item xs={8} sx={cardStyles.gridText}>
-        <Typography variant='inherit' fontSize={15}>
-          End at: {new Date(endDate).toLocaleString()}
-        </Typography>
+        <Grid container>
+          <Grid item xs={3}>
+            <Typography variant='inherit' fontSize={15}>Expected end at:</Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography variant='inherit' fontSize={15}>{new Date(expectedEndTime).toLocaleDateString()}</Typography>
+          </Grid>
+        </Grid>
       </Grid>
-    </Grid>
+      <Grid item xs={8} sx={cardStyles.gridText}>
+        <Grid container>
+          <Grid item xs={3}>
+            <Typography variant='inherit' fontSize={15}> End at:</Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography variant='inherit' fontSize={15}>{endDate ? endDate.toLocaleString() : '-'}</Typography>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid >
   );
 };

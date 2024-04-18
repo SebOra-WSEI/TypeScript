@@ -22,6 +22,7 @@ export const useCreateTask = (task: TaskFormBody): UseCreateTaskResult => {
     endDate,
     storyPoint,
     assignedToId,
+    expectedEndTime,
   } = task;
 
   const newTask = new Task(
@@ -31,9 +32,10 @@ export const useCreateTask = (task: TaskFormBody): UseCreateTaskResult => {
     priority,
     state,
     new Date(),
-    endDate,
+    expectedEndTime,
     storyPoint,
-    assignedToId
+    assignedToId,
+    endDate
   );
 
   const create = (): void => {

@@ -13,9 +13,10 @@ export class Task extends Api<TaskModel> {
     priority: Priority,
     state: State,
     startDate: Date,
-    endDate: Date,
+    expectedEndTime: Date,
     storyPoint: number,
-    assignedToId: string
+    assignedToId: string,
+    endDate?: Date
   ) {
     const id = uuidv4();
     const createdDate = new Date();
@@ -30,6 +31,7 @@ export class Task extends Api<TaskModel> {
       createdDate,
       startDate,
       endDate,
+      expectedEndTime,
       storyPoint,
       assignedToId,
       type: ContentType.Task,

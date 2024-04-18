@@ -5,11 +5,12 @@ import {
   DialogContent,
   Modal,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { formStyles } from '../../../../styles/formStyles';
 import { TaskModel } from '../../../../types/task';
 import { EditTaskForm } from '../Form/EditTaskForm';
 import { useEditTaskById } from '../../../../api/task/useEditTaskById';
+import { State } from '../../../../types/state';
 
 interface EditTaskModalProps {
   task: TaskModel;
@@ -23,6 +24,16 @@ export const EditTaskModal: React.FC<EditTaskModalProps> = ({
   task,
 }) => {
   const [updatedTask, setUpdatedTask] = useState<TaskModel>(task);
+
+  useEffect(() => {
+    if (updatedTask.state === State.Doing) {
+      updatedTask.startDate = new Date();
+    }
+
+    if (updatedTask.state === State.Done) {
+      updatedTask.endDate = new Date();
+    }
+  }, [updatedTask.state])
 
   const { update } = useEditTaskById(updatedTask);
 

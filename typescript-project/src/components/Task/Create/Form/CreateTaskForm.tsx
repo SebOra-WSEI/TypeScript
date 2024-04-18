@@ -109,7 +109,7 @@ export const CreateTaskForm: React.FC<CreateTaskFormProps> = ({
 
           setTask({
             ...task,
-            endDate: expectedWorkingDays(parseInt(evt.target.value)),
+            expectedEndTime: expectedWorkingDays(parseInt(evt.target.value)),
           });
         }}
       />

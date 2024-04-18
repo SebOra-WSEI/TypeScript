@@ -23,7 +23,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
   const [isEditTaskModalOpen, setIsEditTaskModalOpen] =
     useState<boolean>(false);
 
-  const { name, description, priority, createdDate, endDate, storyPoint } =
+  const { name, description, priority, createdDate, expectedEndTime, storyPoint } =
     task;
 
   const handleEditTaskOnOpen = (): void => setIsEditTaskModalOpen(true);
@@ -63,7 +63,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
             </Grid>
             <Grid item xs={5} sx={cardStyles.gridText}>
               <Typography variant='inherit' color='text.secondary'>
-                Expected end time: {new Date(endDate).toLocaleDateString()}
+                Expected end time: {new Date(expectedEndTime).toLocaleDateString()}
               </Typography>
             </Grid>
           </Grid>
