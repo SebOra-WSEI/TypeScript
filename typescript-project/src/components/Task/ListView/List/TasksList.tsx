@@ -16,14 +16,13 @@ export const TasksList: React.FC<TasksListProps> = ({
   tasks,
   handleCreateTaskOnOpen,
 }) => {
-
   if (!tasks?.length) {
     return (
       <Box sx={projectPageStyles.wrapper}>
         <p>There are no tasks yet</p>
         <Button onClick={handleCreateTaskOnOpen}>Create new task</Button>
       </Box>
-    )
+    );
   }
 
   return (
@@ -44,4 +43,4 @@ export const TasksList: React.FC<TasksListProps> = ({
       </Grid>
     </Box>
   );
-}
+};

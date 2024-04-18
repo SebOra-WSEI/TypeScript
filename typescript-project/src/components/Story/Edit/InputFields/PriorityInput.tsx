@@ -8,13 +8,13 @@ import { priorityIcons } from '../../../../utils/priorityIcons';
 interface PriorityInputProps {
   updatedStory: StoryModel;
   setUpdatedStory: (value: StoryModel) => void;
-  priority: Priority
+  priority: Priority;
 }
 
 export const PriorityInput: React.FC<PriorityInputProps> = ({
   updatedStory,
   setUpdatedStory,
-  priority
+  priority,
 }) => (
   <FormControl sx={formStyles.editFormControl} size='small'>
     <Select

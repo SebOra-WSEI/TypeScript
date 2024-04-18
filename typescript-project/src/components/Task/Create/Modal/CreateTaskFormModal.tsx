@@ -36,7 +36,6 @@ export const CreateTaskFormModal: React.FC<CreateTaskFormModalProps> = ({
       type='create'
     >
       <CreateTaskForm task={task} setTask={setTask} />
-
     </ModalContent>
   );
 };

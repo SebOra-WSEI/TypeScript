@@ -46,8 +46,7 @@ export const StoriesView: React.FC = () => {
   const handleEditProjectOnClose = (): void => setIsEditProjectModalOpen(false);
 
   const handleCreateStoryOnOpen = (): void => setIsCreateStoryModalOpen(true);
-  const handleCreateStoryOnClose = (): void =>
-    setIsCreateStoryModalOpen(false);
+  const handleCreateStoryOnClose = (): void => setIsCreateStoryModalOpen(false);
 
   return (
     <>

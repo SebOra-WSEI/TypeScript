@@ -23,7 +23,7 @@ export const StoriesList: React.FC<StoryListViewProps> = ({
         <Button onClick={handleCreateStoryOnOpen}>Create new story</Button>
       </Box>
     );
-  };
+  }
 
   return (
     <Box display='grid' sx={storyStyle.box}>
@@ -45,4 +45,4 @@ export const StoriesList: React.FC<StoryListViewProps> = ({
       </Grid>
     </Box>
   );
-}
+};

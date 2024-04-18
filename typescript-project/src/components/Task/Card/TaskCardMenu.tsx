@@ -13,7 +13,7 @@ interface TaskCardMenuProps {
 
 export const TaskCardMenu: React.FC<TaskCardMenuProps> = ({
   task,
-  handleEditTaskOnOpen
+  handleEditTaskOnOpen,
 }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);

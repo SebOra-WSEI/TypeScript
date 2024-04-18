@@ -7,13 +7,13 @@ import { StoryModel } from '../../../../types/story';
 interface StatusInputProps {
   updatedStory: StoryModel;
   setUpdatedStory: (value: StoryModel) => void;
-  state: State
+  state: State;
 }
 
 export const StatusInput: React.FC<StatusInputProps> = ({
   updatedStory,
   setUpdatedStory,
-  state
+  state,
 }) => (
   <FormControl sx={formStyles.editFormControl} size='small'>
     <Select
@@ -32,4 +32,4 @@ export const StatusInput: React.FC<StatusInputProps> = ({
       ))}
     </Select>
   </FormControl>
-)
+);

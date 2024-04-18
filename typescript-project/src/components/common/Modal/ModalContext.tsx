@@ -1,14 +1,20 @@
-import { Box, Button, DialogActions, DialogContent, Modal } from "@mui/material";
-import React, { PropsWithChildren } from "react";
-import { formStyles } from "../../../styles/formStyles";
+import {
+  Box,
+  Button,
+  DialogActions,
+  DialogContent,
+  Modal,
+} from '@mui/material';
+import React, { PropsWithChildren } from 'react';
+import { formStyles } from '../../../styles/formStyles';
 
-type ModalType = 'create' | 'update'
+type ModalType = 'create' | 'update';
 
 interface ModalContentProps extends PropsWithChildren {
   isOpen: boolean;
   handleOnClose: () => void;
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-  type: ModalType
+  type: ModalType;
 }
 
 export const ModalContent: React.FC<ModalContentProps> = ({
@@ -16,15 +22,12 @@ export const ModalContent: React.FC<ModalContentProps> = ({
   isOpen,
   handleOnClose,
   onSubmit,
-  type
+  type,
 }) => {
-
   return (
     <Modal open={isOpen} onClose={handleOnClose}>
       <Box sx={formStyles.box} component='form' onSubmit={onSubmit}>
-        <DialogContent>
-          {children}
-        </DialogContent>
+        <DialogContent>{children}</DialogContent>
         <DialogActions>
           <Button
             onClick={handleOnClose}
@@ -40,5 +43,5 @@ export const ModalContent: React.FC<ModalContentProps> = ({
         </DialogActions>
       </Box>
     </Modal>
-  )
-}
+  );
+};

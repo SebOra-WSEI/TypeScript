@@ -8,13 +8,13 @@ import { useGetAllUsers } from '../../../../queries/user/useGetAllUsers';
 interface AssignedToInputProps {
   updatedStory: StoryModel;
   setUpdatedStory: (value: StoryModel) => void;
-  assignedToId: string
+  assignedToId: string;
 }
 
 export const AssignedToInput: React.FC<AssignedToInputProps> = ({
   updatedStory,
   setUpdatedStory,
-  assignedToId
+  assignedToId,
 }) => {
   const { data: allUsers } = useGetAllUsers();
 
@@ -26,10 +26,7 @@ export const AssignedToInput: React.FC<AssignedToInputProps> = ({
         onChange={(evt) =>
           setUpdatedStory({
             ...updatedStory,
-            state:
-              evt.target.value === 'Unassigned'
-                ? State.Todo
-                : State.Doing,
+            state: evt.target.value === 'Unassigned' ? State.Todo : State.Doing,
             assignedToId: evt.target.value,
           })
         }
@@ -42,5 +39,5 @@ export const AssignedToInput: React.FC<AssignedToInputProps> = ({
         ))}
       </Select>
     </FormControl>
-  )
-}
+  );
+};

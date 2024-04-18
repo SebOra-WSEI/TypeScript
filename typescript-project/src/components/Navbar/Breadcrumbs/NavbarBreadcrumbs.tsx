@@ -4,7 +4,9 @@ import { routeBuilder } from '../../../routes/routes';
 import { ContentType } from '../../../types/contentType';
 import { useParams } from 'react-router';
 
-export const NavbarBreadcrumbs: React.FC<{ type: ContentType }> = ({ type }) => {
+export const NavbarBreadcrumbs: React.FC<{ type: ContentType }> = ({
+  type,
+}) => {
   const { projectId, storyId } = useParams<{
     projectId: string;
     storyId: string;
@@ -14,10 +16,7 @@ export const NavbarBreadcrumbs: React.FC<{ type: ContentType }> = ({ type }) => 
     <Breadcrumbs sx={{ flexGrow: 1, color: '#fff' }}>
       <Breadcrumb link={routeBuilder.projects} text='Projects' />
       {type !== ContentType.Project && (
-        <Breadcrumb
-          link={routeBuilder.stories(projectId)}
-          text='Stories'
-        />
+        <Breadcrumb link={routeBuilder.stories(projectId)} text='Stories' />
       )}
       {type === ContentType.Task && (
         <Breadcrumb

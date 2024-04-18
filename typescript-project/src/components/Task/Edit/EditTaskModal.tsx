@@ -19,8 +19,8 @@ export const EditTaskModal: React.FC<EditTaskModalProps> = ({
   const [updatedTask, setUpdatedTask] = useState<TaskModel>(task);
 
   useEffect(() => {
-    setUpdatedTask(updateTaskDates(updatedTask))
-  }, [updatedTask.state, setUpdatedTask])
+    setUpdatedTask(updateTaskDates(updatedTask));
+  }, [updatedTask.state, setUpdatedTask]);
 
   const { update } = useEditTaskById(updatedTask);
 
@@ -36,10 +36,7 @@ export const EditTaskModal: React.FC<EditTaskModalProps> = ({
       onSubmit={handleUpdate}
       type='update'
     >
-      <EditTaskForm
-        updatedTask={updatedTask}
-        setUpdatedTask={setUpdatedTask}
-      />
+      <EditTaskForm updatedTask={updatedTask} setUpdatedTask={setUpdatedTask} />
     </ModalContent>
   );
 };

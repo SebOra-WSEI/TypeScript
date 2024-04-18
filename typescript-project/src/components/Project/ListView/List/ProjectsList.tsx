@@ -15,7 +15,7 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({
   handleOnOpen,
 }) => {
   if (!projects?.length) {
-    return <NoProjectsMessage handleOnOpen={handleOnOpen} />
+    return <NoProjectsMessage handleOnOpen={handleOnOpen} />;
   }
 
   return (
@@ -30,4 +30,4 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({
       </Button>
     </>
   );
-}
+};

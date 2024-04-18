@@ -5,7 +5,7 @@ import {
   MenuItem,
   Select,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material';
 import { formStyles } from '../../../styles/formStyles';
 import { Priority } from '../../../types/priority';
@@ -36,7 +36,7 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
     createdDate,
     expectedEndTime,
     startDate,
-    endDate
+    endDate,
   } = updatedTask;
 
   const { data: allUsers } = useGetAllUsers();
@@ -97,8 +97,8 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
                     ...updatedTask,
                     state: evt.target.value as State,
                     ...(evt.target.value === State.Todo && {
-                      assignedToId: 'Unassigned'
-                    })
+                      assignedToId: 'Unassigned',
+                    }),
                   })
                 }
               >
@@ -188,33 +188,46 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
       <Grid item xs={8} sx={cardStyles.gridText}>
         <Grid container>
           <Grid item xs={3}>
-            <Typography variant='inherit' fontSize={15}>Start at:</Typography>
+            <Typography variant='inherit' fontSize={15}>
+              Start at:
+            </Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography variant='inherit' fontSize={15}>{startDate ? new Date(startDate).toLocaleString() : '-'}</Typography>
+            <Typography variant='inherit' fontSize={15}>
+              {startDate ? new Date(startDate).toLocaleString() : '-'}
+            </Typography>
           </Grid>
         </Grid>
       </Grid>
       <Grid item xs={8} sx={cardStyles.gridText}>
         <Grid container>
           <Grid item xs={3}>
-            <Typography variant='inherit' fontSize={15}>Expected end at:</Typography>
+            <Typography variant='inherit' fontSize={15}>
+              Expected end at:
+            </Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography variant='inherit' fontSize={15}>{new Date(expectedEndTime).toLocaleDateString()}</Typography>
+            <Typography variant='inherit' fontSize={15}>
+              {new Date(expectedEndTime).toLocaleDateString()}
+            </Typography>
           </Grid>
         </Grid>
       </Grid>
       <Grid item xs={8} sx={cardStyles.gridText}>
         <Grid container>
           <Grid item xs={3}>
-            <Typography variant='inherit' fontSize={15}> End at:</Typography>
+            <Typography variant='inherit' fontSize={15}>
+              {' '}
+              End at:
+            </Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography variant='inherit' fontSize={15}>{endDate ? new Date(endDate).toLocaleString() : '-'}</Typography>
+            <Typography variant='inherit' fontSize={15}>
+              {endDate ? new Date(endDate).toLocaleString() : '-'}
+            </Typography>
           </Grid>
         </Grid>
       </Grid>
-    </Grid >
+    </Grid>
   );
 };

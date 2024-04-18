@@ -33,7 +33,10 @@ export const ProjectListItem: React.FC<ProjectItemProps> = ({ project }) => {
       <ListItemText
         primary={<ListItemHeader field='Name' value={project.name} />}
         secondary={
-          <ListItemHeader field='Description' value={project?.description ?? ''} />
+          <ListItemHeader
+            field='Description'
+            value={project?.description ?? ''}
+          />
         }
       />
       <Tooltip title='Select project' onClick={handleOnSelect}>

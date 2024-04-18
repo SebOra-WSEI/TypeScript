@@ -18,7 +18,7 @@ export const CreateStoryModal: React.FC<CreateStoryModalProps> = ({
   const { projectId } = useParams<{ projectId: string }>();
   const [story, setStory] = useState<StoryFormBody>({
     ...defaultStory,
-    projectId
+    projectId,
   });
 
   const { create } = useCreateStory(story);
@@ -31,7 +31,7 @@ export const CreateStoryModal: React.FC<CreateStoryModalProps> = ({
   const handleOnClose = (): void => {
     setStory({
       ...defaultStory,
-      projectId
+      projectId,
     });
     onClose();
   };
