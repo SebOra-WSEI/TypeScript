@@ -8,12 +8,12 @@ import {
 import { storyPoints } from '../../../../utils/consts';
 import { TaskFormBody } from '../../../../types/task';
 
-interface TaskStoryPointsInputProps {
+interface CreateTaskStoryPointsInputProps {
   task: TaskFormBody;
   setTask: (value: TaskFormBody) => void;
 }
 
-export const TaskStoryPointsInput: React.FC<TaskStoryPointsInputProps> = ({
+export const CreateTaskStoryPointsInput: React.FC<CreateTaskStoryPointsInputProps> = ({
   task,
   setTask
 }) => (

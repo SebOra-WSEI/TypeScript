@@ -10,12 +10,12 @@ import { Priority } from '../../../../types/priority';
 import { priorityIcons } from '../../../../utils/priorityIcons';
 import { TaskFormBody } from '../../../../types/task';
 
-interface TaskPriorityInputProps {
+interface CreateTaskPriorityInputProps {
   task: TaskFormBody;
   setTask: (value: TaskFormBody) => void;
 }
 
-export const TaskPriorityInput: React.FC<TaskPriorityInputProps> = ({
+export const CreateTaskPriorityInput: React.FC<CreateTaskPriorityInputProps> = ({
   task,
   setTask,
 }) => (
