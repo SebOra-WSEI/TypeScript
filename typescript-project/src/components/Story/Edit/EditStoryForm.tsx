@@ -1,14 +1,14 @@
 import React from 'react';
 import { Grid, TextField } from '@mui/material';
 import { formStyles } from '../../../styles/formStyles';
-import { StoryModel } from '../../../types/story';
+import { StoryBasic } from '../../../types/story';
 import { EditStoryPriorityInput } from './InputFields/EditStoryPriorityInput';
 import { EditStoryAssignToInput } from './InputFields/EditStoryAssignToInput';
 import { EditStoryStatusInput } from './InputFields/EditStoryStatusInput';
 
 interface EditStoryFormProps {
-  updatedStory: StoryModel;
-  setUpdatedStory: (value: StoryModel) => void;
+  updatedStory: StoryBasic;
+  setUpdatedStory: (value: StoryBasic) => void;
 }
 
 export const EditStoryForm: React.FC<EditStoryFormProps> = ({

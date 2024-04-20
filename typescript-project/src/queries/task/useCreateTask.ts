@@ -3,12 +3,12 @@ import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
 import { Task } from '../../controllers/task';
-import { TaskFormBody } from '../../types/task';
+import { TaskBasic } from '../../types/task';
 import { useParams } from 'react-router';
 
 type UseCreateTaskResult = FetchedData<Task> & { create: () => void };
 
-export const useCreateTask = (task: TaskFormBody): UseCreateTaskResult => {
+export const useCreateTask = (task: TaskBasic): UseCreateTaskResult => {
   const [error, setError] = useState<string>('');
   const [message, setMessage] = useState<string | undefined>(undefined);
 

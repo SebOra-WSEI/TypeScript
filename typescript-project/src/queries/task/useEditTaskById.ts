@@ -4,15 +4,13 @@ import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
 import { EMPTY_TASK } from './task';
-import { TaskFormBody } from '../../types/task';
+import { TaskBasic } from '../../types/task';
 
 type UseEditTaskByIdResult = FetchedData<Story> & {
   update: (taskId: string) => void;
 };
 
-export const useEditTaskById = (
-  newTask: TaskFormBody
-): UseEditTaskByIdResult => {
+export const useEditTaskById = (newTask: TaskBasic): UseEditTaskByIdResult => {
   const [error, setError] = useState<string>('');
   const [message, setMessage] = useState<string | undefined>(undefined);
 

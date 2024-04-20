@@ -1,12 +1,12 @@
 import React from 'react';
 import { TextField } from '@mui/material';
 import { formStyles } from '../../../styles/formStyles';
-import { StoryFormBody } from '../../../types/story';
+import { StoryBasic } from '../../../types/story';
 import { CreateStoryPriorityInput } from './InputFields/CreateStoryPriorityInput';
 
 interface CreateStoryFormProps {
-  story: StoryFormBody;
-  setStory: (value: StoryFormBody) => void;
+  story: StoryBasic;
+  setStory: (value: StoryBasic) => void;
 }
 
 export const CreateStoryForm: React.FC<CreateStoryFormProps> = ({

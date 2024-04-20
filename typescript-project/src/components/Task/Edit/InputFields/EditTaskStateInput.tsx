@@ -2,11 +2,11 @@ import React from 'react';
 import { FormControl, MenuItem, Select } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
 import { State } from '../../../../types/state';
-import { TaskModel } from '../../../../types/task';
+import { TaskBasic } from '../../../../types/task';
 
 interface EditTaskStateInputProps {
-  updatedTask: TaskModel;
-  setUpdatedTask: (value: TaskModel) => void;
+  updatedTask: TaskBasic;
+  setUpdatedTask: (value: TaskBasic) => void;
 }
 
 export const EditTaskStateInput: React.FC<EditTaskStateInputProps> = ({

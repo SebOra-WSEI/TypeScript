@@ -1,11 +1,14 @@
 import { DataType } from './dataType';
 
-export interface UserModel {
-  id: string;
+interface UserBasic {
   name: string;
   surname: string;
   role: UserRole;
   type: DataType;
+}
+
+export interface UserModel extends UserBasic {
+  id: string;
 }
 
 export enum UserRole {

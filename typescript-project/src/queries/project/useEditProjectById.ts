@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { EMPTY_PROJECT } from './project';
-import { ProjectFormBody } from '../../types/project';
+import { ProjectBasic } from '../../types/project';
 import { FetchedData } from '../../types/fetchedData';
 import { Project } from '../../controllers/project';
 import { StatusCode } from '../../types/statusCode';
@@ -11,7 +11,7 @@ type UseEditProjectResult = FetchedData<Project> & {
 };
 
 export const useEditProjectById = (
-  newProjectDetails: ProjectFormBody
+  newProjectDetails: ProjectBasic
 ): UseEditProjectResult => {
   const [error, setError] = useState<string>('');
   const [message, setMessage] = useState<string | undefined>(undefined);

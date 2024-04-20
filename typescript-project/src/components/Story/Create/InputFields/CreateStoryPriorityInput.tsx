@@ -3,11 +3,11 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
 import { Priority } from '../../../../types/priority';
 import { PRIORITY_ICONS } from '../../../../utils/priorityIcons';
-import { StoryFormBody } from '../../../../types/story';
+import { StoryBasic } from '../../../../types/story';
 
 interface CreateStoryPriorityInputProps {
-  story: StoryFormBody;
-  setStory: (value: StoryFormBody) => void;
+  story: StoryBasic;
+  setStory: (value: StoryBasic) => void;
 }
 
 export const CreateStoryPriorityInput: React.FC<

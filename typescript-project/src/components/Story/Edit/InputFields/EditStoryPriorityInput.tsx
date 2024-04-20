@@ -2,12 +2,12 @@ import React from 'react';
 import { FormControl, MenuItem, Select } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
 import { Priority } from '../../../../types/priority';
-import { StoryModel } from '../../../../types/story';
+import { StoryBasic } from '../../../../types/story';
 import { PRIORITY_ICONS } from '../../../../utils/priorityIcons';
 
 interface EditStoryPriorityInputProps {
-  updatedStory: StoryModel;
-  setUpdatedStory: (value: StoryModel) => void;
+  updatedStory: StoryBasic;
+  setUpdatedStory: (value: StoryBasic) => void;
   priority: Priority;
 }
 

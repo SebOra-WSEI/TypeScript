@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { StoryFormBody } from '../../../types/story';
+import { StoryBasic } from '../../../types/story';
 import { CreateStoryForm } from './CreateStoryForm';
-import { useParams } from 'react-router';
 import { useCreateStory } from '../../../queries/story/useCreateStory';
 import { ModalContent } from '../../common/Modal/ModalContent';
 import { defaultStory } from '../../../queries/story/story';
@@ -15,11 +14,7 @@ export const CreateStoryModal: React.FC<CreateStoryModalProps> = ({
   isOpen,
   onClose,
 }) => {
-  const { projectId } = useParams<{ projectId: string }>();
-  const [story, setStory] = useState<StoryFormBody>({
-    ...defaultStory,
-    projectId,
-  });
+  const [story, setStory] = useState<StoryBasic>(defaultStory);
 
   const { create } = useCreateStory(story);
 
@@ -29,10 +24,7 @@ export const CreateStoryModal: React.FC<CreateStoryModalProps> = ({
   };
 
   const handleOnClose = (): void => {
-    setStory({
-      ...defaultStory,
-      projectId,
-    });
+    setStory(defaultStory);
     onClose();
   };
 

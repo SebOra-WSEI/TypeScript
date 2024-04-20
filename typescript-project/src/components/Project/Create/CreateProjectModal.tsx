@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ProjectFormBody } from '../../../types/project';
+import { ProjectBasic } from '../../../types/project';
 import { useCreateProject } from '../../../queries/project/useCreateProject';
 import { CreateProjectForm } from './CreateProjectForm';
 import { defaultProject } from '../../../queries/project/project';
@@ -14,7 +14,7 @@ export const CreateProjectModal: React.FC<CreateProjectModalProps> = ({
   isOpen,
   onClose,
 }) => {
-  const [project, setProject] = useState<ProjectFormBody>(defaultProject);
+  const [project, setProject] = useState<ProjectBasic>(defaultProject);
 
   const { create } = useCreateProject(project);
 

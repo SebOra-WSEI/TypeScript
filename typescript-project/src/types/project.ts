@@ -1,10 +1,11 @@
 import { DataType } from './dataType';
 
-export interface ProjectModel {
-  id: string;
+export interface ProjectBasic {
   name: string;
   description?: string;
   type: DataType;
 }
 
-export type ProjectFormBody = Pick<ProjectModel, 'name' | 'description'>;
+export interface ProjectModel extends ProjectBasic {
+  id: string;
+}

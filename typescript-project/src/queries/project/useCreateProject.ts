@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Project } from '../../controllers/project';
-import { ProjectFormBody } from '../../types/project';
+import { ProjectBasic } from '../../types/project';
 import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
@@ -8,7 +8,7 @@ import { useSetSeverity } from '../../hooks/useSetSeverity';
 type UseCreateProjectResult = FetchedData<Project> & { create: () => void };
 
 export const useCreateProject = (
-  project: ProjectFormBody
+  project: ProjectBasic
 ): UseCreateProjectResult => {
   const [error, setError] = useState<string>('');
   const [message, setMessage] = useState<string | undefined>(undefined);
