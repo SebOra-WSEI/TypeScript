@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { TaskModel } from '../../../types/task';
+import { TaskBasic, TaskModel } from '../../../types/task';
 import { EditTaskForm } from './EditTaskForm';
 import { useEditTaskById } from '../../../queries/task/useEditTaskById';
 import { ModalContent } from '../../common/Modal/ModalContent';
@@ -16,7 +16,7 @@ export const EditTaskModal: React.FC<EditTaskModalProps> = ({
   onClose,
   task,
 }) => {
-  const [updatedTask, setUpdatedTask] = useState<TaskModel>({
+  const [updatedTask, setUpdatedTask] = useState<TaskBasic>({
     ...task,
     ...(!task.assignedToId && {
       assignedToId: 'Unassigned',

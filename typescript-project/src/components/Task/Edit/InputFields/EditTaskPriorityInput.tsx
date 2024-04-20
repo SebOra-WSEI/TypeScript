@@ -3,11 +3,11 @@ import { FormControl, MenuItem, Select } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
 import { Priority } from '../../../../types/priority';
 import { PRIORITY_ICONS } from '../../../../utils/priorityIcons';
-import { TaskModel } from '../../../../types/task';
+import { TaskBasic } from '../../../../types/task';
 
 interface EditTaskPriorityInputProps {
-  updatedTask: TaskModel;
-  setUpdatedTask: (value: TaskModel) => void;
+  updatedTask: TaskBasic;
+  setUpdatedTask: (value: TaskBasic) => void;
 }
 
 export const EditTaskPriorityInput: React.FC<EditTaskPriorityInputProps> = ({

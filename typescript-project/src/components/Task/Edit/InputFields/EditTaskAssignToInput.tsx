@@ -4,11 +4,11 @@ import { formStyles } from '../../../../styles/formStyles';
 import { State } from '../../../../types/state';
 import { useGetAllUsers } from '../../../../queries/user/useGetAllUsers';
 import { UserRole } from '../../../../types/user';
-import { TaskModel } from '../../../../types/task';
+import { TaskBasic } from '../../../../types/task';
 
 interface EditTaskAssignToInputProps {
-  updatedTask: TaskModel;
-  setUpdatedTask: (value: TaskModel) => void;
+  updatedTask: TaskBasic;
+  setUpdatedTask: (value: TaskBasic) => void;
 }
 
 export const EditTaskAssignToInput: React.FC<EditTaskAssignToInputProps> = ({

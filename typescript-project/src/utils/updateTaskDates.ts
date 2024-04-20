@@ -1,7 +1,7 @@
 import { State } from '../types/state';
-import { TaskModel } from '../types/task';
+import { TaskBasic } from '../types/task';
 
-export const updateTaskDates = (task: TaskModel): TaskModel => {
+export const updateTaskDates = (task: TaskBasic): TaskBasic => {
   switch (task.state) {
     case State.Doing:
       if (!!task.endDate) {

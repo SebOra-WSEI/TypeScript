@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, TextField, Typography } from '@mui/material';
 import { formStyles } from '../../../styles/formStyles';
-import { TaskModel } from '../../../types/task';
+import { TaskBasic } from '../../../types/task';
 import { EditTaskStateInput } from './InputFields/EditTaskStateInput';
 import { EditTaskAssignToInput } from './InputFields/EditTaskAssignToInput';
 import { EditTaskPriorityInput } from './InputFields/EditTaskPriorityInput';
@@ -9,8 +9,8 @@ import { EditTaskStoryPointInput } from './InputFields/EditTaskStoryPointInput';
 import { EditTaskDateFields } from './InputFields/EditTaskDateFields';
 
 interface EditTaskFormProps {
-  updatedTask: TaskModel;
-  setUpdatedTask: (value: TaskModel) => void;
+  updatedTask: TaskBasic;
+  setUpdatedTask: (value: TaskBasic) => void;
 }
 
 export const EditTaskForm: React.FC<EditTaskFormProps> = ({
