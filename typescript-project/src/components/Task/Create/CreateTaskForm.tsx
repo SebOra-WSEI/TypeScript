@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { TextField } from '@mui/material';
 import { formStyles } from '../../../styles/formStyles';
-import { TaskFormBody } from '../../../types/task';
+import { TaskBasic } from '../../../types/task';
 import { expectedWorkingDays } from '../../../utils/expectedWorkingDays';
 import { CreateTaskPriorityInput } from './InputFields/CreateTaskPriorityInput';
 import { CreateTaskStoryPointsInput } from './InputFields/CreateTaskStoryPointsInput';
 
 interface CreateTaskFormProps {
-  task: TaskFormBody;
-  setTask: (value: TaskFormBody) => void;
+  task: TaskBasic;
+  setTask: (value: TaskBasic) => void;
 }
 
 export const CreateTaskForm: React.FC<CreateTaskFormProps> = ({

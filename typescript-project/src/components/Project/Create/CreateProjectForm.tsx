@@ -1,11 +1,11 @@
 import React from 'react';
 import { TextField } from '@mui/material';
-import { ProjectFormBody } from '../../../types/project';
+import { ProjectBasic } from '../../../types/project';
 import { formStyles } from '../../../styles/formStyles';
 
 interface CreateProjectFormProps {
-  project: ProjectFormBody;
-  setProject: (value: ProjectFormBody) => void;
+  project: ProjectBasic;
+  setProject: (value: ProjectBasic) => void;
 }
 
 export const CreateProjectForm: React.FC<CreateProjectFormProps> = ({

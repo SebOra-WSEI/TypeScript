@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ProjectFormBody, ProjectModel } from '../../../types/project';
+import { ProjectBasic, ProjectModel } from '../../../types/project';
 import { EditProjectForm } from './EditProjectForm';
 import { useEditProjectById } from '../../../queries/project/useEditProjectById';
 import { ModalContent } from '../../common/Modal/ModalContent';
@@ -16,7 +16,7 @@ export const EditProjectModal: React.FC<EditProjectModalProps> = ({
   project,
 }) => {
   const [updatedProject, setUpdatedProject] =
-    useState<ProjectFormBody>(project);
+    useState<ProjectBasic>(project);
 
   const { update } = useEditProjectById(updatedProject);
 

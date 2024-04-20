@@ -1,11 +1,11 @@
 import React from 'react';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { STORY_POINTS } from '../../../../utils/consts';
-import { TaskFormBody } from '../../../../types/task';
+import { TaskBasic } from '../../../../types/task';
 
 interface CreateTaskStoryPointsInputProps {
-  task: TaskFormBody;
-  setTask: (value: TaskFormBody) => void;
+  task: TaskBasic;
+  setTask: (value: TaskBasic) => void;
 }
 
 export const CreateTaskStoryPointsInput: React.FC<

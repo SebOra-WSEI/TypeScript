@@ -3,8 +3,7 @@ import { Priority } from './priority';
 import { State } from './state';
 import { UserModel } from './user';
 
-export interface StoryModel {
-  id: string;
+export interface StoryBasic {
   name: string;
   description?: string;
   priority: Priority;
@@ -17,4 +16,6 @@ export interface StoryModel {
   type: DataType;
 }
 
-export type StoryFormBody = Omit<StoryModel, 'id' | 'date' | 'state' | 'type'>;
+export interface StoryModel extends StoryBasic {
+  id: string;
+}
