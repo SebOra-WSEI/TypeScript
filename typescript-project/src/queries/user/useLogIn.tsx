@@ -5,12 +5,38 @@ import { User } from '../../controllers/user';
 import { LoginBody } from '../../types/login';
 import axios from 'axios';
 import { endpoints, routeBuilder } from '../../routes/routes';
-import { UserModel, UserRole } from '../../types/user';
 import { CURRENT_USER_ID, setToLocalStorage } from '../../utils/localStorage';
 import { ErrorResponse, LoggedUserResponse } from '../../types/response';
 import { StatusCode } from '../../types/statusCode';
 import { useHistory } from 'react-router';
-import { EMPTY_USER } from './emptyUser';
+import { DataType } from '../../types/dataType';
+
+const allUsers = [
+  {
+    name: 'Sebastian',
+    surname: 'Oraczek',
+    role: 'Admin',
+    id: '17dd3204-8269-415d-85b1-832a17b760d6',
+    login: 'Sebastian',
+    password: 'abc',
+  },
+  {
+    name: 'Jan',
+    surname: 'Kowalski',
+    role: 'Developer',
+    id: '07376188-835d-4d95-ab8d-a0f5399d1199',
+    login: 'Jan',
+    password: 'abc',
+  },
+  {
+    name: 'Aleksandra',
+    surname: 'Nowak',
+    role: 'Devops',
+    id: 'c70676d5-8e88-4eba-a399-c4d683fe4a7f',
+    login: 'Aleksandra',
+    password: 'abc',
+  },
+];
 
 type useLogInResult = FetchedData<User> & { logIn: () => Promise<void> };
 
@@ -20,42 +46,22 @@ export const useLogIn = (body: LoginBody): useLogInResult => {
 
   const history = useHistory();
 
+  setToLocalStorage(DataType.User, JSON.stringify(allUsers));
+
   const logIn = async (): Promise<void> => {
     await axios
       .post(endpoints.signIn, body)
       .then((res: LoggedUserResponse) => {
         const { message, status, response } = res.data;
-        const { name, surname, role } = response?.user ?? {};
 
-        const allUsers = EMPTY_USER.getAll().response as Array<UserModel>;
-        const existingUser = allUsers.find(
-          (u) => u.name === name && u.surname === surname
-        );
-
-        if (status === StatusCode.OK && existingUser) {
-          setToLocalStorage(CURRENT_USER_ID, existingUser.id);
+        if (status === StatusCode.OK && response?.user) {
+          setToLocalStorage(CURRENT_USER_ID, response.user.id);
           setMessage(message);
 
           setTimeout(() => {
             history.push(routeBuilder.projects);
           }, 1000);
-          return;
         }
-
-        // Create a new user
-        const newUser = new User(
-          name ?? '',
-          surname ?? '',
-          role ?? UserRole.Admin
-        );
-        newUser.create();
-
-        setToLocalStorage(CURRENT_USER_ID, newUser.id);
-        setMessage(message);
-
-        setTimeout(() => {
-          history.push(routeBuilder.projects);
-        }, 1000);
       })
       .catch((error: ErrorResponse) => {
         const { status, message } = error.response?.data ?? {};
@@ -63,6 +69,10 @@ export const useLogIn = (body: LoginBody): useLogInResult => {
         if (status !== StatusCode.OK && message) {
           setError(message);
         }
+
+        setTimeout(() => {
+          setError('');
+        }, 100);
       });
   };
 
