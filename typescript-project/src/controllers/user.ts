@@ -4,6 +4,8 @@ import { UserModel, UserRole } from '../types/user';
 import { DataType } from '../types/dataType';
 
 export class User extends Api<UserModel> {
+  public id: string;
+
   constructor(name: string, surname: string, role: UserRole) {
     const id = uuidv4();
 
@@ -15,5 +17,7 @@ export class User extends Api<UserModel> {
     };
 
     super({ ...user, type: DataType.User }, { idKey: 'id', nameKey: 'name' });
+
+    this.id = id;
   }
 }

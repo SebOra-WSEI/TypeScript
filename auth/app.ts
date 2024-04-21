@@ -15,7 +15,7 @@ let refreshToken: string;
 app.use(cors());
 app.use(express.json());
 
-app.get('/login', (req, res) => {
+app.post('/sign-in', (req, res) => {
   const { login, password } = req.body as LoginBody;
 
   if (!login || !password) {
@@ -25,9 +25,7 @@ app.get('/login', (req, res) => {
       response: undefined,
     };
 
-    setTimeout(() => {
-      res.status(response.status).send(response);
-    }, 1000);
+    res.status(response.status).send(response);
   }
 
   const user = DEFAULT_USERS.find((u) => u.name === login);
@@ -39,9 +37,7 @@ app.get('/login', (req, res) => {
       response: undefined,
     };
 
-    setTimeout(() => {
-      res.status(response.status).send(response);
-    }, 1000);
+    res.status(response.status).send(response);
   }
 
   refreshToken = generateToken(60 * 60);
@@ -56,9 +52,7 @@ app.get('/login', (req, res) => {
     },
   };
 
-  setTimeout(() => {
-    res.status(response.status).send(response);
-  }, 1000);
+  res.status(response.status).send(response);
 });
 
 app.listen(port, () => {
