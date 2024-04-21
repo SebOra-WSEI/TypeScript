@@ -1,7 +1,6 @@
 import {
   AppBar,
   Avatar,
-  Divider,
   IconButton,
   ListItemIcon,
   Menu,
@@ -17,11 +16,13 @@ import { TaskModel } from '../../types/task';
 import { NavbarBreadcrumbs } from './Breadcrumbs/NavbarBreadcrumbs';
 import { useHistory } from 'react-router';
 import { routes } from '../../routes/routes';
-import { SELECTED_PROJECT_ID } from '../../utils/localStorage';
+import { CURRENT_USER_ID, SELECTED_PROJECT_ID } from '../../utils/localStorage';
 import ReplyAllIcon from '@mui/icons-material/ReplyAll';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { Link } from 'react-router-dom';
 
 interface NavbarProps extends PropsWithChildren {
-  data: ProjectModel | StoryModel | TaskModel;
+  data?: ProjectModel | StoryModel | TaskModel;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
@@ -43,6 +44,11 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
     window.localStorage.removeItem(SELECTED_PROJECT_ID);
   };
 
+  const handleLogOut = (): void => {
+    window.localStorage.removeItem(SELECTED_PROJECT_ID);
+    window.localStorage.removeItem(CURRENT_USER_ID);
+  }
+
   return (
     <AppBar>
       <Toolbar>
@@ -60,12 +66,19 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
         </IconButton>
         <Menu anchorEl={anchorEl} open={open} onClose={handleIconClose}>
           {children}
-          <Divider />
-          <MenuItem onClick={handleChangeProject}>
+          {window.location.pathname !== routes.projects && (
+            <MenuItem onClick={handleChangeProject}>
+              <ListItemIcon>
+                <ReplyAllIcon fontSize='small' />
+              </ListItemIcon>
+              Change project
+            </MenuItem>
+          )}
+          <MenuItem onClick={handleLogOut}>
             <ListItemIcon>
-              <ReplyAllIcon fontSize='small' />
+              <LogoutIcon fontSize='small' />
             </ListItemIcon>
-            Change project
+            <Link to={routes.login} style={styles.link}>Log out</Link>
           </MenuItem>
         </Menu>
       </Toolbar>
@@ -81,4 +94,8 @@ const styles = {
     background: 'inherit',
     marginLeft: 'auto',
   },
+  link: {
+    textDecoration: 'none',
+    color: 'inherit'
+  }
 };

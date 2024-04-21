@@ -5,12 +5,25 @@ import { LoggedUser, LoginBody } from './types/login';
 import { Response } from './types/response';
 import { StatusCode } from './types/statusCode';
 import { generateToken } from './utils/token';
-import { DEFAULT_USERS } from './utils/consts';
+import fs from 'fs';
+import { User } from './types/user';
+
+interface DbJSON {
+  users: Array<User>;
+}
+
+let jsonDb: DbJSON;
+let allUsers: Array<User>;
+let refreshToken: string;
+
+fs.readFile('../db.json', (err, data) => {
+  if (err) throw err;
+  jsonDb = JSON.parse(String(data));
+  allUsers = jsonDb.users;
+});
 
 const app = express();
 const port = 3000;
-
-let refreshToken: string;
 
 app.use(cors());
 app.use(express.json());
@@ -28,12 +41,12 @@ app.post('/sign-in', (req, res) => {
     res.status(response.status).send(response);
   }
 
-  const user = DEFAULT_USERS.find((u) => u.name === login);
+  const user = allUsers.find((u) => u.name === login);
 
   if (!user) {
     const response: Response<LoggedUser> = {
       status: StatusCode.BadRequest,
-      message: 'Invalid login or password',
+      message: 'User cannot be found',
       response: undefined,
     };
 
