@@ -1,11 +1,8 @@
-export interface UserBasic {
+export interface UserModel {
+  id: string;
   name: string;
   surname: string;
   role: UserRole;
-}
-
-export interface UserModel extends UserBasic {
-  id: string;
 }
 
 export enum UserRole {
@@ -17,5 +14,5 @@ export enum UserRole {
 export interface LoggedUser {
   token: string;
   refreshToken: string;
-  user?: UserBasic;
+  user?: UserModel;
 }

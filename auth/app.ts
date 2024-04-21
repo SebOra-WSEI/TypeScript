@@ -39,6 +39,7 @@ app.post('/sign-in', (req, res) => {
     };
 
     res.status(response.status).send(response);
+    return;
   }
 
   const user = allUsers.find((u) => u.name === login);
@@ -51,6 +52,18 @@ app.post('/sign-in', (req, res) => {
     };
 
     res.status(response.status).send(response);
+    return;
+  }
+
+  if (user.password !== password) {
+    const response: Response<LoggedUser> = {
+      status: StatusCode.BadRequest,
+      message: 'Invalid login or password',
+      response: undefined,
+    };
+
+    res.status(response.status).send(response);
+    return;
   }
 
   refreshToken = generateToken(60 * 60);

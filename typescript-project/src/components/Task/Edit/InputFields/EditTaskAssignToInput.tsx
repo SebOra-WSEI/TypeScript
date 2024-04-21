@@ -16,7 +16,6 @@ export const EditTaskAssignToInput: React.FC<EditTaskAssignToInputProps> = ({
   setUpdatedTask,
 }) => {
   const { data } = useGetAllUsers();
-
   const enabledUsers = data?.filter((u) => u.role !== UserRole.Admin);
 
   return (
