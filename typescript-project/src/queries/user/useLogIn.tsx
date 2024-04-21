@@ -14,9 +14,7 @@ import { EMPTY_USER } from './emptyUser';
 
 type useLogInResult = FetchedData<User> & { logIn: () => Promise<void> };
 
-export const useLogIn = (
-  body: LoginBody
-): useLogInResult => {
+export const useLogIn = (body: LoginBody): useLogInResult => {
   const [error, setError] = useState<string>('');
   const [message, setMessage] = useState<string | undefined>(undefined);
 
@@ -30,27 +28,33 @@ export const useLogIn = (
         const { name, surname, role } = response?.user ?? {};
 
         const allUsers = EMPTY_USER.getAll().response as Array<UserModel>;
-        const existingUser = allUsers.find((u) => u.name === name && u.surname === surname);
+        const existingUser = allUsers.find(
+          (u) => u.name === name && u.surname === surname
+        );
 
         if (status === StatusCode.OK && existingUser) {
           setToLocalStorage(CURRENT_USER_ID, existingUser.id);
           setMessage(message);
 
           setTimeout(() => {
-            history.push(routeBuilder.projects)
+            history.push(routeBuilder.projects);
           }, 1000);
-          return
+          return;
         }
 
         // Create a new user
-        const newUser = new User(name ?? '', surname ?? '', role ?? UserRole.Admin);
+        const newUser = new User(
+          name ?? '',
+          surname ?? '',
+          role ?? UserRole.Admin
+        );
         newUser.create();
 
         setToLocalStorage(CURRENT_USER_ID, newUser.id);
-        setMessage(message)
+        setMessage(message);
 
         setTimeout(() => {
-          history.push(routeBuilder.projects)
+          history.push(routeBuilder.projects);
         }, 1000);
       })
       .catch((error: ErrorResponse) => {

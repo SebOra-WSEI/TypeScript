@@ -15,8 +15,7 @@ export const EditProjectModal: React.FC<EditProjectModalProps> = ({
   onClose,
   project,
 }) => {
-  const [updatedProject, setUpdatedProject] =
-    useState<ProjectBasic>(project);
+  const [updatedProject, setUpdatedProject] = useState<ProjectBasic>(project);
 
   const { update } = useEditProjectById(updatedProject);
 

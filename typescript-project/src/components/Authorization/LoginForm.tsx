@@ -5,9 +5,9 @@ import {
   CardActions,
   CardContent,
   TextField,
-} from "@mui/material";
-import React from "react";
-import { LoginBody } from "../../types/login";
+} from '@mui/material';
+import React from 'react';
+import { LoginBody } from '../../types/login';
 
 interface LoginFormProps {
   loginBody: LoginBody;
@@ -18,7 +18,7 @@ interface LoginFormProps {
 export const LoginForm: React.FC<LoginFormProps> = ({
   loginBody,
   setLoginBody,
-  onSubmit
+  onSubmit,
 }) => {
   const { login, password } = loginBody;
 
@@ -39,7 +39,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
               onChange={(evt) =>
                 setLoginBody({
                   ...loginBody,
-                  login: evt.target.value
+                  login: evt.target.value,
                 })
               }
             />
@@ -53,7 +53,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
               onChange={(evt) =>
                 setLoginBody({
                   ...loginBody,
-                  password: evt.target.value
+                  password: evt.target.value,
                 })
               }
             />
@@ -65,9 +65,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({
           </CardActions>
         </CardContent>
       </Card>
-    </Box >
+    </Box>
   );
-}
+};
 
 const styles = {
   box: {
@@ -92,5 +92,5 @@ const styles = {
     width: '100%',
     margin: '1rem 0 0.2rem 0',
     borderRadius: '0.5rem',
-  }
+  },
 };
