@@ -27,10 +27,10 @@ export const useCreateStory = (story: StoryBasic): UseCreateStoryResult => {
   );
 
   const create = (): void => {
-    const { status, errorMessage, response, message } = newStory.create();
+    const { status, response, message } = newStory.create();
 
-    if (!!errorMessage) {
-      setError(errorMessage);
+    if (status !== StatusCode.Created && message) {
+      setError(message);
     }
 
     if (status === StatusCode.Created && response) {

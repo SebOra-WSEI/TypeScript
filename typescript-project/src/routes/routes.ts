@@ -1,5 +1,8 @@
+const HOST = 'http://localhost:3000';
+
 export const routes = {
-  home: '/',
+  default: '/',
+  login: '/login',
   noPage: '*',
   stories: '/projects/:projectId/stories',
   projects: '/projects',
@@ -12,4 +15,8 @@ export const routeBuilder = {
     `${routes.stories.replace(':projectId', projectId)}`,
   tasks: (projectId: string, storyId: string): string =>
     `${routes.tasks.replace(':projectId', projectId).replace(':storyId', storyId)}`,
+} as const;
+
+export const endpoints = {
+  signIn: `${HOST}/sign-in`,
 } as const;

@@ -17,10 +17,10 @@ export const useCreateProject = (
   const newProject = new Project(name, description);
 
   const create = (): void => {
-    const { status, errorMessage, response, message } = newProject.create();
+    const { status, response, message } = newProject.create();
 
-    if (!!errorMessage) {
-      setError(errorMessage);
+    if (status !== StatusCode.Created && message) {
+      setError(message);
     }
 
     if (status === StatusCode.Created && response) {

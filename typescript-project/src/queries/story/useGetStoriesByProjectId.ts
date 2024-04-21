@@ -13,7 +13,7 @@ export const useGetStoriesByProjectId = (
   const [stories, setStories] = useState<Array<StoryModel>>();
 
   useEffect(() => {
-    const { status, errorMessage, response } = EMPTY_STORY.getAll();
+    const { status, message, response } = EMPTY_STORY.getAll();
 
     const filteredStories = response?.filter((s) => s.projectId === projectId);
     const extendedStories = filteredStories?.map((story) => ({
@@ -21,8 +21,8 @@ export const useGetStoriesByProjectId = (
       owner: EMPTY_USER.getById(story.ownerId).response,
     }));
 
-    if (!!errorMessage) {
-      setError(errorMessage);
+    if (status !== StatusCode.OK && message) {
+      setError(message);
       setIsLoading(false);
     }
 

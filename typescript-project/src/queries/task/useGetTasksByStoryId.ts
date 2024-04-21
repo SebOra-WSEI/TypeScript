@@ -12,12 +12,12 @@ export const useGetTasksByStoryId = (
   const [tasks, setTasks] = useState<Array<TaskModel>>();
 
   useEffect(() => {
-    const { errorMessage, status, response } = EMPTY_TASK.getAll();
+    const { status, response, message } = EMPTY_TASK.getAll();
 
     const filteredTasks = response?.filter((s) => s.storyId === storyId);
 
-    if (!!errorMessage) {
-      setError(errorMessage);
+    if (status !== StatusCode.OK && message) {
+      setError(message);
       setIsLoading(false);
     }
 

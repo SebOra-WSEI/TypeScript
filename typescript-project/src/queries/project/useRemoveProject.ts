@@ -14,11 +14,10 @@ export const useRemoveProject = (isReload = true): UseRemoveProjectResult => {
   const [message, setMessage] = useState<string | undefined>(undefined);
 
   const remove = (id: string) => {
-    const { status, errorMessage, response, message } =
-      EMPTY_PROJECT.delete(id);
+    const { status, response, message } = EMPTY_PROJECT.delete(id);
 
-    if (!!errorMessage) {
-      setError(errorMessage);
+    if (status !== StatusCode.OK && message) {
+      setError(message);
     }
 
     if (status === StatusCode.OK && response) {

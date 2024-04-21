@@ -34,13 +34,15 @@ export class Task extends Api<TaskModel> {
       expectedEndTime,
       storyPoint,
       assignedToId,
-      type: DataType.Task,
     };
 
-    super(task, {
-      idKey: 'id',
-      nameKey: 'name',
-      projectIdKey: 'storyId',
-    });
+    super(
+      { ...task, type: DataType.Task },
+      {
+        idKey: 'id',
+        nameKey: 'name',
+        projectIdKey: 'storyId',
+      }
+    );
   }
 }
