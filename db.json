@@ -1,0 +1,7 @@
+{
+  "users": [
+    { "name": "Sebastian", "surname": "Oraczek", "role": "UserRole.Admin" },
+    { "name": "Jan", "surname": "Kowalski", "role": "UserRole.Developer" },
+    { "name": "Aleksandra", "surname": "Nowak", "role": "UserRole.Devops" }
+  ]
+}

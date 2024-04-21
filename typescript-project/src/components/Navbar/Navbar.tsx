@@ -66,12 +66,14 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
         </IconButton>
         <Menu anchorEl={anchorEl} open={open} onClose={handleIconClose}>
           {children}
-          <MenuItem onClick={handleChangeProject}>
-            <ListItemIcon>
-              <ReplyAllIcon fontSize='small' />
-            </ListItemIcon>
-            Change project
-          </MenuItem>
+          {window.location.pathname !== routes.projects && (
+            <MenuItem onClick={handleChangeProject}>
+              <ListItemIcon>
+                <ReplyAllIcon fontSize='small' />
+              </ListItemIcon>
+              Change project
+            </MenuItem>
+          )}
           <MenuItem onClick={handleLogOut}>
             <ListItemIcon>
               <LogoutIcon fontSize='small' />
