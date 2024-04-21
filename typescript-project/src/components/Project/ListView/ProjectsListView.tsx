@@ -5,6 +5,7 @@ import { ProjectsList } from './List/ProjectsList';
 import { CreateProjectModal } from '../Create/CreateProjectModal';
 import { Box } from '@mui/material';
 import { listStyles } from '../../../styles/listStyles';
+import { Navbar } from '../../Navbar/Navbar';
 
 export const ProjectsListView: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -24,6 +25,7 @@ export const ProjectsListView: React.FC = () => {
 
   return (
     <>
+      <Navbar />
       <Box sx={listStyles.noItemsWrapper}>
         <ProjectsList projects={data} handleOnOpen={handleOnOpen} />
       </Box>

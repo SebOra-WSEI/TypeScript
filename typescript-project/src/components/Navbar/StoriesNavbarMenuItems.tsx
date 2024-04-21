@@ -47,6 +47,7 @@ export const StoriesNavbarMenuItems: React.FC<StoriesNavbarMenuItemsProps> = ({
         </ListItemIcon>
         Create new story
       </MenuItem>
+      <Divider />
     </>
   );
 };

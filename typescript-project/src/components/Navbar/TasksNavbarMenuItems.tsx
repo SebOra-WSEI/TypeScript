@@ -50,6 +50,7 @@ export const TasksNavbarMenuItems: React.FC<TasksNavbarMenuItemsProps> = ({
         </ListItemIcon>
         Create new task
       </MenuItem>
+      <Divider />
     </>
   );
 };
