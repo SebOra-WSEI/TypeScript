@@ -11,11 +11,10 @@ export const useGetProjectById = (id: string): FetchedData<ProjectModel> => {
   const [project, setProject] = useState<ProjectModel>();
 
   useEffect(() => {
-    const { errorMessage, status, response, message } =
-      EMPTY_PROJECT.getById(id);
+    const { status, response, message } = EMPTY_PROJECT.getById(id);
 
-    if (!!errorMessage) {
-      setError(errorMessage);
+    if (status !== StatusCode.OK && message) {
+      setError(message);
       setIsLoading(false);
     }
 

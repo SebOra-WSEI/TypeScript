@@ -17,13 +17,13 @@ export const useEditProjectById = (
   const [message, setMessage] = useState<string | undefined>(undefined);
 
   const update = (projectId: string) => {
-    const { status, errorMessage, response, message } = EMPTY_PROJECT.update(
+    const { status, response, message } = EMPTY_PROJECT.update(
       projectId,
       newProjectDetails
     );
 
-    if (!!errorMessage) {
-      setError(errorMessage);
+    if (status !== StatusCode.OK && message) {
+      setError(message);
     }
 
     if (status === StatusCode.OK && response) {

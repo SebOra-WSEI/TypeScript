@@ -40,10 +40,10 @@ export const useCreateTask = (task: TaskBasic): UseCreateTaskResult => {
   );
 
   const create = (): void => {
-    const { status, errorMessage, response, message } = newTask.create();
+    const { status, response, message } = newTask.create();
 
-    if (!!errorMessage) {
-      setError(errorMessage);
+    if (status !== StatusCode.Created && message) {
+      setError(message);
     }
 
     if (status === StatusCode.Created && response) {

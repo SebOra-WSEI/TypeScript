@@ -11,10 +11,10 @@ export const useGetAllUsers = (): FetchedData<Array<UserModel>> => {
   const [projects, setProjects] = useState<Array<UserModel>>([]);
 
   useEffect(() => {
-    const { errorMessage, status, response, message } = EMPTY_USER.getAll();
+    const { status, response, message } = EMPTY_USER.getAll();
 
-    if (!!errorMessage) {
-      setError(errorMessage);
+    if (status !== StatusCode.OK && message) {
+      setError(message);
       setIsLoading(false);
     }
 

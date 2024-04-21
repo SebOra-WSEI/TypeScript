@@ -11,10 +11,10 @@ export const useGetTaskById = (id: string): FetchedData<TaskModel> => {
   const [task, setTask] = useState<TaskModel>();
 
   useEffect(() => {
-    const { errorMessage, status, response, message } = EMPTY_TASK.getById(id);
+    const { status, response, message } = EMPTY_TASK.getById(id);
 
-    if (!!errorMessage) {
-      setError(errorMessage);
+    if (status !== StatusCode.OK && message) {
+      setError(message);
       setIsLoading(false);
     }
 

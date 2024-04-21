@@ -11,10 +11,10 @@ export const useGetStoryById = (id: string): FetchedData<StoryModel> => {
   const [story, setStory] = useState<StoryModel>();
 
   useEffect(() => {
-    const { errorMessage, status, response, message } = EMPTY_STORY.getById(id);
+    const { status, response, message } = EMPTY_STORY.getById(id);
 
-    if (!!errorMessage) {
-      setError(errorMessage);
+    if (status !== StatusCode.OK && message) {
+      setError(message);
       setIsLoading(false);
     }
 

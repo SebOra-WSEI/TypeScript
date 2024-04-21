@@ -11,10 +11,10 @@ export const useGetAllProjects = (): FetchedData<Array<ProjectModel>> => {
   const [projects, setProjects] = useState<Array<ProjectModel>>([]);
 
   useEffect(() => {
-    const { errorMessage, status, response, message } = EMPTY_PROJECT.getAll();
+    const { status, response, message } = EMPTY_PROJECT.getAll();
 
-    if (!!errorMessage) {
-      setError(errorMessage);
+    if (status !== StatusCode.OK && message) {
+      setError(message);
       setIsLoading(false);
     }
 

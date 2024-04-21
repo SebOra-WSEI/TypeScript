@@ -14,10 +14,10 @@ export const useRemoveTask = (isReload = true): UseRemoveTaskResult => {
   const [message, setMessage] = useState<string | undefined>(undefined);
 
   const remove = (id: string) => {
-    const { status, errorMessage, response, message } = EMPTY_TASK.delete(id);
+    const { status, response, message } = EMPTY_TASK.delete(id);
 
-    if (!!errorMessage) {
-      setError(errorMessage);
+    if (status !== StatusCode.OK && message) {
+      setError(message);
     }
 
     if (status === StatusCode.OK && response) {

@@ -44,7 +44,7 @@ export class Api<T> {
     if (!id.length) {
       return {
         status: StatusCode.BadRequest,
-        errorMessage: `${this.idKey} cannot be empty`,
+        message: `${this.idKey} cannot be empty`,
         response: undefined,
       };
     }
@@ -55,7 +55,7 @@ export class Api<T> {
     if (!project) {
       return {
         status: StatusCode.NotFound,
-        errorMessage: `${this.object.type} not found`,
+        message: `${this.object.type} not found`,
         response: undefined,
       };
     }
@@ -70,7 +70,7 @@ export class Api<T> {
     if (this.object[this.nameKey] === '') {
       return {
         status: StatusCode.BadRequest,
-        errorMessage: `${this.nameKey} cannot be empty`,
+        message: `${this.nameKey} cannot be empty`,
         response: undefined,
       };
     }
@@ -94,7 +94,7 @@ export class Api<T> {
     if (Boolean(isAlreadyExisted)) {
       return {
         status: StatusCode.BadRequest,
-        errorMessage: `${this.object.type} already exist`,
+        message: `${this.object.type} already exist`,
         response: undefined,
       };
     }
@@ -113,13 +113,13 @@ export class Api<T> {
     if (!id.length) {
       return {
         status: StatusCode.BadRequest,
-        errorMessage: `${this.idKey} cannot be empty`,
+        message: `${this.idKey} cannot be empty`,
         response: undefined,
       };
     }
 
     const currentObjectResponse = this.getById(id);
-    if (Boolean(currentObjectResponse.errorMessage)) {
+    if (currentObjectResponse.status !== StatusCode.OK) {
       return currentObjectResponse;
     }
 
@@ -141,20 +141,20 @@ export class Api<T> {
     if (!id.length) {
       return {
         status: StatusCode.BadRequest,
-        errorMessage: `${this.idKey} cannot be empty`,
+        message: `${this.idKey} cannot be empty`,
         response: undefined,
       };
     }
     if (Object.values(newData).some((v) => v === '')) {
       return {
         status: StatusCode.BadRequest,
-        errorMessage: 'Fields cannot be empty',
+        message: 'Fields cannot be empty',
         response: undefined,
       };
     }
 
     const currentObjectResponse = this.getById(id);
-    if (Boolean(currentObjectResponse.errorMessage)) {
+    if (currentObjectResponse.status !== StatusCode.OK) {
       return currentObjectResponse;
     }
 
