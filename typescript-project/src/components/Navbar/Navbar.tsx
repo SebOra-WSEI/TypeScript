@@ -47,7 +47,7 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
   const handleLogOut = (): void => {
     window.localStorage.removeItem(SELECTED_PROJECT_ID);
     window.localStorage.removeItem(CURRENT_USER_ID);
-  }
+  };
 
   return (
     <AppBar>
@@ -78,7 +78,9 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
             <ListItemIcon>
               <LogoutIcon fontSize='small' />
             </ListItemIcon>
-            <Link to={routes.login} style={styles.link}>Log out</Link>
+            <Link to={routes.login} style={styles.link}>
+              Log out
+            </Link>
           </MenuItem>
         </Menu>
       </Toolbar>
@@ -96,6 +98,6 @@ const styles = {
   },
   link: {
     textDecoration: 'none',
-    color: 'inherit'
-  }
+    color: 'inherit',
+  },
 };

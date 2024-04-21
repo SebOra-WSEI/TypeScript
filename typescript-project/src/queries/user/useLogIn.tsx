@@ -9,33 +9,34 @@ import { CURRENT_USER_ID, setToLocalStorage } from '../../utils/localStorage';
 import { ErrorResponse, LoggedUserResponse } from '../../types/response';
 import { StatusCode } from '../../types/statusCode';
 import { useHistory } from 'react-router';
+import { DataType } from '../../types/dataType';
 
 const allUsers = [
   {
-    "name": "Sebastian",
-    "surname": "Oraczek",
-    "role": "Admin",
-    "id": "17dd3204-8269-415d-85b1-832a17b760d6",
-    "login": "Sebastian",
-    "password": "abc"
+    name: 'Sebastian',
+    surname: 'Oraczek',
+    role: 'Admin',
+    id: '17dd3204-8269-415d-85b1-832a17b760d6',
+    login: 'Sebastian',
+    password: 'abc',
   },
   {
-    "name": "Jan",
-    "surname": "Kowalski",
-    "role": "Developer",
-    "id": "07376188-835d-4d95-ab8d-a0f5399d1199",
-    "login": "Jan",
-    "password": "abc"
+    name: 'Jan',
+    surname: 'Kowalski',
+    role: 'Developer',
+    id: '07376188-835d-4d95-ab8d-a0f5399d1199',
+    login: 'Jan',
+    password: 'abc',
   },
   {
-    "name": "Aleksandra",
-    "surname": "Nowak",
-    "role": "Devops",
-    "id": "c70676d5-8e88-4eba-a399-c4d683fe4a7f",
-    "login": "Aleksandra",
-    "password": "abc"
-  }
-]
+    name: 'Aleksandra',
+    surname: 'Nowak',
+    role: 'Devops',
+    id: 'c70676d5-8e88-4eba-a399-c4d683fe4a7f',
+    login: 'Aleksandra',
+    password: 'abc',
+  },
+];
 
 type useLogInResult = FetchedData<User> & { logIn: () => Promise<void> };
 
@@ -43,10 +44,9 @@ export const useLogIn = (body: LoginBody): useLogInResult => {
   const [error, setError] = useState<string>('');
   const [message, setMessage] = useState<string | undefined>(undefined);
 
-  setToLocalStorage('User', JSON.stringify(allUsers))
-
-
   const history = useHistory();
+
+  setToLocalStorage(DataType.User, JSON.stringify(allUsers));
 
   const logIn = async (): Promise<void> => {
     await axios
@@ -72,7 +72,7 @@ export const useLogIn = (body: LoginBody): useLogInResult => {
 
         setTimeout(() => {
           setError('');
-        }, 100)
+        }, 100);
       });
   };
 
