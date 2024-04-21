@@ -26,13 +26,15 @@ export class Story extends Api<StoryModel> {
       date,
       ownerId,
       state,
-      type: DataType.Story,
     };
 
-    super(story, {
-      idKey: 'id',
-      nameKey: 'name',
-      projectIdKey: 'projectId',
-    });
+    super(
+      { ...story, type: DataType.Story },
+      {
+        idKey: 'id',
+        nameKey: 'name',
+        projectIdKey: 'projectId',
+      }
+    );
   }
 }

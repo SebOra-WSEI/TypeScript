@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
-import { DataType } from '../types/dataType';
 import { Api } from './api';
 import { UserModel, UserRole } from '../types/user';
+import { DataType } from '../types/dataType';
 
 export class User extends Api<UserModel> {
   constructor(name: string, surname: string, role: UserRole) {
@@ -12,9 +12,8 @@ export class User extends Api<UserModel> {
       name,
       surname,
       role,
-      type: DataType.User,
     };
 
-    super(user, { idKey: 'id', nameKey: 'name' });
+    super({ ...user, type: DataType.User }, { idKey: 'id', nameKey: 'name' });
   }
 }

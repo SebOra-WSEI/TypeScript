@@ -31,7 +31,7 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
 
   const open = Boolean(anchorEl);
 
-  const { name, description, type } = data ?? {};
+  const { name, description } = data ?? {};
 
   const handleIconClick = (event: React.MouseEvent<HTMLButtonElement>) =>
     setAnchorEl(event.currentTarget);
@@ -46,7 +46,7 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
   return (
     <AppBar>
       <Toolbar>
-        <NavbarBreadcrumbs type={type} />
+        <NavbarBreadcrumbs />
         <Typography variant='h6' sx={styles.grow}>
           {name}
         </Typography>

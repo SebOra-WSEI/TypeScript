@@ -1,10 +1,7 @@
-import { DataType } from './dataType';
-
 interface UserBasic {
   name: string;
   surname: string;
   role: UserRole;
-  type: DataType;
 }
 
 export interface UserModel extends UserBasic {

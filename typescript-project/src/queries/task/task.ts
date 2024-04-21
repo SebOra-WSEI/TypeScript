@@ -1,5 +1,4 @@
 import { Task } from '../../controllers/task';
-import { DataType } from '../../types/dataType';
 import { Priority } from '../../types/priority';
 import { State } from '../../types/state';
 import { TaskBasic } from '../../types/task';
@@ -25,7 +24,6 @@ export const defaultTask: TaskBasic = {
   expectedEndTime: new Date(),
   storyPoint: 1,
   assignedToId: '',
-  type: DataType.Task,
   endDate: undefined,
   startDate: undefined,
 };

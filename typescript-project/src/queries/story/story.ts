@@ -1,5 +1,4 @@
 import { Story } from '../../controllers/story';
-import { DataType } from '../../types/dataType';
 import { Priority } from '../../types/priority';
 import { State } from '../../types/state';
 import { StoryBasic } from '../../types/story';
@@ -22,5 +21,4 @@ export const defaultStory: StoryBasic = {
   date: new Date(),
   ownerId: getFromLocalStorage(CURRENT_USER_ID),
   state: State.Todo,
-  type: DataType.Story,
 };

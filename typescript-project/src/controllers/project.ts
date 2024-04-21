@@ -11,9 +11,11 @@ export class Project extends Api<ProjectModel> {
       id,
       name,
       description,
-      type: DataType.Project,
     };
 
-    super(project, { idKey: 'id', nameKey: 'name' });
+    super(
+      { ...project, type: DataType.Project },
+      { idKey: 'id', nameKey: 'name' }
+    );
   }
 }
