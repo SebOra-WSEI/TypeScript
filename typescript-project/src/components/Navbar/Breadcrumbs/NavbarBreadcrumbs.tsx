@@ -11,7 +11,7 @@ export const NavbarBreadcrumbs: React.FC = () => {
 
   return (
     <Breadcrumbs sx={styles.breadcrumbs}>
-      {window.location.pathname === routeBuilder.stories(projectId) && (
+      {window.location.pathname !== routeBuilder.projects && (
         <Breadcrumb link={routeBuilder.projects} text='Projects' />
       )}
       {window.location.pathname === routeBuilder.tasks(projectId, storyId) && (
