@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { Project } from '../../controllers/project';
 import { ProjectBasic } from '../../types/project';
-import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
 
-type UseCreateProjectResult = FetchedData<Project> & { create: () => void };
+type UseCreateProjectResult = { create: () => void };
 
 export const useCreateProject = (
   project: ProjectBasic

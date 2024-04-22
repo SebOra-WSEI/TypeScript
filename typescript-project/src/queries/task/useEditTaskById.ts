@@ -1,14 +1,10 @@
 import { useState } from 'react';
-import { Story } from '../../controllers/story';
-import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
 import { EMPTY_TASK } from './task';
 import { TaskBasic } from '../../types/task';
 
-type UseEditTaskByIdResult = FetchedData<Story> & {
-  update: (taskId: string) => void;
-};
+type UseEditTaskByIdResult = { update: (taskId: string) => void };
 
 export const useEditTaskById = (newTask: TaskBasic): UseEditTaskByIdResult => {
   const [error, setError] = useState<string>('');
@@ -19,6 +15,9 @@ export const useEditTaskById = (newTask: TaskBasic): UseEditTaskByIdResult => {
 
     if (status !== StatusCode.OK && message) {
       setError(message);
+      setTimeout(() => {
+        setError('');
+      }, 100);
     }
 
     if (status === StatusCode.OK && response) {
@@ -32,9 +31,5 @@ export const useEditTaskById = (newTask: TaskBasic): UseEditTaskByIdResult => {
 
   useSetSeverity(error, message);
 
-  return {
-    error,
-    message,
-    update,
-  };
+  return { update };
 };

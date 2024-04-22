@@ -10,6 +10,8 @@ import { CreateStoryModal } from '../Create/CreateStoryModal';
 import { StoriesNavbarMenuItems } from '../../Navbar/StoriesNavbarMenuItems';
 import { useGetCurrentUser } from '../../../queries/user/useGetCurrentUser';
 import { UserNotLoggedMessage } from '../../common/Messages/UserNotLoggedMessage';
+import { PageNotFoundMessage } from '../../common/Messages/PageNotFoundMessage';
+import { UnknownError } from '../../common/Messages/UnknownError';
 
 export const StoriesView: React.FC = () => {
   const [isEditProjectModalOpen, setIsEditProjectModalOpen] =
@@ -43,11 +45,11 @@ export const StoriesView: React.FC = () => {
   }
 
   if (projectError || storiesError) {
-    return <>{projectError || storiesError}</>;
+    return <UnknownError errorMessage={(projectError || storiesError) ?? ''} />
   }
 
   if (!project) {
-    return <>Project not found</>;
+    return <PageNotFoundMessage />
   }
 
   const handleEditProjectOnOpen = (): void => setIsEditProjectModalOpen(true);

@@ -31,7 +31,6 @@ export const TasksView: React.FC = () => {
     data: tasks,
   } = useGetTasksByStoryId(storyId);
 
-
   const { data: user } = useGetCurrentUser();
 
   if (!user) {

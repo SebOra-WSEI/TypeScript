@@ -1,13 +1,9 @@
 import { useState } from 'react';
 import { EMPTY_PROJECT } from './project';
 import { StatusCode } from '../../types/statusCode';
-import { FetchedData } from '../../types/fetchedData';
-import { Project } from '../../controllers/project';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
 
-type UseRemoveProjectResult = FetchedData<Project> & {
-  remove: (id: string) => void;
-};
+type UseRemoveProjectResult = { remove: (id: string) => void };
 
 export const useRemoveProject = (isReload = true): UseRemoveProjectResult => {
   const [error, setError] = useState<string>('');
@@ -18,6 +14,9 @@ export const useRemoveProject = (isReload = true): UseRemoveProjectResult => {
 
     if (status !== StatusCode.OK && message) {
       setError(message);
+      setTimeout(() => {
+        setError('');
+      }, 100);
     }
 
     if (status === StatusCode.OK && response) {
@@ -32,9 +31,5 @@ export const useRemoveProject = (isReload = true): UseRemoveProjectResult => {
 
   useSetSeverity(error, message);
 
-  return {
-    error,
-    message,
-    remove,
-  };
+  return { remove };
 };

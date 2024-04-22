@@ -1,14 +1,10 @@
 import { useState } from 'react';
-import { Story } from '../../controllers/story';
-import { FetchedData } from '../../types/fetchedData';
 import { StoryBasic } from '../../types/story';
 import { EMPTY_STORY } from './story';
 import { StatusCode } from '../../types/statusCode';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
 
-type UseEditStoryByIdResult = FetchedData<Story> & {
-  update: (storyId: string) => void;
-};
+type UseEditStoryByIdResult = { update: (storyId: string) => void };
 
 export const useEditStoryById = (
   newStory: StoryBasic
@@ -21,6 +17,9 @@ export const useEditStoryById = (
 
     if (status !== StatusCode.OK && message) {
       setError(message);
+      setTimeout(() => {
+        setError('');
+      }, 100);
     }
 
     if (status === StatusCode.OK && response) {
@@ -34,9 +33,5 @@ export const useEditStoryById = (
 
   useSetSeverity(error, message);
 
-  return {
-    error,
-    message,
-    update,
-  };
+  return { update };
 };

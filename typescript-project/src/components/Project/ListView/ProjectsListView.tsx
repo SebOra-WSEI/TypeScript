@@ -8,6 +8,7 @@ import { listStyles } from '../../../styles/listStyles';
 import { Navbar } from '../../Navbar/Navbar';
 import { useGetCurrentUser } from '../../../queries/user/useGetCurrentUser';
 import { UserNotLoggedMessage } from '../../common/Messages/UserNotLoggedMessage';
+import { UnknownError } from '../../common/Messages/UnknownError';
 
 export const ProjectsListView: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -24,7 +25,7 @@ export const ProjectsListView: React.FC = () => {
   }
 
   if (error) {
-    return <>{error}</>;
+    return <UnknownError errorMessage={error} />
   }
 
   const handleOnOpen = (): void => setIsModalOpen(true);
