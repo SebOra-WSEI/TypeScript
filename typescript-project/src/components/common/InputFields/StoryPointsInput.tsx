@@ -1,10 +1,5 @@
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select
-} from "@mui/material";
 import React from "react";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { formStyles } from "../../../styles/formStyles";
 import { STORY_POINTS } from "../../../utils/consts";
 import { TaskBasic } from "../../../types/task";

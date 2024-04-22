@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   Card,
   CardContent,
@@ -5,7 +6,6 @@ import {
   Grid,
   Typography
 } from '@mui/material';
-import React, { useState } from 'react';
 import { StoryCardMenu } from './StoryCardMenu';
 import { StoryModel } from '../../../types/story';
 import { cardStyles } from '../../../styles/cardStyles';

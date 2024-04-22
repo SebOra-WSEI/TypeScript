@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Card,
-  CardContent
-} from "@mui/material";
+import { Box, Card, CardContent } from "@mui/material";
 import { boxStyles } from "../../../styles/boxStyles";
 import { messageStyles } from "../../../styles/messageStyles";
 

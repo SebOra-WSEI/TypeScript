@@ -1,6 +1,6 @@
+import React from 'react';
 import { Avatar } from '@mui/material';
 import { deepPurple } from '@mui/material/colors';
-import React from 'react';
 
 interface StoryPointsItemProps {
   storyPoint: number

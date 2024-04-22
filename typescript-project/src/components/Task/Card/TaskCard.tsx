@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   Card,
   CardContent,
@@ -6,7 +7,6 @@ import {
   ListItemIcon,
   Typography,
 } from '@mui/material';
-import React, { useState } from 'react';
 import { PRIORITY_ICONS } from '../../../utils/priorityIcons';
 import { TaskModel } from '../../../types/task';
 import { TaskCardMenu } from './TaskCardMenu';

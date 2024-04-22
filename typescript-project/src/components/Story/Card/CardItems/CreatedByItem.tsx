@@ -1,5 +1,5 @@
-import { Avatar, Typography } from '@mui/material';
 import React from 'react';
+import { Avatar, Typography } from '@mui/material';
 import { UserModel } from '../../../../types/user';
 
 interface CreatedByItemProps {

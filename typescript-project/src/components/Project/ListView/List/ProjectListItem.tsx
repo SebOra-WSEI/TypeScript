@@ -1,12 +1,9 @@
-import { IconButton, ListItem, ListItemText, Tooltip } from '@mui/material';
 import React from 'react';
+import { IconButton, ListItem, ListItemText, Tooltip } from '@mui/material';
 import { ProjectModel } from '../../../../types/project';
 import { useHistory } from 'react-router';
 import { routeBuilder } from '../../../../routes/routes';
-import {
-  SELECTED_PROJECT_ID,
-  setToLocalStorage,
-} from '../../../../utils/localStorage';
+import { SELECTED_PROJECT_ID, setToLocalStorage } from '../../../../utils/localStorage';
 import { useRemoveProject } from '../../../../queries/project/useRemoveProject';
 import { ListItemHeader } from './ListItemHeader';
 import { listStyles } from '../../../../styles/listStyles';

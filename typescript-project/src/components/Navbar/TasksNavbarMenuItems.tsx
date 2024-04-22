@@ -1,9 +1,5 @@
-import {
-  Divider,
-  ListItemIcon,
-  MenuItem
-} from '@mui/material';
 import React from 'react';
+import { Divider, ListItemIcon, MenuItem } from '@mui/material';
 import { useHistory, useParams } from 'react-router';
 import { routeBuilder } from '../../routes/routes';
 import DeleteIcon from '@mui/icons-material/Delete';

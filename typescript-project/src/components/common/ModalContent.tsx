@@ -1,11 +1,5 @@
-import {
-  Box,
-  Button,
-  DialogActions,
-  DialogContent,
-  Modal,
-} from '@mui/material';
 import React, { PropsWithChildren } from 'react';
+import { Box, Button, DialogActions, DialogContent, Modal, } from '@mui/material';
 import { boxStyles } from '../../styles/boxStyles';
 import { commonStyles } from '../../styles/commonStyles';
 

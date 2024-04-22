@@ -1,3 +1,4 @@
+import React, { PropsWithChildren, useState } from 'react';
 import {
   AppBar,
   Avatar,
@@ -8,7 +9,6 @@ import {
   Toolbar,
   Typography,
 } from '@mui/material';
-import React, { PropsWithChildren, useState } from 'react';
 import { ProjectModel } from '../../types/project';
 import { StoryModel } from '../../types/story';
 import { TaskModel } from '../../types/task';

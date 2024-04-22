@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  FormControl,
-  MenuItem,
-  Select
-} from '@mui/material';
+import { FormControl, MenuItem, Select } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
 import { State } from '../../../../types/state';
 import { useGetAllUsers } from '../../../../queries/user/useGetAllUsers';

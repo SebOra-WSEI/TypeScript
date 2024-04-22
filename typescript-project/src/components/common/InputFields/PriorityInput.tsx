@@ -1,9 +1,4 @@
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select
-} from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { formStyles } from '../../../styles/formStyles';
 import { Priority } from '../../../types/priority';
 import { PRIORITY_ICONS } from '../../../utils/priorityIcons';
