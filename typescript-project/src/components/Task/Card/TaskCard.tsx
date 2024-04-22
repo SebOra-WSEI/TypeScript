@@ -11,7 +11,7 @@ import { PRIORITY_ICONS } from '../../../utils/priorityIcons';
 import { TaskModel } from '../../../types/task';
 import { TaskCardMenu } from './TaskCardMenu';
 import { cardStyles } from '../../../styles/card';
-import { EditTaskModal } from '../Edit/EditTaskModal';
+import { EditTaskModal } from '../Form/Edit/EditTaskModal';
 import { StoryPointsItem } from './CardItems/StoryPointsItem';
 import { ItemTaskHeader } from '../../common/ItemCardHeader/ItemCardHeader';
 

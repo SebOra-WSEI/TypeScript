@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { CreateTaskForm } from './CreateTaskForm';
-import { TaskBasic } from '../../../types/task';
-import { useCreateTask } from '../../../queries/task/useCreateTask';
-import { defaultTask } from '../../../queries/task/task';
-import { ModalContent } from '../../common/Modal/ModalContent';
+import { TaskBasic } from '../../../../types/task';
+import { useCreateTask } from '../../../../queries/task/useCreateTask';
+import { defaultTask } from '../../../../queries/task/task';
+import { ModalContent } from '../../../common/Modal/ModalContent';
 
 interface CreateTaskFormModalProps {
   isOpen: boolean;

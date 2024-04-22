@@ -1,12 +1,12 @@
 import React from 'react';
 import { Grid, TextField, Typography } from '@mui/material';
-import { formStyles } from '../../../styles/formStyles';
-import { TaskBasic } from '../../../types/task';
-import { EditTaskStateInput } from './InputFields/EditTaskStateInput';
-import { TaskAssignToInput } from './InputFields/TaskAssignToInput';
-import { TaskDateFields } from './InputFields/TaskDateFields';
-import { PriorityInput } from '../../common/InputFields/PriorityInput';
-import { StoryPointsInput } from '../../common/InputFields/StoryPointsInput';
+import { formStyles } from '../../../../styles/formStyles';
+import { TaskBasic } from '../../../../types/task';
+import { TaskStateInput } from '../InputFields/TaskStateInput';
+import { TaskAssignToInput } from '../InputFields/TaskAssignToInput';
+import { TaskDateFields } from '../InputFields/TaskDateFields';
+import { PriorityInput } from '../../../common/InputFields/PriorityInput';
+import { StoryPointsInput } from '../../../common/InputFields/StoryPointsInput';
 
 interface EditTaskFormProps {
   updatedTask: TaskBasic;
@@ -74,7 +74,7 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
             <strong>Status</strong>
           </Grid>
           <Grid item xs={8} sx={formStyles.selector}>
-            <EditTaskStateInput
+            <TaskStateInput
               updatedTask={updatedTask}
               setUpdatedTask={setUpdatedTask}
             />

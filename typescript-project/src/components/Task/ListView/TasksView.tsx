@@ -5,7 +5,7 @@ import { Loader } from '../../common/Loader';
 import { useGetStoryById } from '../../../queries/story/useGetStoryById';
 import { TasksNavbarMenuItems } from '../../Navbar/TasksNavbarMenuItems';
 import { TasksList } from './List/TasksList';
-import { CreateTaskFormModal } from '../Create/CreateTaskFormModal';
+import { CreateTaskFormModal } from '../Form/Create/CreateTaskFormModal';
 import { useGetTasksByStoryId } from '../../../queries/task/useGetTasksByStoryId';
 import { EditStoryModal } from '../../Story/Form/Edit/EditStoryModal';
 import { useGetCurrentUser } from '../../../queries/user/useGetCurrentUser';

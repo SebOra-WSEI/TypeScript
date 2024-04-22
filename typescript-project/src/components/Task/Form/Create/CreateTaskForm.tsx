@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { TextField } from '@mui/material';
-import { formStyles } from '../../../styles/formStyles';
-import { TaskBasic } from '../../../types/task';
-import { expectedWorkingDays } from '../../../utils/expectedWorkingDays';
-import { PriorityInput } from '../../common/InputFields/PriorityInput';
-import { StoryPointsInput } from '../../common/InputFields/StoryPointsInput';
+import { formStyles } from '../../../../styles/formStyles';
+import { TaskBasic } from '../../../../types/task';
+import { expectedWorkingDays } from '../../../../utils/expectedWorkingDays';
+import { PriorityInput } from '../../../common/InputFields/PriorityInput';
+import { StoryPointsInput } from '../../../common/InputFields/StoryPointsInput';
 
 interface CreateTaskFormProps {
   task: TaskBasic;

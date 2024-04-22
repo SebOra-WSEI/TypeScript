@@ -4,12 +4,12 @@ import { formStyles } from '../../../../styles/formStyles';
 import { State } from '../../../../types/state';
 import { TaskBasic } from '../../../../types/task';
 
-interface EditTaskStateInputProps {
+interface TaskStateInputProps {
   updatedTask: TaskBasic;
   setUpdatedTask: (value: TaskBasic) => void;
 }
 
-export const EditTaskStateInput: React.FC<EditTaskStateInputProps> = ({
+export const TaskStateInput: React.FC<TaskStateInputProps> = ({
   updatedTask,
   setUpdatedTask,
 }) => (
