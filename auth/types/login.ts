@@ -4,6 +4,7 @@ export interface LoginBody {
   login: string;
   password: string;
   exp?: number;
+  refreshToken?: string;
 }
 
 export interface LoggedUser {

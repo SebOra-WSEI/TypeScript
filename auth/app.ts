@@ -4,6 +4,7 @@ import cors from 'cors';
 import fs from 'fs';
 import { User } from './types/user';
 import { signInHandler } from './handlers/signInHandler';
+import { refreshTokenHandler } from './handlers/refreshTokenHandler';
 
 export let allUsers: Array<User>;
 let refreshToken: string;
@@ -14,7 +15,7 @@ fs.readFile('../db.json', (err, data) => {
 });
 
 const app = express();
-const port = 3000;
+const port = '3000';
 
 app.use(cors());
 app.use(express.json());
@@ -22,7 +23,19 @@ app.use(express.json());
 app.post('/sign-in', (req, res) => {
   const response = signInHandler(req.body);
 
-  refreshToken = response.response?.refreshToken ?? '';
+  if (response.response?.refreshToken) {
+    refreshToken = response.response?.refreshToken;
+  }
+
+  res.status(response.status).send(response);
+});
+
+app.post('/refreshToken', (req, res) => {
+  const response = refreshTokenHandler(req.body, refreshToken);
+
+  if (response.response?.refreshToken) {
+    refreshToken = response.response?.refreshToken;
+  }
 
   res.status(response.status).send(response);
 });
