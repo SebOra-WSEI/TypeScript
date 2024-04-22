@@ -12,11 +12,11 @@ import { UserNotLogged } from '../../common/UserNotLogged';
 export const ProjectsListView: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const { data: user } = useGetCurrentUser();
+  const { error: userError } = useGetCurrentUser();
   const { loading, error, data } = useGetAllProjects();
 
-  if (!user) {
-    return <UserNotLogged />
+  if (userError) {
+    return <UserNotLogged text={userError} />
   }
 
   if (loading) {

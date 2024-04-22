@@ -4,14 +4,15 @@ import { boxStyles } from "../../styles/box";
 import { useHistory } from "react-router";
 import { routes } from "../../routes/routes";
 
-export const UserNotLogged: React.FC = () => {
+export const UserNotLogged: React.FC<{ text: string }> = ({ text }) => {
   const history = useHistory();
 
   return (
     <Box sx={boxStyles} >
       <Card>
         <CardContent>
-          User not found. Please log in
+          <h3 style={styles.header}>User not found. Please log in</h3>
+          <p><strong>Error message:</strong>{' '}{text}</p>
         </CardContent>
         <CardActions>
           <Button
@@ -31,5 +32,9 @@ export const UserNotLogged: React.FC = () => {
 const styles = {
   button: {
     marginLeft: 'auto'
+  },
+  header: {
+    display: 'flex',
+    justifyContent: 'center'
   }
 };

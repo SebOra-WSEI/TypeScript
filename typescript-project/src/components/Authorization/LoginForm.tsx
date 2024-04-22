@@ -13,7 +13,7 @@ import { boxStyles } from '../../styles/box';
 interface LoginFormProps {
   loginBody: LoginBody;
   setLoginBody: (value: LoginBody) => void;
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
 }
 
 export const LoginForm: React.FC<LoginFormProps> = ({
@@ -60,7 +60,12 @@ export const LoginForm: React.FC<LoginFormProps> = ({
             />
           </>
           <CardActions>
-            <Button type='submit' variant='contained' sx={styles.button}>
+            <Button
+              type='submit'
+              variant='contained'
+              disabled={!login || !password}
+              sx={styles.button}
+            >
               Log in
             </Button>
           </CardActions>

@@ -1,9 +1,9 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { FetchedData } from '../../types/fetchedData';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
 import { User } from '../../controllers/user';
 import { LoginBody } from '../../types/login';
-import axios from 'axios';
 import { endpoints, routeBuilder } from '../../routes/routes';
 import { CURRENT_USER_ID, setToLocalStorage } from '../../utils/localStorage';
 import { ErrorResponse, LoggedUserResponse } from '../../types/response';
@@ -37,7 +37,7 @@ const allUsers = [
   },
 ];
 
-type useLogInResult = FetchedData<User> & { logIn: () => Promise<void> };
+type useLogInResult = FetchedData<User> & { signIn: () => Promise<void> };
 
 export const useLogIn = (body: LoginBody): useLogInResult => {
   const [error, setError] = useState<string>('');
@@ -45,7 +45,7 @@ export const useLogIn = (body: LoginBody): useLogInResult => {
 
   setToLocalStorage(DataType.User, JSON.stringify(allUsers));
 
-  const logIn = async (): Promise<void> => {
+  const signIn = async (): Promise<void> => {
     await axios
       .post(endpoints.signIn, body)
       .then((res: LoggedUserResponse) => {
@@ -78,6 +78,6 @@ export const useLogIn = (body: LoginBody): useLogInResult => {
   return {
     error,
     message,
-    logIn,
+    signIn,
   };
 };
