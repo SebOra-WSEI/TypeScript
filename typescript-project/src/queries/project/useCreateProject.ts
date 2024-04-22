@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Project } from '../../controllers/project';
 import { ProjectBasic } from '../../types/project';
-import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
+import { ERROR_DELAY, REDIRECT_DELAY } from '../../utils/consts';
 
-type UseCreateProjectResult = FetchedData<Project> & { create: () => void };
+type UseCreateProjectResult = { create: () => void };
 
 export const useCreateProject = (
   project: ProjectBasic
@@ -21,6 +21,9 @@ export const useCreateProject = (
 
     if (status !== StatusCode.Created && message) {
       setError(message);
+      setTimeout(() => {
+        setError('');
+      }, ERROR_DELAY);
     }
 
     if (status === StatusCode.Created && response) {
@@ -28,15 +31,11 @@ export const useCreateProject = (
 
       setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, REDIRECT_DELAY);
     }
   };
 
   useSetSeverity(error, message);
 
-  return {
-    error,
-    message,
-    create,
-  };
+  return { create };
 };

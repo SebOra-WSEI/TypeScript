@@ -1,8 +1,12 @@
-import { Avatar, Typography } from '@mui/material';
 import React from 'react';
+import { Avatar, Typography } from '@mui/material';
 import { UserModel } from '../../../../types/user';
 
-export const CreatedByItem: React.FC<{ owner?: UserModel }> = ({ owner }) => (
+interface CreatedByItemProps {
+  owner?: UserModel;
+}
+
+export const CreatedByItem: React.FC<CreatedByItemProps> = ({ owner }) => (
   <Avatar sx={styles.avatar}>
     <Typography fontSize='small'>
       {owner?.name?.[0]}

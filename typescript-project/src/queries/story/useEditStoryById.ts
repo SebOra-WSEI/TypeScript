@@ -1,14 +1,11 @@
 import { useState } from 'react';
-import { Story } from '../../controllers/story';
-import { FetchedData } from '../../types/fetchedData';
 import { StoryBasic } from '../../types/story';
 import { EMPTY_STORY } from './story';
 import { StatusCode } from '../../types/statusCode';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
+import { ERROR_DELAY, REDIRECT_DELAY } from '../../utils/consts';
 
-type UseEditStoryByIdResult = FetchedData<Story> & {
-  update: (storyId: string) => void;
-};
+type UseEditStoryByIdResult = { update: (storyId: string) => void };
 
 export const useEditStoryById = (
   newStory: StoryBasic
@@ -21,6 +18,9 @@ export const useEditStoryById = (
 
     if (status !== StatusCode.OK && message) {
       setError(message);
+      setTimeout(() => {
+        setError('');
+      }, ERROR_DELAY);
     }
 
     if (status === StatusCode.OK && response) {
@@ -28,15 +28,11 @@ export const useEditStoryById = (
 
       setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, REDIRECT_DELAY);
     }
   };
 
   useSetSeverity(error, message);
 
-  return {
-    error,
-    message,
-    update,
-  };
+  return { update };
 };

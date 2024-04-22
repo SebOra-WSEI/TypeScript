@@ -3,6 +3,7 @@ import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
 import { UserModel } from '../../types/user';
 import { EMPTY_USER } from './emptyUser';
+import { LOADING_DELAY } from '../../utils/consts';
 
 export const useGetAllUsers = (): FetchedData<Array<UserModel>> => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -21,7 +22,7 @@ export const useGetAllUsers = (): FetchedData<Array<UserModel>> => {
     if (status === StatusCode.OK && response) {
       setTimeout(() => {
         setIsLoading(false);
-      }, 700);
+      }, LOADING_DELAY);
       setProjects(response);
       setMessage(message);
     }

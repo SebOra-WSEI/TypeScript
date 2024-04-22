@@ -1,12 +1,13 @@
-import { Card, CardContent, CardHeader, Grid, Typography } from '@mui/material';
 import React, { useState } from 'react';
+import { Card, CardContent, CardHeader, Grid, Typography } from '@mui/material';
 import { StoryCardMenu } from './StoryCardMenu';
 import { StoryModel } from '../../../types/story';
-import { EditStoryModal } from '../Edit/EditStoryModal';
-import { cardStyles } from '../../../styles/card';
+import { cardStyles } from '../../../styles/cardStyles';
 import { PriorityItem } from './CardItems/PriorityItem';
 import { CreatedByItem } from './CardItems/CreatedByItem';
-import { ItemTaskHeader } from '../../common/ItemCardHeader/ItemCardHeader';
+import { ItemTaskHeader } from '../../common/ItemCardHeader';
+import { EditStoryModal } from '../Form/Edit/EditStoryModal';
+import { commonStyles } from '../../../styles/commonStyles';
 
 interface StoryCardProps {
   story: StoryModel;
@@ -36,17 +37,17 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
         />
         <CardContent sx={cardStyles.cardContent}>
           <Grid container>
-            <Grid item sx={cardStyles.priority}>
+            <Grid item sx={cardStyles.priorityField}>
               <PriorityItem priority={priority} />
             </Grid>
           </Grid>
           <Grid container>
-            <Grid item xs={5} sx={cardStyles.gridText}>
+            <Grid item xs={5} sx={cardStyles.textField}>
               <Typography variant='inherit' color='text.secondary'>
                 Created at: {new Date(date).toLocaleString()}
               </Typography>
             </Grid>
-            <Grid item xs={6} sx={styles}>
+            <Grid item xs={6} sx={commonStyles.inputMovedToEnd}>
               <CreatedByItem owner={owner} />
             </Grid>
           </Grid>
@@ -59,9 +60,4 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
       />
     </>
   );
-};
-
-const styles = {
-  display: 'flex',
-  justifyContent: 'end',
 };

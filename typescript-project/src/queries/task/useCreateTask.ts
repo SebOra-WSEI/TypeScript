@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
 import { Task } from '../../controllers/task';
 import { TaskBasic } from '../../types/task';
 import { useParams } from 'react-router';
+import { ERROR_DELAY, REDIRECT_DELAY } from '../../utils/consts';
 
-type UseCreateTaskResult = FetchedData<Task> & { create: () => void };
+type UseCreateTaskResult = { create: () => void };
 
 export const useCreateTask = (task: TaskBasic): UseCreateTaskResult => {
   const [error, setError] = useState<string>('');
@@ -44,6 +44,9 @@ export const useCreateTask = (task: TaskBasic): UseCreateTaskResult => {
 
     if (status !== StatusCode.Created && message) {
       setError(message);
+      setTimeout(() => {
+        setError('');
+      }, ERROR_DELAY);
     }
 
     if (status === StatusCode.Created && response) {
@@ -51,15 +54,11 @@ export const useCreateTask = (task: TaskBasic): UseCreateTaskResult => {
 
       setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, REDIRECT_DELAY);
     }
   };
 
   useSetSeverity(error, message);
 
-  return {
-    error,
-    message,
-    create,
-  };
+  return { create };
 };

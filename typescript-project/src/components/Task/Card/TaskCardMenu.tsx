@@ -1,10 +1,10 @@
-import { IconButton, ListItemIcon, Menu, MenuItem } from '@mui/material';
 import React, { useState } from 'react';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { IconButton, ListItemIcon, Menu, MenuItem } from '@mui/material';
 import { TaskModel } from '../../../types/task';
 import { useRemoveTask } from '../../../queries/task/useRemoveTask';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 interface TaskCardMenuProps {
   task: TaskModel;

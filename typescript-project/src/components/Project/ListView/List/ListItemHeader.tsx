@@ -1,9 +1,14 @@
 import React from 'react';
 
-export const ListItemHeader: React.FC<{
+interface ListItemHeaderProps {
   field: string;
   value: string;
-}> = ({ field, value }) => (
+}
+
+export const ListItemHeader: React.FC<ListItemHeaderProps> = ({
+  field,
+  value,
+}) => (
   <span>
     <strong>{field}:</strong> {value}
   </span>

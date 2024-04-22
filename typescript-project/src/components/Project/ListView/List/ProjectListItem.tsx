@@ -1,7 +1,5 @@
-import { IconButton, ListItem, ListItemText, Tooltip } from '@mui/material';
 import React from 'react';
-import DeleteIcon from '@mui/icons-material/Delete';
-import WhereToVoteIcon from '@mui/icons-material/WhereToVote';
+import { IconButton, ListItem, ListItemText, Tooltip } from '@mui/material';
 import { ProjectModel } from '../../../../types/project';
 import { useHistory } from 'react-router';
 import { routeBuilder } from '../../../../routes/routes';
@@ -11,7 +9,8 @@ import {
 } from '../../../../utils/localStorage';
 import { useRemoveProject } from '../../../../queries/project/useRemoveProject';
 import { ListItemHeader } from './ListItemHeader';
-import { listStyles } from '../../../../styles/listStyles';
+import DeleteIcon from '@mui/icons-material/Delete';
+import WhereToVoteIcon from '@mui/icons-material/WhereToVote';
 
 interface ProjectItemProps {
   project: ProjectModel;
@@ -29,7 +28,7 @@ export const ProjectListItem: React.FC<ProjectItemProps> = ({ project }) => {
   const handleRemove = (): void => remove(project.id);
 
   return (
-    <ListItem sx={listStyles.listItem}>
+    <ListItem sx={styles.listItem}>
       <ListItemText
         primary={<ListItemHeader field='Name' value={project.name} />}
         secondary={
@@ -51,4 +50,14 @@ export const ProjectListItem: React.FC<ProjectItemProps> = ({ project }) => {
       </Tooltip>
     </ListItem>
   );
+};
+
+const styles = {
+  listItem: {
+    width: '25rem',
+    marginTop: '1rem',
+    boxShadow: '0 0 40px 5px rgba(0, 0, 0, 0.1)',
+    borderRadius: '1rem',
+    overflowWrap: 'break-word',
+  },
 };

@@ -5,9 +5,13 @@ import { Loader } from '../../common/Loader';
 import { StoriesList } from './List/StoriesList';
 import { useGetStoriesByProjectId } from '../../../queries/story/useGetStoriesByProjectId';
 import { Navbar } from '../../Navbar/Navbar';
-import { EditProjectModal } from '../../Project/Edit/EditProjectModal';
-import { CreateStoryModal } from '../Create/CreateStoryModal';
+import { EditProjectModal } from '../../Project/Form/EditProjectModal';
+import { CreateStoryModal } from '../Form/Create/CreateStoryModal';
 import { StoriesNavbarMenuItems } from '../../Navbar/StoriesNavbarMenuItems';
+import { useGetCurrentUser } from '../../../queries/user/useGetCurrentUser';
+import { UserNotLoggedMessage } from '../../common/Messages/UserNotLoggedMessage';
+import { PageNotFoundMessage } from '../../common/Messages/PageNotFoundMessage';
+import { UnknownError } from '../../common/Messages/UnknownError';
 
 export const StoriesView: React.FC = () => {
   const [isEditProjectModalOpen, setIsEditProjectModalOpen] =
@@ -29,16 +33,22 @@ export const StoriesView: React.FC = () => {
     data: stories,
   } = useGetStoriesByProjectId(projectId);
 
+  const { error: userErrorMessage } = useGetCurrentUser();
+
+  if (userErrorMessage) {
+    return <UserNotLoggedMessage text={userErrorMessage} />;
+  }
+
   if (projectLoading || storiesLoading) {
     return <Loader />;
   }
 
   if (projectError || storiesError) {
-    return <>{projectError || storiesError}</>;
+    return <UnknownError errorMessage={(projectError || storiesError) ?? ''} />;
   }
 
   if (!project) {
-    return <>Project not found</>;
+    return <PageNotFoundMessage />;
   }
 
   const handleEditProjectOnOpen = (): void => setIsEditProjectModalOpen(true);

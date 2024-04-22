@@ -2,8 +2,7 @@ import React from 'react';
 import { Button, List } from '@mui/material';
 import { ProjectModel } from '../../../../types/project';
 import { ProjectListItem } from './ProjectListItem';
-import { listStyles } from '../../../../styles/listStyles';
-import { NoProjectsMessage } from './NoProjectsMessage';
+import { NoProjectsMessage } from '../NoProjectsMessage';
 
 interface ProjectsListProps {
   projects: Array<ProjectModel> | undefined;
@@ -25,9 +24,15 @@ export const ProjectsList: React.FC<ProjectsListProps> = ({
           <ProjectListItem key={project.id} project={project} />
         ))}
       </List>
-      <Button onClick={handleOnOpen} sx={listStyles.button}>
+      <Button onClick={handleOnOpen} sx={style.button}>
         Create new project
       </Button>
     </>
   );
+};
+
+const style = {
+  button: {
+    marginTop: '1rem',
+  },
 };

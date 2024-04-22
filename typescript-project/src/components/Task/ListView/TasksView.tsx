@@ -5,9 +5,11 @@ import { Loader } from '../../common/Loader';
 import { useGetStoryById } from '../../../queries/story/useGetStoryById';
 import { TasksNavbarMenuItems } from '../../Navbar/TasksNavbarMenuItems';
 import { TasksList } from './List/TasksList';
-import { CreateTaskFormModal } from '../Create/CreateTaskFormModal';
+import { CreateTaskFormModal } from '../Form/Create/CreateTaskFormModal';
 import { useGetTasksByStoryId } from '../../../queries/task/useGetTasksByStoryId';
-import { EditStoryModal } from '../../Story/Edit/EditStoryModal';
+import { EditStoryModal } from '../../Story/Form/Edit/EditStoryModal';
+import { useGetCurrentUser } from '../../../queries/user/useGetCurrentUser';
+import { UserNotLoggedMessage } from '../../common/Messages/UserNotLoggedMessage';
 
 export const TasksView: React.FC = () => {
   const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] =
@@ -28,6 +30,12 @@ export const TasksView: React.FC = () => {
     error: tasksError,
     data: tasks,
   } = useGetTasksByStoryId(storyId);
+
+  const { error: userErrorMessage } = useGetCurrentUser();
+
+  if (userErrorMessage) {
+    return <UserNotLoggedMessage text={userErrorMessage} />;
+  }
 
   if (storyLoading || tasksLoading) {
     return <Loader />;

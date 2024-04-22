@@ -1,0 +1,92 @@
+import React from 'react';
+import { Grid, TextField } from '@mui/material';
+import { formStyles } from '../../../../styles/formStyles';
+import { StoryBasic } from '../../../../types/story';
+import { StoryAssignToInput } from '../InputFields/StoryAssignToInput';
+import { StoryStatusInput } from '../InputFields/StoryStatusInput';
+import { PriorityInput } from '../../../common/InputFields/PriorityInput';
+
+interface EditStoryFormProps {
+  updatedStory: StoryBasic;
+  setUpdatedStory: (value: StoryBasic) => void;
+}
+
+export const EditStoryForm: React.FC<EditStoryFormProps> = ({
+  updatedStory,
+  setUpdatedStory,
+}) => {
+  const { name, state, owner, description, assignedToId } = updatedStory;
+
+  return (
+    <Grid container sx={formStyles.gridContainer}>
+      <Grid item xs={7} sx={formStyles.centeredHeader}>
+        <TextField
+          sx={formStyles.titleText}
+          variant='standard'
+          type='text'
+          autoFocus
+          value={name}
+          onChange={(evt) =>
+            setUpdatedStory({
+              ...updatedStory,
+              name: evt.target.value,
+            })
+          }
+        />
+      </Grid>
+      <Grid item xs={5} sx={formStyles.reporterField}>
+        <Grid item xs={5}>
+          <strong>Reporter</strong>
+        </Grid>
+        <Grid item xs={3}>
+          {owner?.name} {owner?.surname}
+        </Grid>
+      </Grid>
+      <Grid item xs={8} sx={formStyles.descriptionField}>
+        <TextField
+          type='text'
+          autoComplete='description'
+          value={description}
+          fullWidth
+          multiline
+          onChange={(evt) =>
+            setUpdatedStory({
+              ...updatedStory,
+              description: evt.target.value,
+            })
+          }
+        />
+      </Grid>
+      <Grid item xs={4}>
+        <Grid container>
+          <Grid item xs={4} sx={formStyles.statusField}>
+            <strong>Status</strong>
+          </Grid>
+          <Grid item xs={8} sx={formStyles.selectorField}>
+            <StoryStatusInput
+              updatedStory={updatedStory}
+              setUpdatedStory={setUpdatedStory}
+              state={state}
+            />
+          </Grid>
+          <Grid item xs={5} sx={formStyles.assignedToField}>
+            <strong>Assigned to</strong>
+          </Grid>
+          <Grid item xs={7} sx={formStyles.selectorField}>
+            <StoryAssignToInput
+              updatedStory={updatedStory}
+              setUpdatedStory={setUpdatedStory}
+              assignedToId={assignedToId ?? ''}
+            />
+          </Grid>
+          <Grid item xs={4} sx={formStyles.priorityField}>
+            <strong>Priority</strong>
+          </Grid>
+          <Grid item xs={8} sx={formStyles.selectorField}>
+            <PriorityInput item={updatedStory} setItem={setUpdatedStory} />
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
+  );
+};

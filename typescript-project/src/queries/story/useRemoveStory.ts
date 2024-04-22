@@ -1,13 +1,10 @@
 import { useState } from 'react';
 import { StatusCode } from '../../types/statusCode';
-import { FetchedData } from '../../types/fetchedData';
 import { EMPTY_STORY } from './story';
-import { Story } from '../../controllers/story';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
+import { REDIRECT_DELAY } from '../../utils/consts';
 
-type UseRemoveStoryResult = FetchedData<Story> & {
-  remove: (id: string) => void;
-};
+type UseRemoveStoryResult = { remove: (id: string) => void };
 
 export const useRemoveStory = (isReload = true): UseRemoveStoryResult => {
   const [error, setError] = useState<string>('');
@@ -26,14 +23,10 @@ export const useRemoveStory = (isReload = true): UseRemoveStoryResult => {
       isReload &&
         setTimeout(() => {
           window.location.reload();
-        }, 1000);
+        }, REDIRECT_DELAY);
     }
   };
   useSetSeverity(error, message);
 
-  return {
-    error,
-    message,
-    remove,
-  };
+  return { remove };
 };

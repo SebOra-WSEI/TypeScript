@@ -8,11 +8,13 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { LoginBody } from '../../types/login';
+import { BUTTON_RADIUS, commonStyles } from '../../styles/commonStyles';
+import { formStyles } from '../../styles/formStyles';
 
 interface LoginFormProps {
   loginBody: LoginBody;
   setLoginBody: (value: LoginBody) => void;
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
 }
 
 export const LoginForm: React.FC<LoginFormProps> = ({
@@ -23,11 +25,11 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   const { login, password } = loginBody;
 
   return (
-    <Box sx={styles.box} component='form' onSubmit={onSubmit}>
+    <Box sx={commonStyles.centeredBox} component='form' onSubmit={onSubmit}>
       <Card sx={styles.card}>
         <CardContent>
           <>
-            <h3 style={styles.header}>Log in</h3>
+            <h3 style={formStyles.centeredHeader}>Log in</h3>
             <TextField
               label='Login'
               variant='standard'
@@ -59,7 +61,13 @@ export const LoginForm: React.FC<LoginFormProps> = ({
             />
           </>
           <CardActions>
-            <Button type='submit' variant='contained' sx={styles.button}>
+            <Button
+              type='submit'
+              variant='contained'
+              disabled={!login || !password}
+              fullWidth
+              sx={styles.button}
+            >
               Log in
             </Button>
           </CardActions>
@@ -70,27 +78,13 @@ export const LoginForm: React.FC<LoginFormProps> = ({
 };
 
 const styles = {
-  box: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    bgcolor: 'background.paper',
-    padding: '2rem',
-    borderRadius: '1.5rem',
-  },
   card: {
     width: '23rem',
     borderRadius: '0.5rem',
     boxShadow: '0.5rem 1rem 1rem rgba(0, 0, 0, 0.1)',
   },
-  header: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
   button: {
-    width: '100%',
     margin: '1rem 0 0.2rem 0',
-    borderRadius: '0.5rem',
+    borderRadius: BUTTON_RADIUS,
   },
 };

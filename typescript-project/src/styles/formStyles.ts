@@ -1,56 +1,42 @@
+import { commonStyles } from './commonStyles';
+
+const inputFieldBasicStyles = {
+  ...commonStyles.inputMovedToEnd,
+  alignItems: 'center',
+};
+
 export const formStyles = {
-  header: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  prioritySelect: {
-    marginTop: '1.5rem',
-    width: '8rem',
-  },
-  editFormControl: {
+  formControl: {
     marginTop: '1.5rem',
     width: '9rem',
   },
-  grid: {
+  gridContainer: {
     width: '60rem',
   },
-  title: {
+  centeredHeader: {
     display: 'flex',
     justifyContent: 'center',
   },
   titleText: {
     width: '20rem',
   },
-  reporter: {
-    display: 'flex',
-    justifyContent: 'end',
-    alignItems: 'center',
-  },
-  description: {
+  reporterField: inputFieldBasicStyles,
+  descriptionField: {
     marginTop: '4rem',
   },
-  status: {
-    display: 'flex',
-    justifyContent: 'end',
-    alignItems: 'center',
+  statusField: {
+    ...inputFieldBasicStyles,
     marginTop: '1.3rem',
     paddingRight: '0.6rem',
   },
-  selector: {
-    display: 'flex',
-    justifyContent: 'end',
-  },
-  assignedTo: {
-    display: 'flex',
-    justifyContent: 'end',
-    alignItems: 'center',
+  selectorField: commonStyles.inputMovedToEnd,
+  assignedToField: {
+    ...inputFieldBasicStyles,
     marginTop: '1.3rem',
     paddingRight: '0.2rem',
   },
-  priority: {
-    display: 'flex',
-    justifyContent: 'end',
-    alignItems: 'center',
+  priorityField: {
+    ...inputFieldBasicStyles,
     marginTop: '1.3rem',
   },
   menuItem: {

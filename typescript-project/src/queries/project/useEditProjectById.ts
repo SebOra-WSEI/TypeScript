@@ -1,14 +1,11 @@
 import { useState } from 'react';
 import { EMPTY_PROJECT } from './project';
 import { ProjectBasic } from '../../types/project';
-import { FetchedData } from '../../types/fetchedData';
-import { Project } from '../../controllers/project';
 import { StatusCode } from '../../types/statusCode';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
+import { ERROR_DELAY, REDIRECT_DELAY } from '../../utils/consts';
 
-type UseEditProjectResult = FetchedData<Project> & {
-  update: (projectId: string) => void;
-};
+type UseEditProjectResult = { update: (projectId: string) => void };
 
 export const useEditProjectById = (
   newProjectDetails: ProjectBasic
@@ -24,6 +21,9 @@ export const useEditProjectById = (
 
     if (status !== StatusCode.OK && message) {
       setError(message);
+      setTimeout(() => {
+        setError('');
+      }, ERROR_DELAY);
     }
 
     if (status === StatusCode.OK && response) {
@@ -31,15 +31,11 @@ export const useEditProjectById = (
 
       setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, REDIRECT_DELAY);
     }
   };
 
   useSetSeverity(error, message);
 
-  return {
-    error,
-    message,
-    update,
-  };
+  return { update };
 };

@@ -1,7 +1,12 @@
-import { Breadcrumbs, Link } from '@mui/material';
 import React from 'react';
+import { Breadcrumbs, Link } from '@mui/material';
 import { routeBuilder } from '../../../routes/routes';
 import { useParams } from 'react-router';
+
+interface BreadcrumbProps {
+  link: string;
+  text: string;
+}
 
 export const NavbarBreadcrumbs: React.FC = () => {
   const { projectId, storyId } = useParams<{
@@ -11,7 +16,7 @@ export const NavbarBreadcrumbs: React.FC = () => {
 
   return (
     <Breadcrumbs sx={styles.breadcrumbs}>
-      {window.location.pathname === routeBuilder.stories(projectId) && (
+      {window.location.pathname !== routeBuilder.projects && (
         <Breadcrumb link={routeBuilder.projects} text='Projects' />
       )}
       {window.location.pathname === routeBuilder.tasks(projectId, storyId) && (
@@ -21,10 +26,7 @@ export const NavbarBreadcrumbs: React.FC = () => {
   );
 };
 
-const Breadcrumb: React.FC<{
-  link: string;
-  text: string;
-}> = ({ link, text }) => (
+const Breadcrumb: React.FC<BreadcrumbProps> = ({ link, text }) => (
   <Link href={link} fontSize='small' sx={styles.color}>
     {text}
   </Link>

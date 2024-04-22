@@ -1,13 +1,10 @@
 import { useState } from 'react';
 import { StatusCode } from '../../types/statusCode';
-import { FetchedData } from '../../types/fetchedData';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
-import { Task } from '../../controllers/task';
 import { EMPTY_TASK } from './task';
+import { REDIRECT_DELAY } from '../../utils/consts';
 
-type UseRemoveTaskResult = FetchedData<Task> & {
-  remove: (id: string) => void;
-};
+type UseRemoveTaskResult = { remove: (id: string) => void };
 
 export const useRemoveTask = (isReload = true): UseRemoveTaskResult => {
   const [error, setError] = useState<string>('');
@@ -26,14 +23,10 @@ export const useRemoveTask = (isReload = true): UseRemoveTaskResult => {
       isReload &&
         setTimeout(() => {
           window.location.reload();
-        }, 1000);
+        }, REDIRECT_DELAY);
     }
   };
   useSetSeverity(error, message);
 
-  return {
-    error,
-    message,
-    remove,
-  };
+  return { remove };
 };
