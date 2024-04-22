@@ -1,6 +1,6 @@
 export const cardStyles = {
   wrapper: {
-    borderRadius: '10px',
+    borderRadius: '0.5rem',
     margin: '0.5rem 2rem 1rem 2rem',
     height: '11rem',
   },

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Typography } from '@mui/material';
-import { cardStyles } from '../../../../styles/card';
+import { cardStyles } from '../../../../styles/cardStyles';
 
 interface TaskDateFieldsProps {
   expectedEndTime: Date;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StoryBasic } from '../../../../types/story';
 import { CreateStoryForm } from './CreateStoryForm';
 import { useCreateStory } from '../../../../queries/story/useCreateStory';
-import { ModalContent } from '../../../common/Modal/ModalContent';
+import { ModalContent } from '../../../common/ModalContent';
 import { defaultStory } from '../../../../queries/story/story';
 
 interface CreateStoryModalProps {

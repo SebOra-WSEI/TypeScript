@@ -25,9 +25,9 @@ export const StoryStatusInput: React.FC<StoryStatusInputProps> = ({
         })
       }
     >
-      {Object.values(State).map((s) => (
-        <MenuItem key={s} value={s}>
-          {s}
+      {Object.values(State).map((state) => (
+        <MenuItem key={state} value={state}>
+          {state}
         </MenuItem>
       ))}
     </Select>

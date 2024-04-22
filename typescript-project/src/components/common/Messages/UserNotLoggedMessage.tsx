@@ -1,11 +1,21 @@
-import { Box, Button, Card, CardActions, CardContent } from "@mui/material";
 import React from "react";
-import { boxStyles } from "../../../styles/box";
+import {
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent
+} from "@mui/material";
+import { boxStyles } from "../../../styles/boxStyles";
 import { useHistory } from "react-router";
 import { routes } from "../../../routes/routes";
-import { messageStyles } from "../../../styles/message";
+import { messageStyles } from "../../../styles/messageStyles";
 
-export const UserNotLoggedMessage: React.FC<{ text: string }> = ({ text }) => {
+interface UserNotLoggedMessageProps {
+  text: string
+}
+
+export const UserNotLoggedMessage: React.FC<UserNotLoggedMessageProps> = ({ text }) => {
   const history = useHistory();
 
   return (

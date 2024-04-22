@@ -1,4 +1,9 @@
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select
+} from "@mui/material";
 import React from "react";
 import { formStyles } from "../../../styles/formStyles";
 import { STORY_POINTS } from "../../../utils/consts";

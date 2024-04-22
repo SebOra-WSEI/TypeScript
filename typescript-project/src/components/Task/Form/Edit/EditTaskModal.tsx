@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { TaskBasic, TaskModel } from '../../../../types/task';
 import { EditTaskForm } from './EditTaskForm';
 import { useEditTaskById } from '../../../../queries/task/useEditTaskById';
-import { ModalContent } from '../../../common/Modal/ModalContent';
+import { ModalContent } from '../../../common/ModalContent';
 import { updateTaskDates } from '../../../../utils/updateTaskDates';
 
 interface EditTaskModalProps {

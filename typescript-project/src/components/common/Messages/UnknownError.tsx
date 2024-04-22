@@ -1,10 +1,18 @@
-import { Box, Card, CardContent } from "@mui/material";
 import React from "react";
-import { boxStyles } from "../../../styles/box";
-import { messageStyles } from "../../../styles/message";
+import {
+  Box,
+  Card,
+  CardContent
+} from "@mui/material";
+import { boxStyles } from "../../../styles/boxStyles";
+import { messageStyles } from "../../../styles/messageStyles";
 
-export const UnknownError: React.FC<{ errorMessage: string }> = ({ errorMessage }) => (
-  <Box sx={boxStyles} >
+interface UnknownErrorProps {
+  errorMessage: string
+}
+
+export const UnknownError: React.FC<UnknownErrorProps> = ({ errorMessage }) => (
+  <Box sx={boxStyles}>
     <Card>
       <CardContent>
         <h3 style={messageStyles.header}>Unknown Error</h3>
@@ -12,4 +20,4 @@ export const UnknownError: React.FC<{ errorMessage: string }> = ({ errorMessage 
       </CardContent>
     </Card>
   </Box>
-)
+);

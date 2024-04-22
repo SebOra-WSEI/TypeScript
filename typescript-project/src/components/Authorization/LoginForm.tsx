@@ -8,7 +8,8 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { LoginBody } from '../../types/login';
-import { boxStyles } from '../../styles/box';
+import { boxStyles } from '../../styles/boxStyles';
+import { commonStyles } from '../../styles/commonStyles';
 
 interface LoginFormProps {
   loginBody: LoginBody;
@@ -64,6 +65,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
               type='submit'
               variant='contained'
               disabled={!login || !password}
+              fullWidth
               sx={styles.button}
             >
               Log in
@@ -81,13 +83,9 @@ const styles = {
     borderRadius: '0.5rem',
     boxShadow: '0.5rem 1rem 1rem rgba(0, 0, 0, 0.1)',
   },
-  header: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
+  header: commonStyles.header,
   button: {
-    width: '100%',
     margin: '1rem 0 0.2rem 0',
-    borderRadius: '0.5rem',
+    borderRadius: commonStyles.buttonBorderRadius,
   },
 };

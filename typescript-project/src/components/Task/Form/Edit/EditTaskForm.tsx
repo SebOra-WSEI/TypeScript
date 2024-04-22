@@ -28,7 +28,7 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
 
   return (
     <Grid container sx={formStyles.gridContainer}>
-      <Grid item xs={7} sx={formStyles.title}>
+      <Grid item xs={7} sx={formStyles.header}>
         <TextField
           sx={formStyles.titleText}
           variant='standard'

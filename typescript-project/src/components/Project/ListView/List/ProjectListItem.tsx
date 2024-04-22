@@ -1,7 +1,5 @@
 import { IconButton, ListItem, ListItemText, Tooltip } from '@mui/material';
 import React from 'react';
-import DeleteIcon from '@mui/icons-material/Delete';
-import WhereToVoteIcon from '@mui/icons-material/WhereToVote';
 import { ProjectModel } from '../../../../types/project';
 import { useHistory } from 'react-router';
 import { routeBuilder } from '../../../../routes/routes';
@@ -12,6 +10,8 @@ import {
 import { useRemoveProject } from '../../../../queries/project/useRemoveProject';
 import { ListItemHeader } from './ListItemHeader';
 import { listStyles } from '../../../../styles/listStyles';
+import DeleteIcon from '@mui/icons-material/Delete';
+import WhereToVoteIcon from '@mui/icons-material/WhereToVote';
 
 interface ProjectItemProps {
   project: ProjectModel;

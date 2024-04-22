@@ -11,16 +11,16 @@ import {
 import React, { PropsWithChildren, useState } from 'react';
 import { ProjectModel } from '../../types/project';
 import { StoryModel } from '../../types/story';
-import SettingsIcon from '@mui/icons-material/Settings';
 import { TaskModel } from '../../types/task';
 import { NavbarBreadcrumbs } from './Breadcrumbs/NavbarBreadcrumbs';
 import { useHistory } from 'react-router';
 import { routes } from '../../routes/routes';
 import { SELECTED_PROJECT_ID } from '../../utils/localStorage';
-import ReplyAllIcon from '@mui/icons-material/ReplyAll';
-import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
 import { handleLogout } from '../../utils/logout';
+import ReplyAllIcon from '@mui/icons-material/ReplyAll';
+import LogoutIcon from '@mui/icons-material/Logout';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 interface NavbarProps extends PropsWithChildren {
   data?: ProjectModel | StoryModel | TaskModel;

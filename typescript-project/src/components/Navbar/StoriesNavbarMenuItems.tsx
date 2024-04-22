@@ -1,11 +1,15 @@
-import { Divider, ListItemIcon, MenuItem } from '@mui/material';
+import {
+  Divider,
+  ListItemIcon,
+  MenuItem
+} from '@mui/material';
 import React from 'react';
 import { useHistory, useParams } from 'react-router';
 import { routes } from '../../routes/routes';
+import { useRemoveProject } from '../../queries/project/useRemoveProject';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useRemoveProject } from '../../queries/project/useRemoveProject';
 
 interface StoriesNavbarMenuItemsProps {
   handleEditProjectOnOpen: () => void;

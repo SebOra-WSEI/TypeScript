@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField } from '@mui/material';
 import { ProjectBasic } from '../../../types/project';
-import { formStyles } from '../../../styles/formStyles';
+import { commonStyles } from '../../../styles/commonStyles';
 
 interface CreateProjectFormProps {
   project: ProjectBasic;
@@ -16,7 +16,7 @@ export const CreateProjectForm: React.FC<CreateProjectFormProps> = ({
 
   return (
     <>
-      <h3 style={formStyles.header}>Create new project</h3>
+      <h3 style={commonStyles.header}>Create new project</h3>
       <TextField
         label='Name *'
         variant='standard'

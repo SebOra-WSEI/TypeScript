@@ -3,6 +3,11 @@ import React from 'react';
 import { routeBuilder } from '../../../routes/routes';
 import { useParams } from 'react-router';
 
+interface BreadcrumbProps {
+  link: string;
+  text: string;
+}
+
 export const NavbarBreadcrumbs: React.FC = () => {
   const { projectId, storyId } = useParams<{
     projectId: string;
@@ -21,10 +26,7 @@ export const NavbarBreadcrumbs: React.FC = () => {
   );
 };
 
-const Breadcrumb: React.FC<{
-  link: string;
-  text: string;
-}> = ({ link, text }) => (
+const Breadcrumb: React.FC<BreadcrumbProps> = ({ link, text }) => (
   <Link href={link} fontSize='small' sx={styles.color}>
     {text}
   </Link>

@@ -1,8 +1,6 @@
+import { commonStyles } from './commonStyles';
+
 export const formStyles = {
-  header: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
   formControl: {
     marginTop: '1.5rem',
     width: '9rem',
@@ -10,42 +8,32 @@ export const formStyles = {
   gridContainer: {
     width: '60rem',
   },
-  title: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
+  header: commonStyles.header,
   titleText: {
     width: '20rem',
   },
   reporterField: {
-    display: 'flex',
-    justifyContent: 'end',
+    ...commonStyles.inputField,
     alignItems: 'center',
   },
   descriptionField: {
     marginTop: '4rem',
   },
   statusField: {
-    display: 'flex',
-    justifyContent: 'end',
+    ...commonStyles.inputField,
     alignItems: 'center',
     marginTop: '1.3rem',
     paddingRight: '0.6rem',
   },
-  selectorField: {
-    display: 'flex',
-    justifyContent: 'end',
-  },
+  selectorField: commonStyles.inputField,
   assignedToField: {
-    display: 'flex',
-    justifyContent: 'end',
+    ...commonStyles.inputField,
     alignItems: 'center',
     marginTop: '1.3rem',
     paddingRight: '0.2rem',
   },
   priorityField: {
-    display: 'flex',
-    justifyContent: 'end',
+    ...commonStyles.inputField,
     alignItems: 'center',
     marginTop: '1.3rem',
   },

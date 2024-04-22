@@ -10,10 +10,10 @@ import React, { useState } from 'react';
 import { PRIORITY_ICONS } from '../../../utils/priorityIcons';
 import { TaskModel } from '../../../types/task';
 import { TaskCardMenu } from './TaskCardMenu';
-import { cardStyles } from '../../../styles/card';
+import { cardStyles } from '../../../styles/cardStyles';
 import { EditTaskModal } from '../Form/Edit/EditTaskModal';
 import { StoryPointsItem } from './StoryPointsItem';
-import { ItemTaskHeader } from '../../common/ItemCardHeader/ItemCardHeader';
+import { ItemTaskHeader } from '../../common/ItemCardHeader';
 
 interface TaskCardProps {
   task: TaskModel;

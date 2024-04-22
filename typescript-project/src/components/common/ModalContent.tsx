@@ -6,7 +6,8 @@ import {
   Modal,
 } from '@mui/material';
 import React, { PropsWithChildren } from 'react';
-import { boxStyles } from '../../../styles/box';
+import { boxStyles } from '../../styles/boxStyles';
+import { commonStyles } from '../../styles/commonStyles';
 
 type ModalType = 'create' | 'update';
 
@@ -32,20 +33,14 @@ export const ModalContent: React.FC<ModalContentProps> = ({
           onClick={handleOnClose}
           variant='contained'
           color='error'
-          style={styles.button}
+          style={commonStyles.buttonBorderRadius}
         >
           Close
         </Button>
-        <Button variant='outlined' type='submit' style={styles.button}>
+        <Button variant='outlined' type='submit' style={commonStyles.buttonBorderRadius}>
           {type[0].toUpperCase() + type.slice(1)}
         </Button>
       </DialogActions>
     </Box>
   </Modal>
 );
-
-const styles = {
-  button: {
-    borderRadius: '0.5rem',
-  },
-};

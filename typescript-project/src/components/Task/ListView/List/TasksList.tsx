@@ -3,7 +3,7 @@ import React from 'react';
 import { State } from '../../../../types/state';
 import { TaskModel } from '../../../../types/task';
 import { TaskCard } from '../../Card/TaskCard';
-import { StatesListItem } from '../../../common/StatesList/StatesListItem';
+import { StatesListItem } from '../../../common/StatesListItem';
 import { listStyles } from '../../../../styles/listStyles';
 
 interface TasksListProps {

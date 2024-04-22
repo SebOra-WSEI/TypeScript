@@ -1,4 +1,9 @@
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select
+} from '@mui/material';
 import { formStyles } from '../../../styles/formStyles';
 import { Priority } from '../../../types/priority';
 import { PRIORITY_ICONS } from '../../../utils/priorityIcons';
@@ -17,7 +22,7 @@ export function PriorityInput<T>({
   isLabelEnabled = false
 }: PriorityInputProps<ExtendedGlobalType<T>>) {
   return (
-    <FormControl sx={styles.prioritySelect} size='small' >
+    <FormControl sx={formStyles.formControl} size='small' >
       {isLabelEnabled && (<InputLabel>Priority</InputLabel>)}
       <Select
         value={item.priority}
@@ -40,12 +45,5 @@ export function PriorityInput<T>({
       </Select>
     </FormControl >
   );
-};
-
-const styles = {
-  prioritySelect: {
-    marginTop: '1.5rem',
-    width: '9rem',
-  },
 };
 

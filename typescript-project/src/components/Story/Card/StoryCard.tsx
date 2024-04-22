@@ -1,12 +1,19 @@
-import { Card, CardContent, CardHeader, Grid, Typography } from '@mui/material';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Grid,
+  Typography
+} from '@mui/material';
 import React, { useState } from 'react';
 import { StoryCardMenu } from './StoryCardMenu';
 import { StoryModel } from '../../../types/story';
-import { cardStyles } from '../../../styles/card';
+import { cardStyles } from '../../../styles/cardStyles';
 import { PriorityItem } from './CardItems/PriorityItem';
 import { CreatedByItem } from './CardItems/CreatedByItem';
-import { ItemTaskHeader } from '../../common/ItemCardHeader/ItemCardHeader';
+import { ItemTaskHeader } from '../../common/ItemCardHeader';
 import { EditStoryModal } from '../Form/Edit/EditStoryModal';
+import { commonStyles } from '../../../styles/commonStyles';
 
 interface StoryCardProps {
   story: StoryModel;
@@ -46,7 +53,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
                 Created at: {new Date(date).toLocaleString()}
               </Typography>
             </Grid>
-            <Grid item xs={6} sx={styles.createdBy}>
+            <Grid item xs={6} sx={commonStyles.inputField}>
               <CreatedByItem owner={owner} />
             </Grid>
           </Grid>
@@ -59,11 +66,4 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
       />
     </>
   );
-};
-
-const styles = {
-  createdBy: {
-    display: 'flex',
-    justifyContent: 'end',
-  }
 };

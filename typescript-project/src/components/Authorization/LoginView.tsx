@@ -6,7 +6,6 @@ import { useGetCurrentUser } from '../../queries/user/useGetCurrentUser';
 import { UserAlreadyLoggedMessage } from '../common/Messages/UserAlreadyLoggedMessage';
 
 export const LoginView: React.FC = () => {
-
   const [loginBody, setLoginBody] = useState<LoginBody>({
     login: '',
     password: '',

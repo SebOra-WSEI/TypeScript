@@ -2,7 +2,11 @@ import { Avatar } from '@mui/material';
 import { deepPurple } from '@mui/material/colors';
 import React from 'react';
 
-export const StoryPointsItem: React.FC<{ storyPoint: number }> = ({
+interface StoryPointsItemProps {
+  storyPoint: number
+}
+
+export const StoryPointsItem: React.FC<StoryPointsItemProps> = ({
   storyPoint,
 }) => (
   <>
