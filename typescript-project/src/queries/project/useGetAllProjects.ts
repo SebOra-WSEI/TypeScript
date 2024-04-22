@@ -3,6 +3,7 @@ import { FetchedData } from '../../types/fetchedData';
 import { ProjectModel } from '../../types/project';
 import { StatusCode } from '../../types/statusCode';
 import { EMPTY_PROJECT } from './project';
+import { LOADING_DELAY } from '../../utils/consts';
 
 export const useGetAllProjects = (): FetchedData<Array<ProjectModel>> => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -21,7 +22,7 @@ export const useGetAllProjects = (): FetchedData<Array<ProjectModel>> => {
     if (status === StatusCode.OK && response) {
       setTimeout(() => {
         setIsLoading(false);
-      }, 700);
+      }, LOADING_DELAY);
       setProjects(response);
       setMessage(message);
     }

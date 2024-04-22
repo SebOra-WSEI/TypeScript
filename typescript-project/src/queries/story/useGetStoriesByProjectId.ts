@@ -4,6 +4,7 @@ import { StatusCode } from '../../types/statusCode';
 import { EMPTY_STORY } from './story';
 import { StoryModel } from '../../types/story';
 import { EMPTY_USER } from '../user/emptyUser';
+import { LOADING_DELAY } from '../../utils/consts';
 
 export const useGetStoriesByProjectId = (
   projectId: string
@@ -29,7 +30,7 @@ export const useGetStoriesByProjectId = (
     if (status === StatusCode.OK && response) {
       setTimeout(() => {
         setIsLoading(false);
-      }, 700);
+      }, LOADING_DELAY);
       setStories(extendedStories);
     }
   }, []);

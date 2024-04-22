@@ -3,6 +3,7 @@ import { StatusCode } from '../../types/statusCode';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
 import { EMPTY_TASK } from './task';
 import { TaskBasic } from '../../types/task';
+import { ERROR_DELAY, REDIRECT_DELAY } from '../../utils/consts';
 
 type UseEditTaskByIdResult = { update: (taskId: string) => void };
 
@@ -17,7 +18,7 @@ export const useEditTaskById = (newTask: TaskBasic): UseEditTaskByIdResult => {
       setError(message);
       setTimeout(() => {
         setError('');
-      }, 100);
+      }, ERROR_DELAY);
     }
 
     if (status === StatusCode.OK && response) {
@@ -25,7 +26,7 @@ export const useEditTaskById = (newTask: TaskBasic): UseEditTaskByIdResult => {
 
       setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, REDIRECT_DELAY);
     }
   };
 

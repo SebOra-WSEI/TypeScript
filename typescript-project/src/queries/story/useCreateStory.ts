@@ -5,6 +5,7 @@ import { StoryBasic } from '../../types/story';
 import { State } from '../../types/state';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
 import { useParams } from 'react-router';
+import { ERROR_DELAY, REDIRECT_DELAY } from '../../utils/consts';
 
 type UseCreateStoryResult = { create: () => void };
 
@@ -32,7 +33,7 @@ export const useCreateStory = (story: StoryBasic): UseCreateStoryResult => {
       setError(message);
       setTimeout(() => {
         setError('');
-      }, 100);
+      }, ERROR_DELAY);
     }
 
     if (status === StatusCode.Created && response) {
@@ -40,7 +41,7 @@ export const useCreateStory = (story: StoryBasic): UseCreateStoryResult => {
 
       setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, REDIRECT_DELAY);
     }
   };
 

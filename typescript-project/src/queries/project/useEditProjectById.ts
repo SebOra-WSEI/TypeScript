@@ -3,6 +3,7 @@ import { EMPTY_PROJECT } from './project';
 import { ProjectBasic } from '../../types/project';
 import { StatusCode } from '../../types/statusCode';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
+import { ERROR_DELAY, REDIRECT_DELAY } from '../../utils/consts';
 
 type UseEditProjectResult = { update: (projectId: string) => void };
 
@@ -22,7 +23,7 @@ export const useEditProjectById = (
       setError(message);
       setTimeout(() => {
         setError('');
-      }, 100);
+      }, ERROR_DELAY);
     }
 
     if (status === StatusCode.OK && response) {
@@ -30,7 +31,7 @@ export const useEditProjectById = (
 
       setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, REDIRECT_DELAY);
     }
   };
 

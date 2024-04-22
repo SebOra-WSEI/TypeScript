@@ -9,6 +9,7 @@ import { CURRENT_USER_ID, setToLocalStorage } from '../../utils/localStorage';
 import { ErrorResponse, LoggedUserResponse } from '../../types/response';
 import { StatusCode } from '../../types/statusCode';
 import { DataType } from '../../types/dataType';
+import { ERROR_DELAY, REDIRECT_DELAY } from '../../utils/consts';
 
 const allUsers = [
   {
@@ -57,7 +58,7 @@ export const useLogIn = (body: LoginBody): useLogInResult => {
 
           setTimeout(() => {
             window.location.replace(routeBuilder.projects);
-          }, 1000);
+          }, REDIRECT_DELAY);
         }
       })
       .catch((error: ErrorResponse) => {
@@ -69,7 +70,7 @@ export const useLogIn = (body: LoginBody): useLogInResult => {
 
         setTimeout(() => {
           setError('');
-        }, 100);
+        }, ERROR_DELAY);
       });
   };
 

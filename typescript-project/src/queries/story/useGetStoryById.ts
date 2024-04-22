@@ -3,6 +3,7 @@ import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
 import { StoryModel } from '../../types/story';
 import { EMPTY_STORY } from './story';
+import { LOADING_DELAY } from '../../utils/consts';
 
 export const useGetStoryById = (id: string): FetchedData<StoryModel> => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -21,7 +22,7 @@ export const useGetStoryById = (id: string): FetchedData<StoryModel> => {
     if (status === StatusCode.OK && response) {
       setTimeout(() => {
         setIsLoading(false);
-      }, 700);
+      }, LOADING_DELAY);
       setStory(response);
       setMessage(message);
     }

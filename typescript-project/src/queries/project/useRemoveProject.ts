@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { EMPTY_PROJECT } from './project';
 import { StatusCode } from '../../types/statusCode';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
+import { REDIRECT_DELAY } from '../../utils/consts';
 
 type UseRemoveProjectResult = { remove: (id: string) => void };
 
@@ -14,9 +15,6 @@ export const useRemoveProject = (isReload = true): UseRemoveProjectResult => {
 
     if (status !== StatusCode.OK && message) {
       setError(message);
-      setTimeout(() => {
-        setError('');
-      }, 100);
     }
 
     if (status === StatusCode.OK && response) {
@@ -25,7 +23,7 @@ export const useRemoveProject = (isReload = true): UseRemoveProjectResult => {
       isReload &&
         setTimeout(() => {
           window.location.reload();
-        }, 1000);
+        }, REDIRECT_DELAY);
     }
   };
 

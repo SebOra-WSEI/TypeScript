@@ -3,6 +3,7 @@ import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
 import { EMPTY_TASK } from './task';
 import { TaskModel } from '../../types/task';
+import { LOADING_DELAY } from '../../utils/consts';
 
 export const useGetTasksByStoryId = (
   storyId: string
@@ -24,7 +25,7 @@ export const useGetTasksByStoryId = (
     if (status === StatusCode.OK && response) {
       setTimeout(() => {
         setIsLoading(false);
-      }, 700);
+      }, LOADING_DELAY);
       setTasks(filteredTasks);
     }
   }, []);

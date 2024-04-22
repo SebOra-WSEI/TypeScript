@@ -4,6 +4,7 @@ import { StatusCode } from '../../types/statusCode';
 import { UserModel } from '../../types/user';
 import { EMPTY_USER } from './emptyUser';
 import { CURRENT_USER_ID, getFromLocalStorage } from '../../utils/localStorage';
+import { LOADING_DELAY } from '../../utils/consts';
 
 export const useGetCurrentUser = (): FetchedData<UserModel> => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -24,7 +25,7 @@ export const useGetCurrentUser = (): FetchedData<UserModel> => {
     if (status === StatusCode.OK && response) {
       setTimeout(() => {
         setIsLoading(false);
-      }, 700);
+      }, LOADING_DELAY);
       setUser(response);
       setMessage(message);
     }

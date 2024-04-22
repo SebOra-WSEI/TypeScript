@@ -4,6 +4,7 @@ import { useSetSeverity } from '../../hooks/useSetSeverity';
 import { Task } from '../../controllers/task';
 import { TaskBasic } from '../../types/task';
 import { useParams } from 'react-router';
+import { ERROR_DELAY, REDIRECT_DELAY } from '../../utils/consts';
 
 type UseCreateTaskResult = { create: () => void };
 
@@ -45,7 +46,7 @@ export const useCreateTask = (task: TaskBasic): UseCreateTaskResult => {
       setError(message);
       setTimeout(() => {
         setError('');
-      }, 100);
+      }, ERROR_DELAY);
     }
 
     if (status === StatusCode.Created && response) {
@@ -53,7 +54,7 @@ export const useCreateTask = (task: TaskBasic): UseCreateTaskResult => {
 
       setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, REDIRECT_DELAY);
     }
   };
 
