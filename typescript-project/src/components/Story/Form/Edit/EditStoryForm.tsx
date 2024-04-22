@@ -4,7 +4,7 @@ import { formStyles } from '../../../../styles/formStyles';
 import { StoryBasic } from '../../../../types/story';
 import { StoryAssignToInput } from '../InputFields/StoryAssignToInput';
 import { StoryStatusInput } from '../InputFields/StoryStatusInput';
-import { StoryPriorityInput } from '../InputFields/StoryPriorityInput';
+import { PriorityInput } from '../../../common/InputFields/PriorityInput';
 
 interface EditStoryFormProps {
   updatedStory: StoryBasic;
@@ -83,9 +83,9 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
             <strong>Priority</strong>
           </Grid>
           <Grid item xs={8} sx={formStyles.selector}>
-            <StoryPriorityInput
-              story={updatedStory}
-              setStory={setUpdatedStory}
+            <PriorityInput
+              item={updatedStory}
+              setItem={setUpdatedStory}
             />
           </Grid>
         </Grid>

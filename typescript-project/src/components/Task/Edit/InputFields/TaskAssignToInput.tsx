@@ -6,12 +6,12 @@ import { useGetAllUsers } from '../../../../queries/user/useGetAllUsers';
 import { UserRole } from '../../../../types/user';
 import { TaskBasic } from '../../../../types/task';
 
-interface EditTaskAssignToInputProps {
+interface TaskAssignToInputProps {
   updatedTask: TaskBasic;
   setUpdatedTask: (value: TaskBasic) => void;
 }
 
-export const EditTaskAssignToInput: React.FC<EditTaskAssignToInputProps> = ({
+export const TaskAssignToInput: React.FC<TaskAssignToInputProps> = ({
   updatedTask,
   setUpdatedTask,
 }) => {

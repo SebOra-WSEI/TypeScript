@@ -2,7 +2,7 @@ import React from 'react';
 import { TextField } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
 import { StoryBasic } from '../../../../types/story';
-import { StoryPriorityInput } from '../InputFields/StoryPriorityInput';
+import { PriorityInput } from '../../../common/InputFields/PriorityInput';
 
 interface CreateStoryFormProps {
   story: StoryBasic;
@@ -47,7 +47,11 @@ export const CreateStoryForm: React.FC<CreateStoryFormProps> = ({
           })
         }
       />
-      <StoryPriorityInput story={story} setStory={setStory} />
+      <PriorityInput
+        item={story}
+        setItem={setStory}
+        isLabelEnabled
+      />
     </>
   );
 };

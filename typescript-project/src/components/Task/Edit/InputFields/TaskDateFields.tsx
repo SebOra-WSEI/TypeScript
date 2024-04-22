@@ -2,13 +2,13 @@ import React from 'react';
 import { Grid, Typography } from '@mui/material';
 import { cardStyles } from '../../../../styles/card';
 
-interface EditTaskDateFieldsProps {
+interface TaskDateFieldsProps {
   expectedEndTime: Date;
   startDate?: Date;
   endDate?: Date;
 }
 
-export const EditTaskDateFields: React.FC<EditTaskDateFieldsProps> = ({
+export const TaskDateFields: React.FC<TaskDateFieldsProps> = ({
   expectedEndTime,
   endDate,
   startDate,

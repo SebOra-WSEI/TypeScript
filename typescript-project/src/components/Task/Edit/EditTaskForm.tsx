@@ -3,10 +3,10 @@ import { Grid, TextField, Typography } from '@mui/material';
 import { formStyles } from '../../../styles/formStyles';
 import { TaskBasic } from '../../../types/task';
 import { EditTaskStateInput } from './InputFields/EditTaskStateInput';
-import { EditTaskAssignToInput } from './InputFields/EditTaskAssignToInput';
-import { EditTaskPriorityInput } from './InputFields/EditTaskPriorityInput';
+import { TaskAssignToInput } from './InputFields/TaskAssignToInput';
 import { EditTaskStoryPointInput } from './InputFields/EditTaskStoryPointInput';
-import { EditTaskDateFields } from './InputFields/EditTaskDateFields';
+import { TaskDateFields } from './InputFields/TaskDateFields';
+import { PriorityInput } from '../../common/InputFields/PriorityInput';
 
 interface EditTaskFormProps {
   updatedTask: TaskBasic;
@@ -83,7 +83,7 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
             <strong>Assigned to</strong>
           </Grid>
           <Grid item xs={7} sx={formStyles.selector}>
-            <EditTaskAssignToInput
+            <TaskAssignToInput
               updatedTask={updatedTask}
               setUpdatedTask={setUpdatedTask}
             />
@@ -92,9 +92,9 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
             <strong>Priority</strong>
           </Grid>
           <Grid item xs={8} sx={formStyles.selector}>
-            <EditTaskPriorityInput
-              updatedTask={updatedTask}
-              setUpdatedTask={setUpdatedTask}
+            <PriorityInput
+              item={updatedTask}
+              setItem={setUpdatedTask}
             />
           </Grid>
           <Grid item xs={5} sx={formStyles.priority}>
@@ -108,7 +108,7 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
           </Grid>
         </Grid>
       </Grid>
-      <EditTaskDateFields
+      <TaskDateFields
         expectedEndTime={expectedEndTime}
         endDate={endDate}
         startDate={startDate}

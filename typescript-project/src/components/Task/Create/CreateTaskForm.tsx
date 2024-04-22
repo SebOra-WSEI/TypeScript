@@ -3,8 +3,8 @@ import { TextField } from '@mui/material';
 import { formStyles } from '../../../styles/formStyles';
 import { TaskBasic } from '../../../types/task';
 import { expectedWorkingDays } from '../../../utils/expectedWorkingDays';
-import { CreateTaskPriorityInput } from './InputFields/CreateTaskPriorityInput';
 import { CreateTaskStoryPointsInput } from './InputFields/CreateTaskStoryPointsInput';
+import { PriorityInput } from '../../common/InputFields/PriorityInput';
 
 interface CreateTaskFormProps {
   task: TaskBasic;
@@ -52,7 +52,7 @@ export const CreateTaskForm: React.FC<CreateTaskFormProps> = ({
         }
       />
       <div style={styles.controlWrapper}>
-        <CreateTaskPriorityInput task={task} setTask={setTask} />
+        <PriorityInput item={task} setItem={setTask} isLabelEnabled />
         <CreateTaskStoryPointsInput task={task} setTask={setTask} />
       </div>
       <TextField
