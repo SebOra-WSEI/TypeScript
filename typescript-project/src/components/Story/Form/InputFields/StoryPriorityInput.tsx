@@ -1,17 +1,17 @@
 import React from 'react';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import { formStyles } from '../../../styles/formStyles';
-import { Priority } from '../../../types/priority';
-import { PRIORITY_ICONS } from '../../../utils/priorityIcons';
-import { StoryBasic } from '../../../types/story';
+import { formStyles } from '../../../../styles/formStyles';
+import { Priority } from '../../../../types/priority';
+import { PRIORITY_ICONS } from '../../../../utils/priorityIcons';
+import { StoryBasic } from '../../../../types/story';
 
-interface CreateStoryPriorityInputProps {
+interface StoryPriorityInputProps {
   story: StoryBasic;
   setStory: (value: StoryBasic) => void;
 }
 
-export const CreateStoryPriorityInput: React.FC<
-  CreateStoryPriorityInputProps
+export const StoryPriorityInput: React.FC<
+  StoryPriorityInputProps
 > = ({ story, setStory }) => (
   <FormControl sx={formStyles.prioritySelect} size='small'>
     <InputLabel>Priority</InputLabel>

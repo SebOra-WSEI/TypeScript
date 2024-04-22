@@ -1,17 +1,17 @@
 import React from 'react';
 import { FormControl, MenuItem, Select } from '@mui/material';
-import { formStyles } from '../../../../../styles/formStyles';
-import { StoryBasic } from '../../../../../types/story';
-import { State } from '../../../../../types/state';
-import { useGetAllUsers } from '../../../../../queries/user/useGetAllUsers';
+import { formStyles } from '../../../../styles/formStyles';
+import { StoryBasic } from '../../../../types/story';
+import { State } from '../../../../types/state';
+import { useGetAllUsers } from '../../../../queries/user/useGetAllUsers';
 
-interface EditStoryAssignToInputProps {
+interface StoryAssignToInputProps {
   updatedStory: StoryBasic;
   setUpdatedStory: (value: StoryBasic) => void;
   assignedToId: string;
 }
 
-export const EditStoryAssignToInput: React.FC<EditStoryAssignToInputProps> = ({
+export const StoryAssignToInput: React.FC<StoryAssignToInputProps> = ({
   updatedStory,
   setUpdatedStory,
   assignedToId,
