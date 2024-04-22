@@ -5,18 +5,12 @@ import fs from 'fs';
 import { User } from './types/user';
 import { signInHandler } from './handlers/signInHandler';
 
-interface DbJSON {
-  users: Array<User>;
-}
-
 export let allUsers: Array<User>;
-let jsonDb: DbJSON;
 let refreshToken: string;
 
 fs.readFile('../db.json', (err, data) => {
   if (err) throw err;
-  jsonDb = JSON.parse(String(data));
-  allUsers = jsonDb.users;
+  allUsers = JSON.parse(String(data))['users'];
 });
 
 const app = express();

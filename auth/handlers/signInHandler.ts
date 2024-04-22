@@ -27,7 +27,7 @@ export const signInHandler = (reqBody: LoginBody): Response<LoggedUser> => {
 
   return {
     status: StatusCode.OK,
-    message: 'User logged successfully',
+    message: 'User signed in successfully',
     response: {
       token: generateToken(exp || 60),
       refreshToken: generateToken(60 * 60),
