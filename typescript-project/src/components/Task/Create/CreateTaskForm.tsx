@@ -3,8 +3,8 @@ import { TextField } from '@mui/material';
 import { formStyles } from '../../../styles/formStyles';
 import { TaskBasic } from '../../../types/task';
 import { expectedWorkingDays } from '../../../utils/expectedWorkingDays';
-import { CreateTaskStoryPointsInput } from './InputFields/CreateTaskStoryPointsInput';
 import { PriorityInput } from '../../common/InputFields/PriorityInput';
+import { StoryPointsInput } from '../../common/InputFields/StoryPointsInput';
 
 interface CreateTaskFormProps {
   task: TaskBasic;
@@ -53,7 +53,7 @@ export const CreateTaskForm: React.FC<CreateTaskFormProps> = ({
       />
       <div style={styles.controlWrapper}>
         <PriorityInput item={task} setItem={setTask} isLabelEnabled />
-        <CreateTaskStoryPointsInput task={task} setTask={setTask} />
+        <StoryPointsInput task={task} setTask={setTask} isLabelEnabled />
       </div>
       <TextField
         label='Expected days'
@@ -81,6 +81,6 @@ const styles = {
   },
   expectedDays: {
     marginTop: '1.4rem',
-    width: '8rem',
+    width: '9em',
   },
 };

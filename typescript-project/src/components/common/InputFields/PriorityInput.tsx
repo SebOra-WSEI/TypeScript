@@ -5,18 +5,17 @@ import { PRIORITY_ICONS } from '../../../utils/priorityIcons';
 
 type ExtendedGlobalType<T> = T & { priority: Priority }
 
-interface PriorityInputProps<TX> {
-  item: TX;
-  setItem: (value: TX) => void;
+interface PriorityInputProps<T> {
+  item: T;
+  setItem: (value: T) => void;
   isLabelEnabled?: boolean
 }
 
 export function PriorityInput<T>({
   item,
   setItem,
-  isLabelEnabled
+  isLabelEnabled = false
 }: PriorityInputProps<ExtendedGlobalType<T>>) {
-
   return (
     <FormControl sx={formStyles.prioritySelect} size='small' >
       {isLabelEnabled && (<InputLabel>Priority</InputLabel>)}

@@ -4,9 +4,9 @@ import { formStyles } from '../../../styles/formStyles';
 import { TaskBasic } from '../../../types/task';
 import { EditTaskStateInput } from './InputFields/EditTaskStateInput';
 import { TaskAssignToInput } from './InputFields/TaskAssignToInput';
-import { EditTaskStoryPointInput } from './InputFields/EditTaskStoryPointInput';
 import { TaskDateFields } from './InputFields/TaskDateFields';
 import { PriorityInput } from '../../common/InputFields/PriorityInput';
+import { StoryPointsInput } from '../../common/InputFields/StoryPointsInput';
 
 interface EditTaskFormProps {
   updatedTask: TaskBasic;
@@ -101,9 +101,9 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
             <strong>Story Points</strong>
           </Grid>
           <Grid item xs={7} sx={formStyles.selector}>
-            <EditTaskStoryPointInput
-              updatedTask={updatedTask}
-              setUpdatedTask={setUpdatedTask}
+            <StoryPointsInput
+              task={updatedTask}
+              setTask={setUpdatedTask}
             />
           </Grid>
         </Grid>
