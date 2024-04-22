@@ -8,6 +8,8 @@ import { TasksList } from './List/TasksList';
 import { CreateTaskFormModal } from '../Create/CreateTaskFormModal';
 import { useGetTasksByStoryId } from '../../../queries/task/useGetTasksByStoryId';
 import { EditStoryModal } from '../../Story/Edit/EditStoryModal';
+import { useGetCurrentUser } from '../../../queries/user/useGetCurrentUser';
+import { UserNotLogged } from '../../common/UserNotLogged';
 
 export const TasksView: React.FC = () => {
   const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] =
@@ -28,6 +30,13 @@ export const TasksView: React.FC = () => {
     error: tasksError,
     data: tasks,
   } = useGetTasksByStoryId(storyId);
+
+
+  const { data: user } = useGetCurrentUser();
+
+  if (!user) {
+    return <UserNotLogged />
+  }
 
   if (storyLoading || tasksLoading) {
     return <Loader />;

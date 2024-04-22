@@ -8,6 +8,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { LoginBody } from '../../types/login';
+import { boxStyles } from '../../styles/box';
 
 interface LoginFormProps {
   loginBody: LoginBody;
@@ -23,7 +24,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   const { login, password } = loginBody;
 
   return (
-    <Box sx={styles.box} component='form' onSubmit={onSubmit}>
+    <Box sx={boxStyles} component='form' onSubmit={onSubmit}>
       <Card sx={styles.card}>
         <CardContent>
           <>
@@ -70,15 +71,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({
 };
 
 const styles = {
-  box: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    bgcolor: 'background.paper',
-    padding: '2rem',
-    borderRadius: '1.5rem',
-  },
   card: {
     width: '23rem',
     borderRadius: '0.5rem',

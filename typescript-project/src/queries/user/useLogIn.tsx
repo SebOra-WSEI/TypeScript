@@ -8,7 +8,6 @@ import { endpoints, routeBuilder } from '../../routes/routes';
 import { CURRENT_USER_ID, setToLocalStorage } from '../../utils/localStorage';
 import { ErrorResponse, LoggedUserResponse } from '../../types/response';
 import { StatusCode } from '../../types/statusCode';
-import { useHistory } from 'react-router';
 import { DataType } from '../../types/dataType';
 
 const allUsers = [
@@ -44,8 +43,6 @@ export const useLogIn = (body: LoginBody): useLogInResult => {
   const [error, setError] = useState<string>('');
   const [message, setMessage] = useState<string | undefined>(undefined);
 
-  const history = useHistory();
-
   setToLocalStorage(DataType.User, JSON.stringify(allUsers));
 
   const logIn = async (): Promise<void> => {
@@ -59,7 +56,7 @@ export const useLogIn = (body: LoginBody): useLogInResult => {
           setMessage(message);
 
           setTimeout(() => {
-            history.push(routeBuilder.projects);
+            window.location.replace(routeBuilder.projects);
           }, 1000);
         }
       })

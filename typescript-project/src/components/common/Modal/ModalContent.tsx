@@ -6,6 +6,7 @@ import {
   Modal,
 } from '@mui/material';
 import React, { PropsWithChildren } from 'react';
+import { boxStyles } from '../../../styles/box';
 
 type ModalType = 'create' | 'update';
 
@@ -24,7 +25,7 @@ export const ModalContent: React.FC<ModalContentProps> = ({
   type,
 }) => (
   <Modal open={isOpen} onClose={handleOnClose}>
-    <Box sx={styles.box} component='form' onSubmit={onSubmit}>
+    <Box sx={boxStyles} component='form' onSubmit={onSubmit}>
       <DialogContent>{children}</DialogContent>
       <DialogActions>
         <Button
@@ -44,15 +45,6 @@ export const ModalContent: React.FC<ModalContentProps> = ({
 );
 
 const styles = {
-  box: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    bgcolor: 'background.paper',
-    padding: '2rem',
-    borderRadius: '1.5rem',
-  },
   button: {
     borderRadius: '0.5rem',
   },
