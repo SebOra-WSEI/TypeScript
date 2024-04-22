@@ -1,9 +1,9 @@
 import React from 'react';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import { formStyles } from '../../../../styles/formStyles';
-import { Priority } from '../../../../types/priority';
-import { PRIORITY_ICONS } from '../../../../utils/priorityIcons';
-import { StoryBasic } from '../../../../types/story';
+import { formStyles } from '../../../styles/formStyles';
+import { Priority } from '../../../types/priority';
+import { PRIORITY_ICONS } from '../../../utils/priorityIcons';
+import { StoryBasic } from '../../../types/story';
 
 interface CreateStoryPriorityInputProps {
   story: StoryBasic;

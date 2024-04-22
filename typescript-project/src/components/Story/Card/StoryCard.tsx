@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, Grid, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { StoryCardMenu } from './StoryCardMenu';
 import { StoryModel } from '../../../types/story';
-import { EditStoryModal } from '../Edit/EditStoryModal';
+import { EditStoryModal } from '../Form/Edit/EditStoryModal';
 import { cardStyles } from '../../../styles/card';
 import { PriorityItem } from './CardItems/PriorityItem';
 import { CreatedByItem } from './CardItems/CreatedByItem';

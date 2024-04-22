@@ -5,7 +5,7 @@ export const formStyles = {
   },
   prioritySelect: {
     marginTop: '1.5rem',
-    width: '8rem',
+    width: '9rem',
   },
   editFormControl: {
     marginTop: '1.5rem',

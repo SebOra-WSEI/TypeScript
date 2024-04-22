@@ -1,9 +1,9 @@
 import React from 'react';
 import { FormControl, MenuItem, Select } from '@mui/material';
-import { formStyles } from '../../../../styles/formStyles';
-import { StoryBasic } from '../../../../types/story';
-import { State } from '../../../../types/state';
-import { useGetAllUsers } from '../../../../queries/user/useGetAllUsers';
+import { formStyles } from '../../../../../styles/formStyles';
+import { StoryBasic } from '../../../../../types/story';
+import { State } from '../../../../../types/state';
+import { useGetAllUsers } from '../../../../../queries/user/useGetAllUsers';
 
 interface EditStoryAssignToInputProps {
   updatedStory: StoryBasic;

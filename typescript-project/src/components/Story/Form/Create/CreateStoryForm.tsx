@@ -1,8 +1,8 @@
 import React from 'react';
 import { TextField } from '@mui/material';
-import { formStyles } from '../../../styles/formStyles';
-import { StoryBasic } from '../../../types/story';
-import { CreateStoryPriorityInput } from './InputFields/CreateStoryPriorityInput';
+import { formStyles } from '../../../../styles/formStyles';
+import { StoryBasic } from '../../../../types/story';
+import { CreateStoryPriorityInput } from '../CreateStoryPriorityInput';
 
 interface CreateStoryFormProps {
   story: StoryBasic;

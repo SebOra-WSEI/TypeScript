@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { ProjectBasic, ProjectModel } from '../../../types/project';
-import { EditProjectForm } from './EditProjectForm';
 import { useEditProjectById } from '../../../queries/project/useEditProjectById';
 import { ModalContent } from '../../common/Modal/ModalContent';
+import { CreateProjectForm } from './ProjectForm';
 
 interface EditProjectModalProps {
   isOpen: boolean;
@@ -31,9 +31,9 @@ export const EditProjectModal: React.FC<EditProjectModalProps> = ({
       onSubmit={handleUpdate}
       type='update'
     >
-      <EditProjectForm
+      <CreateProjectForm
         project={updatedProject}
-        setUpdatedProject={setUpdatedProject}
+        setProject={setUpdatedProject}
       />
     </ModalContent>
   );

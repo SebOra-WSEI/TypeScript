@@ -1,8 +1,8 @@
 import React from 'react';
 import { FormControl, MenuItem, Select } from '@mui/material';
-import { formStyles } from '../../../../styles/formStyles';
-import { State } from '../../../../types/state';
-import { StoryBasic } from '../../../../types/story';
+import { formStyles } from '../../../../../styles/formStyles';
+import { State } from '../../../../../types/state';
+import { StoryBasic } from '../../../../../types/story';
 
 interface EditStoryStatusInputProps {
   updatedStory: StoryBasic;

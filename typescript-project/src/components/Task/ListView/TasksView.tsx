@@ -7,7 +7,7 @@ import { TasksNavbarMenuItems } from '../../Navbar/TasksNavbarMenuItems';
 import { TasksList } from './List/TasksList';
 import { CreateTaskFormModal } from '../Create/CreateTaskFormModal';
 import { useGetTasksByStoryId } from '../../../queries/task/useGetTasksByStoryId';
-import { EditStoryModal } from '../../Story/Edit/EditStoryModal';
+import { EditStoryModal } from '../../Story/Form/Edit/EditStoryModal';
 import { useGetCurrentUser } from '../../../queries/user/useGetCurrentUser';
 import { UserNotLoggedMessage } from '../../common/Messages/UserNotLoggedMessage';
 

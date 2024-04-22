@@ -3,7 +3,7 @@ import { Button, List } from '@mui/material';
 import { ProjectModel } from '../../../../types/project';
 import { ProjectListItem } from './ProjectListItem';
 import { listStyles } from '../../../../styles/listStyles';
-import { NoProjectsMessage } from './NoProjectsMessage';
+import { NoProjectsMessage } from '../NoProjectsMessage';
 
 interface ProjectsListProps {
   projects: Array<ProjectModel> | undefined;

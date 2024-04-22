@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useGetAllProjects } from '../../../queries/project/useGetAllProjects';
 import { Loader } from '../../common/Loader';
 import { ProjectsList } from './List/ProjectsList';
-import { CreateProjectModal } from '../Create/CreateProjectModal';
+import { CreateProjectModal } from '../Form/CreateProjectModal';
 import { Box } from '@mui/material';
 import { listStyles } from '../../../styles/listStyles';
 import { Navbar } from '../../Navbar/Navbar';

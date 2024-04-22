@@ -1,10 +1,10 @@
 import React from 'react';
 import { Grid, TextField } from '@mui/material';
-import { formStyles } from '../../../styles/formStyles';
-import { StoryBasic } from '../../../types/story';
-import { EditStoryPriorityInput } from './InputFields/EditStoryPriorityInput';
+import { formStyles } from '../../../../styles/formStyles';
+import { StoryBasic } from '../../../../types/story';
 import { EditStoryAssignToInput } from './InputFields/EditStoryAssignToInput';
 import { EditStoryStatusInput } from './InputFields/EditStoryStatusInput';
+import { CreateStoryPriorityInput } from '../CreateStoryPriorityInput';
 
 interface EditStoryFormProps {
   updatedStory: StoryBasic;
@@ -15,8 +15,7 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
   updatedStory,
   setUpdatedStory,
 }) => {
-  const { name, state, owner, priority, description, assignedToId } =
-    updatedStory;
+  const { name, state, owner, description, assignedToId } = updatedStory;
 
   return (
     <Grid container sx={formStyles.grid}>
@@ -84,10 +83,9 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
             <strong>Priority</strong>
           </Grid>
           <Grid item xs={8} sx={formStyles.selector}>
-            <EditStoryPriorityInput
-              priority={priority}
-              updatedStory={updatedStory}
-              setUpdatedStory={setUpdatedStory}
+            <CreateStoryPriorityInput
+              story={updatedStory}
+              setStory={setUpdatedStory}
             />
           </Grid>
         </Grid>
