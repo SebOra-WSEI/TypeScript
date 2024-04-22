@@ -19,7 +19,7 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
 
   return (
     <Grid container sx={formStyles.gridContainer}>
-      <Grid item xs={7} sx={formStyles.header}>
+      <Grid item xs={7} sx={formStyles.centeredHeader}>
         <TextField
           sx={formStyles.titleText}
           variant='standard'

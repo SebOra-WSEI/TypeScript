@@ -8,8 +8,8 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { LoginBody } from '../../types/login';
-import { boxStyles } from '../../styles/boxStyles';
-import { commonStyles } from '../../styles/commonStyles';
+import { BUTTON_RADIUS, commonStyles } from '../../styles/commonStyles';
+import { formStyles } from '../../styles/formStyles';
 
 interface LoginFormProps {
   loginBody: LoginBody;
@@ -25,11 +25,11 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   const { login, password } = loginBody;
 
   return (
-    <Box sx={boxStyles} component='form' onSubmit={onSubmit}>
+    <Box sx={commonStyles.centeredBox} component='form' onSubmit={onSubmit}>
       <Card sx={styles.card}>
         <CardContent>
           <>
-            <h3 style={styles.header}>Log in</h3>
+            <h3 style={formStyles.centeredHeader}>Log in</h3>
             <TextField
               label='Login'
               variant='standard'
@@ -83,9 +83,8 @@ const styles = {
     borderRadius: '0.5rem',
     boxShadow: '0.5rem 1rem 1rem rgba(0, 0, 0, 0.1)',
   },
-  header: commonStyles.header,
   button: {
     margin: '1rem 0 0.2rem 0',
-    borderRadius: commonStyles.buttonBorderRadius,
+    borderRadius: BUTTON_RADIUS,
   },
 };

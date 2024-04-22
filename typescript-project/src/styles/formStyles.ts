@@ -1,5 +1,10 @@
 import { commonStyles } from './commonStyles';
 
+const inputFieldBasicStyles = {
+  ...commonStyles.inputMovedToEnd,
+  alignItems: 'center',
+};
+
 export const formStyles = {
   formControl: {
     marginTop: '1.5rem',
@@ -8,33 +13,30 @@ export const formStyles = {
   gridContainer: {
     width: '60rem',
   },
-  header: commonStyles.header,
+  centeredHeader: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
   titleText: {
     width: '20rem',
   },
-  reporterField: {
-    ...commonStyles.inputField,
-    alignItems: 'center',
-  },
+  reporterField: inputFieldBasicStyles,
   descriptionField: {
     marginTop: '4rem',
   },
   statusField: {
-    ...commonStyles.inputField,
-    alignItems: 'center',
+    ...inputFieldBasicStyles,
     marginTop: '1.3rem',
     paddingRight: '0.6rem',
   },
-  selectorField: commonStyles.inputField,
+  selectorField: commonStyles.inputMovedToEnd,
   assignedToField: {
-    ...commonStyles.inputField,
-    alignItems: 'center',
+    ...inputFieldBasicStyles,
     marginTop: '1.3rem',
     paddingRight: '0.2rem',
   },
   priorityField: {
-    ...commonStyles.inputField,
-    alignItems: 'center',
+    ...inputFieldBasicStyles,
     marginTop: '1.3rem',
   },
   menuItem: {

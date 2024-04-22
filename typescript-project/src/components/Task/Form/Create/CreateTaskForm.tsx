@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { TextField } from '@mui/material';
-import { formStyles } from '../../../../styles/formStyles';
 import { TaskBasic } from '../../../../types/task';
 import { expectedWorkingDays } from '../../../../utils/expectedWorkingDays';
 import { PriorityInput } from '../../../common/InputFields/PriorityInput';
 import { StoryPointsInput } from '../../../common/InputFields/StoryPointsInput';
+import { formStyles } from '../../../../styles/formStyles';
 
 interface CreateTaskFormProps {
   task: TaskBasic;
@@ -21,7 +21,7 @@ export const CreateTaskForm: React.FC<CreateTaskFormProps> = ({
 
   return (
     <>
-      <h3 style={formStyles.header}>Create new task</h3>
+      <h3 style={formStyles.centeredHeader}>Create new task</h3>
       <TextField
         label='Name *'
         variant='standard'

@@ -8,10 +8,10 @@ export const cardStyles = {
     padding: 0,
     fontSize: 'small',
   },
-  gridText: {
+  textField: {
     margin: '0.5rem 0 0 0.5rem',
   },
-  priority: {
+  priorityField: {
     margin: '0 0 0 0.5rem',
   },
 };

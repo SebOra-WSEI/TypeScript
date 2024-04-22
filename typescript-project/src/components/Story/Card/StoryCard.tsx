@@ -37,17 +37,17 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
         />
         <CardContent sx={cardStyles.cardContent}>
           <Grid container>
-            <Grid item sx={cardStyles.priority}>
+            <Grid item sx={cardStyles.priorityField}>
               <PriorityItem priority={priority} />
             </Grid>
           </Grid>
           <Grid container>
-            <Grid item xs={5} sx={cardStyles.gridText}>
+            <Grid item xs={5} sx={cardStyles.textField}>
               <Typography variant='inherit' color='text.secondary'>
                 Created at: {new Date(date).toLocaleString()}
               </Typography>
             </Grid>
-            <Grid item xs={6} sx={commonStyles.inputField}>
+            <Grid item xs={6} sx={commonStyles.inputMovedToEnd}>
               <CreatedByItem owner={owner} />
             </Grid>
           </Grid>

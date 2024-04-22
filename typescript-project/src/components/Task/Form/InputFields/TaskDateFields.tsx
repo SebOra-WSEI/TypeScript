@@ -14,7 +14,7 @@ export const TaskDateFields: React.FC<TaskDateFieldsProps> = ({
   startDate,
 }) => (
   <>
-    <Grid item xs={8} sx={cardStyles.gridText}>
+    <Grid item xs={8} sx={cardStyles.textField}>
       <Grid container>
         <Grid item xs={3}>
           <Typography variant='inherit' fontSize={15}>
@@ -28,7 +28,7 @@ export const TaskDateFields: React.FC<TaskDateFieldsProps> = ({
         </Grid>
       </Grid>
     </Grid>
-    <Grid item xs={8} sx={cardStyles.gridText}>
+    <Grid item xs={8} sx={cardStyles.textField}>
       <Grid container>
         <Grid item xs={3}>
           <Typography variant='inherit' fontSize={15}>
@@ -42,7 +42,7 @@ export const TaskDateFields: React.FC<TaskDateFieldsProps> = ({
         </Grid>
       </Grid>
     </Grid>
-    <Grid item xs={8} sx={cardStyles.gridText}>
+    <Grid item xs={8} sx={cardStyles.textField}>
       <Grid container>
         <Grid item xs={3}>
           <Typography variant='inherit' fontSize={15}>

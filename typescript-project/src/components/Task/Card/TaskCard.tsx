@@ -50,7 +50,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
         />
         <CardContent sx={cardStyles.cardContent}>
           <Grid container>
-            <Grid item sx={cardStyles.priority} xs={5}>
+            <Grid item sx={cardStyles.priorityField} xs={5}>
               <ListItemIcon>
                 {PRIORITY_ICONS[priority]}
                 <Typography
@@ -67,12 +67,12 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
             </Grid>
           </Grid>
           <Grid container>
-            <Grid item xs={5} sx={cardStyles.gridText}>
+            <Grid item xs={5} sx={cardStyles.textField}>
               <Typography variant='inherit' color='text.secondary'>
                 Created at: {new Date(createdDate).toLocaleString()}
               </Typography>
             </Grid>
-            <Grid item xs={5} sx={cardStyles.gridText}>
+            <Grid item xs={5} sx={cardStyles.textField}>
               <Typography variant='inherit' color='text.secondary'>
                 Expected end time:{' '}
                 {new Date(expectedEndTime).toLocaleDateString()}

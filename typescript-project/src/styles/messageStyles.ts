@@ -1,9 +1,12 @@
-import { commonStyles } from './commonStyles';
+import { BUTTON_RADIUS } from './commonStyles';
 
 export const messageStyles = {
   button: {
     marginLeft: 'auto',
-    borderRadius: commonStyles.buttonBorderRadius,
+    borderRadius: BUTTON_RADIUS,
   },
-  header: commonStyles.header,
+  header: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
 };
