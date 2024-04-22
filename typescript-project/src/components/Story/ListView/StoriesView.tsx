@@ -33,10 +33,10 @@ export const StoriesView: React.FC = () => {
     data: stories,
   } = useGetStoriesByProjectId(projectId);
 
-  const { data: user } = useGetCurrentUser();
+  const { error: userErrorMessage } = useGetCurrentUser();
 
-  if (!user) {
-    return <UserNotLoggedMessage text='' />;
+  if (userErrorMessage) {
+    return <UserNotLoggedMessage text={userErrorMessage} />;
   }
 
   if (projectLoading || storiesLoading) {

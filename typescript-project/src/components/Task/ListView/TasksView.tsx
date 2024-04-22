@@ -31,10 +31,10 @@ export const TasksView: React.FC = () => {
     data: tasks,
   } = useGetTasksByStoryId(storyId);
 
-  const { data: user } = useGetCurrentUser();
+  const { error: userErrorMessage } = useGetCurrentUser();
 
-  if (!user) {
-    return <UserNotLoggedMessage text='' />;
+  if (userErrorMessage) {
+    return <UserNotLoggedMessage text={userErrorMessage} />;
   }
 
   if (storyLoading || tasksLoading) {
