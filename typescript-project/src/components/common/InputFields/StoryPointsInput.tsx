@@ -15,7 +15,7 @@ export const StoryPointsInput: React.FC<StoryPointsInputProps> = ({
   setTask,
   isLabelEnabled = false
 }) => (
-  <FormControl sx={formStyles.editFormControl} size='small'>
+  <FormControl sx={formStyles.formControl} size='small'>
     {isLabelEnabled && (<InputLabel>Story point</InputLabel>)}
     <Select
       value={task.storyPoint}

@@ -19,7 +19,7 @@ export const TaskAssignToInput: React.FC<TaskAssignToInputProps> = ({
   const enabledUsers = data?.filter((u) => u.role !== UserRole.Admin);
 
   return (
-    <FormControl sx={formStyles.editFormControl} size='small'>
+    <FormControl sx={formStyles.formControl} size='small'>
       <Select
         displayEmpty
         value={updatedTask.assignedToId || 'Unassigned'}

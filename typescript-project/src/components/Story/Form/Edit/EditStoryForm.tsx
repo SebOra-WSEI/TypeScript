@@ -18,7 +18,7 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
   const { name, state, owner, description, assignedToId } = updatedStory;
 
   return (
-    <Grid container sx={formStyles.grid}>
+    <Grid container sx={formStyles.gridContainer}>
       <Grid item xs={7} sx={formStyles.title}>
         <TextField
           sx={formStyles.titleText}
@@ -34,7 +34,7 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
           }
         />
       </Grid>
-      <Grid item xs={5} sx={formStyles.reporter}>
+      <Grid item xs={5} sx={formStyles.reporterField}>
         <Grid item xs={5}>
           <strong>Reporter</strong>
         </Grid>
@@ -42,7 +42,7 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
           {owner?.name} {owner?.surname}
         </Grid>
       </Grid>
-      <Grid item xs={8} sx={formStyles.description}>
+      <Grid item xs={8} sx={formStyles.descriptionField}>
         <TextField
           type='text'
           autoComplete='description'
@@ -59,30 +59,30 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
       </Grid>
       <Grid item xs={4}>
         <Grid container>
-          <Grid item xs={4} sx={formStyles.status}>
+          <Grid item xs={4} sx={formStyles.statusField}>
             <strong>Status</strong>
           </Grid>
-          <Grid item xs={8} sx={formStyles.selector}>
+          <Grid item xs={8} sx={formStyles.selectorField}>
             <StoryStatusInput
               updatedStory={updatedStory}
               setUpdatedStory={setUpdatedStory}
               state={state}
             />
           </Grid>
-          <Grid item xs={5} sx={formStyles.assignedTo}>
+          <Grid item xs={5} sx={formStyles.assignedToField}>
             <strong>Assigned to</strong>
           </Grid>
-          <Grid item xs={7} sx={formStyles.selector}>
+          <Grid item xs={7} sx={formStyles.selectorField}>
             <StoryAssignToInput
               updatedStory={updatedStory}
               setUpdatedStory={setUpdatedStory}
               assignedToId={assignedToId ?? ''}
             />
           </Grid>
-          <Grid item xs={4} sx={formStyles.priority}>
+          <Grid item xs={4} sx={formStyles.priorityField}>
             <strong>Priority</strong>
           </Grid>
-          <Grid item xs={8} sx={formStyles.selector}>
+          <Grid item xs={8} sx={formStyles.selectorField}>
             <PriorityInput
               item={updatedStory}
               setItem={setUpdatedStory}

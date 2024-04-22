@@ -17,7 +17,7 @@ export function PriorityInput<T>({
   isLabelEnabled = false
 }: PriorityInputProps<ExtendedGlobalType<T>>) {
   return (
-    <FormControl sx={formStyles.prioritySelect} size='small' >
+    <FormControl sx={styles.prioritySelect} size='small' >
       {isLabelEnabled && (<InputLabel>Priority</InputLabel>)}
       <Select
         value={item.priority}
@@ -40,5 +40,12 @@ export function PriorityInput<T>({
       </Select>
     </FormControl >
   );
-}
+};
+
+const styles = {
+  prioritySelect: {
+    marginTop: '1.5rem',
+    width: '9rem',
+  },
+};
 

@@ -3,15 +3,11 @@ export const formStyles = {
     display: 'flex',
     justifyContent: 'center',
   },
-  prioritySelect: {
+  formControl: {
     marginTop: '1.5rem',
     width: '9rem',
   },
-  editFormControl: {
-    marginTop: '1.5rem',
-    width: '9rem',
-  },
-  grid: {
+  gridContainer: {
     width: '60rem',
   },
   title: {
@@ -21,33 +17,33 @@ export const formStyles = {
   titleText: {
     width: '20rem',
   },
-  reporter: {
+  reporterField: {
     display: 'flex',
     justifyContent: 'end',
     alignItems: 'center',
   },
-  description: {
+  descriptionField: {
     marginTop: '4rem',
   },
-  status: {
+  statusField: {
     display: 'flex',
     justifyContent: 'end',
     alignItems: 'center',
     marginTop: '1.3rem',
     paddingRight: '0.6rem',
   },
-  selector: {
+  selectorField: {
     display: 'flex',
     justifyContent: 'end',
   },
-  assignedTo: {
+  assignedToField: {
     display: 'flex',
     justifyContent: 'end',
     alignItems: 'center',
     marginTop: '1.3rem',
     paddingRight: '0.2rem',
   },
-  priority: {
+  priorityField: {
     display: 'flex',
     justifyContent: 'end',
     alignItems: 'center',

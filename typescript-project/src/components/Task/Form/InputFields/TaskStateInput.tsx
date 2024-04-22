@@ -13,7 +13,7 @@ export const TaskStateInput: React.FC<TaskStateInputProps> = ({
   updatedTask,
   setUpdatedTask,
 }) => (
-  <FormControl sx={formStyles.editFormControl} size='small'>
+  <FormControl sx={formStyles.formControl} size='small'>
     <Select
       value={updatedTask.state}
       onChange={(evt) =>

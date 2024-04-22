@@ -2,11 +2,11 @@ import { Card, CardContent, CardHeader, Grid, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { StoryCardMenu } from './StoryCardMenu';
 import { StoryModel } from '../../../types/story';
-import { EditStoryModal } from '../Form/Edit/EditStoryModal';
 import { cardStyles } from '../../../styles/card';
 import { PriorityItem } from './CardItems/PriorityItem';
 import { CreatedByItem } from './CardItems/CreatedByItem';
 import { ItemTaskHeader } from '../../common/ItemCardHeader/ItemCardHeader';
+import { EditStoryModal } from '../Form/Edit/EditStoryModal';
 
 interface StoryCardProps {
   story: StoryModel;
@@ -46,7 +46,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
                 Created at: {new Date(date).toLocaleString()}
               </Typography>
             </Grid>
-            <Grid item xs={6} sx={styles}>
+            <Grid item xs={6} sx={styles.createdBy}>
               <CreatedByItem owner={owner} />
             </Grid>
           </Grid>
@@ -62,6 +62,8 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
 };
 
 const styles = {
-  display: 'flex',
-  justifyContent: 'end',
+  createdBy: {
+    display: 'flex',
+    justifyContent: 'end',
+  }
 };

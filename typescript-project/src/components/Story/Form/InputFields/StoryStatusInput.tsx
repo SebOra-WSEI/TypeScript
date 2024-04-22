@@ -15,7 +15,7 @@ export const StoryStatusInput: React.FC<StoryStatusInputProps> = ({
   setUpdatedStory,
   state,
 }) => (
-  <FormControl sx={formStyles.editFormControl} size='small'>
+  <FormControl sx={formStyles.formControl} size='small'>
     <Select
       value={state}
       onChange={(evt) =>

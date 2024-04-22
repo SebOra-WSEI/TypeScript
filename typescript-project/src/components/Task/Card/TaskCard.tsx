@@ -12,7 +12,7 @@ import { TaskModel } from '../../../types/task';
 import { TaskCardMenu } from './TaskCardMenu';
 import { cardStyles } from '../../../styles/card';
 import { EditTaskModal } from '../Form/Edit/EditTaskModal';
-import { StoryPointsItem } from './CardItems/StoryPointsItem';
+import { StoryPointsItem } from './StoryPointsItem';
 import { ItemTaskHeader } from '../../common/ItemCardHeader/ItemCardHeader';
 
 interface TaskCardProps {

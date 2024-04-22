@@ -27,7 +27,7 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
   } = updatedTask;
 
   return (
-    <Grid container sx={formStyles.grid}>
+    <Grid container sx={formStyles.gridContainer}>
       <Grid item xs={7} sx={formStyles.title}>
         <TextField
           sx={formStyles.titleText}
@@ -43,7 +43,7 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
           }
         />
       </Grid>
-      <Grid item xs={5} sx={formStyles.reporter}>
+      <Grid item xs={5} sx={formStyles.reporterField}>
         <Grid item xs={4}>
           <strong>Created at:</strong>
         </Grid>
@@ -53,7 +53,7 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
           </Typography>
         </Grid>
       </Grid>
-      <Grid item xs={8} sx={formStyles.description}>
+      <Grid item xs={8} sx={formStyles.descriptionField}>
         <TextField
           type='text'
           autoComplete='description'
@@ -70,37 +70,37 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
       </Grid>
       <Grid item xs={4}>
         <Grid container>
-          <Grid item xs={4} sx={formStyles.status}>
+          <Grid item xs={4} sx={formStyles.statusField}>
             <strong>Status</strong>
           </Grid>
-          <Grid item xs={8} sx={formStyles.selector}>
+          <Grid item xs={8} sx={formStyles.selectorField}>
             <TaskStateInput
               updatedTask={updatedTask}
               setUpdatedTask={setUpdatedTask}
             />
           </Grid>
-          <Grid item xs={5} sx={formStyles.assignedTo}>
+          <Grid item xs={5} sx={formStyles.assignedToField}>
             <strong>Assigned to</strong>
           </Grid>
-          <Grid item xs={7} sx={formStyles.selector}>
+          <Grid item xs={7} sx={formStyles.selectorField}>
             <TaskAssignToInput
               updatedTask={updatedTask}
               setUpdatedTask={setUpdatedTask}
             />
           </Grid>
-          <Grid item xs={4} sx={formStyles.priority}>
+          <Grid item xs={4} sx={formStyles.priorityField}>
             <strong>Priority</strong>
           </Grid>
-          <Grid item xs={8} sx={formStyles.selector}>
+          <Grid item xs={8} sx={formStyles.selectorField}>
             <PriorityInput
               item={updatedTask}
               setItem={setUpdatedTask}
             />
           </Grid>
-          <Grid item xs={5} sx={formStyles.priority}>
+          <Grid item xs={5} sx={formStyles.priorityField}>
             <strong>Story Points</strong>
           </Grid>
-          <Grid item xs={7} sx={formStyles.selector}>
+          <Grid item xs={7} sx={formStyles.selectorField}>
             <StoryPointsInput
               task={updatedTask}
               setTask={setUpdatedTask}

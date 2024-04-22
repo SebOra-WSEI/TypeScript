@@ -19,7 +19,7 @@ export const StoryAssignToInput: React.FC<StoryAssignToInputProps> = ({
   const { data: allUsers } = useGetAllUsers();
 
   return (
-    <FormControl sx={formStyles.editFormControl} size='small'>
+    <FormControl sx={formStyles.formControl} size='small'>
       <Select
         displayEmpty
         value={assignedToId || 'Unassigned'}
