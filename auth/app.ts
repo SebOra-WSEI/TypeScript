@@ -1,19 +1,16 @@
 import express from 'express';
 import 'dotenv/config';
 import cors from 'cors';
-import { LoggedUser, LoginBody } from './types/login';
-import { Response } from './types/response';
-import { StatusCode } from './types/statusCode';
-import { generateToken } from './utils/token';
 import fs from 'fs';
 import { User } from './types/user';
+import { signInHandler } from './handlers/signInHandler';
 
 interface DbJSON {
   users: Array<User>;
 }
 
+export let allUsers: Array<User>;
 let jsonDb: DbJSON;
-let allUsers: Array<User>;
 let refreshToken: string;
 
 fs.readFile('../db.json', (err, data) => {
@@ -29,54 +26,9 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/sign-in', (req, res) => {
-  const { login, password } = req.body as LoginBody;
+  const response = signInHandler(req.body);
 
-  if (!login || !password) {
-    const response: Response<LoggedUser> = {
-      status: StatusCode.BadRequest,
-      message: 'Fields cannot be empty',
-      response: undefined,
-    };
-
-    res.status(response.status).send(response);
-    return;
-  }
-
-  const user = allUsers.find((u) => u.name === login);
-
-  if (!user) {
-    const response: Response<LoggedUser> = {
-      status: StatusCode.BadRequest,
-      message: 'User cannot be found',
-      response: undefined,
-    };
-
-    res.status(response.status).send(response);
-    return;
-  }
-
-  if (user.password !== password) {
-    const response: Response<LoggedUser> = {
-      status: StatusCode.BadRequest,
-      message: 'Invalid login or password',
-      response: undefined,
-    };
-
-    res.status(response.status).send(response);
-    return;
-  }
-
-  refreshToken = generateToken(60 * 60);
-
-  const response: Response<LoggedUser> = {
-    status: StatusCode.OK,
-    message: 'User logged successfully',
-    response: {
-      token: generateToken(req.body.exp || 60),
-      refreshToken,
-      user,
-    },
-  };
+  refreshToken = response.response?.refreshToken ?? '';
 
   res.status(response.status).send(response);
 });

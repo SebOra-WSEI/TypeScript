@@ -3,6 +3,7 @@ import { User } from './user';
 export interface LoginBody {
   login: string;
   password: string;
+  exp?: number;
 }
 
 export interface LoggedUser {
