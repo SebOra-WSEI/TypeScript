@@ -21,6 +21,9 @@ export const useCreateProject = (
 
     if (status !== StatusCode.Created && message) {
       setError(message);
+      setTimeout(() => {
+        setError('');
+      }, 100);
     }
 
     if (status === StatusCode.Created && response) {
@@ -34,9 +37,5 @@ export const useCreateProject = (
 
   useSetSeverity(error, message);
 
-  return {
-    error,
-    message,
-    create,
-  };
+  return { create };
 };

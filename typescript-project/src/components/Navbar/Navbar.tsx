@@ -16,10 +16,11 @@ import { TaskModel } from '../../types/task';
 import { NavbarBreadcrumbs } from './Breadcrumbs/NavbarBreadcrumbs';
 import { useHistory } from 'react-router';
 import { routes } from '../../routes/routes';
-import { CURRENT_USER_ID, SELECTED_PROJECT_ID } from '../../utils/localStorage';
+import { SELECTED_PROJECT_ID } from '../../utils/localStorage';
 import ReplyAllIcon from '@mui/icons-material/ReplyAll';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
+import { handleLogout } from '../../utils/logout';
 
 interface NavbarProps extends PropsWithChildren {
   data?: ProjectModel | StoryModel | TaskModel;
@@ -42,11 +43,6 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
   const handleChangeProject = (): void => {
     history.push(routes.projects);
     window.localStorage.removeItem(SELECTED_PROJECT_ID);
-  };
-
-  const handleLogOut = (): void => {
-    window.localStorage.removeItem(SELECTED_PROJECT_ID);
-    window.localStorage.removeItem(CURRENT_USER_ID);
   };
 
   return (
@@ -74,7 +70,7 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
               Change project
             </MenuItem>
           )}
-          <MenuItem onClick={handleLogOut}>
+          <MenuItem onClick={handleLogout}>
             <ListItemIcon>
               <LogoutIcon fontSize='small' />
             </ListItemIcon>

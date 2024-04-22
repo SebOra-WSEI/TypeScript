@@ -9,7 +9,7 @@ import { CreateTaskFormModal } from '../Create/CreateTaskFormModal';
 import { useGetTasksByStoryId } from '../../../queries/task/useGetTasksByStoryId';
 import { EditStoryModal } from '../../Story/Edit/EditStoryModal';
 import { useGetCurrentUser } from '../../../queries/user/useGetCurrentUser';
-import { UserNotLogged } from '../../common/UserNotLogged';
+import { UserNotLoggedMessage } from '../../common/Messages/UserNotLoggedMessage';
 
 export const TasksView: React.FC = () => {
   const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] =
@@ -35,7 +35,7 @@ export const TasksView: React.FC = () => {
   const { data: user } = useGetCurrentUser();
 
   if (!user) {
-    return <UserNotLogged text='' />
+    return <UserNotLoggedMessage text='' />
   }
 
   if (storyLoading || tasksLoading) {

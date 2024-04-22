@@ -3,6 +3,7 @@ import { LoginForm } from './LoginForm';
 import { LoginBody } from '../../types/login';
 import { useLogIn } from '../../queries/userAPI/useLogIn';
 import { useGetCurrentUser } from '../../queries/user/useGetCurrentUser';
+import { UserAlreadyLoggedMessage } from '../common/Messages/UserAlreadyLoggedMessage';
 
 export const LoginView: React.FC = () => {
 
@@ -21,7 +22,9 @@ export const LoginView: React.FC = () => {
     signIn();
   };
 
-  console.log(data)
+  if (data?.id) {
+    return <UserAlreadyLoggedMessage />
+  }
 
   return (
     <LoginForm

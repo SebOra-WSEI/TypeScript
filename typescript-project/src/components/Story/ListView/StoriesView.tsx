@@ -9,7 +9,7 @@ import { EditProjectModal } from '../../Project/Edit/EditProjectModal';
 import { CreateStoryModal } from '../Create/CreateStoryModal';
 import { StoriesNavbarMenuItems } from '../../Navbar/StoriesNavbarMenuItems';
 import { useGetCurrentUser } from '../../../queries/user/useGetCurrentUser';
-import { UserNotLogged } from '../../common/UserNotLogged';
+import { UserNotLoggedMessage } from '../../common/Messages/UserNotLoggedMessage';
 
 export const StoriesView: React.FC = () => {
   const [isEditProjectModalOpen, setIsEditProjectModalOpen] =
@@ -35,7 +35,7 @@ export const StoriesView: React.FC = () => {
   const { data: user } = useGetCurrentUser();
 
   if (!user) {
-    return <UserNotLogged text='' />
+    return <UserNotLoggedMessage text='' />
   }
 
   if (projectLoading || storiesLoading) {

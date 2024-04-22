@@ -7,7 +7,7 @@ import { Box } from '@mui/material';
 import { listStyles } from '../../../styles/listStyles';
 import { Navbar } from '../../Navbar/Navbar';
 import { useGetCurrentUser } from '../../../queries/user/useGetCurrentUser';
-import { UserNotLogged } from '../../common/UserNotLogged';
+import { UserNotLoggedMessage } from '../../common/Messages/UserNotLoggedMessage';
 
 export const ProjectsListView: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -16,7 +16,7 @@ export const ProjectsListView: React.FC = () => {
   const { loading, error, data } = useGetAllProjects();
 
   if (userError) {
-    return <UserNotLogged text={userError} />
+    return <UserNotLoggedMessage text={userError} />
   }
 
   if (loading) {

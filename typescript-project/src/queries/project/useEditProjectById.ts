@@ -24,6 +24,9 @@ export const useEditProjectById = (
 
     if (status !== StatusCode.OK && message) {
       setError(message);
+      setTimeout(() => {
+        setError('');
+      }, 100);
     }
 
     if (status === StatusCode.OK && response) {
