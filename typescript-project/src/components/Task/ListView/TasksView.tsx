@@ -34,7 +34,7 @@ export const TasksView: React.FC = () => {
   const { data: user } = useGetCurrentUser();
 
   if (!user) {
-    return <UserNotLoggedMessage text='' />
+    return <UserNotLoggedMessage text='' />;
   }
 
   if (storyLoading || tasksLoading) {

@@ -92,19 +92,13 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
             <strong>Priority</strong>
           </Grid>
           <Grid item xs={8} sx={formStyles.selectorField}>
-            <PriorityInput
-              item={updatedTask}
-              setItem={setUpdatedTask}
-            />
+            <PriorityInput item={updatedTask} setItem={setUpdatedTask} />
           </Grid>
           <Grid item xs={5} sx={formStyles.priorityField}>
             <strong>Story Points</strong>
           </Grid>
           <Grid item xs={7} sx={formStyles.selectorField}>
-            <StoryPointsInput
-              task={updatedTask}
-              setTask={setUpdatedTask}
-            />
+            <StoryPointsInput task={updatedTask} setTask={setUpdatedTask} />
           </Grid>
         </Grid>
       </Grid>

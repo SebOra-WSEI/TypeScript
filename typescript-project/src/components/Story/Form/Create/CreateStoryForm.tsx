@@ -47,11 +47,7 @@ export const CreateStoryForm: React.FC<CreateStoryFormProps> = ({
           })
         }
       />
-      <PriorityInput
-        item={story}
-        setItem={setStory}
-        isLabelEnabled
-      />
+      <PriorityInput item={story} setItem={setStory} isLabelEnabled />
     </>
   );
 };

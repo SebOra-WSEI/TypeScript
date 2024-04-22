@@ -4,12 +4,10 @@ import { PRIORITY_ICONS } from '../../../../utils/priorityIcons';
 import { Priority } from '../../../../types/priority';
 
 interface PriorityItemProps {
-  priority: Priority
+  priority: Priority;
 }
 
-export const PriorityItem: React.FC<PriorityItemProps> = ({
-  priority,
-}) => (
+export const PriorityItem: React.FC<PriorityItemProps> = ({ priority }) => (
   <ListItemIcon>
     {PRIORITY_ICONS[priority]}
     <Typography variant='inherit' color='text.secondary' fontSize='small'>

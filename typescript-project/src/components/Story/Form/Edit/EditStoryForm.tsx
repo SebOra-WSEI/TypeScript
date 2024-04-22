@@ -83,10 +83,7 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
             <strong>Priority</strong>
           </Grid>
           <Grid item xs={8} sx={formStyles.selectorField}>
-            <PriorityInput
-              item={updatedStory}
-              setItem={setUpdatedStory}
-            />
+            <PriorityInput item={updatedStory} setItem={setUpdatedStory} />
           </Grid>
         </Grid>
       </Grid>

@@ -3,26 +3,26 @@ import { formStyles } from '../../../styles/formStyles';
 import { Priority } from '../../../types/priority';
 import { PRIORITY_ICONS } from '../../../utils/priorityIcons';
 
-type ExtendedGlobalType<T> = T & { priority: Priority }
+type ExtendedGlobalType<T> = T & { priority: Priority };
 
 interface PriorityInputProps<T> {
   item: T;
   setItem: (value: T) => void;
-  isLabelEnabled?: boolean
+  isLabelEnabled?: boolean;
 }
 
 export function PriorityInput<T>({
   item,
   setItem,
-  isLabelEnabled = false
+  isLabelEnabled = false,
 }: PriorityInputProps<ExtendedGlobalType<T>>) {
   return (
-    <FormControl sx={formStyles.formControl} size='small' >
-      {isLabelEnabled && (<InputLabel>Priority</InputLabel>)}
+    <FormControl sx={formStyles.formControl} size='small'>
+      {isLabelEnabled && <InputLabel>Priority</InputLabel>}
       <Select
         value={item.priority}
         {...(isLabelEnabled && {
-          label: 'Priority'
+          label: 'Priority',
         })}
         onChange={(evt) =>
           setItem({
@@ -38,7 +38,6 @@ export function PriorityInput<T>({
           </MenuItem>
         ))}
       </Select>
-    </FormControl >
+    </FormControl>
   );
-};
-
+}

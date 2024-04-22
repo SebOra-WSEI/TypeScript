@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  Grid,
-  Typography
-} from '@mui/material';
+import { Card, CardContent, CardHeader, Grid, Typography } from '@mui/material';
 import { StoryCardMenu } from './StoryCardMenu';
 import { StoryModel } from '../../../types/story';
 import { cardStyles } from '../../../styles/cardStyles';

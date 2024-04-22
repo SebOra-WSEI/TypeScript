@@ -2,19 +2,14 @@ import React from 'react';
 
 interface ItemTaskHeaderProps {
   text: string;
-  isTitle?: boolean
+  isTitle?: boolean;
 }
 
 export const ItemTaskHeader: React.FC<ItemTaskHeaderProps> = ({
   text,
-  isTitle = false
+  isTitle = false,
 }) => (
-  <span style={styles}>{
-    isTitle
-      ? <strong>{text}</strong>
-      : <>{text}</>
-  }
-  </span>
+  <span style={styles}>{isTitle ? <strong>{text}</strong> : <>{text}</>}</span>
 );
 
 const styles = {

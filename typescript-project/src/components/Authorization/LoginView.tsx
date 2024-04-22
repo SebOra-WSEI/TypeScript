@@ -22,7 +22,7 @@ export const LoginView: React.FC = () => {
   };
 
   if (data?.id) {
-    return <UserAlreadyLoggedMessage />
+    return <UserAlreadyLoggedMessage />;
   }
 
   return (

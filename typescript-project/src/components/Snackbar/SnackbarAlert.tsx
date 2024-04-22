@@ -8,7 +8,7 @@ export const SnackbarAlert: React.FC = () => {
   const { severity, severityText, setSeverityText } =
     useSnackbarContextProvider();
 
-  const handleAlertClose = (): void => setSeverityText('')
+  const handleAlertClose = (): void => setSeverityText('');
 
   return (
     <Snackbar
@@ -20,11 +20,7 @@ export const SnackbarAlert: React.FC = () => {
         severity={severity}
         style={styles}
         action={
-          <IconButton
-            color='inherit'
-            size='small'
-            onClick={handleAlertClose}
-          >
+          <IconButton color='inherit' size='small' onClick={handleAlertClose}>
             <CloseIcon fontSize='inherit' />
           </IconButton>
         }

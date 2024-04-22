@@ -1,26 +1,26 @@
-import React from "react";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import { formStyles } from "../../../styles/formStyles";
-import { STORY_POINTS } from "../../../utils/consts";
-import { TaskBasic } from "../../../types/task";
+import React from 'react';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { formStyles } from '../../../styles/formStyles';
+import { STORY_POINTS } from '../../../utils/consts';
+import { TaskBasic } from '../../../types/task';
 
 interface StoryPointsInputProps {
   task: TaskBasic;
   setTask: (value: TaskBasic) => void;
-  isLabelEnabled?: boolean
+  isLabelEnabled?: boolean;
 }
 
 export const StoryPointsInput: React.FC<StoryPointsInputProps> = ({
   task,
   setTask,
-  isLabelEnabled = false
+  isLabelEnabled = false,
 }) => (
   <FormControl sx={formStyles.formControl} size='small'>
-    {isLabelEnabled && (<InputLabel>Story point</InputLabel>)}
+    {isLabelEnabled && <InputLabel>Story point</InputLabel>}
     <Select
       value={task.storyPoint}
       {...(isLabelEnabled && {
-        label: 'Story point'
+        label: 'Story point',
       })}
       onChange={(evt) =>
         setTask({

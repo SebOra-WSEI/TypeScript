@@ -17,7 +17,7 @@ export const ProjectsListView: React.FC = () => {
   const { loading, error, data } = useGetAllProjects();
 
   if (userError) {
-    return <UserNotLoggedMessage text={userError} />
+    return <UserNotLoggedMessage text={userError} />;
   }
 
   if (loading) {
@@ -25,7 +25,7 @@ export const ProjectsListView: React.FC = () => {
   }
 
   if (error) {
-    return <UnknownError errorMessage={error} />
+    return <UnknownError errorMessage={error} />;
   }
 
   const handleOnOpen = (): void => setIsModalOpen(true);

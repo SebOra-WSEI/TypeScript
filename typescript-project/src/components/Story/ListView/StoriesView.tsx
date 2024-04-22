@@ -33,11 +33,10 @@ export const StoriesView: React.FC = () => {
     data: stories,
   } = useGetStoriesByProjectId(projectId);
 
-
   const { data: user } = useGetCurrentUser();
 
   if (!user) {
-    return <UserNotLoggedMessage text='' />
+    return <UserNotLoggedMessage text='' />;
   }
 
   if (projectLoading || storiesLoading) {
@@ -45,11 +44,11 @@ export const StoriesView: React.FC = () => {
   }
 
   if (projectError || storiesError) {
-    return <UnknownError errorMessage={(projectError || storiesError) ?? ''} />
+    return <UnknownError errorMessage={(projectError || storiesError) ?? ''} />;
   }
 
   if (!project) {
-    return <PageNotFoundMessage />
+    return <PageNotFoundMessage />;
   }
 
   const handleEditProjectOnOpen = (): void => setIsEditProjectModalOpen(true);

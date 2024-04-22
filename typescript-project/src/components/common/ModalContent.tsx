@@ -1,5 +1,11 @@
 import React, { PropsWithChildren } from 'react';
-import { Box, Button, DialogActions, DialogContent, Modal, } from '@mui/material';
+import {
+  Box,
+  Button,
+  DialogActions,
+  DialogContent,
+  Modal,
+} from '@mui/material';
 import { boxStyles } from '../../styles/boxStyles';
 import { commonStyles } from '../../styles/commonStyles';
 
@@ -31,7 +37,11 @@ export const ModalContent: React.FC<ModalContentProps> = ({
         >
           Close
         </Button>
-        <Button variant='outlined' type='submit' style={commonStyles.buttonBorderRadius}>
+        <Button
+          variant='outlined'
+          type='submit'
+          style={commonStyles.buttonBorderRadius}
+        >
           {type[0].toUpperCase() + type.slice(1)}
         </Button>
       </DialogActions>

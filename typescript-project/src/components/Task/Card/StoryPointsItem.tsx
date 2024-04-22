@@ -3,7 +3,7 @@ import { Avatar } from '@mui/material';
 import { deepPurple } from '@mui/material/colors';
 
 interface StoryPointsItemProps {
-  storyPoint: number
+  storyPoint: number;
 }
 
 export const StoryPointsItem: React.FC<StoryPointsItemProps> = ({

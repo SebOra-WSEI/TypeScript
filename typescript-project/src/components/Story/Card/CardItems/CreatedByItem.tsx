@@ -3,7 +3,7 @@ import { Avatar, Typography } from '@mui/material';
 import { UserModel } from '../../../../types/user';
 
 interface CreatedByItemProps {
-  owner?: UserModel
+  owner?: UserModel;
 }
 
 export const CreatedByItem: React.FC<CreatedByItemProps> = ({ owner }) => (

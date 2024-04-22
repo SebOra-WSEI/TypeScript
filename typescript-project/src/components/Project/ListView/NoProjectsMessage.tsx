@@ -6,7 +6,7 @@ interface NoProjectsMessageProps {
 }
 
 export const NoProjectsMessage: React.FC<NoProjectsMessageProps> = ({
-  handleOnOpen
+  handleOnOpen,
 }) => (
   <>
     <p>There are no projects yet</p>

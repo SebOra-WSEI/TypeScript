@@ -5,7 +5,10 @@ interface ListItemHeaderProps {
   value: string;
 }
 
-export const ListItemHeader: React.FC<ListItemHeaderProps> = ({ field, value }) => (
+export const ListItemHeader: React.FC<ListItemHeaderProps> = ({
+  field,
+  value,
+}) => (
   <span>
     <strong>{field}:</strong> {value}
   </span>

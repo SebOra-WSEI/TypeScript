@@ -8,7 +8,7 @@ export const PageNotFoundMessage: React.FC = () => {
   const history = useHistory();
 
   return (
-    <Box sx={boxStyles} >
+    <Box sx={boxStyles}>
       <Card>
         <CardContent>
           <h3 style={messageStyles.header}>404 - Page not found</h3>
