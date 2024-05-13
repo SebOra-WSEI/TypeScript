@@ -2,6 +2,7 @@ import React, { PropsWithChildren, useState } from 'react';
 import {
   AppBar,
   Avatar,
+  FormControlLabel,
   IconButton,
   ListItemIcon,
   Menu,
@@ -21,6 +22,7 @@ import { handleLogout } from '../../utils/logout';
 import ReplyAllIcon from '@mui/icons-material/ReplyAll';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { ThemeSwitch } from './Theme/ThemeSwitch';
 
 interface NavbarProps extends PropsWithChildren {
   data?: ProjectModel | StoryModel | TaskModel;
@@ -77,6 +79,12 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
             <Link to={routes.login} style={styles.link}>
               Log out
             </Link>
+          </MenuItem>
+          <MenuItem>
+            <FormControlLabel
+              control={<ThemeSwitch />}
+              label="Theme"
+            />
           </MenuItem>
         </Menu>
       </Toolbar>
