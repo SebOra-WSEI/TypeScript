@@ -37,7 +37,7 @@ export const AppContextProvider: React.FC<PropsWithChildren> = ({
   const [severity, setSeverity] = useState<SeverityOption>(
     SeverityOption.Error
   );
-  const [mode, setMode] = useState<PaletteMode>('light');
+  const [mode, setMode] = useState<PaletteMode>(getCookieValueByName('mode') ?? 'light');
 
   return (
     <AppContext.Provider
@@ -54,3 +54,11 @@ export const AppContextProvider: React.FC<PropsWithChildren> = ({
     </AppContext.Provider>
   );
 };
+
+
+function getCookieValueByName(name: string): PaletteMode | undefined {
+  return document.cookie
+    .split('; ')
+    .find((row) => row.startsWith(name))
+    ?.split(`${name}=`)[1] as PaletteMode;
+}

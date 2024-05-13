@@ -23,6 +23,7 @@ import ReplyAllIcon from '@mui/icons-material/ReplyAll';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { ThemeSwitch } from './Theme/ThemeSwitch';
+import { useAppContextProvider } from '../../AppContext';
 
 interface NavbarProps extends PropsWithChildren {
   data?: ProjectModel | StoryModel | TaskModel;
@@ -30,7 +31,7 @@ interface NavbarProps extends PropsWithChildren {
 
 export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
+  const { mode, setMode } = useAppContextProvider();
   const history = useHistory();
 
   const open = Boolean(anchorEl);
@@ -45,6 +46,12 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
   const handleChangeProject = (): void => {
     history.push(routes.projects);
     window.localStorage.removeItem(SELECTED_PROJECT_ID);
+  };
+
+  const handleMode = (): void => {
+    mode === 'light'
+      ? setMode('dark')
+      : setMode('light')
   };
 
   return (
@@ -84,6 +91,8 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
             <FormControlLabel
               control={<ThemeSwitch />}
               label="Theme"
+              onChange={handleMode}
+              checked={mode === 'dark'}
             />
           </MenuItem>
         </Menu>

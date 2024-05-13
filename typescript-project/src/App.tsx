@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { AppNavigator } from './AppNavigator';
 import { SnackbarAlert } from './components/Snackbar/SnackbarAlert';
 import { ThemeProvider } from '@emotion/react';
@@ -13,6 +13,10 @@ export const App: React.FC = () => {
     createTheme(getDesignTokens(mode as PaletteMode)
     ), [mode]
   );
+
+  useEffect(() => {
+    document.cookie = 'mode' + '=' + mode + ';';
+  }, [mode])
 
   return (
     <>
