@@ -39,12 +39,12 @@ export const ProjectListItem: React.FC<ProjectItemProps> = ({ project }) => {
         }
       />
       <Tooltip title='Select project' onClick={handleOnSelect}>
-        <IconButton>
+        <IconButton color='inherit'>
           <WhereToVoteIcon />
         </IconButton>
       </Tooltip>
       <Tooltip title='Remove' onClick={handleRemove}>
-        <IconButton>
+        <IconButton color='inherit'>
           <DeleteIcon />
         </IconButton>
       </Tooltip>

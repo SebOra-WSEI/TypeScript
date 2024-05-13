@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import { TaskBasic } from '../../../../types/task';
 import { expectedWorkingDays } from '../../../../utils/expectedWorkingDays';
 import { PriorityInput } from '../../../common/InputFields/PriorityInput';
@@ -21,7 +21,9 @@ export const CreateTaskForm: React.FC<CreateTaskFormProps> = ({
 
   return (
     <>
-      <h3 style={formStyles.centeredHeader}>Create new task</h3>
+      <Typography color='secondary' sx={formStyles.centeredHeader}>
+        Create new task
+      </Typography>
       <TextField
         label='Name *'
         variant='standard'

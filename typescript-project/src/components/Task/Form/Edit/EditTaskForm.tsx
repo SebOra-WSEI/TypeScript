@@ -45,11 +45,15 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
       </Grid>
       <Grid item xs={5} sx={formStyles.reporterField}>
         <Grid item xs={4}>
-          <strong>Created at:</strong>
+          <Typography fontSize={15} color='secondary'>
+            Created at:
+          </Typography>
         </Grid>
         <Grid item xs={4}>
           <Typography variant='inherit' fontSize={15}>
-            {new Date(createdDate).toLocaleString()}
+            <Typography fontSize={13} color='secondary'>
+              {new Date(createdDate).toLocaleString()}
+            </Typography>
           </Typography>
         </Grid>
       </Grid>
@@ -71,7 +75,9 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
       <Grid item xs={4}>
         <Grid container>
           <Grid item xs={4} sx={formStyles.statusField}>
-            <strong>Status</strong>
+            <Typography color='secondary' fontSize={15}>
+              Status
+            </Typography>
           </Grid>
           <Grid item xs={8} sx={formStyles.selectorField}>
             <TaskStateInput
@@ -80,7 +86,9 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
             />
           </Grid>
           <Grid item xs={5} sx={formStyles.assignedToField}>
-            <strong>Assigned to</strong>
+            <Typography color='secondary' fontSize={15}>
+              Assigned to
+            </Typography>
           </Grid>
           <Grid item xs={7} sx={formStyles.selectorField}>
             <TaskAssignToInput
@@ -89,13 +97,17 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
             />
           </Grid>
           <Grid item xs={4} sx={formStyles.priorityField}>
-            <strong>Priority</strong>
+            <Typography color='secondary' fontSize={15}>
+              Priority
+            </Typography>
           </Grid>
           <Grid item xs={8} sx={formStyles.selectorField}>
             <PriorityInput item={updatedTask} setItem={setUpdatedTask} />
           </Grid>
           <Grid item xs={5} sx={formStyles.priorityField}>
-            <strong>Story Points</strong>
+            <Typography color='secondary' fontSize={15}>
+              Story Points
+            </Typography>
           </Grid>
           <Grid item xs={7} sx={formStyles.selectorField}>
             <StoryPointsInput task={updatedTask} setTask={setUpdatedTask} />

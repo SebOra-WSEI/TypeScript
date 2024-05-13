@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import { StoryBasic } from '../../../../types/story';
 import { PriorityInput } from '../../../common/InputFields/PriorityInput';
 import { formStyles } from '../../../../styles/formStyles';
@@ -17,7 +17,9 @@ export const CreateStoryForm: React.FC<CreateStoryFormProps> = ({
 
   return (
     <>
-      <h3 style={formStyles.centeredHeader}>Create new story</h3>
+      <Typography color='secondary' sx={formStyles.centeredHeader}>
+        Create new story
+      </Typography>
       <TextField
         label='Name *'
         variant='standard'
