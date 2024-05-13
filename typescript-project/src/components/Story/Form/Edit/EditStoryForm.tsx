@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, TextField } from '@mui/material';
+import { Grid, TextField, Typography } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
 import { StoryBasic } from '../../../../types/story';
 import { StoryAssignToInput } from '../InputFields/StoryAssignToInput';
@@ -36,10 +36,10 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
       </Grid>
       <Grid item xs={5} sx={formStyles.reporterField}>
         <Grid item xs={5}>
-          <strong>Reporter</strong>
+          <Typography color='secondary'><strong>Reporter</strong></Typography>
         </Grid>
         <Grid item xs={3}>
-          {owner?.name} {owner?.surname}
+          <Typography color='secondary'>{owner?.name} {owner?.surname}</Typography>
         </Grid>
       </Grid>
       <Grid item xs={8} sx={formStyles.descriptionField}>
@@ -60,7 +60,7 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
       <Grid item xs={4}>
         <Grid container>
           <Grid item xs={4} sx={formStyles.statusField}>
-            <strong>Status</strong>
+            <Typography color='secondary'><strong>Status</strong></Typography>
           </Grid>
           <Grid item xs={8} sx={formStyles.selectorField}>
             <StoryStatusInput
@@ -70,7 +70,7 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
             />
           </Grid>
           <Grid item xs={5} sx={formStyles.assignedToField}>
-            <strong>Assigned to</strong>
+            <Typography color='secondary'><strong>Assigned to</strong></Typography>
           </Grid>
           <Grid item xs={7} sx={formStyles.selectorField}>
             <StoryAssignToInput
@@ -80,7 +80,7 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
             />
           </Grid>
           <Grid item xs={4} sx={formStyles.priorityField}>
-            <strong>Priority</strong>
+            <Typography color='secondary'><strong>Priority</strong></Typography>
           </Grid>
           <Grid item xs={8} sx={formStyles.selectorField}>
             <PriorityInput item={updatedStory} setItem={setUpdatedStory} />

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Alert, IconButton, Snackbar } from '@mui/material';
-import { useSnackbarContextProvider } from './SnackbarContext';
+import { useAppContextProvider } from '../../AppContext';
 import { SNACKBAR_DURATION } from '../../utils/consts';
 import CloseIcon from '@mui/icons-material/Close';
 
 export const SnackbarAlert: React.FC = () => {
   const { severity, severityText, setSeverityText } =
-    useSnackbarContextProvider();
+    useAppContextProvider();
 
   const handleAlertClose = (): void => setSeverityText('');
 

@@ -17,12 +17,12 @@ export const TaskDateFields: React.FC<TaskDateFieldsProps> = ({
     <Grid item xs={8} sx={cardStyles.textField}>
       <Grid container>
         <Grid item xs={3}>
-          <Typography variant='inherit' fontSize={15}>
+          <Typography variant='inherit' fontSize={15} color='secondary'>
             Start at:
           </Typography>
         </Grid>
         <Grid item xs={6}>
-          <Typography variant='inherit' fontSize={15}>
+          <Typography variant='inherit' fontSize={15} color='secondary'>
             {startDate ? new Date(startDate).toLocaleString() : '-'}
           </Typography>
         </Grid>
@@ -31,12 +31,12 @@ export const TaskDateFields: React.FC<TaskDateFieldsProps> = ({
     <Grid item xs={8} sx={cardStyles.textField}>
       <Grid container>
         <Grid item xs={3}>
-          <Typography variant='inherit' fontSize={15}>
+          <Typography variant='inherit' fontSize={15} color='secondary'>
             Expected end at:
           </Typography>
         </Grid>
         <Grid item xs={6}>
-          <Typography variant='inherit' fontSize={15}>
+          <Typography variant='inherit' fontSize={15} color='secondary'>
             {new Date(expectedEndTime).toLocaleDateString()}
           </Typography>
         </Grid>
@@ -45,13 +45,13 @@ export const TaskDateFields: React.FC<TaskDateFieldsProps> = ({
     <Grid item xs={8} sx={cardStyles.textField}>
       <Grid container>
         <Grid item xs={3}>
-          <Typography variant='inherit' fontSize={15}>
+          <Typography variant='inherit' fontSize={15} color='secondary'>
             {' '}
             End at:
           </Typography>
         </Grid>
         <Grid item xs={6}>
-          <Typography variant='inherit' fontSize={15}>
+          <Typography variant='inherit' fontSize={15} color='secondary'>
             {endDate ? new Date(endDate).toLocaleString() : '-'}
           </Typography>
         </Grid>

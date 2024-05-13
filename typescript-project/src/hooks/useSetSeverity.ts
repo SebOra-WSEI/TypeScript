@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import { useSnackbarContextProvider } from '../components/Snackbar/SnackbarContext';
+import { useAppContextProvider } from '../AppContext';
 import { SeverityOption } from '../types/severity';
 
 export const useSetSeverity = (
   error: string | undefined,
   message: string | undefined
 ) => {
-  const { setSeverity, setSeverityText } = useSnackbarContextProvider();
+  const { setSeverity, setSeverityText } = useAppContextProvider();
 
   useEffect(() => {
     if (error) {

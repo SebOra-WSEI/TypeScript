@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import { ProjectBasic } from '../../../types/project';
 import { formStyles } from '../../../styles/formStyles';
 
@@ -16,7 +16,7 @@ export const CreateProjectForm: React.FC<CreateProjectFormProps> = ({
 
   return (
     <>
-      <h3 style={formStyles.centeredHeader}>Create new project</h3>
+      <Typography color='secondary' sx={formStyles.centeredHeader}>Create new project</Typography>
       <TextField
         label='Name *'
         variant='standard'
