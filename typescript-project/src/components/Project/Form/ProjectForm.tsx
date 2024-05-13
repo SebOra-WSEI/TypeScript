@@ -16,7 +16,9 @@ export const CreateProjectForm: React.FC<CreateProjectFormProps> = ({
 
   return (
     <>
-      <Typography color='secondary' sx={formStyles.centeredHeader}>Create new project</Typography>
+      <Typography color='secondary' sx={formStyles.centeredHeader}>
+        Create new project
+      </Typography>
       <TextField
         label='Name *'
         variant='standard'

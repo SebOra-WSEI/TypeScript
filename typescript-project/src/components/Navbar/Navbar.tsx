@@ -49,9 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
   };
 
   const handleMode = (): void => {
-    mode === 'light'
-      ? setMode('dark')
-      : setMode('light')
+    mode === 'light' ? setMode('dark') : setMode('light');
   };
 
   return (
@@ -90,7 +88,7 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
           <MenuItem>
             <FormControlLabel
               control={<ThemeSwitch />}
-              label="Theme"
+              label='Theme'
               onChange={handleMode}
               checked={mode === 'dark'}
             />

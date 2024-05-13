@@ -5,8 +5,7 @@ import { SNACKBAR_DURATION } from '../../utils/consts';
 import CloseIcon from '@mui/icons-material/Close';
 
 export const SnackbarAlert: React.FC = () => {
-  const { severity, severityText, setSeverityText } =
-    useAppContextProvider();
+  const { severity, severityText, setSeverityText } = useAppContextProvider();
 
   const handleAlertClose = (): void => setSeverityText('');
 

@@ -21,7 +21,9 @@ export const CreateTaskForm: React.FC<CreateTaskFormProps> = ({
 
   return (
     <>
-      <Typography color='secondary' sx={formStyles.centeredHeader}>Create new task</Typography>
+      <Typography color='secondary' sx={formStyles.centeredHeader}>
+        Create new task
+      </Typography>
       <TextField
         label='Name *'
         variant='standard'

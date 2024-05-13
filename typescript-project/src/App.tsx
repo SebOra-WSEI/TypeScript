@@ -9,14 +9,14 @@ import { useAppContextProvider } from './AppContext';
 export const App: React.FC = () => {
   const { mode } = useAppContextProvider();
 
-  const theme = useMemo(() =>
-    createTheme(getDesignTokens(mode as PaletteMode)
-    ), [mode]
+  const theme = useMemo(
+    () => createTheme(getDesignTokens(mode as PaletteMode)),
+    [mode]
   );
 
   useEffect(() => {
     document.cookie = 'mode' + '=' + mode + ';';
-  }, [mode])
+  }, [mode]);
 
   return (
     <>
@@ -26,8 +26,7 @@ export const App: React.FC = () => {
       <SnackbarAlert />
     </>
   );
-}
-
+};
 
 const getDesignTokens = (mode: PaletteMode) => ({
   palette: {

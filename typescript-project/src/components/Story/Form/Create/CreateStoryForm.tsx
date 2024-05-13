@@ -17,7 +17,9 @@ export const CreateStoryForm: React.FC<CreateStoryFormProps> = ({
 
   return (
     <>
-      <Typography color='secondary' sx={formStyles.centeredHeader}>Create new story</Typography>
+      <Typography color='secondary' sx={formStyles.centeredHeader}>
+        Create new story
+      </Typography>
       <TextField
         label='Name *'
         variant='standard'

@@ -13,16 +13,16 @@ interface AppContextState {
   mode: PaletteMode;
   setSeverityText: (value: string) => void;
   setSeverity: (value: SeverityOption) => void;
-  setMode: (value: PaletteMode) => void
+  setMode: (value: PaletteMode) => void;
 }
 
 const defaultAppState = {
   severityText: '',
   mode: 'light' as PaletteMode,
   severity: SeverityOption.Error,
-  setSeverityText: (_: string) => { },
-  setSeverity: (_: SeverityOption) => { },
-  setMode: (_: PaletteMode) => { },
+  setSeverityText: (_: string) => {},
+  setSeverity: (_: SeverityOption) => {},
+  setMode: (_: PaletteMode) => {},
 };
 
 const AppContext = createContext(defaultAppState);
@@ -37,7 +37,9 @@ export const AppContextProvider: React.FC<PropsWithChildren> = ({
   const [severity, setSeverity] = useState<SeverityOption>(
     SeverityOption.Error
   );
-  const [mode, setMode] = useState<PaletteMode>(getCookieValueByName('mode') ?? 'light');
+  const [mode, setMode] = useState<PaletteMode>(
+    getCookieValueByName('mode') ?? 'light'
+  );
 
   return (
     <AppContext.Provider
@@ -47,14 +49,13 @@ export const AppContextProvider: React.FC<PropsWithChildren> = ({
         setMode,
         severity,
         severityText,
-        mode
+        mode,
       }}
     >
       {children}
     </AppContext.Provider>
   );
 };
-
 
 function getCookieValueByName(name: string): PaletteMode | undefined {
   return document.cookie
