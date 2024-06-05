@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  database:
+    container_name: ts-database
+    restart: always
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    env_file:
+      - "./database/.env"
+    platform: linux/x86_64
+    volumes:
+      - ts-mysql:/var/lib/mysql
+
+  backend:
+    container_name: backend
+    restart: always
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+
+volumes:
+  ts-mysql:
