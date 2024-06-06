@@ -2,7 +2,7 @@ import { QueryResponse } from '../types/queryResponse';
 import { StatusCode } from '../types/statusCode';
 import { UserResponse } from '../types/user';
 import { getUserByLogin } from '../api/getUserByLogin';
-import { generateToken } from '../utils/generateToken';
+import { generateToken } from '../utils/token';
 import { createUserField } from '../utils/createUserField';
 
 interface Body {
@@ -41,7 +41,8 @@ export const signIn = async (
     status: StatusCode.OK,
     response: {
       message: 'User signed in successfully',
-      token: generateToken(3600),
+      token: generateToken(60 * 60),
+      refreshToken: generateToken(60 * 90),
       data: createUserField(user),
     },
   };
