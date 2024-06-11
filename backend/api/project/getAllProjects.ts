@@ -1,5 +1,5 @@
-import { DB } from '../connection/connection';
-import { Project } from '../types/project';
+import { DB } from '../../connection/connection';
+import { Project } from '../../types/project';
 
 export async function getAllProjects(): Promise<Array<Project> | undefined> {
   return await new Promise((resolve) => {

@@ -1,4 +1,4 @@
-import { DB } from '../connection/connection';
+import { DB } from '../../connection/connection';
 
 export async function createProject(
   name: string,

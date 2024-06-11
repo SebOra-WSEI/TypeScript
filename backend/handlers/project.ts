@@ -1,9 +1,14 @@
-import { createProject } from '../api/createProject';
-import { getAllProjects } from '../api/getAllProjects';
-import { getProjectByName } from '../api/getProjectByName';
+import { getAllProjects } from '../api/project/getAllProjects';
+import { getProjectById } from '../api/project/getProjectById';
+import { getProjectByName } from '../api/project/getProjectByName';
+import { removeProject } from '../api/project/removeProject';
+import { updateProject } from '../api/project/updateProject';
+import { createProject } from '../api/project/createProject';
 import { Project } from '../types/project';
 import { QueryResponse } from '../types/queryResponse';
 import { StatusCode } from '../types/statusCode';
+
+type ProjectResponse = Promise<QueryResponse<Project>>;
 
 interface Body {
   name: string;
@@ -12,12 +17,18 @@ interface Body {
 
 interface ProjectCalls {
   getAll: () => Promise<QueryResponse<Array<Project>>>;
-  create: (body: Body) => Promise<QueryResponse<Project>>;
+  getById: (id: string) => Promise<QueryResponse<Project>>;
+  create: (body: Body) => ProjectResponse;
+  remove: (id: string) => ProjectResponse;
+  update: (id: string, body: Body) => ProjectResponse;
 }
 
 export const project: ProjectCalls = {
   getAll,
   create,
+  remove,
+  update,
+  getById,
 };
 
 async function getAll(): Promise<QueryResponse<Array<Project>>> {
@@ -49,6 +60,25 @@ async function getAll(): Promise<QueryResponse<Array<Project>>> {
   };
 }
 
+async function getById(id: string): Promise<QueryResponse<Project>> {
+  const project = await getProjectById(id);
+
+  if (!Boolean(project)) {
+    return {
+      status: StatusCode.BadRequest,
+      response: {
+        message: 'Project does not exits',
+        data: undefined,
+      },
+    };
+  }
+
+  return {
+    status: StatusCode.OK,
+    response: { data: project },
+  };
+}
+
 async function create(body: Body): Promise<QueryResponse<Project>> {
   if (!body.name) {
     return {
@@ -60,10 +90,9 @@ async function create(body: Body): Promise<QueryResponse<Project>> {
     };
   }
 
-  const data = await getProjectByName(body.name);
-  const alreadyExistedProject = data?.[0];
+  const project = await getProjectByName(body.name);
 
-  if (Boolean(alreadyExistedProject)) {
+  if (Boolean(project)) {
     return {
       status: StatusCode.BadRequest,
       response: {
@@ -89,6 +118,94 @@ async function create(body: Body): Promise<QueryResponse<Project>> {
     status: StatusCode.Created,
     response: {
       message: 'Project has been created successfully',
+      data: undefined,
+    },
+  };
+}
+
+async function remove(id: string): Promise<QueryResponse<Project>> {
+  if (!id) {
+    return {
+      status: StatusCode.BadRequest,
+      response: {
+        message: 'Project id is requested',
+        data: undefined,
+      },
+    };
+  }
+
+  const project = await getProjectById(id);
+
+  if (!Boolean(project)) {
+    return {
+      status: StatusCode.BadRequest,
+      response: {
+        message: 'Project does not exits',
+        data: project,
+      },
+    };
+  }
+
+  const isRemoved = await removeProject(id);
+
+  if (!isRemoved) {
+    return {
+      status: StatusCode.InternalServer,
+      response: {
+        message: 'Internal Server Error',
+        data: undefined,
+      },
+    };
+  }
+
+  return {
+    status: StatusCode.Created,
+    response: {
+      message: 'Project has been removed successfully',
+      data: undefined,
+    },
+  };
+}
+
+async function update(id: string, body: Body): Promise<QueryResponse<Project>> {
+  if (!id) {
+    return {
+      status: StatusCode.BadRequest,
+      response: {
+        message: 'Project id is requested',
+        data: undefined,
+      },
+    };
+  }
+
+  const project = await getProjectById(id);
+
+  if (!Boolean(project)) {
+    return {
+      status: StatusCode.BadRequest,
+      response: {
+        message: 'Project does not exits',
+        data: undefined,
+      },
+    };
+  }
+
+  const isUpdated = await updateProject(id, body.name, body.description);
+
+  if (!isUpdated) {
+    return {
+      status: StatusCode.InternalServer,
+      response: {
+        message: 'Internal Server Error',
+        data: undefined,
+      },
+    };
+  }
+
+  return {
+    status: StatusCode.Created,
+    response: {
+      message: 'Project has been updated successfully',
       data: undefined,
     },
   };
