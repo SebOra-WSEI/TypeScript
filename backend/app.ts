@@ -1,12 +1,13 @@
 import 'dotenv/config';
 import cors from 'cors';
 import express, { Request, Response } from 'express';
-import { signIn } from './handlers/signIn';
 import { refreshToken } from './handlers/refreshToken';
-import jwt, { JwtPayload } from 'jsonwebtoken';
 import { StatusCode } from './types/statusCode';
 import { ResponseField } from './types/queryResponse';
 import { isTokenValid } from './utils/token';
+import { signIn } from './handlers/signIn';
+import { user } from './handlers/user';
+import { project } from './handlers/project';
 
 const app = express();
 const port = '3000';
@@ -15,9 +16,7 @@ let refreshTokenJwt: string = '';
 app.use(cors());
 app.use(express.json());
 
-const tokenSecret = process.env.TOKEN_SECRET as string;
-
-// User
+// Login user
 app.post('/sign-in', async (req: Request, res: Response) => {
   const { status, response } = await signIn(req.body);
 
@@ -28,6 +27,7 @@ app.post('/sign-in', async (req: Request, res: Response) => {
   res.status(status).send(response);
 });
 
+// Refresh token
 app.post('/refresh-token', async (req: Request, res: Response) => {
   const authHeader = req.headers.authorization;
   const token = authHeader?.split(' ')[1] ?? '';
@@ -60,6 +60,149 @@ app.post('/refresh-token', async (req: Request, res: Response) => {
   if (response?.refreshToken) {
     refreshTokenJwt = response.refreshToken;
   }
+
+  res.status(status).send(response);
+});
+
+// Get all users
+app.get('/users', async (req: Request, res: Response) => {
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.split(' ')[1] ?? '';
+
+  if (!token.length) {
+    const response: ResponseField<undefined> = {
+      error: 'Token is not provided',
+      data: undefined,
+    };
+    res.status(StatusCode.BadRequest).send(response);
+    return;
+  }
+
+  if (!isTokenValid(token)) {
+    const response: ResponseField<undefined> = {
+      error: 'Invalid tokenFormat',
+      data: undefined,
+    };
+    res.status(StatusCode.BadRequest).send(response);
+    return;
+  }
+
+  const { status, response } = await user.getAll();
+
+  res.status(status).send(response);
+});
+
+// Get one projects
+app.get('/projects/:id', async (req: Request, res: Response) => {
+  const id = req.params?.id;
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.split(' ')[1] ?? '';
+
+  if (!token.length) {
+    const response: ResponseField<undefined> = {
+      error: 'Token is not provided',
+      data: undefined,
+    };
+    res.status(StatusCode.BadRequest).send(response);
+    return;
+  }
+
+  if (!isTokenValid(token)) {
+    const response: ResponseField<undefined> = {
+      error: 'Invalid tokenFormat',
+      data: undefined,
+    };
+    res.status(StatusCode.BadRequest).send(response);
+    return;
+  }
+
+  const { status, response } = await project.getById(id);
+
+  res.status(status).send(response);
+});
+
+// Create project
+app.post('/projects', async (req: Request, res: Response) => {
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.split(' ')[1] ?? '';
+
+  if (!token.length) {
+    const response: ResponseField<undefined> = {
+      error: 'Token is not provided',
+      data: undefined,
+    };
+    res.status(StatusCode.BadRequest).send(response);
+    return;
+  }
+
+  if (!isTokenValid(token)) {
+    const response: ResponseField<undefined> = {
+      error: 'Invalid tokenFormat',
+      data: undefined,
+    };
+    res.status(StatusCode.BadRequest).send(response);
+    return;
+  }
+
+  const { status, response } = await project.create(req.body);
+
+  res.status(status).send(response);
+});
+
+// Delete project
+app.delete('/projects/:id', async (req: Request, res: Response) => {
+  const id = req.params?.id;
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.split(' ')[1] ?? '';
+
+  if (!token.length) {
+    const response: ResponseField<undefined> = {
+      error: 'Token is not provided',
+      data: undefined,
+    };
+    res.status(StatusCode.BadRequest).send(response);
+    return;
+  }
+
+  if (!isTokenValid(token)) {
+    const response: ResponseField<undefined> = {
+      error: 'Invalid tokenFormat',
+      data: undefined,
+    };
+    res.status(StatusCode.BadRequest).send(response);
+    return;
+  }
+
+  const { status, response } = await project.remove(id);
+
+  res.status(status).send(response);
+});
+
+// Update project
+app.put('/projects/:id', async (req: Request, res: Response) => {
+  const id = req.params?.id;
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.split(' ')[1] ?? '';
+
+  if (!token.length) {
+    const response: ResponseField<undefined> = {
+      error: 'Token is not provided',
+      data: undefined,
+    };
+    res.status(StatusCode.BadRequest).send(response);
+    return;
+  }
+
+  if (!isTokenValid(token)) {
+    const response: ResponseField<undefined> = {
+      error: 'Invalid tokenFormat',
+      data: undefined,
+    };
+    res.status(StatusCode.BadRequest).send(response);
+    return;
+  }
+
+  const { status, response } = await project.update(id, req.body);
 
   res.status(status).send(response);
 });
