@@ -46,4 +46,7 @@ CREATE TABLE tasks(
 );
 
 INSERT INTO users(name, surname, role, login, password)
-VALUES ("Sebastian", "Oraczek", "admin", "admin", "admin");
+VALUES 
+    ("Sebastian", "Oraczek", "admin", "admin", "admin"),
+    ("Jan", "Kowalski", "devops", "devops", "devops"),
+    ("Joanna", "Kaczmarczyk", "developer", "developer", "developer");

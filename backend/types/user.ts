@@ -13,4 +13,6 @@ export interface User {
   role: Role;
 }
 
+export type NoPasswordUser = Omit<User, 'password'>;
+
 export type UserResponse = Omit<User, 'password' | 'login'>;
