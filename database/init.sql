@@ -14,7 +14,7 @@ CREATE TABLE users (
 CREATE TABLE projects(
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
-    description VARCHAR(250) NOT NULL
+    description VARCHAR(250)
 );
 
 CREATE TABLE stories(

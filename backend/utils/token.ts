@@ -1,6 +1,4 @@
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import { QueryResponse } from '../types/queryResponse';
-import { StatusCode } from '../types/statusCode';
 
 const tokenSecret = process.env.TOKEN_SECRET as string;
 

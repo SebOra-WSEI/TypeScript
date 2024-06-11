@@ -1,14 +1,14 @@
 import { DB } from '../connection/connection';
-import { User } from '../types/user';
+import { Project } from '../types/project';
 
-export async function getAllUsers(): Promise<Array<User> | undefined> {
+export async function getAllProjects(): Promise<Array<Project> | undefined> {
   return await new Promise((resolve) => {
-    DB.query(`SELECT * FROM users`, (err, res) => {
+    DB.query(`SELECT * FROM projects`, (err, res) => {
       resolve(res);
     });
   })
     .then((res) => {
-      return res as Array<User>;
+      return res as Array<Project>;
     })
     .catch((err) => {
       console.log('Error: ', err);
