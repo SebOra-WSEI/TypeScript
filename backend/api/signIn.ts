@@ -1,7 +1,7 @@
 import { QueryResponse } from '../types/queryResponse';
 import { StatusCode } from '../types/statusCode';
 import { UserResponse } from '../types/user';
-import { getUserByLogin } from '../api/getUserByLogin';
+import { getUserByLogin } from './getUserByLogin';
 import { generateToken } from '../utils/token';
 import { createUserField } from '../utils/createUserField';
 
