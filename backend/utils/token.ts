@@ -28,3 +28,15 @@ export const generateToken = (expirationInSeconds: number): string => {
   });
   return token;
 };
+
+export const getTokenError = (token: string): string => {
+  if (!token.length) {
+    return 'Token is not provided';
+  }
+
+  if (!isTokenValid(token)) {
+    return 'Invalid tokenFormat';
+  }
+
+  return '';
+};

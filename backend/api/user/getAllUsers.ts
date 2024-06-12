@@ -1,5 +1,5 @@
-import { DB } from '../connection/connection';
-import { User } from '../types/user';
+import { DB } from '../../connection/connection';
+import { User } from '../../types/user';
 
 export async function getAllUsers(): Promise<Array<User> | undefined> {
   return await new Promise((resolve) => {

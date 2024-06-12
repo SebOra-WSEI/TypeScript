@@ -10,7 +10,7 @@ export const refreshToken = (
     return {
       status: StatusCode.BadRequest,
       response: {
-        message: 'Refresh token is not provided',
+        error: 'Refresh token is not provided',
         data: undefined,
       },
     };
@@ -20,7 +20,7 @@ export const refreshToken = (
     return {
       status: StatusCode.BadRequest,
       response: {
-        message: 'Invalid refresh token',
+        error: 'Invalid refresh token',
         data: undefined,
       },
     };
@@ -29,7 +29,7 @@ export const refreshToken = (
   return {
     status: StatusCode.OK,
     response: {
-      message: 'Token refreshed successfully',
+      error: 'Token refreshed successfully',
       token: generateToken(60 * 60),
       refreshToken: generateToken(60 * 90),
       data: undefined,
