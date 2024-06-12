@@ -1,4 +1,5 @@
 import jwt, { JwtPayload } from 'jsonwebtoken';
+import { StatusCode } from '../types/statusCode';
 
 const tokenSecret = process.env.TOKEN_SECRET as string;
 
@@ -27,4 +28,16 @@ export const generateToken = (expirationInSeconds: number): string => {
     algorithm: 'HS256',
   });
   return token;
+};
+
+export const getTokenError = (token: string): string => {
+  if (!token.length) {
+    return 'Token is not provided';
+  }
+
+  if (!isTokenValid(token)) {
+    return 'Invalid tokenFormat';
+  }
+
+  return '';
 };
