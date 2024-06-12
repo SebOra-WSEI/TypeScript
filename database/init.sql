@@ -20,10 +20,10 @@ CREATE TABLE projects(
 CREATE TABLE stories(
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
-    description VARCHAR(250) NOT NULL,
+    description VARCHAR(250),
     priority VARCHAR(50) NOT NULL,
     state VARCHAR(50) NOT NULL,
-    createdDate DATE NOT NULL,
+    createdDate VARCHAR(50) NOT NULL,
     user_id INT NOT NULL,
     project_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id),
@@ -33,7 +33,7 @@ CREATE TABLE stories(
 CREATE TABLE tasks(
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
-    description VARCHAR(250) NOT NULL,
+    description VARCHAR(250),
     priority VARCHAR(50) NOT NULL,
     state VARCHAR(50) NOT NULL,
     createdDate DATE NOT NULL,
@@ -50,3 +50,9 @@ VALUES
     ("Sebastian", "Oraczek", "admin", "admin", "admin"),
     ("Jan", "Kowalski", "devops", "devops", "devops"),
     ("Joanna", "Kaczmarczyk", "developer", "developer", "developer");
+
+INSERT INTO projects(name, description)
+VALUES ("Project1", "des");
+
+INSERT INTO stories(name, description, priority, state, createdDate, user_id, project_id)
+VALUES ("story1", "des1", "Low", "Todo", "1718224814242", 1, 1);

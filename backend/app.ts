@@ -8,6 +8,7 @@ import { getTokenError, isTokenValid } from './utils/token';
 import { signIn } from './handlers/signIn';
 import { user } from './handlers/user';
 import { project } from './handlers/project';
+import { story } from './handlers/story';
 
 const app = express();
 const port = '3000';
@@ -75,7 +76,7 @@ app.get('/users', async (req: Request, res: Response) => {
 });
 
 // Get all projects
-app.get('/projects/', async (req: Request, res: Response) => {
+app.get('/projects', async (req: Request, res: Response) => {
   const authHeader = req.headers.authorization;
   const token = authHeader?.split(' ')[1] ?? '';
 
@@ -88,6 +89,7 @@ app.get('/projects/', async (req: Request, res: Response) => {
     res.status(StatusCode.BadRequest).send(response);
     return;
   }
+
   const { status, response } = await project.getAll();
 
   res.status(status).send(response);
@@ -128,6 +130,7 @@ app.post('/projects', async (req: Request, res: Response) => {
     res.status(StatusCode.BadRequest).send(response);
     return;
   }
+
   const { status, response } = await project.create(req.body);
 
   res.status(status).send(response);
@@ -175,6 +178,49 @@ app.put('/projects/:id', async (req: Request, res: Response) => {
   res.status(status).send(response);
 });
 
+// Get all stories related to selected project
+app.get('/stories', async (req: Request, res: Response) => {
+  const projectId = req.query.projectId as string;
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.split(' ')[1] ?? '';
+
+  if (getTokenError(token).length) {
+    const response: ResponseField<undefined> = {
+      error: 'Token is not provided',
+      data: undefined,
+    };
+
+    res.status(StatusCode.BadRequest).send(response);
+    return;
+  }
+
+  const { status, response } = await story.getAll(projectId);
+
+  res.status(status).send(response);
+});
+
+// Create story
+app.post('/stories', async (req: Request, res: Response) => {
+  // const authHeader = req.headers.authorization;
+  // const token = authHeader?.split(' ')[1] ?? '';
+
+  // if (getTokenError(token).length) {
+  //   const response: ResponseField<undefined> = {
+  //     error: 'Token is not provided',
+  //     data: undefined,
+  //   };
+
+  //   res.status(StatusCode.BadRequest).send(response);
+  //   return;
+  // }
+
+  const { status, response } = await story.create(req.body);
+
+  res.status(status).send(response);
+});
+
 app.listen(port, () => {
   console.log(`🚀 Server running on port ${port}`);
 });
+
+// localhost:3000/stories?projectId=1
