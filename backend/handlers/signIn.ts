@@ -3,7 +3,7 @@ import { StatusCode } from '../types/statusCode';
 import { UserResponse } from '../types/user';
 import { generateToken } from '../utils/token';
 import { createUserField } from '../utils/createUserField';
-import { getUserByLogin } from '../api/getUserByLogin';
+import { getUserByLogin } from '../api/user/getUserByLogin';
 
 interface Body {
   login: string;

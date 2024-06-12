@@ -1,5 +1,5 @@
-import { DB } from '../connection/connection';
-import { User } from '../types/user';
+import { DB } from '../../connection/connection';
+import { User } from '../../types/user';
 
 export const getUserByLogin = async (
   login: string
