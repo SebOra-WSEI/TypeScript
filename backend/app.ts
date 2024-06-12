@@ -3,8 +3,8 @@ import cors from 'cors';
 import express, { Request, Response } from 'express';
 import { refreshToken } from './handlers/refreshToken';
 import { StatusCode } from './types/statusCode';
-import { QueryResponse, ResponseField } from './types/queryResponse';
-import { getTokenError, isTokenValid } from './utils/token';
+import { ResponseField } from './types/queryResponse';
+import { getTokenError } from './utils/token';
 import { signIn } from './handlers/signIn';
 import { user } from './handlers/user';
 import { project } from './handlers/project';
@@ -201,18 +201,18 @@ app.get('/stories', async (req: Request, res: Response) => {
 
 // Create story
 app.post('/stories', async (req: Request, res: Response) => {
-  // const authHeader = req.headers.authorization;
-  // const token = authHeader?.split(' ')[1] ?? '';
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.split(' ')[1] ?? '';
 
-  // if (getTokenError(token).length) {
-  //   const response: ResponseField<undefined> = {
-  //     error: 'Token is not provided',
-  //     data: undefined,
-  //   };
+  if (getTokenError(token).length) {
+    const response: ResponseField<undefined> = {
+      error: 'Token is not provided',
+      data: undefined,
+    };
 
-  //   res.status(StatusCode.BadRequest).send(response);
-  //   return;
-  // }
+    res.status(StatusCode.BadRequest).send(response);
+    return;
+  }
 
   const { status, response } = await story.create(req.body);
 
@@ -222,5 +222,3 @@ app.post('/stories', async (req: Request, res: Response) => {
 app.listen(port, () => {
   console.log(`🚀 Server running on port ${port}`);
 });
-
-// localhost:3000/stories?projectId=1

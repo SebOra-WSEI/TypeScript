@@ -25,6 +25,16 @@ export const story: StoryCalls = {
 };
 
 async function getAll(id: string): Promise<QueryResponse<Array<Story>>> {
+  if (!id) {
+    return {
+      status: StatusCode.InternalServer,
+      response: {
+        message: 'Project id is requested',
+        data: undefined,
+      },
+    };
+  }
+
   const stories = await getAllStories(id);
 
   if (!stories) {

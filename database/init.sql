@@ -50,9 +50,3 @@ VALUES
     ("Sebastian", "Oraczek", "admin", "admin", "admin"),
     ("Jan", "Kowalski", "devops", "devops", "devops"),
     ("Joanna", "Kaczmarczyk", "developer", "developer", "developer");
-
-INSERT INTO projects(name, description)
-VALUES ("Project1", "des");
-
-INSERT INTO stories(name, description, priority, state, createdDate, user_id, project_id)
-VALUES ("story1", "des1", "Low", "Todo", "1718224814242", 1, 1);
