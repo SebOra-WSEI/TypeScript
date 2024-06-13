@@ -1,14 +1,14 @@
 import { DB } from '../../connection/connection';
 import { Story } from '../../types/story';
 
-export async function getStoryByName(
-  name: string,
+export async function getStoryById(
+  id: string,
   projectId: string
 ): Promise<Story | undefined> {
   return await new Promise((resolve) => {
     DB.query(
-      `SELECT * FROM stories WHERE name = (?) AND project_id = (?)`,
-      [name, projectId],
+      `SELECT * FROM stories WHERE id = (?) AND project_id = (?)`,
+      [id, projectId],
       (err, res) => {
         resolve(res);
       }

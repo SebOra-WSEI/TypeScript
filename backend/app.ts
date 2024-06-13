@@ -199,6 +199,28 @@ app.get('/stories', async (req: Request, res: Response) => {
   res.status(status).send(response);
 });
 
+// Get one story
+app.get('/stories/:id', async (req: Request, res: Response) => {
+  const id = req.params?.id;
+  const projectId = req.query.projectId as string;
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.split(' ')[1] ?? '';
+
+  if (getTokenError(token).length) {
+    const response: ResponseField<undefined> = {
+      error: 'Token is not provided',
+      data: undefined,
+    };
+
+    res.status(StatusCode.BadRequest).send(response);
+    return;
+  }
+
+  const { status, response } = await story.getById(id, projectId);
+
+  res.status(status).send(response);
+});
+
 // Create story
 app.post('/stories', async (req: Request, res: Response) => {
   const authHeader = req.headers.authorization;

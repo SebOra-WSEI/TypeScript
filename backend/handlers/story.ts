@@ -5,6 +5,7 @@ import { StatusCode } from '../types/statusCode';
 import { Priority } from '../types/priority';
 import { getStoryByName } from '../api/story/getStoryByName';
 import { createStory } from '../api/story/createStory';
+import { getStoryById } from '../api/story/getStoryById';
 
 interface Body {
   name: string;
@@ -16,16 +17,18 @@ interface Body {
 
 interface StoryCalls {
   getAll: (id: string) => Promise<QueryResponse<Array<Story>>>;
+  getById: (id: string, projectId: string) => Promise<QueryResponse<Story>>;
   create: (body: Body) => Promise<QueryResponse<Story>>;
 }
 
 export const story: StoryCalls = {
   getAll,
+  getById,
   create,
 };
 
-async function getAll(id: string): Promise<QueryResponse<Array<Story>>> {
-  if (!id) {
+async function getAll(projectId: string): Promise<QueryResponse<Array<Story>>> {
+  if (!projectId) {
     return {
       status: StatusCode.InternalServer,
       response: {
@@ -35,7 +38,7 @@ async function getAll(id: string): Promise<QueryResponse<Array<Story>>> {
     };
   }
 
-  const stories = await getAllStories(id);
+  const stories = await getAllStories(projectId);
 
   if (!stories) {
     return {
@@ -60,6 +63,39 @@ async function getAll(id: string): Promise<QueryResponse<Array<Story>>> {
   return {
     status: StatusCode.OK,
     response: { data: stories },
+  };
+}
+
+async function getById(
+  id: string,
+  projectId: string
+): Promise<QueryResponse<Story>> {
+  if (!projectId) {
+    return {
+      status: StatusCode.InternalServer,
+      response: {
+        message: 'Project id is requested',
+        data: undefined,
+      },
+    };
+  }
+
+  const story = await getStoryById(id, projectId);
+  console.log(story);
+
+  if (!Boolean(story)) {
+    return {
+      status: StatusCode.BadRequest,
+      response: {
+        message: 'Story does not exits',
+        data: undefined,
+      },
+    };
+  }
+
+  return {
+    status: StatusCode.OK,
+    response: { data: story },
   };
 }
 
