@@ -20,7 +20,7 @@ interface Body {
 }
 
 interface StoryCalls {
-  getAll: (id: string) => Promise<QueryResponse<Array<Story>>>;
+  getAll: (id?: string) => Promise<QueryResponse<Array<Story>>>;
   getById: (id: string) => Promise<QueryResponse<Story>>;
   create: (body: Body) => Promise<QueryResponse<Story>>;
   remove: (id: string) => Promise<QueryResponse<Story>>;
@@ -35,7 +35,9 @@ export const story: StoryCalls = {
   update,
 };
 
-async function getAll(projectId: string): Promise<QueryResponse<Array<Story>>> {
+async function getAll(
+  projectId?: string
+): Promise<QueryResponse<Array<Story>>> {
   if (!projectId) {
     return {
       status: StatusCode.InternalServer,
@@ -212,7 +214,13 @@ async function update(id: string, body: Body): Promise<QueryResponse<Story>> {
     };
   }
 
-  const isUpdated = await updateStory(id, body.name, body.priority, body.state);
+  const isUpdated = await updateStory(
+    id,
+    body.name,
+    body.priority,
+    body.state,
+    body.description
+  );
 
   if (!isUpdated) {
     return {
