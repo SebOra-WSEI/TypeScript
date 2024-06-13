@@ -1,4 +1,4 @@
-import { QueryResponse } from '../types/queryResponse';
+import { QueryResponse } from '../types/query';
 import { StatusCode } from '../types/statusCode';
 import { generateToken } from '../utils/token';
 
