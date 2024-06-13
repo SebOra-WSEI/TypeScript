@@ -1,5 +1,5 @@
 import { getAllUsers } from '../api/user/getAllUsers';
-import { QueryResponse } from '../types/queryResponse';
+import { QueryResponse } from '../types/query';
 import { StatusCode } from '../types/statusCode';
 import { NoPasswordUser } from '../types/user';
 

@@ -5,23 +5,16 @@ import { removeProject } from '../api/project/removeProject';
 import { updateProject } from '../api/project/updateProject';
 import { createProject } from '../api/project/createProject';
 import { Project } from '../types/project';
-import { QueryResponse } from '../types/queryResponse';
+import { QueryResponse } from '../types/query';
 import { StatusCode } from '../types/statusCode';
+import { ApiHandler } from '../types/query';
 
 interface Body {
   name: string;
   description?: string;
 }
 
-interface ProjectCalls {
-  getAll: () => Promise<QueryResponse<Array<Project>>>;
-  getById: (id: string) => Promise<QueryResponse<Project>>;
-  create: (body: Body) => Promise<QueryResponse<Project>>;
-  remove: (id: string) => Promise<QueryResponse<Project>>;
-  update: (id: string, body: Body) => Promise<QueryResponse<Project>>;
-}
-
-export const project: ProjectCalls = {
+export const project: ApiHandler<Project, Body> = {
   getAll,
   create,
   remove,

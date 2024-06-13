@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { QueryResponse, ResponseField } from '../types/queryResponse';
+import { QueryResponse, ResponseField } from '../types/query';
 import { StatusCode } from '../types/statusCode';
 import { getTokenError } from './token';
 

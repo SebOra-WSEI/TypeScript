@@ -3,7 +3,7 @@ import cors from 'cors';
 import express, { Request, Response } from 'express';
 import { refreshToken } from './handlers/refreshToken';
 import { StatusCode } from './types/statusCode';
-import { ResponseField } from './types/queryResponse';
+import { ResponseField } from './types/query';
 import { getTokenError } from './utils/token';
 import { signIn } from './handlers/signIn';
 import { user } from './handlers/user';
@@ -18,7 +18,6 @@ let refreshTokenJwt: string = '';
 app.use(cors());
 app.use(express.json());
 
-// Login user
 app.post('/sign-in', async (req: Request, res: Response) => {
   const { status, response } = await signIn(req.body);
 
@@ -29,7 +28,6 @@ app.post('/sign-in', async (req: Request, res: Response) => {
   res.status(status).send(response);
 });
 
-// Refresh token
 app.post('/refresh-token', async (req: Request, res: Response) => {
   const authHeader = req.headers.authorization;
   const token = authHeader?.split(' ')[1] ?? '';

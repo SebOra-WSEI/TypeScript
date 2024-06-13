@@ -1,4 +1,4 @@
-import { QueryResponse } from '../types/queryResponse';
+import { QueryResponse } from '../types/query';
 import { Story } from '../types/story';
 import { getAllStories } from '../api/story/getAllStories';
 import { StatusCode } from '../types/statusCode';
@@ -9,6 +9,7 @@ import { getStoryById } from '../api/story/getStoryById';
 import { removeStory } from '../api/story/removeStory';
 import { updateStory } from '../api/story/updateStory';
 import { State } from '../types/state';
+import { ApiHandler } from '../types/query';
 
 interface Body {
   name: string;
@@ -19,15 +20,7 @@ interface Body {
   state: State;
 }
 
-interface StoryCalls {
-  getAll: (id?: string) => Promise<QueryResponse<Array<Story>>>;
-  getById: (id: string) => Promise<QueryResponse<Story>>;
-  create: (body: Body) => Promise<QueryResponse<Story>>;
-  remove: (id: string) => Promise<QueryResponse<Story>>;
-  update: (id: string, body: Body) => Promise<QueryResponse<Story>>;
-}
-
-export const story: StoryCalls = {
+export const story: ApiHandler<Story, Body> = {
   getAll,
   getById,
   create,
