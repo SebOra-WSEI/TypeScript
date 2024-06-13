@@ -202,7 +202,6 @@ app.get('/stories', async (req: Request, res: Response) => {
 // Get one story
 app.get('/stories/:id', async (req: Request, res: Response) => {
   const id = req.params?.id;
-  const projectId = req.query.projectId as string;
   const authHeader = req.headers.authorization;
   const token = authHeader?.split(' ')[1] ?? '';
 
@@ -216,7 +215,7 @@ app.get('/stories/:id', async (req: Request, res: Response) => {
     return;
   }
 
-  const { status, response } = await story.getById(id, projectId);
+  const { status, response } = await story.getById(id);
 
   res.status(status).send(response);
 });
@@ -237,6 +236,48 @@ app.post('/stories', async (req: Request, res: Response) => {
   }
 
   const { status, response } = await story.create(req.body);
+
+  res.status(status).send(response);
+});
+
+// Delete story
+app.delete('/stories/:id', async (req: Request, res: Response) => {
+  const id = req.params?.id;
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.split(' ')[1] ?? '';
+
+  if (getTokenError(token).length) {
+    const response: ResponseField<undefined> = {
+      error: 'Token is not provided',
+      data: undefined,
+    };
+
+    res.status(StatusCode.BadRequest).send(response);
+    return;
+  }
+
+  const { status, response } = await story.remove(id);
+
+  res.status(status).send(response);
+});
+
+// Update story
+app.put('/stories/:id', async (req: Request, res: Response) => {
+  const id = req.params?.id;
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.split(' ')[1] ?? '';
+
+  if (getTokenError(token).length) {
+    const response: ResponseField<undefined> = {
+      error: 'Token is not provided',
+      data: undefined,
+    };
+
+    res.status(StatusCode.BadRequest).send(response);
+    return;
+  }
+
+  const { status, response } = await story.update(id, req.body);
 
   res.status(status).send(response);
 });

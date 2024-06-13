@@ -6,6 +6,9 @@ import { Priority } from '../types/priority';
 import { getStoryByName } from '../api/story/getStoryByName';
 import { createStory } from '../api/story/createStory';
 import { getStoryById } from '../api/story/getStoryById';
+import { removeStory } from '../api/story/removeStory';
+import { updateStory } from '../api/story/updateStory';
+import { State } from '../types/state';
 
 interface Body {
   name: string;
@@ -13,18 +16,23 @@ interface Body {
   priority: Priority;
   userId: number;
   projectId: number;
+  state: State;
 }
 
 interface StoryCalls {
   getAll: (id: string) => Promise<QueryResponse<Array<Story>>>;
-  getById: (id: string, projectId: string) => Promise<QueryResponse<Story>>;
+  getById: (id: string) => Promise<QueryResponse<Story>>;
   create: (body: Body) => Promise<QueryResponse<Story>>;
+  remove: (id: string) => Promise<QueryResponse<Story>>;
+  update: (id: string, body: Body) => Promise<QueryResponse<Story>>;
 }
 
 export const story: StoryCalls = {
   getAll,
   getById,
   create,
+  remove,
+  update,
 };
 
 async function getAll(projectId: string): Promise<QueryResponse<Array<Story>>> {
@@ -66,22 +74,8 @@ async function getAll(projectId: string): Promise<QueryResponse<Array<Story>>> {
   };
 }
 
-async function getById(
-  id: string,
-  projectId: string
-): Promise<QueryResponse<Story>> {
-  if (!projectId) {
-    return {
-      status: StatusCode.InternalServer,
-      response: {
-        message: 'Project id is requested',
-        data: undefined,
-      },
-    };
-  }
-
-  const story = await getStoryById(id, projectId);
-  console.log(story);
+async function getById(id: string): Promise<QueryResponse<Story>> {
+  const story = await getStoryById(id);
 
   if (!Boolean(story)) {
     return {
@@ -146,6 +140,94 @@ async function create(body: Body): Promise<QueryResponse<Story>> {
     status: StatusCode.Created,
     response: {
       message: 'Project has been created successfully',
+      data: undefined,
+    },
+  };
+}
+
+async function remove(id: string): Promise<QueryResponse<Story>> {
+  if (!id) {
+    return {
+      status: StatusCode.BadRequest,
+      response: {
+        message: 'Project id is requested',
+        data: undefined,
+      },
+    };
+  }
+
+  const story = await getStoryById(id);
+
+  if (!Boolean(story)) {
+    return {
+      status: StatusCode.BadRequest,
+      response: {
+        message: 'Story does not exits',
+        data: undefined,
+      },
+    };
+  }
+
+  const isRemoved = await removeStory(id);
+
+  if (!isRemoved) {
+    return {
+      status: StatusCode.InternalServer,
+      response: {
+        message: 'Internal Server Error',
+        data: undefined,
+      },
+    };
+  }
+
+  return {
+    status: StatusCode.OK,
+    response: {
+      message: 'Story has been removed successfully',
+      data: undefined,
+    },
+  };
+}
+
+async function update(id: string, body: Body): Promise<QueryResponse<Story>> {
+  if (!id) {
+    return {
+      status: StatusCode.BadRequest,
+      response: {
+        message: 'Story id is requested',
+        data: undefined,
+      },
+    };
+  }
+
+  const story = await getStoryById(id);
+
+  if (!Boolean(story)) {
+    return {
+      status: StatusCode.BadRequest,
+      response: {
+        message: 'Story does not exits',
+        data: undefined,
+      },
+    };
+  }
+
+  const isUpdated = await updateStory(id, body.name, body.priority, body.state);
+
+  if (!isUpdated) {
+    return {
+      status: StatusCode.InternalServer,
+      response: {
+        message: 'Internal Server Error',
+        data: undefined,
+      },
+    };
+  }
+
+  return {
+    status: StatusCode.OK,
+    response: {
+      message: 'Story has been updated successfully',
       data: undefined,
     },
   };

@@ -8,8 +8,6 @@ import { Project } from '../types/project';
 import { QueryResponse } from '../types/queryResponse';
 import { StatusCode } from '../types/statusCode';
 
-type ProjectResponse = Promise<QueryResponse<Project>>;
-
 interface Body {
   name: string;
   description?: string;
@@ -18,9 +16,9 @@ interface Body {
 interface ProjectCalls {
   getAll: () => Promise<QueryResponse<Array<Project>>>;
   getById: (id: string) => Promise<QueryResponse<Project>>;
-  create: (body: Body) => ProjectResponse;
-  remove: (id: string) => ProjectResponse;
-  update: (id: string, body: Body) => ProjectResponse;
+  create: (body: Body) => Promise<QueryResponse<Project>>;
+  remove: (id: string) => Promise<QueryResponse<Project>>;
+  update: (id: string, body: Body) => Promise<QueryResponse<Project>>;
 }
 
 export const project: ProjectCalls = {
@@ -141,7 +139,7 @@ async function remove(id: string): Promise<QueryResponse<Project>> {
       status: StatusCode.BadRequest,
       response: {
         message: 'Project does not exits',
-        data: project,
+        data: undefined,
       },
     };
   }
@@ -203,7 +201,7 @@ async function update(id: string, body: Body): Promise<QueryResponse<Project>> {
   }
 
   return {
-    status: StatusCode.Created,
+    status: StatusCode.OK,
     response: {
       message: 'Project has been updated successfully',
       data: undefined,
