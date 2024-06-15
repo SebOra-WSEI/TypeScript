@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StoryBasic, StoryModel } from '../../../../types/story';
+import { StoryModel } from '../../../../types/story';
 import { EditStoryForm } from './EditStoryForm';
 import { useEditStoryById } from '../../../../queries/story/useEditStoryById';
 import { ModalContent } from '../../../common/ModalContent';
@@ -15,7 +15,7 @@ export const EditStoryModal: React.FC<EditStoryModalProps> = ({
   onClose,
   story,
 }) => {
-  const [updatedStory, setUpdatedStory] = useState<StoryBasic>(story);
+  const [updatedStory, setUpdatedStory] = useState<StoryModel>(story);
 
   const { update } = useEditStoryById(updatedStory);
 

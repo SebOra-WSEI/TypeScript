@@ -2,11 +2,11 @@ import React from 'react';
 import { FormControl, MenuItem, Select } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
 import { State } from '../../../../types/state';
-import { StoryBasic } from '../../../../types/story';
+import { StoryModel } from '../../../../types/story';
 
 interface StoryStatusInputProps {
-  updatedStory: StoryBasic;
-  setUpdatedStory: (value: StoryBasic) => void;
+  updatedStory: StoryModel;
+  setUpdatedStory: (value: StoryModel) => void;
   state: State;
 }
 

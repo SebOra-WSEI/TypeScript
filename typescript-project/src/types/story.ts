@@ -15,4 +15,6 @@ export interface StoryBasic {
 
 export interface StoryModel extends StoryBasic {
   id: string;
+  createdDate: string;
+  user_id: string;
 }

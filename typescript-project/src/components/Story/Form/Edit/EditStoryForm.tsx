@@ -1,21 +1,25 @@
 import React from 'react';
 import { Grid, TextField, Typography } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
-import { StoryBasic } from '../../../../types/story';
+import { StoryModel } from '../../../../types/story';
 import { StoryAssignToInput } from '../InputFields/StoryAssignToInput';
 import { StoryStatusInput } from '../InputFields/StoryStatusInput';
 import { PriorityInput } from '../../../common/InputFields/PriorityInput';
+import { useGetUserById } from '../../../../queries/user/useGetUserById';
 
 interface EditStoryFormProps {
-  updatedStory: StoryBasic;
-  setUpdatedStory: (value: StoryBasic) => void;
+  updatedStory: StoryModel;
+  setUpdatedStory: (value: StoryModel) => void;
 }
 
 export const EditStoryForm: React.FC<EditStoryFormProps> = ({
   updatedStory,
   setUpdatedStory,
 }) => {
-  const { name, state, owner, description, assignedToId } = updatedStory;
+  const { name, state, description, assignedToId, user_id } = updatedStory;
+  console.log(updatedStory)
+
+  const { data: user } = useGetUserById(user_id)
 
   return (
     <Grid container sx={formStyles.gridContainer}>
@@ -41,8 +45,8 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
           </Typography>
         </Grid>
         <Grid item xs={3}>
-          <Typography color='secondary'>
-            {owner?.name} {owner?.surname}
+          <Typography color='secondary' fontSize={14}>
+            {user?.name} {user?.surname}
           </Typography>
         </Grid>
       </Grid>

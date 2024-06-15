@@ -1,13 +1,13 @@
 import React from 'react';
 import { FormControl, MenuItem, Select } from '@mui/material';
 import { formStyles } from '../../../../styles/formStyles';
-import { StoryBasic } from '../../../../types/story';
+import { StoryModel } from '../../../../types/story';
 import { State } from '../../../../types/state';
 import { useGetAllUsers } from '../../../../queries/user/useGetAllUsers';
 
 interface StoryAssignToInputProps {
-  updatedStory: StoryBasic;
-  setUpdatedStory: (value: StoryBasic) => void;
+  updatedStory: StoryModel;
+  setUpdatedStory: (value: StoryModel) => void;
   assignedToId: string;
 }
 

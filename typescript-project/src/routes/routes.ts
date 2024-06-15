@@ -24,4 +24,5 @@ export const endpoints = {
   stories: (projectId: string) => `${HOST}/stories?projectId=${projectId}`,
   story: (id: string) => `${HOST}/stories/${id}`,
   user: (id: string) => `${HOST}/users/${id}`,
+  users: `${HOST}/users`,
 } as const;
