@@ -18,9 +18,9 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
   const [isEditStoryModalOpen, setIsEditStoryModalOpen] =
     useState<boolean>(false);
 
-  const { name, description, priority, createdDate, user_id } = story;
+  const { name, description, priority, createdDate, userId } = story;
 
-  const { data: user } = useGetUserById(user_id);
+  const { data: user } = useGetUserById(userId);
 
   const handleEditStoryOnOpen = (): void => setIsEditStoryModalOpen(true);
   const handleEditStoryOnClose = (): void => setIsEditStoryModalOpen(false);

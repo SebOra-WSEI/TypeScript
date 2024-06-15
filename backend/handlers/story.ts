@@ -18,6 +18,7 @@ interface Body {
   userId: number;
   projectId: number;
   state: State;
+  assignedToId?: string;
 }
 
 export const story: ApiHandler<Story, Body> = {
@@ -90,11 +91,6 @@ async function getById(id: string): Promise<QueryResponse<Story>> {
 
 async function create(body: Body): Promise<QueryResponse<Story>> {
   const { name, priority, description, userId, projectId } = body;
-
-  console.log({ name });
-  console.log({ priority });
-  console.log({ userId });
-  console.log({ projectId });
 
   if (!name || !priority || !userId || !projectId) {
     return {
@@ -217,6 +213,7 @@ async function update(id: string, body: Body): Promise<QueryResponse<Story>> {
     body.name,
     body.priority,
     body.state,
+    body.assignedToId,
     body.description
   );
 

@@ -11,7 +11,7 @@ export async function createStory(
 ): Promise<boolean> {
   return await new Promise((resolve) => {
     DB.query(
-      `INSERT INTO stories(name, description, priority, state, createdDate, user_id, project_id) VALUES((?), (?), (?), (?), (?), (?), (?))`,
+      `INSERT INTO stories(name, description, priority, state, createdDate, userId, projectId) VALUES((?), (?), (?), (?), (?), (?), (?))`,
       [
         name,
         description,

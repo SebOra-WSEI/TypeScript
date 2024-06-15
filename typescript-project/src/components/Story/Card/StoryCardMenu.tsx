@@ -36,7 +36,7 @@ export const StoryCardMenu: React.FC<StoryCardMenuProps> = ({
     setAnchorEl(event.currentTarget);
 
   const handleMenuClose = (): void => setAnchorEl(null);
-  const handleRemove = (): void => remove(story.id);
+  const handleRemove = async (): Promise<void> => await remove(story.id);
   const handleExplore = (): void =>
     history.push(routeBuilder.tasks(projectId, story.id));
 

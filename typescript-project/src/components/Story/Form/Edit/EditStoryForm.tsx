@@ -16,10 +16,9 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
   updatedStory,
   setUpdatedStory,
 }) => {
-  const { name, state, description, assignedToId, user_id } = updatedStory;
-  console.log(updatedStory)
+  const { name, state, description, assignedToId, userId } = updatedStory;
 
-  const { data: user } = useGetUserById(user_id)
+  const { data: user } = useGetUserById(userId)
 
   return (
     <Grid container sx={formStyles.gridContainer}>

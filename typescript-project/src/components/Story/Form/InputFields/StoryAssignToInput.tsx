@@ -22,7 +22,7 @@ export const StoryAssignToInput: React.FC<StoryAssignToInputProps> = ({
     <FormControl sx={formStyles.formControl} size='small'>
       <Select
         displayEmpty
-        value={assignedToId || 'Unassigned'}
+        value={assignedToId || ''}
         onChange={(evt) =>
           setUpdatedStory({
             ...updatedStory,
@@ -31,7 +31,7 @@ export const StoryAssignToInput: React.FC<StoryAssignToInputProps> = ({
           })
         }
       >
-        <MenuItem value='Unassigned'>Unassigned</MenuItem>
+        <MenuItem value={''}>Unassigned</MenuItem>
         {allUsers?.map((user) => (
           <MenuItem key={user.id} value={user.id}>
             {user.name} {user.surname}
