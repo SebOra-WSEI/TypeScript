@@ -28,13 +28,14 @@ export const useGetCurrentUser = (): FetchedData<UserModel> => {
       .then((res: QueryResponse<UserModel>) => {
         const { status, data } = res;
 
-        if (status === StatusCode.OK && data) {
+        if (status === StatusCode.OK && data.data) {
           setIsLoading(false);
           setUser(data.data);
         }
       })
       .catch((error: ErrorResponse<undefined>) => {
         const { status, data } = error.response;
+
         if (status !== StatusCode.OK && data.error) {
           setError(data.error);
           setIsLoading(false);
