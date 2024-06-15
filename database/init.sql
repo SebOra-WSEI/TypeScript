@@ -24,10 +24,12 @@ CREATE TABLE stories(
     priority VARCHAR(50) NOT NULL,
     state VARCHAR(50) NOT NULL,
     createdDate VARCHAR(50) NOT NULL,
-    user_id INT NOT NULL,
-    project_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (project_id) REFERENCES projects(id)
+    assignedToId INT,
+    userId INT NOT NULL,
+    projectId INT NOT NULL,
+    FOREIGN KEY (userId) REFERENCES users(id),
+    FOREIGN KEY (assignedToId) REFERENCES users(id),
+    FOREIGN KEY (projectId) REFERENCES projects(id)
 );
 
 CREATE TABLE tasks(
