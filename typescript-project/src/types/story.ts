@@ -7,8 +7,7 @@ export interface StoryBasic {
   description?: string;
   priority: Priority;
   projectId: string;
-  date: Date;
-  ownerId: string;
+  userId: string;
   state: State;
   owner?: UserModel;
   assignedToId?: string;

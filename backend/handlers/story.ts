@@ -91,6 +91,11 @@ async function getById(id: string): Promise<QueryResponse<Story>> {
 async function create(body: Body): Promise<QueryResponse<Story>> {
   const { name, priority, description, userId, projectId } = body;
 
+  console.log({ name });
+  console.log({ priority });
+  console.log({ userId });
+  console.log({ projectId });
+
   if (!name || !priority || !userId || !projectId) {
     return {
       status: StatusCode.BadRequest,

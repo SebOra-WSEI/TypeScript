@@ -19,9 +19,9 @@ export const EditStoryModal: React.FC<EditStoryModalProps> = ({
 
   const { update } = useEditStoryById(updatedStory);
 
-  const handleUpdate = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleUpdate = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
-    update(story.id);
+    await update(story.id);
   };
 
   return (

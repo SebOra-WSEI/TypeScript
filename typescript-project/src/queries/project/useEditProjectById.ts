@@ -17,7 +17,7 @@ export const useEditProjectById = (
   const [message, setMessage] = useState<string | undefined>(undefined);
 
   const update = async (projectId: string): Promise<void> => {
-    axios
+    await axios
       .put(endpoints.project(projectId), newProjectDetails, {
         headers: { Authorization: `Bearer: ${getFromLocalStorage(JWT_TOKEN)}` },
       })

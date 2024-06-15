@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { TextField, Typography } from '@mui/material';
 import { StoryBasic } from '../../../../types/story';
 import { PriorityInput } from '../../../common/InputFields/PriorityInput';
 import { formStyles } from '../../../../styles/formStyles';
+import { useParams } from 'react-router';
 
 interface CreateStoryFormProps {
   story: StoryBasic;
@@ -14,6 +15,15 @@ export const CreateStoryForm: React.FC<CreateStoryFormProps> = ({
   setStory,
 }) => {
   const { name, description } = story;
+
+  const { projectId } = useParams<{ projectId: string }>()
+
+  useEffect(() => {
+    setStory({
+      ...story,
+      projectId
+    })
+  }, [])
 
   return (
     <>

@@ -13,7 +13,7 @@ type ModalType = 'create' | 'update';
 interface ModalContentProps extends PropsWithChildren {
   isOpen: boolean;
   handleOnClose: () => void;
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
   type: ModalType;
 }
 

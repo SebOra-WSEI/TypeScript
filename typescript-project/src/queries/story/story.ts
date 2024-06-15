@@ -21,7 +21,6 @@ export const defaultStory: StoryBasic = {
   description: '',
   priority: Priority.High,
   projectId: '',
-  date: new Date(),
-  ownerId: getFromLocalStorage(CURRENT_USER_ID),
+  userId: getFromLocalStorage(CURRENT_USER_ID),
   state: State.Todo,
 };

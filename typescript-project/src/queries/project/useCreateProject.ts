@@ -17,7 +17,7 @@ export const useCreateProject = (
   const [message, setMessage] = useState<string | undefined>(undefined);
 
   const create = async (): Promise<void> => {
-    axios
+    await axios
       .post(endpoints.projects, project, {
         headers: {
           Authorization: `Bearer: ${getFromLocalStorage(JWT_TOKEN)}`,

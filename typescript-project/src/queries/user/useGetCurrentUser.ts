@@ -20,7 +20,7 @@ export const useGetCurrentUser = (): FetchedData<UserModel> => {
 
   useEffect(() => {
     axios
-      .get(endpoints.userById(userId), {
+      .get(endpoints.user(userId), {
         headers: {
           Authorization: `Bearer: ${getFromLocalStorage(JWT_TOKEN)}`,
         },
