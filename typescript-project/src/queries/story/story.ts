@@ -4,6 +4,9 @@ import { State } from '../../types/state';
 import { StoryBasic } from '../../types/story';
 import { CURRENT_USER_ID, getFromLocalStorage } from '../../utils/localStorage';
 
+/**
+ * @deprecated Used only to the old implementation based on localStorage
+ */
 export const EMPTY_STORY = new Story(
   'fake',
   Priority.Low,
@@ -18,7 +21,6 @@ export const defaultStory: StoryBasic = {
   description: '',
   priority: Priority.High,
   projectId: '',
-  date: new Date(),
-  ownerId: getFromLocalStorage(CURRENT_USER_ID),
+  userId: getFromLocalStorage(CURRENT_USER_ID),
   state: State.Todo,
 };

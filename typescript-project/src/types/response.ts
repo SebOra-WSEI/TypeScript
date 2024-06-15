@@ -1,21 +1,30 @@
 import { StatusCode } from './statusCode';
-import { LoggedUser } from './user';
 
+/**
+ * @deprecated Used only to the old implementation based on localStorage
+ */
 export interface Response<T> {
   status: StatusCode;
   message?: string;
   response: T | undefined;
 }
 
-export interface LoggedUserResponse {
-  data: Response<LoggedUser>;
+interface ResponseField<T> {
+  data: T | undefined;
+  error?: string;
+  message?: string;
+  token?: string;
+  refreshToken?: string;
 }
 
-export interface ErrorResponse {
+export interface QueryResponse<T> {
+  data: ResponseField<T>;
+  status: StatusCode;
+}
+
+export interface ErrorResponse<T> {
   response: {
-    data: {
-      message: string;
-      status: StatusCode;
-    };
+    status: StatusCode;
+    data: ResponseField<T>;
   };
 }

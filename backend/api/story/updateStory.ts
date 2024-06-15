@@ -7,12 +7,20 @@ export async function updateStory(
   name: string,
   priority: Priority,
   state: State,
+  assignedToId: string | undefined,
   description?: string
 ): Promise<boolean> {
   return await new Promise((resolve) => {
     DB.query(
-      `UPDATE stories SET name = (?), description = (?), priority = (?), state = (?) WHERE id = (?)`,
-      [name, description, priority, state, id],
+      `UPDATE stories SET name = (?), description = (?), priority = (?), state = (?), assignedToId = (?) WHERE id = (?)`,
+      [
+        name,
+        description,
+        priority,
+        state,
+        assignedToId ? Number(assignedToId) : undefined,
+        id,
+      ],
       (err, res) => {
         resolve(res);
       }

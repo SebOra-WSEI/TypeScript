@@ -55,6 +55,7 @@ app.post('/refresh-token', async (req: Request, res: Response) => {
 });
 
 app.get('/users', createHandlerFunction({ getAll: user.getAll }));
+app.get('/users/:id', createHandlerFunction({ getById: user.getById }));
 
 app.get('/projects', createHandlerFunction({ getAll: project.getAll }));
 app.get('/projects/:id', createHandlerFunction({ getById: project.getById }));

@@ -8,6 +8,7 @@ import { CreatedByItem } from './CardItems/CreatedByItem';
 import { ItemTaskHeader } from '../../common/ItemCardHeader';
 import { EditStoryModal } from '../Form/Edit/EditStoryModal';
 import { commonStyles } from '../../../styles/commonStyles';
+import { useGetUserById } from '../../../queries/user/useGetUserById';
 
 interface StoryCardProps {
   story: StoryModel;
@@ -17,7 +18,9 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
   const [isEditStoryModalOpen, setIsEditStoryModalOpen] =
     useState<boolean>(false);
 
-  const { name, description, priority, date, owner } = story;
+  const { name, description, priority, createdDate, userId } = story;
+
+  const { data: user } = useGetUserById(userId);
 
   const handleEditStoryOnOpen = (): void => setIsEditStoryModalOpen(true);
   const handleEditStoryOnClose = (): void => setIsEditStoryModalOpen(false);
@@ -42,13 +45,13 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
             </Grid>
           </Grid>
           <Grid container>
-            <Grid item xs={5} sx={cardStyles.textField}>
+            <Grid item xs={7} sx={cardStyles.textField}>
               <Typography variant='inherit' color='text.secondary'>
-                Created at: {new Date(date).toLocaleString()}
+                Created at: {new Date(Number(createdDate)).toLocaleDateString()}
               </Typography>
             </Grid>
-            <Grid item xs={6} sx={commonStyles.inputMovedToEnd}>
-              <CreatedByItem owner={owner} />
+            <Grid item xs={3} sx={commonStyles.inputMovedToEnd}>
+              <CreatedByItem owner={user} />
             </Grid>
           </Grid>
         </CardContent>

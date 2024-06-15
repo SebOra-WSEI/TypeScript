@@ -29,7 +29,7 @@ async function getAll(): Promise<QueryResponse<Array<Project>>> {
     return {
       status: StatusCode.InternalServer,
       response: {
-        message: 'Internal Server Error',
+        error: 'Internal Server Error',
         data: undefined,
       },
     };
@@ -58,7 +58,7 @@ async function getById(id: string): Promise<QueryResponse<Project>> {
     return {
       status: StatusCode.BadRequest,
       response: {
-        message: 'Project does not exits',
+        error: 'Project does not exits',
         data: undefined,
       },
     };
@@ -75,7 +75,7 @@ async function create(body: Body): Promise<QueryResponse<Project>> {
     return {
       status: StatusCode.BadRequest,
       response: {
-        message: 'Name cannot be empty',
+        error: 'Name cannot be empty',
         data: undefined,
       },
     };
@@ -87,7 +87,7 @@ async function create(body: Body): Promise<QueryResponse<Project>> {
     return {
       status: StatusCode.BadRequest,
       response: {
-        message: 'Project already exist',
+        error: 'Project already exist',
         data: undefined,
       },
     };
@@ -99,7 +99,7 @@ async function create(body: Body): Promise<QueryResponse<Project>> {
     return {
       status: StatusCode.InternalServer,
       response: {
-        message: 'Internal Server Error',
+        error: 'Internal Server Error',
         data: undefined,
       },
     };
@@ -119,7 +119,7 @@ async function remove(id: string): Promise<QueryResponse<Project>> {
     return {
       status: StatusCode.BadRequest,
       response: {
-        message: 'Project id is requested',
+        error: 'Project id is requested',
         data: undefined,
       },
     };
@@ -131,7 +131,7 @@ async function remove(id: string): Promise<QueryResponse<Project>> {
     return {
       status: StatusCode.BadRequest,
       response: {
-        message: 'Project does not exits',
+        error: 'Project does not exits',
         data: undefined,
       },
     };
@@ -143,14 +143,14 @@ async function remove(id: string): Promise<QueryResponse<Project>> {
     return {
       status: StatusCode.InternalServer,
       response: {
-        message: 'Internal Server Error',
+        error: 'Internal Server Error',
         data: undefined,
       },
     };
   }
 
   return {
-    status: StatusCode.Created,
+    status: StatusCode.OK,
     response: {
       message: 'Project has been removed successfully',
       data: undefined,
@@ -163,7 +163,7 @@ async function update(id: string, body: Body): Promise<QueryResponse<Project>> {
     return {
       status: StatusCode.BadRequest,
       response: {
-        message: 'Project id is requested',
+        error: 'Project id is requested',
         data: undefined,
       },
     };
@@ -175,7 +175,7 @@ async function update(id: string, body: Body): Promise<QueryResponse<Project>> {
     return {
       status: StatusCode.BadRequest,
       response: {
-        message: 'Project does not exits',
+        error: 'Project does not exits',
         data: undefined,
       },
     };
@@ -187,7 +187,7 @@ async function update(id: string, body: Body): Promise<QueryResponse<Project>> {
     return {
       status: StatusCode.InternalServer,
       response: {
-        message: 'Internal Server Error',
+        error: 'Internal Server Error',
         data: undefined,
       },
     };

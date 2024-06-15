@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { LoginForm } from './LoginForm';
 import { LoginBody } from '../../types/login';
-import { useLogIn } from '../../queries/userAPI/useLogIn';
+import { useLogIn } from '../../queries/login/useLogIn';
 import { useGetCurrentUser } from '../../queries/user/useGetCurrentUser';
 import { UserAlreadyLoggedMessage } from '../common/Messages/UserAlreadyLoggedMessage';
 

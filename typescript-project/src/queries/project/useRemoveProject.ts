@@ -1,30 +1,44 @@
 import { useState } from 'react';
-import { EMPTY_PROJECT } from './project';
 import { StatusCode } from '../../types/statusCode';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
 import { REDIRECT_DELAY } from '../../utils/consts';
+import axios from 'axios';
+import { endpoints } from '../../routes/routes';
+import { JWT_TOKEN, getFromLocalStorage } from '../../utils/localStorage';
+import { ErrorResponse, QueryResponse } from '../../types/response';
+import { ProjectModel } from '../../types/project';
 
-type UseRemoveProjectResult = { remove: (id: string) => void };
+type UseRemoveProjectResult = { remove: (id: string) => Promise<void> };
 
 export const useRemoveProject = (isReload = true): UseRemoveProjectResult => {
   const [error, setError] = useState<string>('');
   const [message, setMessage] = useState<string | undefined>(undefined);
 
-  const remove = (id: string) => {
-    const { status, response, message } = EMPTY_PROJECT.delete(id);
+  const remove = async (id: string): Promise<void> => {
+    await axios
+      .delete(endpoints.project(id), {
+        headers: { Authorization: `Bearer: ${getFromLocalStorage(JWT_TOKEN)}` },
+      })
+      .then((res: QueryResponse<ProjectModel>) => {
+        const { status, data } = res;
 
-    if (status !== StatusCode.OK && message) {
-      setError(message);
-    }
+        if (status === StatusCode.OK && data.message) {
+          setMessage(data.message);
 
-    if (status === StatusCode.OK && response) {
-      setMessage(message);
+          isReload &&
+            setTimeout(() => {
+              window.location.reload();
+            }, REDIRECT_DELAY);
+        }
+      })
+      .catch((error: ErrorResponse<undefined>) => {
+        const { status, data } = error.response;
 
-      isReload &&
-        setTimeout(() => {
-          window.location.reload();
-        }, REDIRECT_DELAY);
-    }
+        if (status !== StatusCode.OK && data.error) {
+          setMessage(data.error);
+          setError(data.error);
+        }
+      });
   };
 
   useSetSeverity(error, message);

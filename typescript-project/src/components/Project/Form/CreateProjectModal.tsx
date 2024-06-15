@@ -18,9 +18,9 @@ export const CreateProjectModal: React.FC<CreateProjectModalProps> = ({
 
   const { create } = useCreateProject(project);
 
-  const handleCreate = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleCreate = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
-    create();
+    await create();
   };
 
   const handleOnClose = (): void => {

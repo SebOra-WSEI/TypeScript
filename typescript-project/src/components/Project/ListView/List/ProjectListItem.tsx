@@ -25,7 +25,7 @@ export const ProjectListItem: React.FC<ProjectItemProps> = ({ project }) => {
     history.push(routeBuilder.stories(project.id));
   };
 
-  const handleRemove = (): void => remove(project.id);
+  const handleRemove = async (): Promise<void> => await remove(project.id);
 
   return (
     <ListItem sx={styles.listItem}>

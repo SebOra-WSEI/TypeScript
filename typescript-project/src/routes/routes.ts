@@ -18,5 +18,11 @@ export const routeBuilder = {
 } as const;
 
 export const endpoints = {
+  project: (id: string) => `${HOST}/projects/${id}`,
+  projects: `${HOST}/projects`,
   signIn: `${HOST}/sign-in`,
+  stories: (projectId: string) => `${HOST}/stories?projectId=${projectId}`,
+  story: (id: string) => `${HOST}/stories/${id}`,
+  user: (id: string) => `${HOST}/users/${id}`,
+  users: `${HOST}/users`,
 } as const;

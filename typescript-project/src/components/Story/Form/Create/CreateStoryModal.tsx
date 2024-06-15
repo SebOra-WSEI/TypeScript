@@ -18,9 +18,9 @@ export const CreateStoryModal: React.FC<CreateStoryModalProps> = ({
 
   const { create } = useCreateStory(story);
 
-  const handleCreate = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleCreate = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
-    create();
+    await create();
   };
 
   const handleOnClose = (): void => {

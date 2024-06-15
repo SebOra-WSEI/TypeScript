@@ -29,7 +29,7 @@ export const refreshToken = (
   return {
     status: StatusCode.OK,
     response: {
-      error: 'Token refreshed successfully',
+      message: 'Token refreshed successfully',
       token: generateToken(60 * 60),
       refreshToken: generateToken(60 * 90),
       data: undefined,

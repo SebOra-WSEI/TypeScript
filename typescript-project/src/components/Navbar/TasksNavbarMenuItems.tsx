@@ -24,8 +24,8 @@ export const TasksNavbarMenuItems: React.FC<TasksNavbarMenuItemsProps> = ({
 
   const { remove } = useRemoveStory(false);
 
-  const handleRemoveStory = () => {
-    remove(storyId);
+  const handleRemoveStory = async (): Promise<void> => {
+    await remove(storyId);
     history.push(routeBuilder.stories(projectId));
   };
 

@@ -6,7 +6,7 @@ export async function getAllStories(
 ): Promise<Array<Story> | undefined> {
   return await new Promise((resolve) => {
     DB.query(
-      `SELECT * FROM stories WHERE project_id = (?)`,
+      `SELECT * FROM stories WHERE projectId = (?)`,
       [projectId],
       (err, res) => {
         resolve(res);
@@ -14,6 +14,7 @@ export async function getAllStories(
     );
   })
     .then((res) => {
+      console.log({ res });
       return res as Array<Story>;
     })
     .catch((err) => {
