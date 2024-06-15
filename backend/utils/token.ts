@@ -35,7 +35,7 @@ export const getTokenError = (token: string): string => {
   }
 
   if (!isTokenValid(token)) {
-    return 'Invalid tokenFormat';
+    return 'Invalid token format';
   }
 
   return '';

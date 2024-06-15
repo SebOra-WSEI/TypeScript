@@ -20,9 +20,11 @@ export function createHandlerFunction<T, B>(
     const authHeader = req.headers.authorization;
     const token = authHeader?.split(' ')[1] ?? '';
 
-    if (getTokenError(token).length) {
+    const errMsg = getTokenError(token);
+
+    if (errMsg.length) {
       const response: ResponseField<undefined> = {
-        error: 'Token is not provided',
+        error: errMsg,
         data: undefined,
       };
 

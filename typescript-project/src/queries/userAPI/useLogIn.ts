@@ -2,70 +2,45 @@ import axios from 'axios';
 import { useState } from 'react';
 import { FetchedData } from '../../types/fetchedData';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
-import { User } from '../../controllers/user';
 import { LoginBody } from '../../types/login';
 import { endpoints, routeBuilder } from '../../routes/routes';
-import { CURRENT_USER_ID, setToLocalStorage } from '../../utils/localStorage';
-import { ErrorResponse, LoggedUserResponse } from '../../types/response';
+import { QueryResponse, ErrorResponse } from '../../types/response';
 import { StatusCode } from '../../types/statusCode';
-import { DataType } from '../../types/dataType';
 import { ERROR_DELAY, REDIRECT_DELAY } from '../../utils/consts';
+import { UserModel } from '../../types/user';
+import {
+  setToLocalStorage,
+  CURRENT_USER_ID,
+  JWT_TOKEN,
+} from '../../utils/localStorage';
 
-const allUsers = [
-  {
-    name: 'Sebastian',
-    surname: 'Oraczek',
-    role: 'Admin',
-    id: '17dd3204-8269-415d-85b1-832a17b760d6',
-    login: 'Sebastian',
-    password: 'abc',
-  },
-  {
-    name: 'Jan',
-    surname: 'Kowalski',
-    role: 'Developer',
-    id: '07376188-835d-4d95-ab8d-a0f5399d1199',
-    login: 'Jan',
-    password: 'abc',
-  },
-  {
-    name: 'Aleksandra',
-    surname: 'Nowak',
-    role: 'Devops',
-    id: 'c70676d5-8e88-4eba-a399-c4d683fe4a7f',
-    login: 'Aleksandra',
-    password: 'abc',
-  },
-];
-
-type useLogInResult = FetchedData<User> & { signIn: () => Promise<void> };
+type useLogInResult = FetchedData<UserModel> & { signIn: () => Promise<void> };
 
 export const useLogIn = (body: LoginBody): useLogInResult => {
   const [error, setError] = useState<string>('');
   const [message, setMessage] = useState<string | undefined>(undefined);
 
-  setToLocalStorage(DataType.User, JSON.stringify(allUsers));
-
   const signIn = async (): Promise<void> => {
     await axios
       .post(endpoints.signIn, body)
-      .then((res: LoggedUserResponse) => {
-        const { message, status, response } = res.data;
+      .then((res: QueryResponse<UserModel>) => {
+        const { status, data } = res;
 
-        if (status === StatusCode.OK && response?.user) {
-          setToLocalStorage(CURRENT_USER_ID, response.user.id);
-          setMessage(message);
-
-          setTimeout(() => {
-            window.location.replace(routeBuilder.projects);
-          }, REDIRECT_DELAY);
+        if (status === StatusCode.OK && data) {
+          setMessage(data.message);
+          setToLocalStorage(CURRENT_USER_ID, data.data?.id ?? '');
+          setToLocalStorage(JWT_TOKEN, data?.token ?? '');
         }
-      })
-      .catch((error: ErrorResponse) => {
-        const { status, message } = error.response?.data ?? {};
 
-        if (status !== StatusCode.OK && message) {
-          setError(message);
+        setTimeout(() => {
+          window.location.replace(routeBuilder.projects);
+        }, REDIRECT_DELAY);
+      })
+      .catch((error: ErrorResponse<undefined>) => {
+        const { status, data } = error.response;
+
+        if (status !== StatusCode.OK && data.error) {
+          setError(data.error);
         }
 
         setTimeout(() => {

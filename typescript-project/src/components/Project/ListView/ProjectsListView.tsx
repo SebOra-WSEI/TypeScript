@@ -13,7 +13,8 @@ import { UnknownError } from '../../common/Messages/UnknownError';
 export const ProjectsListView: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const { error: userErrorMessage } = useGetCurrentUser();
+  const { error: userErrorMessage, data: d1 } = useGetCurrentUser();
+  console.log(d1)
   const { loading, error, data } = useGetAllProjects();
 
   if (userErrorMessage) {

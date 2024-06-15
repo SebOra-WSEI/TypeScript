@@ -19,4 +19,5 @@ export const routeBuilder = {
 
 export const endpoints = {
   signIn: `${HOST}/sign-in`,
+  userById: (id: string) => `${HOST}/users/${id}`,
 } as const;
