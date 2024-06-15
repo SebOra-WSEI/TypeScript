@@ -150,7 +150,7 @@ async function remove(id: string): Promise<QueryResponse<Project>> {
   }
 
   return {
-    status: StatusCode.Created,
+    status: StatusCode.OK,
     response: {
       message: 'Project has been removed successfully',
       data: undefined,
