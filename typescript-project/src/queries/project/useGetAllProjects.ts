@@ -10,7 +10,6 @@ import { ErrorResponse, QueryResponse } from '../../types/response';
 export const useGetAllProjects = (): FetchedData<Array<ProjectModel>> => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
-  const [message, setMessage] = useState<string | undefined>(undefined);
   const [projects, setProjects] = useState<Array<ProjectModel>>([]);
 
   useEffect(() => {
@@ -31,7 +30,6 @@ export const useGetAllProjects = (): FetchedData<Array<ProjectModel>> => {
         const { status, data } = error.response;
 
         if (status !== StatusCode.OK && data.error) {
-          setMessage(data.message);
           setError(data.error);
           setIsLoading(false);
         }
@@ -42,6 +40,5 @@ export const useGetAllProjects = (): FetchedData<Array<ProjectModel>> => {
     loading: isLoading,
     error,
     data: projects,
-    message,
   };
 };

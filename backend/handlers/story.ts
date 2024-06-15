@@ -35,7 +35,7 @@ async function getAll(
     return {
       status: StatusCode.InternalServer,
       response: {
-        message: 'Project id is requested',
+        error: 'Project id is requested',
         data: undefined,
       },
     };
@@ -47,7 +47,7 @@ async function getAll(
     return {
       status: StatusCode.InternalServer,
       response: {
-        message: 'Internal Server Error',
+        error: 'Internal Server Error',
         data: undefined,
       },
     };
@@ -76,7 +76,7 @@ async function getById(id: string): Promise<QueryResponse<Story>> {
     return {
       status: StatusCode.BadRequest,
       response: {
-        message: 'Story does not exits',
+        error: 'Story does not exits',
         data: undefined,
       },
     };
@@ -95,7 +95,7 @@ async function create(body: Body): Promise<QueryResponse<Story>> {
     return {
       status: StatusCode.BadRequest,
       response: {
-        message: 'Fields cannot be empty',
+        error: 'Fields cannot be empty',
         data: undefined,
       },
     };
@@ -107,7 +107,7 @@ async function create(body: Body): Promise<QueryResponse<Story>> {
     return {
       status: StatusCode.BadRequest,
       response: {
-        message: 'Story already exist',
+        error: 'Story already exist',
         data: undefined,
       },
     };
@@ -125,7 +125,7 @@ async function create(body: Body): Promise<QueryResponse<Story>> {
     return {
       status: StatusCode.InternalServer,
       response: {
-        message: 'Internal Server Error',
+        error: 'Internal Server Error',
         data: undefined,
       },
     };
@@ -145,7 +145,7 @@ async function remove(id: string): Promise<QueryResponse<Story>> {
     return {
       status: StatusCode.BadRequest,
       response: {
-        message: 'Project id is requested',
+        error: 'Project id is requested',
         data: undefined,
       },
     };
@@ -157,7 +157,7 @@ async function remove(id: string): Promise<QueryResponse<Story>> {
     return {
       status: StatusCode.BadRequest,
       response: {
-        message: 'Story does not exits',
+        error: 'Story does not exits',
         data: undefined,
       },
     };
@@ -169,7 +169,7 @@ async function remove(id: string): Promise<QueryResponse<Story>> {
     return {
       status: StatusCode.InternalServer,
       response: {
-        message: 'Internal Server Error',
+        error: 'Internal Server Error',
         data: undefined,
       },
     };
@@ -189,7 +189,7 @@ async function update(id: string, body: Body): Promise<QueryResponse<Story>> {
     return {
       status: StatusCode.BadRequest,
       response: {
-        message: 'Story id is requested',
+        error: 'Story id is requested',
         data: undefined,
       },
     };
@@ -201,7 +201,7 @@ async function update(id: string, body: Body): Promise<QueryResponse<Story>> {
     return {
       status: StatusCode.BadRequest,
       response: {
-        message: 'Story does not exits',
+        error: 'Story does not exits',
         data: undefined,
       },
     };
@@ -219,7 +219,7 @@ async function update(id: string, body: Body): Promise<QueryResponse<Story>> {
     return {
       status: StatusCode.InternalServer,
       response: {
-        message: 'Internal Server Error',
+        error: 'Internal Server Error',
         data: undefined,
       },
     };

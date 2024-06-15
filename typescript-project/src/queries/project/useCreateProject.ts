@@ -37,8 +37,8 @@ export const useCreateProject = (
       .catch((error: ErrorResponse<undefined>) => {
         const { status, data } = error.response;
 
-        if (status !== StatusCode.Created && data.message) {
-          setError(data.message);
+        if (status !== StatusCode.Created && data.error) {
+          setError(data.error);
           setTimeout(() => {
             setError('');
           }, ERROR_DELAY);

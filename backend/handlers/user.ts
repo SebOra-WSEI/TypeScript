@@ -21,7 +21,7 @@ async function getAll(): Promise<QueryResponse<Array<NoPasswordUser>>> {
     return {
       status: StatusCode.InternalServer,
       response: {
-        message: 'Internal Server Error',
+        error: 'Internal Server Error',
         data: undefined,
       },
     };
@@ -60,7 +60,7 @@ async function getById(id: string): Promise<QueryResponse<NoPasswordUser>> {
     return {
       status: StatusCode.BadRequest,
       response: {
-        message: 'User does not exits',
+        error: 'User does not exits',
         data: undefined,
       },
     };

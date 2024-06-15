@@ -26,7 +26,7 @@ export const useLogIn = (body: LoginBody): useLogInResult => {
       .then((res: QueryResponse<UserModel>) => {
         const { status, data } = res;
 
-        if (status === StatusCode.OK && data) {
+        if (status === StatusCode.OK && data.message) {
           setMessage(data.message);
           setToLocalStorage(CURRENT_USER_ID, data.data?.id ?? '');
           setToLocalStorage(JWT_TOKEN, data?.token ?? '');

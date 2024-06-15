@@ -35,7 +35,7 @@ export const useRemoveProject = (isReload = true): UseRemoveProjectResult => {
         const { status, data } = error.response;
 
         if (status !== StatusCode.OK && data.error) {
-          setMessage(data.message);
+          setMessage(data.error);
           setError(data.error);
         }
       });

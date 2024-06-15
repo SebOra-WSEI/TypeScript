@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
-import { EMPTY_STORY } from './story';
 import { StoryModel } from '../../types/story';
-import { EMPTY_USER } from '../user/emptyUser';
-import { LOADING_DELAY } from '../../utils/consts';
+import axios from 'axios';
+import { endpoints } from '../../routes/routes';
+import { JWT_TOKEN, getFromLocalStorage } from '../../utils/localStorage';
+import { ErrorResponse, QueryResponse } from '../../types/response';
 
 export const useGetStoriesByProjectId = (
   projectId: string
@@ -14,25 +15,27 @@ export const useGetStoriesByProjectId = (
   const [stories, setStories] = useState<Array<StoryModel>>();
 
   useEffect(() => {
-    const { status, message, response } = EMPTY_STORY.getAll();
+    axios
+      .get(endpoints.stories(projectId), {
+        headers: { Authorization: `Bearer: ${getFromLocalStorage(JWT_TOKEN)}` },
+      })
+      .then((res: QueryResponse<Array<StoryModel>>) => {
+        const { status, data } = res;
 
-    const filteredStories = response?.filter((s) => s.projectId === projectId);
-    const extendedStories = filteredStories?.map((story) => ({
-      ...story,
-      owner: EMPTY_USER.getById(story.ownerId).response,
-    }));
+        if (status === StatusCode.OK && data.data) {
+          setStories(data.data);
+        }
 
-    if (status !== StatusCode.OK && message) {
-      setError(message);
-      setIsLoading(false);
-    }
-
-    if (status === StatusCode.OK && response) {
-      setTimeout(() => {
         setIsLoading(false);
-      }, LOADING_DELAY);
-      setStories(extendedStories);
-    }
+      })
+      .catch((error: ErrorResponse<undefined>) => {
+        const { status, data } = error.response;
+
+        if (status !== StatusCode.OK && data.error) {
+          setError(data.error);
+          setIsLoading(false);
+        }
+      });
   }, []);
 
   return {
