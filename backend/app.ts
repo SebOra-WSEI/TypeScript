@@ -10,6 +10,7 @@ import { user } from './handlers/user';
 import { project } from './handlers/project';
 import { story } from './handlers/story';
 import { createHandlerFunction } from './utils/createHandlerFunction';
+import { task } from './handlers/task';
 
 const app = express();
 const port = '3000';
@@ -68,6 +69,12 @@ app.get('/stories/:id', createHandlerFunction({ getById: story.getById }));
 app.post('/stories', createHandlerFunction({ create: story.create }));
 app.delete('/stories/:id', createHandlerFunction({ remove: story.remove }));
 app.put('/stories/:id', createHandlerFunction({ update: story.update }));
+
+app.get('/tasks', createHandlerFunction({ getAll: task.getAll }));
+app.get('/tasks/:id', createHandlerFunction({ getById: task.getById }));
+app.post('/tasks', createHandlerFunction({ create: task.create }));
+app.delete('/tasks/:id', createHandlerFunction({ remove: task.remove }));
+app.put('/tasks/:id', createHandlerFunction({ update: task.update }));
 
 app.listen(port, () => {
   console.log(`🚀 Server running on port ${port}`);
