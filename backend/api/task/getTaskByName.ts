@@ -1,13 +1,13 @@
 import { DB } from '../../connection/connection';
-import { Story } from '../../types/story';
+import { Task } from '../../types/task';
 
-export async function getStoryByName(
+export async function getTaskByName(
   name: string,
   projectId: string
-): Promise<Story | undefined> {
+): Promise<Task | undefined> {
   return await new Promise((resolve) => {
     DB.query(
-      `SELECT * FROM stories WHERE name = (?) AND projectId = (?)`,
+      `SELECT * FROM tasks WHERE name = (?) AND storyId = (?)`,
       [name, projectId],
       (err, res) => {
         resolve(res);
@@ -15,7 +15,7 @@ export async function getStoryByName(
     );
   })
     .then((res) => {
-      const stories = res as Array<Story>;
+      const stories = res as Array<Task>;
       return stories?.[0];
     })
     .catch((err) => {

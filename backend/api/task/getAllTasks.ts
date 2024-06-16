@@ -1,22 +1,21 @@
 import { DB } from '../../connection/connection';
-import { Story } from '../../types/story';
+import { Task } from '../../types/task';
 
-export async function getStoryByName(
-  name: string,
+export async function getAllTasks(
   projectId: string
-): Promise<Story | undefined> {
+): Promise<Array<Task> | undefined> {
   return await new Promise((resolve) => {
     DB.query(
-      `SELECT * FROM stories WHERE name = (?) AND projectId = (?)`,
-      [name, projectId],
+      `SELECT * FROM tasks WHERE storyId = (?)`,
+      [projectId],
       (err, res) => {
         resolve(res);
       }
     );
   })
     .then((res) => {
-      const stories = res as Array<Story>;
-      return stories?.[0];
+      console.log({ res });
+      return res as Array<Task>;
     })
     .catch((err) => {
       console.log('Error: ', err);

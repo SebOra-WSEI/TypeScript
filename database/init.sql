@@ -38,13 +38,15 @@ CREATE TABLE tasks(
     description VARCHAR(250),
     priority VARCHAR(50) NOT NULL,
     state VARCHAR(50) NOT NULL,
-    createdDate DATE NOT NULL,
-    expectedEndTime DATE,
-    startDate DATE,
-    endDate DATE,
-    storyPoint INT,
-    user_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    createdDate VARCHAR(50) NOT NULL,
+    expectedEndTime VARCHAR(50) NOT NULL,
+    startDate VARCHAR(50),
+    endDate VARCHAR(50),
+    storyPoint INT NOT NULL,
+    storyId INT NOT NULL,
+    assignedToId INT,
+    FOREIGN KEY (storyId) REFERENCES stories(id),
+    FOREIGN KEY (assignedToId) REFERENCES users(id)
 );
 
 INSERT INTO users(name, surname, role, login, password)

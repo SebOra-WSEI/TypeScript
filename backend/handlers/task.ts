@@ -1,27 +1,29 @@
-import { QueryResponse } from '../types/query';
-import { Story } from '../types/story';
-import { getAllStories } from '../api/story/getAllStories';
+import { ApiHandler, QueryResponse } from '../types/query';
 import { StatusCode } from '../types/statusCode';
+import { Task } from '../types/task';
+import { getAllTasks } from '../api/task/getAllTasks';
+import { getTaskById } from '../api/task/getTaskById';
+import { getTaskByName } from '../api/task/getTaskByName';
+import { createTask } from '../api/task/createTask';
+import { removeTask } from '../api/task/removeTask';
+import { updateTask } from '../api/task/updateTask';
 import { Priority } from '../types/priority';
-import { getStoryByName } from '../api/story/getStoryByName';
-import { createStory } from '../api/story/createStory';
-import { getStoryById } from '../api/story/getStoryById';
-import { removeStory } from '../api/story/removeStory';
-import { updateStory } from '../api/story/updateStory';
 import { State } from '../types/state';
-import { ApiHandler } from '../types/query';
 
 interface Body {
   name: string;
-  description?: string;
+  description: string;
   priority: Priority;
-  userId: number;
-  projectId: number;
   state: State;
-  assignedToId?: string;
+  storyPoint: number;
+  assignedToId?: number;
+  expectedEndTime: string;
+  storyId: number;
+  endDate?: string;
+  startDate?: string;
 }
 
-export const story: ApiHandler<Story, Body> = {
+export const task: ApiHandler<Task, Body> = {
   getAll,
   getById,
   create,
@@ -29,22 +31,22 @@ export const story: ApiHandler<Story, Body> = {
   update,
 };
 
-async function getAll(
-  projectId?: string
-): Promise<QueryResponse<Array<Story>>> {
-  if (!projectId) {
+export async function getAll(
+  taskId?: string
+): Promise<QueryResponse<Array<Task>>> {
+  if (!taskId) {
     return {
       status: StatusCode.InternalServer,
       response: {
-        error: 'Project id is requested',
+        error: 'Story id is requested',
         data: undefined,
       },
     };
   }
 
-  const stories = await getAllStories(projectId);
+  const tasks = await getAllTasks(taskId);
 
-  if (!stories) {
+  if (!tasks) {
     return {
       status: StatusCode.InternalServer,
       response: {
@@ -54,11 +56,11 @@ async function getAll(
     };
   }
 
-  if (!stories?.length) {
+  if (!tasks?.length) {
     return {
       status: StatusCode.OK,
       response: {
-        message: 'There are no stories',
+        message: 'There are no tasks',
         data: [],
       },
     };
@@ -66,18 +68,18 @@ async function getAll(
 
   return {
     status: StatusCode.OK,
-    response: { data: stories },
+    response: { data: tasks },
   };
 }
 
-async function getById(id: string): Promise<QueryResponse<Story>> {
-  const story = await getStoryById(id);
+export async function getById(id: string): Promise<QueryResponse<Task>> {
+  const story = await getTaskById(id);
 
   if (!Boolean(story)) {
     return {
       status: StatusCode.BadRequest,
       response: {
-        error: 'Story does not exits',
+        error: 'Task does not exits',
         data: undefined,
       },
     };
@@ -89,10 +91,20 @@ async function getById(id: string): Promise<QueryResponse<Story>> {
   };
 }
 
-async function create(body: Body): Promise<QueryResponse<Story>> {
-  const { name, priority, description, userId, projectId } = body;
+export async function create(body: Body): Promise<QueryResponse<Task>> {
+  const {
+    name,
+    priority,
+    description,
+    expectedEndTime,
+    storyId,
+    startDate,
+    endDate,
+    storyPoint,
+    assignedToId,
+  } = body;
 
-  if (!name || !priority || !userId || !projectId) {
+  if (!name || !priority || !expectedEndTime) {
     return {
       status: StatusCode.BadRequest,
       response: {
@@ -102,23 +114,27 @@ async function create(body: Body): Promise<QueryResponse<Story>> {
     };
   }
 
-  const story = await getStoryByName(name, String(projectId));
+  const story = await getTaskByName(name, String(storyId));
 
   if (Boolean(story)) {
     return {
       status: StatusCode.BadRequest,
       response: {
-        error: 'Story already exist',
+        error: 'Task already exist',
         data: undefined,
       },
     };
   }
 
-  const isCreated = await createStory(
+  const isCreated = await createTask(
     name,
     priority,
-    userId,
-    projectId,
+    expectedEndTime,
+    storyPoint,
+    storyId,
+    startDate,
+    endDate,
+    assignedToId,
     description
   );
 
@@ -135,13 +151,13 @@ async function create(body: Body): Promise<QueryResponse<Story>> {
   return {
     status: StatusCode.Created,
     response: {
-      message: 'Story has been created successfully',
+      message: 'Task has been created successfully',
       data: undefined,
     },
   };
 }
 
-async function remove(id: string): Promise<QueryResponse<Story>> {
+export async function remove(id: string): Promise<QueryResponse<Task>> {
   if (!id) {
     return {
       status: StatusCode.BadRequest,
@@ -152,19 +168,19 @@ async function remove(id: string): Promise<QueryResponse<Story>> {
     };
   }
 
-  const story = await getStoryById(id);
+  const story = await getTaskById(id);
 
   if (!Boolean(story)) {
     return {
       status: StatusCode.BadRequest,
       response: {
-        error: 'Story does not exits',
+        error: 'Task does not exits',
         data: undefined,
       },
     };
   }
 
-  const isRemoved = await removeStory(id);
+  const isRemoved = await removeTask(id);
 
   if (!isRemoved) {
     return {
@@ -179,42 +195,59 @@ async function remove(id: string): Promise<QueryResponse<Story>> {
   return {
     status: StatusCode.OK,
     response: {
-      message: 'Story has been removed successfully',
+      message: 'Task has been removed successfully',
       data: undefined,
     },
   };
 }
 
-async function update(id: string, body: Body): Promise<QueryResponse<Story>> {
+export async function update(
+  id: string,
+  body: Body
+): Promise<QueryResponse<Task>> {
   if (!id) {
     return {
       status: StatusCode.BadRequest,
       response: {
-        error: 'Story id is requested',
+        error: 'Task id is requested',
         data: undefined,
       },
     };
   }
 
-  const { name, priority, state, assignedToId, description } = body;
+  const {
+    name,
+    priority,
+    state,
+    expectedEndTime,
+    storyPoint,
+    startDate,
+    endDate,
+    assignedToId,
+    description,
+  } = body;
 
-  const story = await getStoryById(id);
+  const story = await getTaskById(id);
 
   if (!Boolean(story)) {
     return {
       status: StatusCode.BadRequest,
       response: {
-        error: 'Story does not exits',
+        error: 'Task does not exits',
         data: undefined,
       },
     };
   }
 
-  const isUpdated = await updateStory(
+  const isUpdated = await updateTask(
     id,
     name,
     priority,
     state,
+    expectedEndTime,
+    storyPoint,
+    startDate,
+    endDate,
     assignedToId,
     description
   );
@@ -232,7 +265,7 @@ async function update(id: string, body: Body): Promise<QueryResponse<Story>> {
   return {
     status: StatusCode.OK,
     response: {
-      message: 'Story has been updated successfully',
+      message: 'Task has been updated successfully',
       data: undefined,
     },
   };

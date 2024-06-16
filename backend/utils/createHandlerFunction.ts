@@ -17,6 +17,8 @@ export function createHandlerFunction<T, B>(
   return async (req: Request, res: Response) => {
     const id = req.params?.id;
     const projectId = req.query.projectId as string;
+    const storyId = req.query.storyId as string;
+
     const authHeader = req.headers.authorization;
     const token = authHeader?.split(' ')[1] ?? '';
 
@@ -33,7 +35,7 @@ export function createHandlerFunction<T, B>(
     }
 
     if (functions?.getAll) {
-      const { status, response } = await functions.getAll(projectId);
+      const { status, response } = await functions.getAll(projectId || storyId);
       res.status(status).send(response);
       return;
     }
