@@ -4,5 +4,5 @@ export interface ProjectBasic {
 }
 
 export interface ProjectModel extends ProjectBasic {
-  id: string;
+  id: number;
 }

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TextField, Typography } from '@mui/material';
 import { TaskBasic } from '../../../../types/task';
 import { expectedWorkingDays } from '../../../../utils/expectedWorkingDays';
 import { PriorityInput } from '../../../common/InputFields/PriorityInput';
 import { StoryPointsInput } from '../../../common/InputFields/StoryPointsInput';
 import { formStyles } from '../../../../styles/formStyles';
+import { useParams } from 'react-router';
 
 interface CreateTaskFormProps {
   task: TaskBasic;
@@ -16,8 +17,13 @@ export const CreateTaskForm: React.FC<CreateTaskFormProps> = ({
   setTask,
 }) => {
   const [expectedDays, setExpectedDays] = useState<number>(0);
+  const { storyId } = useParams<{ storyId: string }>()
 
   const { name, description } = task;
+
+  useEffect(() => {
+    setTask({ ...task, storyId })
+  }, [])
 
   return (
     <>
@@ -68,7 +74,7 @@ export const CreateTaskForm: React.FC<CreateTaskFormProps> = ({
 
           setTask({
             ...task,
-            expectedEndTime: expectedWorkingDays(parseInt(evt.target.value)),
+            expectedEndTime: String(expectedWorkingDays(parseInt(evt.target.value)).getTime()),
           });
         }}
       />

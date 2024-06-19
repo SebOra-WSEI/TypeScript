@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
-import { EMPTY_TASK } from './task';
 import { TaskModel } from '../../types/task';
-import { LOADING_DELAY } from '../../utils/consts';
+import axios from 'axios';
+import { endpoints } from '../../routes/routes';
+import { ErrorResponse, QueryResponse } from '../../types/response';
+import { JWT_TOKEN, getFromLocalStorage } from '../../utils/localStorage';
 
 export const useGetTasksByStoryId = (
   storyId: string
@@ -13,21 +15,27 @@ export const useGetTasksByStoryId = (
   const [tasks, setTasks] = useState<Array<TaskModel>>();
 
   useEffect(() => {
-    const { status, response, message } = EMPTY_TASK.getAll();
+    axios
+      .get(endpoints.tasks(storyId), {
+        headers: { Authorization: `Bearer: ${getFromLocalStorage(JWT_TOKEN)}` },
+      })
+      .then((res: QueryResponse<Array<TaskModel>>) => {
+        const { status, data } = res;
 
-    const filteredTasks = response?.filter((s) => s.storyId === storyId);
+        if (status === StatusCode.OK && data.data) {
+          setTasks(data.data);
+        }
 
-    if (status !== StatusCode.OK && message) {
-      setError(message);
-      setIsLoading(false);
-    }
-
-    if (status === StatusCode.OK && response) {
-      setTimeout(() => {
         setIsLoading(false);
-      }, LOADING_DELAY);
-      setTasks(filteredTasks);
-    }
+      })
+      .catch((error: ErrorResponse<undefined>) => {
+        const { status, data } = error.response;
+
+        if (status !== StatusCode.OK && data.error) {
+          setError(data.error);
+          setIsLoading(false);
+        }
+      });
   }, []);
 
   return {

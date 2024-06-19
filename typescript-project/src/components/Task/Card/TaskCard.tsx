@@ -69,13 +69,13 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
           <Grid container>
             <Grid item xs={5} sx={cardStyles.textField}>
               <Typography variant='inherit' color='text.secondary'>
-                Created at: {new Date(createdDate).toLocaleString()}
+                Created at: {new Date(Number(createdDate)).toLocaleString()}
               </Typography>
             </Grid>
             <Grid item xs={5} sx={cardStyles.textField}>
               <Typography variant='inherit' color='text.secondary'>
                 Expected end time:{' '}
-                {new Date(expectedEndTime).toLocaleDateString()}
+                {new Date(Number(expectedEndTime)).toLocaleDateString()}
               </Typography>
             </Grid>
           </Grid>

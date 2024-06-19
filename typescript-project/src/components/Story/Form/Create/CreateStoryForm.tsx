@@ -14,16 +14,13 @@ export const CreateStoryForm: React.FC<CreateStoryFormProps> = ({
   story,
   setStory,
 }) => {
-  const { name, description } = story;
-
   const { projectId } = useParams<{ projectId: string }>()
 
+  const { name, description } = story;
+
   useEffect(() => {
-    setStory({
-      ...story,
-      projectId
-    })
-  }, [])
+    setStory({ ...story, projectId })
+  }, []);
 
   return (
     <>

@@ -5,16 +5,16 @@ export interface TaskBasic {
   name: string;
   description: string;
   priority: Priority;
-  storyId: string;
   state: State;
-  createdDate: Date;
-  expectedEndTime: Date;
+  createdDate: string;
+  startDate?: string;
+  expectedEndTime: string;
+  endDate?: string;
   storyPoint: number;
-  assignedToId: string;
-  startDate?: Date;
-  endDate?: Date;
+  assignedToId?: number;
+  storyId: string;
 }
 
 export interface TaskModel extends TaskBasic {
-  id: string;
+  id: number;
 }

@@ -3,9 +3,9 @@ import { Grid, Typography } from '@mui/material';
 import { cardStyles } from '../../../../styles/cardStyles';
 
 interface TaskDateFieldsProps {
-  expectedEndTime: Date;
-  startDate?: Date;
-  endDate?: Date;
+  expectedEndTime: string;
+  startDate?: string;
+  endDate?: string;
 }
 
 export const TaskDateFields: React.FC<TaskDateFieldsProps> = ({
@@ -23,7 +23,7 @@ export const TaskDateFields: React.FC<TaskDateFieldsProps> = ({
         </Grid>
         <Grid item xs={6}>
           <Typography variant='inherit' fontSize={15} color='secondary'>
-            {startDate ? new Date(startDate).toLocaleString() : '-'}
+            {startDate ? new Date(Number(startDate)).toLocaleString() : '-'}
           </Typography>
         </Grid>
       </Grid>
@@ -37,7 +37,7 @@ export const TaskDateFields: React.FC<TaskDateFieldsProps> = ({
         </Grid>
         <Grid item xs={6}>
           <Typography variant='inherit' fontSize={15} color='secondary'>
-            {new Date(expectedEndTime).toLocaleDateString()}
+            {new Date(Number(expectedEndTime)).toLocaleDateString()}
           </Typography>
         </Grid>
       </Grid>
@@ -52,7 +52,7 @@ export const TaskDateFields: React.FC<TaskDateFieldsProps> = ({
         </Grid>
         <Grid item xs={6}>
           <Typography variant='inherit' fontSize={15} color='secondary'>
-            {endDate ? new Date(endDate).toLocaleString() : '-'}
+            {endDate ? new Date(Number(endDate)).toLocaleString() : '-'}
           </Typography>
         </Grid>
       </Grid>

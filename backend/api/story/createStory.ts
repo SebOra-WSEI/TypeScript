@@ -27,6 +27,11 @@ export async function createStory(
     );
   })
     .then((res) => {
+      if (res === undefined) {
+        console.log('Undefined response');
+        return false;
+      }
+
       console.log(res);
       return true;
     })

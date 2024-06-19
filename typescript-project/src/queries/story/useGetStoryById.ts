@@ -2,36 +2,43 @@ import { useEffect, useState } from 'react';
 import { FetchedData } from '../../types/fetchedData';
 import { StatusCode } from '../../types/statusCode';
 import { StoryModel } from '../../types/story';
-import { EMPTY_STORY } from './story';
-import { LOADING_DELAY } from '../../utils/consts';
+import axios from 'axios';
+import { endpoints } from '../../routes/routes';
+import { JWT_TOKEN, getFromLocalStorage } from '../../utils/localStorage';
+import { ErrorResponse, QueryResponse } from '../../types/response';
 
 export const useGetStoryById = (id: string): FetchedData<StoryModel> => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
-  const [message, setMessage] = useState<string | undefined>(undefined);
   const [story, setStory] = useState<StoryModel>();
 
   useEffect(() => {
-    const { status, response, message } = EMPTY_STORY.getById(id);
+    axios
+      .get(endpoints.story(id), {
+        headers: { Authorization: `Bearer: ${getFromLocalStorage(JWT_TOKEN)}` },
+      })
+      .then((res: QueryResponse<StoryModel>) => {
+        const { status, data } = res;
 
-    if (status !== StatusCode.OK && message) {
-      setError(message);
-      setIsLoading(false);
-    }
+        if (status === StatusCode.OK && data.data) {
+          setStory(data.data);
+        }
 
-    if (status === StatusCode.OK && response) {
-      setTimeout(() => {
         setIsLoading(false);
-      }, LOADING_DELAY);
-      setStory(response);
-      setMessage(message);
-    }
+      })
+      .catch((error: ErrorResponse<undefined>) => {
+        const { status, data } = error.response;
+
+        if (status !== StatusCode.OK && data.error) {
+          setError(data.error);
+          setIsLoading(false);
+        }
+      });
   }, []);
 
   return {
     loading: isLoading,
     error,
     data: story,
-    message,
   };
 };

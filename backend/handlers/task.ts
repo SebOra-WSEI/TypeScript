@@ -32,9 +32,9 @@ export const task: ApiHandler<Task, Body> = {
 };
 
 export async function getAll(
-  taskId?: string
+  storyId?: string
 ): Promise<QueryResponse<Array<Task>>> {
-  if (!taskId) {
+  if (!storyId) {
     return {
       status: StatusCode.InternalServer,
       response: {
@@ -44,7 +44,7 @@ export async function getAll(
     };
   }
 
-  const tasks = await getAllTasks(taskId);
+  const tasks = await getAllTasks(storyId);
 
   if (!tasks) {
     return {
