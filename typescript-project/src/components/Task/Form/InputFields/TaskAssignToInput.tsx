@@ -23,12 +23,14 @@ export const TaskAssignToInput: React.FC<TaskAssignToInputProps> = ({
       <Select
         displayEmpty
         value={updatedTask.assignedToId || 'Unassigned'}
-        onChange={(evt) =>
+        onChange={(evt) => {
+          console.log(evt.target.value)
           setUpdatedTask({
             ...updatedTask,
             state: evt.target.value === 'Unassigned' ? State.Todo : State.Doing,
-            assignedToId: evt.target.value,
+            assignedToId: evt.target.value !== 'Unassigned' ? evt.target.value as number : undefined,
           })
+        }
         }
       >
         <MenuItem value='Unassigned'>Unassigned</MenuItem>

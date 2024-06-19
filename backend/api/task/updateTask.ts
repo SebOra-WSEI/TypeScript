@@ -21,7 +21,7 @@ export async function updateTask(
         name,
         description,
         priority,
-        startDate,
+        state,
         expectedEndTime,
         storyPoint,
         startDate,
@@ -35,6 +35,11 @@ export async function updateTask(
     );
   })
     .then((res) => {
+      if (res === undefined) {
+        console.log('Undefined response');
+        return false;
+      }
+
       console.log(res);
       return true;
     })

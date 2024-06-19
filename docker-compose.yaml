@@ -11,7 +11,7 @@ services:
   #     - "./database/.env"
   #   platform: linux/x86_64
   #   volumes:
-  #     - ts-mysql:/var/lib/mysql
+  #     - ts-mysql:/vasr/lib/mysql
 
   backend:
     container_name: backend

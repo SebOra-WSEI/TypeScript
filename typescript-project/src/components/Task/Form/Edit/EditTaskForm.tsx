@@ -26,6 +26,8 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
     endDate,
   } = updatedTask;
 
+  console.log(updatedTask)
+
   return (
     <Grid container sx={formStyles.gridContainer}>
       <Grid item xs={7} sx={formStyles.centeredHeader}>
@@ -52,7 +54,7 @@ export const EditTaskForm: React.FC<EditTaskFormProps> = ({
         <Grid item xs={4}>
           <Typography variant='inherit' fontSize={15}>
             <Typography fontSize={13} color='secondary'>
-              {new Date(createdDate).toLocaleString()}
+              {new Date(Number(createdDate)).toLocaleString()}
             </Typography>
           </Typography>
         </Grid>

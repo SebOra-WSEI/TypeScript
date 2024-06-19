@@ -14,6 +14,11 @@ export async function createProject(
     );
   })
     .then((res) => {
+      if (res === undefined) {
+        console.log('Undefined response');
+        return false;
+      }
+
       console.log(res);
       return true;
     })

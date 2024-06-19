@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { StatusCode } from '../../types/statusCode';
 import { useSetSeverity } from '../../hooks/useSetSeverity';
-import { REDIRECT_DELAY } from '../../utils/consts';
+import { ERROR_DELAY, REDIRECT_DELAY } from '../../utils/consts';
 import axios from 'axios';
 import { endpoints } from '../../routes/routes';
 import { JWT_TOKEN, getFromLocalStorage } from '../../utils/localStorage';
@@ -35,8 +35,11 @@ export const useRemoveProject = (isReload = true): UseRemoveProjectResult => {
         const { status, data } = error.response;
 
         if (status !== StatusCode.OK && data.error) {
-          setMessage(data.error);
           setError(data.error);
+
+          setTimeout(() => {
+            setError('');
+          }, ERROR_DELAY);
         }
       });
   };

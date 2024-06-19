@@ -29,9 +29,9 @@ export const EditTaskModal: React.FC<EditTaskModalProps> = ({
 
   const { update } = useEditTaskById(updatedTask);
 
-  const handleUpdate = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleUpdate = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
-    update(task.id);
+    await update(String(task.id));
   };
 
   return (
