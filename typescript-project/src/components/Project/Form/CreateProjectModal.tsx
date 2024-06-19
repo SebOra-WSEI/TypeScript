@@ -22,7 +22,9 @@ export const CreateProjectModal: React.FC<CreateProjectModalProps> = ({
 
   const { create } = useCreateProject(project);
 
-  const handleCreate = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleCreate = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault();
     await create();
   };

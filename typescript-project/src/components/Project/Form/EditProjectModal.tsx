@@ -19,7 +19,9 @@ export const EditProjectModal: React.FC<EditProjectModalProps> = ({
 
   const { update } = useEditProjectById(updatedProject);
 
-  const handleUpdate = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleUpdate = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault();
     await update(String(project.id));
   };

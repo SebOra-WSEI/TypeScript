@@ -32,7 +32,9 @@ export const CreateTaskFormModal: React.FC<CreateTaskFormModalProps> = ({
 
   const { create } = useCreateTask(task);
 
-  const handleCreate = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleCreate = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault();
     await create();
   };

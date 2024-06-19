@@ -18,7 +18,7 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
 }) => {
   const { name, state, description, assignedToId, userId } = updatedStory;
 
-  const { data: user } = useGetUserById(userId)
+  const { data: user } = useGetUserById(userId);
 
   return (
     <Grid container sx={formStyles.gridContainer}>
@@ -87,7 +87,7 @@ export const EditStoryForm: React.FC<EditStoryFormProps> = ({
             <StoryAssignToInput
               updatedStory={updatedStory}
               setUpdatedStory={setUpdatedStory}
-              assignedToId={assignedToId ?? ''}
+              assignedToId={assignedToId}
             />
           </Grid>
           <Grid item xs={4} sx={formStyles.priorityField}>
