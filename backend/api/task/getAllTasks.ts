@@ -2,12 +2,12 @@ import { DB } from '../../connection/connection';
 import { Task } from '../../types/task';
 
 export async function getAllTasks(
-  projectId: string
+  storyId: string
 ): Promise<Array<Task> | undefined> {
   return await new Promise((resolve) => {
     DB.query(
       `SELECT * FROM tasks WHERE storyId = (?)`,
-      [projectId],
+      [storyId],
       (err, res) => {
         resolve(res);
       }

@@ -3,7 +3,18 @@ import { StoryBasic } from '../../../../types/story';
 import { CreateStoryForm } from './CreateStoryForm';
 import { useCreateStory } from '../../../../queries/story/useCreateStory';
 import { ModalContent } from '../../../common/ModalContent';
-import { defaultStory } from '../../../../queries/story/story';
+import { Priority } from '../../../../types/priority';
+import { CURRENT_USER_ID, getFromLocalStorage } from '../../../../utils/localStorage';
+import { State } from '../../../../types/state';
+
+const defaultStory: StoryBasic = {
+  name: '',
+  description: '',
+  priority: Priority.High,
+  projectId: '',
+  userId: getFromLocalStorage(CURRENT_USER_ID),
+  state: State.Todo,
+};
 
 interface CreateStoryModalProps {
   isOpen: boolean;

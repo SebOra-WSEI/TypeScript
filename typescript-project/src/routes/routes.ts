@@ -23,6 +23,7 @@ export const endpoints = {
   signIn: `${HOST}/sign-in`,
   stories: (projectId: string) => `${HOST}/stories?projectId=${projectId}`,
   story: (id: string) => `${HOST}/stories/${id}`,
+  tasks: (storyId: string) => `${HOST}/tasks?storyId=${storyId}`,
   user: (id: string) => `${HOST}/users/${id}`,
   users: `${HOST}/users`,
 } as const;

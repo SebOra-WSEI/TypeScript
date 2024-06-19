@@ -29,9 +29,9 @@ export const useCreateProject = (
         if (status === StatusCode.Created && data.message) {
           setMessage(data.message);
 
-          setTimeout(() => {
-            window.location.reload();
-          }, REDIRECT_DELAY);
+          // setTimeout(() => {
+          //   window.location.reload();
+          // }, REDIRECT_DELAY);
         }
       })
       .catch((error: ErrorResponse<undefined>) => {
