@@ -4,7 +4,10 @@ import { CreateStoryForm } from './CreateStoryForm';
 import { useCreateStory } from '../../../../queries/story/useCreateStory';
 import { ModalContent } from '../../../common/ModalContent';
 import { Priority } from '../../../../types/priority';
-import { CURRENT_USER_ID, getFromLocalStorage } from '../../../../utils/localStorage';
+import {
+  CURRENT_USER_ID,
+  getFromLocalStorage,
+} from '../../../../utils/localStorage';
 import { State } from '../../../../types/state';
 
 const defaultStory: StoryBasic = {
@@ -29,7 +32,9 @@ export const CreateStoryModal: React.FC<CreateStoryModalProps> = ({
 
   const { create } = useCreateStory(story);
 
-  const handleCreate = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleCreate = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault();
     await create();
   };

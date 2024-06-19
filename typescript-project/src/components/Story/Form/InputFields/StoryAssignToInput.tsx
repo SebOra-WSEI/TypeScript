@@ -8,7 +8,7 @@ import { useGetAllUsers } from '../../../../queries/user/useGetAllUsers';
 interface StoryAssignToInputProps {
   updatedStory: StoryModel;
   setUpdatedStory: (value: StoryModel) => void;
-  assignedToId: string;
+  assignedToId?: number;
 }
 
 export const StoryAssignToInput: React.FC<StoryAssignToInputProps> = ({
@@ -22,16 +22,19 @@ export const StoryAssignToInput: React.FC<StoryAssignToInputProps> = ({
     <FormControl sx={formStyles.formControl} size='small'>
       <Select
         displayEmpty
-        value={assignedToId || ''}
+        value={assignedToId || 'Unassigned'}
         onChange={(evt) =>
           setUpdatedStory({
             ...updatedStory,
             state: evt.target.value === 'Unassigned' ? State.Todo : State.Doing,
-            assignedToId: evt.target.value,
+            assignedToId:
+              evt.target.value !== 'Unassigned'
+                ? (evt.target.value as number)
+                : undefined,
           })
         }
       >
-        <MenuItem value={''}>Unassigned</MenuItem>
+        <MenuItem value={'Unassigned'}>Unassigned</MenuItem>
         {allUsers?.map((user) => (
           <MenuItem key={user.id} value={user.id}>
             {user.name} {user.surname}

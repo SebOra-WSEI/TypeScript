@@ -17,13 +17,13 @@ export const CreateTaskForm: React.FC<CreateTaskFormProps> = ({
   setTask,
 }) => {
   const [expectedDays, setExpectedDays] = useState<number>(0);
-  const { storyId } = useParams<{ storyId: string }>()
+  const { storyId } = useParams<{ storyId: string }>();
 
   const { name, description } = task;
 
   useEffect(() => {
-    setTask({ ...task, storyId })
-  }, [])
+    setTask({ ...task, storyId });
+  }, []);
 
   return (
     <>
@@ -74,7 +74,9 @@ export const CreateTaskForm: React.FC<CreateTaskFormProps> = ({
 
           setTask({
             ...task,
-            expectedEndTime: String(expectedWorkingDays(parseInt(evt.target.value)).getTime()),
+            expectedEndTime: String(
+              expectedWorkingDays(parseInt(evt.target.value)).getTime()
+            ),
           });
         }}
       />

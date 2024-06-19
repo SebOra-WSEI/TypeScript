@@ -18,9 +18,7 @@ export const EditTaskModal: React.FC<EditTaskModalProps> = ({
 }) => {
   const [updatedTask, setUpdatedTask] = useState<TaskBasic>({
     ...task,
-    ...(!task.assignedToId && {
-      assignedToId: 'Unassigned',
-    }),
+    ...(!task.assignedToId && {}),
   });
 
   useEffect(() => {
@@ -29,7 +27,9 @@ export const EditTaskModal: React.FC<EditTaskModalProps> = ({
 
   const { update } = useEditTaskById(updatedTask);
 
-  const handleUpdate = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleUpdate = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault();
     await update(String(task.id));
   };
