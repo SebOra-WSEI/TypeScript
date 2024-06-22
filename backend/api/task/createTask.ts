@@ -40,7 +40,6 @@ export async function createTask(
         return false;
       }
 
-      console.log(res);
       return true;
     })
     .catch((err) => {

@@ -14,7 +14,6 @@ export async function getAllStories(
     );
   })
     .then((res) => {
-      console.log({ res });
       return res as Array<Story>;
     })
     .catch((err) => {

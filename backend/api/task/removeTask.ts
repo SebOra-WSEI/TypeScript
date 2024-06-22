@@ -12,7 +12,6 @@ export async function removeTask(id: string): Promise<boolean> {
         return false;
       }
 
-      console.log(res);
       return true;
     })
     .catch((err) => {

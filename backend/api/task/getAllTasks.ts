@@ -14,7 +14,6 @@ export async function getAllTasks(
     );
   })
     .then((res) => {
-      console.log({ res });
       return res as Array<Task>;
     })
     .catch((err) => {
