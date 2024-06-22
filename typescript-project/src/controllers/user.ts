@@ -3,6 +3,9 @@ import { Api } from './api';
 import { UserModel, UserRole } from '../types/user';
 import { DataType } from '../types/dataType';
 
+/**
+ * @deprecated Used only to the old implementation based on localStorage
+ */
 export class User extends Api<UserModel> {
   public id: string;
 

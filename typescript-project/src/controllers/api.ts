@@ -16,6 +16,9 @@ interface Parameters<T> {
   projectIdKey?: KeyOfType<T>;
 }
 
+/**
+ * @deprecated Used only to the old implementation based on localStorage
+ */
 export class Api<T> {
   private object: Object<T>;
 

@@ -5,26 +5,29 @@ import { Api } from './api';
 import { DataType } from '../types/dataType';
 import { StoryModel } from '../types/story';
 
+/**
+ * @deprecated Used only to the old implementation based on localStorage
+ */
 export class Story extends Api<StoryModel> {
   constructor(
     name: string,
     priority: Priority,
     projectId: string,
-    ownerId: string,
+    userId: string,
     state: State,
     description?: string
   ) {
     const id = uuidv4();
-    const date = new Date();
+    const createdDate = String(new Date().getTime());
 
     const story: StoryModel = {
-      id,
+      id: Number(id),
       name,
       description,
       priority,
       projectId,
-      date,
-      ownerId,
+      createdDate,
+      userId,
       state,
     };
 
