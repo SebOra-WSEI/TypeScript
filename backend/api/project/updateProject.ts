@@ -20,7 +20,6 @@ export async function updateProject(
         return false;
       }
 
-      console.log(res);
       return true;
     })
     .catch((err) => {

@@ -19,7 +19,6 @@ export async function createProject(
         return false;
       }
 
-      console.log(res);
       return true;
     })
     .catch((err) => {

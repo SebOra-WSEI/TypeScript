@@ -32,7 +32,6 @@ export async function createStory(
         return false;
       }
 
-      console.log(res);
       return true;
     })
     .catch((err) => {

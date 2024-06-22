@@ -12,7 +12,6 @@ export async function removeProject(id: string): Promise<boolean> {
         return false;
       }
 
-      console.log(res);
       return true;
     })
     .catch((err) => {
