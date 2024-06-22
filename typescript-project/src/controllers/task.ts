@@ -5,6 +5,9 @@ import { Api } from './api';
 import { DataType } from '../types/dataType';
 import { TaskModel } from '../types/task';
 
+/**
+ * @deprecated Used only to the old implementation based on localStorage
+ */
 export class Task extends Api<TaskModel> {
   constructor(
     name: string,
@@ -12,17 +15,17 @@ export class Task extends Api<TaskModel> {
     storyId: string,
     priority: Priority,
     state: State,
-    expectedEndTime: Date,
+    expectedEndTime: string,
     storyPoint: number,
-    assignedToId: string,
-    startDate?: Date,
-    endDate?: Date
+    assignedToId: number,
+    startDate?: string,
+    endDate?: string
   ) {
     const id = uuidv4();
-    const createdDate = new Date();
+    const createdDate = String(new Date().getTime());
 
     const task: TaskModel = {
-      id,
+      id: Number(id),
       name,
       description,
       storyId,

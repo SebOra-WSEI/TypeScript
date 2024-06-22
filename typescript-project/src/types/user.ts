@@ -10,9 +10,3 @@ export enum UserRole {
   Developer = 'Developer',
   Devops = 'Devops',
 }
-
-export interface LoggedUser {
-  token: string;
-  refreshToken: string;
-  user?: UserModel;
-}
