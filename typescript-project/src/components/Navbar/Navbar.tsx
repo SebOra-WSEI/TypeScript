@@ -16,14 +16,20 @@ import { TaskModel } from '../../types/task';
 import { NavbarBreadcrumbs } from './Breadcrumbs/NavbarBreadcrumbs';
 import { useHistory } from 'react-router';
 import { routes } from '../../routes/routes';
-import { SELECTED_PROJECT_ID } from '../../utils/localStorage';
+import {
+  MESSAGES,
+  SELECTED_PROJECT_ID,
+  getFromLocalStorage,
+} from '../../utils/localStorage';
 import { Link } from 'react-router-dom';
 import { handleLogout } from '../../utils/logout';
 import ReplyAllIcon from '@mui/icons-material/ReplyAll';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
+import MessageIcon from '@mui/icons-material/Message';
 import { ThemeSwitch } from './Theme/ThemeSwitch';
 import { useAppContextProvider } from '../../AppContext';
+import { MessagesModal } from './MessagesModal';
 
 interface NavbarProps extends PropsWithChildren {
   data?: ProjectModel | StoryModel | TaskModel;
@@ -31,6 +37,8 @@ interface NavbarProps extends PropsWithChildren {
 
 export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [isMessagesModalOpen, setIsMessagesModalOpen] =
+    useState<boolean>(false);
   const { mode, setMode } = useAppContextProvider();
   const history = useHistory();
 
@@ -52,50 +60,64 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
     mode === 'light' ? setMode('dark') : setMode('light');
   };
 
+  const allMessages: Array<string> = JSON.parse(getFromLocalStorage(MESSAGES));
+
   return (
-    <AppBar>
-      <Toolbar>
-        <NavbarBreadcrumbs />
-        <Typography variant='h6' sx={styles.grow}>
-          {name}
-        </Typography>
-        <Typography variant='inherit' sx={styles.grow}>
-          {description}
-        </Typography>
-        <IconButton size='small' onClick={handleIconClick}>
-          <Avatar sx={styles.settings}>
-            <SettingsIcon />
-          </Avatar>
-        </IconButton>
-        <Menu anchorEl={anchorEl} open={open} onClose={handleIconClose}>
-          {children}
-          {window.location.pathname !== routes.projects && (
-            <MenuItem onClick={handleChangeProject}>
+    <>
+      <AppBar>
+        <Toolbar>
+          <NavbarBreadcrumbs />
+          <Typography variant='h6' sx={styles.grow}>
+            {name}
+          </Typography>
+          <Typography variant='inherit' sx={styles.grow}>
+            {description}
+          </Typography>
+          <IconButton size='small' onClick={handleIconClick}>
+            <Avatar sx={styles.settings}>
+              <SettingsIcon />
+            </Avatar>
+          </IconButton>
+          <Menu anchorEl={anchorEl} open={open} onClose={handleIconClose}>
+            {children}
+            {window.location.pathname !== routes.projects && (
+              <MenuItem onClick={handleChangeProject}>
+                <ListItemIcon>
+                  <ReplyAllIcon fontSize='small' />
+                </ListItemIcon>
+                Change project
+              </MenuItem>
+            )}
+            <MenuItem onClick={handleLogout}>
               <ListItemIcon>
-                <ReplyAllIcon fontSize='small' />
+                <LogoutIcon fontSize='small' />
               </ListItemIcon>
-              Change project
+              <Link to={routes.login} style={styles.link}>
+                Log out
+              </Link>
             </MenuItem>
-          )}
-          <MenuItem onClick={handleLogout}>
-            <ListItemIcon>
-              <LogoutIcon fontSize='small' />
-            </ListItemIcon>
-            <Link to={routes.login} style={styles.link}>
-              Log out
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <FormControlLabel
-              control={<ThemeSwitch />}
-              label='Theme'
-              onChange={handleMode}
-              checked={mode === 'dark'}
-            />
-          </MenuItem>
-        </Menu>
-      </Toolbar>
-    </AppBar>
+            <MenuItem>
+              <FormControlLabel
+                control={<ThemeSwitch />}
+                label='Theme'
+                onChange={handleMode}
+                checked={mode === 'dark'}
+              />
+            </MenuItem>
+            <MenuItem onClick={() => setIsMessagesModalOpen(true)}>
+              <ListItemIcon>
+                <MessageIcon fontSize='small' />
+              </ListItemIcon>
+              {`Messages ${allMessages.length}`}
+            </MenuItem>
+          </Menu>
+        </Toolbar>
+      </AppBar>
+      <MessagesModal
+        isMessagesModalOpen={isMessagesModalOpen}
+        setIsMessagesModalOpen={setIsMessagesModalOpen}
+      />
+    </>
   );
 };
 

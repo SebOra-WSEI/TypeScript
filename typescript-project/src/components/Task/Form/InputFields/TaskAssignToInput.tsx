@@ -24,7 +24,6 @@ export const TaskAssignToInput: React.FC<TaskAssignToInputProps> = ({
         displayEmpty
         value={updatedTask.assignedToId || 'Unassigned'}
         onChange={(evt) => {
-          console.log(evt.target.value);
           setUpdatedTask({
             ...updatedTask,
             state: evt.target.value === 'Unassigned' ? State.Todo : State.Doing,
