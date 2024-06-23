@@ -26,6 +26,7 @@ export const useEditStoryById = (
 
         if (status === StatusCode.OK && data.message) {
           setMessage(data.message);
+
           setTimeout(() => {
             window.location.reload();
           }, REDIRECT_DELAY);
