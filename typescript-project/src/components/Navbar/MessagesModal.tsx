@@ -8,6 +8,7 @@ import {
   ListItemIcon,
   ListItemText,
   Modal,
+  Typography,
 } from '@mui/material';
 import React from 'react';
 import { commonStyles } from '../../styles/commonStyles';
@@ -27,7 +28,9 @@ export const MessagesModal: React.FC<MessagesModalProps> = ({
   isMessagesModalOpen,
   setIsMessagesModalOpen,
 }) => {
-  const allMessages: Array<string> = JSON.parse(getFromLocalStorage(MESSAGES));
+  const allMessages: Array<string> = JSON.parse(
+    getFromLocalStorage(MESSAGES) || JSON.stringify([])
+  );
 
   const handleOnCloseMessageModal = (): void => {
     setToLocalStorage(MESSAGES, JSON.stringify([]));
@@ -37,20 +40,24 @@ export const MessagesModal: React.FC<MessagesModalProps> = ({
   return (
     <Modal open={isMessagesModalOpen} onClose={handleOnCloseMessageModal}>
       <Box sx={commonStyles.centeredBox}>
-        <DialogContent>
-          <List
-            sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-          >
-            {allMessages.map((value, index) => (
-              <ListItem key={value + index} disableGutters>
-                <ListItemIcon>
-                  <MessageIcon />
-                </ListItemIcon>
-                <ListItemText primary={value} />
-              </ListItem>
-            ))}
-          </List>
-        </DialogContent>
+        {allMessages.length ? (
+          <DialogContent>
+            <List
+              sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+            >
+              {allMessages.map((value, index) => (
+                <ListItem key={value + index} disableGutters>
+                  <ListItemIcon>
+                    <MessageIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={value} />
+                </ListItem>
+              ))}
+            </List>
+          </DialogContent>
+        ) : (
+          <Typography variant='h6'>There are no messages</Typography>
+        )}
         <DialogActions>
           <Button
             onClick={handleOnCloseMessageModal}

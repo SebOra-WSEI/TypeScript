@@ -60,7 +60,9 @@ export const Navbar: React.FC<NavbarProps> = ({ data, children }) => {
     mode === 'light' ? setMode('dark') : setMode('light');
   };
 
-  const allMessages: Array<string> = JSON.parse(getFromLocalStorage(MESSAGES));
+  const allMessages: Array<string> = JSON.parse(
+    getFromLocalStorage(MESSAGES) || JSON.stringify([])
+  );
 
   return (
     <>
