@@ -8,10 +8,10 @@ export const updateTaskDates = (task: TaskBasic): TaskBasic => {
         task.endDate = undefined;
         break;
       }
-      task.startDate = new Date();
+      task.startDate = String(new Date().getTime());
       break;
     case State.Done:
-      task.endDate = new Date();
+      task.endDate = String(new Date().getTime());
       break;
     default:
       task.startDate = undefined;

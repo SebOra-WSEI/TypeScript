@@ -27,10 +27,9 @@ export const StoryAssignToInput: React.FC<StoryAssignToInputProps> = ({
           setUpdatedStory({
             ...updatedStory,
             state: evt.target.value === 'Unassigned' ? State.Todo : State.Doing,
-            assignedToId:
-              evt.target.value !== 'Unassigned'
-                ? (evt.target.value as number)
-                : undefined,
+            assignedToId: isNaN(Number(evt.target.value))
+              ? null
+              : (evt.target.value as number),
           })
         }
       >

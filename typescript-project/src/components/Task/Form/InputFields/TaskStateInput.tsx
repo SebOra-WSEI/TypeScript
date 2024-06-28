@@ -21,7 +21,7 @@ export const TaskStateInput: React.FC<TaskStateInputProps> = ({
           ...updatedTask,
           state: evt.target.value as State,
           ...(evt.target.value === State.Todo && {
-            assignedToId: 'Unassigned',
+            assignedToId: null,
           }),
         })
       }
