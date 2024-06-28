@@ -22,6 +22,7 @@ export const StoryStatusInput: React.FC<StoryStatusInputProps> = ({
         setUpdatedStory({
           ...updatedStory,
           state: evt.target.value as State,
+          assignedToId: null,
         })
       }
     >

@@ -11,7 +11,7 @@ export interface TaskBasic {
   expectedEndTime: string;
   endDate?: string;
   storyPoint: number;
-  assignedToId?: number;
+  assignedToId?: number | null;
   storyId: string;
 }
 

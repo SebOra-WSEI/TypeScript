@@ -10,7 +10,7 @@ export interface StoryBasic {
   userId: string;
   state: State;
   owner?: UserModel;
-  assignedToId?: number;
+  assignedToId?: number | null;
 }
 
 export interface StoryModel extends StoryBasic {

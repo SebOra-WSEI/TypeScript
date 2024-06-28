@@ -21,16 +21,14 @@ export const TaskAssignToInput: React.FC<TaskAssignToInputProps> = ({
   return (
     <FormControl sx={formStyles.formControl} size='small'>
       <Select
-        displayEmpty
         value={updatedTask.assignedToId || 'Unassigned'}
         onChange={(evt) => {
           setUpdatedTask({
             ...updatedTask,
             state: evt.target.value === 'Unassigned' ? State.Todo : State.Doing,
-            assignedToId:
-              evt.target.value !== 'Unassigned'
-                ? (evt.target.value as number)
-                : undefined,
+            assignedToId: isNaN(Number(evt.target.value))
+              ? null
+              : (evt.target.value as number),
           });
         }}
       >
